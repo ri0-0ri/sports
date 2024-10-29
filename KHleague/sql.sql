@@ -1,5 +1,6 @@
 create database sports;
 use sports;
+drop database sports;
 
 drop table user;
 drop table sports;
@@ -28,10 +29,14 @@ select * from eboard;
 create table user(
 	userid varchar(300) primary key,
     userpw varchar(300),
-    username varchar(300),
-    userphone varchar(300),
-    useraddr varchar(300),
-    userReward bigint
+   username varchar(300),
+   userphone varchar(300),
+   useraddr varchar(300),
+   userReward varchar(300),
+   userbirth varchar(300),
+   usergender varchar(300),
+   userhomenum varchar(300),
+   userjoin varchar(300)
 );
 
 create table sports(
