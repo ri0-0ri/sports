@@ -4,13 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/응원게시판.css">
+
+    <link rel="stylesheet" href="/css/fighting/fighting.css">
+
     <title>응원 게시판</title>
 </head>
 
 <body>
-    <header>헤더</header>
-    <div id=" wrap">
+
+   	<th:block th:replace="~{layout/header::header}"></th:block>
+    <div id="wrap">
+
         <div class="page_title">
             <h1>응원 게시판</h1>
         </div>
@@ -117,8 +121,11 @@
         </div>
     </div>
     </div>
-    <footer>푸터</footer>
-    <script src="../js/응원게시판.js"></script>
+
+   <th:block th:replace="~{layout/footer::footer}"></th:block>
+    <script src="/js/fighting/응원게시판.js"></script>
+
+   
 </body>
 
 </html>
