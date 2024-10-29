@@ -1,0 +1,409 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, li {
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+header {
+    height: 100px;
+}
+
+footer{
+    height: 125px;
+}
+
+.top_container{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.page_txt{
+    font-size: 40px;
+}
+
+.page_info_txt{
+    margin-top: 20px;
+}
+
+.container_wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 1440px;
+    margin-top: 50px;
+    border: 1px solid #D9D9D9;
+    text-align: center;
+}
+
+.addr{
+    margin-top: 30px;
+    display: block;
+}
+
+.addr p{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.addr_box{
+    width: 550px;
+    border: 1px solid #D9D9D9;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.addr_info div{
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.addr_self_txt{
+    margin-top: 20px;
+    border-top: 1px solid #D9D9D9;
+    padding: 10px 0 0 0;
+    text-align: left;
+}
+
+.product{
+    margin-top: 30px;
+    display: block;
+}
+
+.product p{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.product_box{
+    margin: 0 auto;
+    width: 550px;
+    border: 1px solid #D9D9D9;
+    border-radius: 15px;
+    padding: 20px 20px 0 20px;
+    position: relative;
+}
+
+.product_info{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.product_img img{
+    width: 200px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.product_view{
+    text-align: left;
+}
+
+.team{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.product_name{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.product_options{
+    display: flex;
+}
+
+.product_num{
+    margin-left: 10px;
+}
+
+.product_price{
+    margin-top: 20px;
+    border-top: 1px solid #D9D9D9;
+    text-align: left;
+}
+
+.total_num{
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.price, .delivery, .reward {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: #B9B9C3;
+}
+
+.delivery{
+    margin-bottom: 70px;
+}
+
+.total_price{
+    background-color: #0344DC;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    color: #fff;
+    border-radius: 15px;
+    position: absolute;
+    width: 550px;
+    left: 0;
+    bottom: 0;
+}
+
+.payment{
+    margin-top: 30px;
+    display: block;
+}
+
+.payment p{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.payment_box{
+    width: 550px;
+    border: 1px solid #D9D9D9;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.choose_btn{
+    width: 25px;
+    height: 25px;
+    border: 1px solid #B9B9C3;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.in_btn{
+    width: 13px;
+    height: 13px;
+    background-color: #B9B9C3;
+    border-radius: 30px;
+}
+
+.in_btn.actbtn{
+    background-color: #0344DC;
+}
+
+.choose{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.sudan{
+    margin-left: 20px;
+}
+
+.sudan.selected{
+    color: #D9D9D9;
+}
+
+.pays{
+    margin-top: 15px;
+    border: 1px solid #d9d9d9;
+    padding: 16px 20px 20px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+
+.pays img{
+    width: 100px;
+}
+
+.payment_txt{
+    margin-top: 20px;
+}
+
+.txt1{
+    color: #B9B9C3;
+}
+
+.txt2{
+    margin-top: 10px;
+    color: #B9B9C3;
+}
+
+.txt3{
+    margin-top: 10px;
+    color: #B9B9C3;
+}
+
+.talk_txt{
+    margin: 30px 0;
+    display: block;
+}
+
+.talk_box{
+    width: 550px;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.talking{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #B9B9C3;
+}
+
+.talking:last-child{
+    margin-top: 15px;
+}
+
+.refund_price{
+    margin-top: 30px;
+    display: block;
+}
+
+.refund_price p{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.refund_box{
+    width: 550px;
+    border: 1px solid #D9D9D9;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+}
+
+.price_to_refund, .reward_to_refund {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: #B9B9C3;
+}
+
+.reward_to_refund{
+    margin-bottom: 50px;
+}
+
+.total_price_to_refund{
+    background-color: #0344DC;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    color: #fff;
+    border-radius: 15px;
+    position: absolute;
+    width: 550px;
+    left: 0;
+    bottom: 0;
+}
+
+.go_refund{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.no_refund{
+    background-color: #D9D9D9;
+    color: #fff;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.ok_refund{
+    background-color: #FF3838;
+    color: #fff;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.reason{
+    margin-top: 30px;
+    display: block;
+}
+
+.reason p{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.reason_box{
+    width: 550px;
+    border: 1px solid #D9D9D9;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+}
+
+.choose_btn_reason{
+    width: 25px;
+    height: 25px;
+    border: 1px solid #B9B9C3;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.in_btn_reason{
+    width: 13px;
+    height: 13px;
+    background-color: #B9B9C3;
+    border-radius: 30px;
+}
+
+.in_btn_reason.actbtn{
+    background-color: #0344DC;
+}
+
+.choose_reason{
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 10px;
+}
+
+.sudan_reason{
+    margin-left: 20px;
+}
+
+#self_reason_txt{
+    width: 100%;
+    border: 1px solid #B9B9C3;
+    border-radius: 5px;
+    padding: 10px;
+    outline: none;
+}
+
+.mind_change{
+    font-size: 14px;
+    color: #B9B9C3;
+    margin-left: 15px;
+}

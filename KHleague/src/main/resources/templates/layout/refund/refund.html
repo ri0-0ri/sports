@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/refund.css">
+    <script src="/jquery-3.7.1.min.js"></script>
+    <script src="/script/script.js"></script>
+    <title>취소/환불 페이지</title>
+</head>
+
+<body>
+    <header></header>
+
+    <div class="top_container">
+        <div class="page_txt">취소 / 환불</div>
+        <div class="page_info_txt">고객님의 주문 정보를 확인하고 안내에 따라 환불신청을 수행해주십시오.</div>
+    </div>
+
+    <div class="container_wrap">
+        <div class="container">
+            <div class="addr">
+                <p>배송지</p>
+                <div class="addr_box">
+                    <div class="addr_info">
+                        <div>김사과</div>
+                        <div>010-1234-1234</div>
+                        <div>서울특별시 역삼구 역삼동 KH아파트 1501호</div>
+                    </div>
+                    <div class="addr_self_txt">
+                        <div class="delivery_txt">문앞에 놔주시고 벨튀하지마세요 제발 ㅋㅋ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product">
+                <p>주문 상품</p>
+                <div class="product_box">
+                    <div class="product_info">
+                        <div class="product_img">
+                            <img src="/images/굿즈/굿즈사진2.jpg" alt="">
+                        </div>
+
+                        <div class="product_view">
+                            <div class="team">
+                                FC 서울
+                            </div>
+                            <div class="product_name">
+                                혹한기 바람막이(black)
+                            </div>
+
+                            <div class="product_options">
+                                <div class="product_size">
+                                    M
+                                </div>
+                                <div class="product_num">
+                                    1개
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product_price">
+                        <div class="total_num">
+                            총 1건
+                        </div>
+                        <div class="price">
+                            <div>상품금액</div>
+                            <div>
+                                570,360 원
+                            </div>
+                        </div>
+                        <div class="reward">
+                            <div>적립금 사용</div>
+                            <div>
+                                5000 원
+                            </div>
+                        </div>
+                        <div class="delivery">
+                            <div>배송비</div>
+                            <div>
+                                1,000,360 원
+                            </div>
+                        </div>
+                        <div class="total_price">
+                            <div>총 결제금액</div>
+                            <div>
+                                1,570,720 원
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="reason">
+                <p>사유 선택</p>
+                <div class="reason_box">
+                    <div class="choose_reason">
+                        <div class="choose_btn_reason">
+                            <div class="in_btn_reason"></div>
+                        </div>
+                        <div class="sudan_reason">단순 변심</div>
+                        <div class="mind_change">
+                            단순 변심 사유는 배송비 제외 환불됩니다!
+                        </div>
+                    </div>
+                    <div class="choose_reason">
+                        <div class="choose_btn_reason">
+                            <div class="in_btn_reason"></div>
+                        </div>
+                        <div class="sudan_reason">상품이 마음에 들지 않음</div>
+                    </div>
+                    <div class="choose_reason">
+                        <div class="choose_btn_reason">
+                            <div class="in_btn_reason"></div>
+                        </div>
+                        <div class="sudan_reason">다른 상품이 배송됨</div>
+                    </div>
+                    <div class="choose_reason">
+                        <div class="choose_btn_reason">
+                            <div class="in_btn_reason"></div>
+                        </div>
+                        <div class="sudan_reason">배송 지연</div>
+                    </div>
+                    <div class="self_reason">
+                        <input type="text" placeholder="직접 작성하기" id="self_reason_txt">
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment">
+                <p>환불 수단</p>
+                <div class="payment_box">
+                    <div class="payment_choose_box">
+                        <div class="choose">
+                            <div class="choose_btn">
+                                <div class="in_btn"></div>
+                            </div>
+                            <div class="sudan">계좌결제</div>
+                        </div>
+                        <div class="choose">
+                            <div class="choose_btn">
+                                <div class="in_btn"></div>
+                            </div>
+                            <div class="sudan">카드결제</div>
+                        </div>
+                        <div class="choose">
+                            <div class="choose_btn">
+                                <div class="in_btn"></div>
+                            </div>
+                            <div class="sudan">일반결제</div>
+                        </div>
+                        <div class="choose">
+                            <div class="choose_btn">
+                                <div class="in_btn"></div>
+                            </div>
+                            <div class="sudan">간편결제</div>
+                        </div>
+
+                        <div class="pays">
+                            <img src="/images/결제/카카오페이.png" alt="">
+                            <img src="/images/결제/네이버페이.png" alt="">
+                            <img src="/images/결제/토스페이.png" alt="">
+                        </div>
+                    </div>
+
+                    <div class="payment_txt">
+                        <div class="txt1">
+                            <div>고객님께서 결제하신 수단으로 환불 예정입니다.</div>
+                        </div>
+
+                        <div class="txt2">
+                            <div>환불금액은 2~3 영업일 내로 입금되며 단순 변심일 경우 금액이 달라질 수 있습니다.</div>
+                        </div>
+                        
+                        <div class="txt3">
+                            <div>사용하신 적립금은 즉시 취소되며 마이페이지에서 확인하실 수 있습니다.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="refund_price">
+                <p>환불 금액</p>
+                <div class="refund_box">
+                    <div class="price_to_refund">
+                        <div>상품금액</div>
+                        <div>
+                            570,360 원
+                        </div>
+                    </div>
+                    <div class="reward_to_refund">
+                        <div>적립금 사용</div>
+                        <div>
+                            5000 원
+                        </div>
+                    </div>
+                    <div class="total_price_to_refund">
+                        <div>환불 예정 금액</div>
+                        <div>
+                            1,570,720 원
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="talk_txt">
+                <div class="talk_box">
+                    <div class="talking">
+                        <div>주문 내용을 확인하였으며 환불에 동의합니다.</div>
+                        <div>자세히</div>
+                    </div>
+
+                    <div class="talking">
+                        <div>개인정보 제공 동의</div>
+                        <div>자세히</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="go_refund">
+                <div class="no_refund">
+                    취소하기
+                </div>
+                <div class="ok_refund">
+                    환불하기
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer></footer>
+</body>
+
+</html>
