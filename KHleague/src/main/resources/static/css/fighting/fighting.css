@@ -9,7 +9,9 @@ footer {
     width: 100%;
     height: 100px;
 }
-
+#wrap {
+margin-top: 100px;
+}
 .page_title {
     border-top: 1px solid #01203F;
     width: 1440px;
@@ -51,7 +53,7 @@ footer {
 .fighting_pic {
     width: 1290px;
     height: 491px;
-    background-image: url("../images/축구공.jpg");
+    background-image: url("/images/축구공.jpg");
 }
 
 .fighting_pic div {
