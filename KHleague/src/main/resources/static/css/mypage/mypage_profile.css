@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header,
+footer {
+    width: 100%;
+    height: 100px;
+}
+.page_title {
+    border-top: 1px solid #01203F;
+    width: 1440px;
+    margin: 0 auto;
+
+}
+
+.page_title h1 {
+    display: inline-block;
+    background-color: white;
+    position: relative;
+    top: -20px;
+    padding-right: 20px;
+}
+.mypage {
+    width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 50px;
+}
+
+.mypage_cata {
+    border: none;
+    width: 373px;
+    height: 838px;
+    justify-content: center;
+    text-align: center;
+    margin-right: 162px;
+    box-shadow: 0px 4px 8px rgba(0, 2, 40, 0.4); 
+                /* 수평, 수직, 흐림, 그림자 색상 */
+}
+
+#profile {
+    width: 166px;
+    height: 166px;
+    border: 1px solid black;
+    margin: 0 auto;
+    border-radius: 50%;
+    margin-top: 88px;
+}
+#my_profile{
+    margin-top: 48px;
+}
+
+#order,
+#wish-list,
+#bag,
+#money {
+    margin-top: 25px;
+}
+
+.line {
+    margin: 0 auto;
+    width: 304px;
+    border-top: 3px solid 
+    #D9D9D9;
+    margin-top: 134px;
+}
+
+#logo_name {
+    margin-top: 15px;
+    color: #D9D9D9;
+}
+
+.choices {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 43px;
+    color: #D9D9D9;
+}
+.choices div:nth-child(1){
+    margin-right: 27px;
+}
+.choices div:nth-child(2){
+    margin-left: 27px;
+}
+
+
+.list {
+    width: 905px;
+    /* border: 1px solid red; */
+}
+.line1 {
+    margin: 0 auto;
+    width: 848px;
+    border-top: 3px solid 
+    #D9D9D9;
+   
+}
+.call{
+    display: flex;
+}
+.simple-infor{
+    display: flex;
+    justify-content: space-between;
+}
+.simple{
+    padding-left: 26px;
+    padding-right: 26px;
+    border: 1px solid black;
+    padding-top: 10px;
+ height: 280px;
+ border-radius: 10px;
+ margin-bottom: 30px;
+}
+#change{
+    background-color: #01203F;
+    color: white;
+    border: none;
+    width: 54px;
+    height: 39px;
+    border-radius: 10px;
+}
+.good{
+    padding-left: 26px;
+    padding-right: 26px;
+    border: 1px solid black;
+    padding-top: 12px;
+ height: 155px;
+ border-radius: 10px;
+ margin-bottom: 30px;
+}
+#down{
+    margin-top: 20px;
+}
+.line2 {
+    margin: 0 auto;
+    width: 848px;
+    border-top: 1px solid 
+    #D9D9D9;
+   
+}
+#message{
+    padding-left: 26px;
+    padding-right: 26px;
+    border: 1px solid black;
+    padding-top: 12px;
+ height: 70px;
+ border-radius: 10px;
+ margin-bottom: 30px;
+}
+#change1{
+    background-color: #01203F;
+    color: white;
+    border: none;
+    width: 54px;
+    height: 39px;
+    border-radius: 10px;
+}
+
+/*  */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #01203F;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* 원형 스위치 */
+.round {
+    border-radius: 34px;
+}
