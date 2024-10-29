@@ -12,17 +12,10 @@ a{
     text-decoration: none;
 }
 
-header {
-    height: 100px;
-}
-
-footer{
-    height: 125px;
-}
-
 .container_wrap {
     display: flex;
     justify-content: center;
+	margin-bottom: 50px;
 }
 
 .top_container {
@@ -45,12 +38,21 @@ footer{
 }
 
 .sports_btn div {
+    color: #01203F;
+	border: 1px solid #D9D9D9;
+	padding: 15px 40px;
+	text-align: center;
+    cursor: pointer;
+}
+
+.sports_btn div:nth-child(1), .sports_btn div:nth-child(2), .sports_btn div:nth-child(3){
+	border-right: none;
+}
+
+.sports_btn div.act {
     background-color: #01203F;
     color: #fff;
-    padding: 10px 40px;
-    margin: 20px;
-    border-radius: 15px;
-    cursor: pointer;
+	transition: background-color 0.5s ease;
 }
 
 .select_wrap{
@@ -80,6 +82,7 @@ footer{
 }
 
 .team_box {
+	margin-top: 13px;
     width: 180px;
     text-align: center;
     padding: 10px 0;
@@ -98,12 +101,14 @@ footer{
 .team_box ul li{
     margin: 15px 0;
     color: #fff;
+	cursor: pointer;
 }
 
 .position_box{
-    width: 75.59px;
+	margin-top: 13px;
+	display: inline;
     text-align: center;
-    padding: 10px 0;
+    padding: 10px 20px;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.7);
 
@@ -119,6 +124,7 @@ footer{
 .position_box ul li{
     margin: 15px 0;
     color: #fff;
+	cursor: pointer;
 }
 
 .search_box{
@@ -132,6 +138,7 @@ footer{
 
 input[type="search"] {
     border: 1px solid #D9D9D9;
+	outline: none;
 }
 
 .team_info_wrap{
@@ -153,10 +160,6 @@ input[type="search"] {
 
 .team_name{
     font-size: 30px;
-}
-
-.team_infos{
-    margin-top: 10px;
 }
 
 .go_team{
@@ -267,6 +270,50 @@ input[type="search"] {
 .type div{
     font-size: 30px;
     color: #01203F;
+}
+
+/* team_info 인덱스 */
+.team_for_type_soccer,
+.team_for_type_baseball,
+.team_for_type_basketball,
+.team_for_type_volleyball {
+	margin-top: 60px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.team_for_type_soccer,
+.team_for_type_baseball,
+.team_for_type_basketball,
+.team_for_type_volleyball {
+    display: none;
+}
+
+.team_img{
+	height: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.team1, .team2, .team3, .team4, .team5{
+	border: 1px solid #B9B9C3;
+	padding: 20px;
+	text-align: center;
+	width: 285px;
+}
+
+.team_name_for_type p{
+	font-size: 25px;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.go_our_team_info, .go_team_hom{
+	text-align: center;
+	background-color: #01203F;
+	padding: 10px;
+	margin-top: 10px;
 }
 
 /* 모달 */

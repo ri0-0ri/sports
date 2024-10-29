@@ -1,4 +1,3 @@
-// index js
 // 메뉴
 $(document).ready(function () {
     $('.menu').mouseover(function () {

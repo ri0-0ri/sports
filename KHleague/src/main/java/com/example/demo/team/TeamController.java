@@ -12,4 +12,7 @@ public class TeamController {
 	public void team_info() {
 		
 	}
+	
+	@GetMapping("soccer/info_fc_seoul")
+	public void fc_seoul() {}
 }

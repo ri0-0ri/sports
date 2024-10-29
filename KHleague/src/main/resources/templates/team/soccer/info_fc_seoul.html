@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/team_info.css">
-    <script src="/jquery-3.7.1.min.js"></script>
-    <script src="/script/script.js"></script>
+    <link rel="stylesheet" href="/css/team/team_info.css">
     <title>Team INFO</title>
 </head>
 
 <body>
+   <th:block th:replace="~{layout/header::header}"></th:block>
 
     <div class="modal">
         <div class="modal_popup">
@@ -67,8 +66,6 @@
         </div>
     </div>
 
-    <header></header>
-
     <div class="top_container">
     </div>
 
@@ -81,58 +78,92 @@
                 <div>배구</div>
             </div>
 
-            <div class="select_wrap">
-                <div class="select_box">
-                    <div class="select_team">
-                        <div class="team_txt">구단 🔽</div>
-                        <div class="team_box">
-                            <ul>
-                                <li>FC 서울</li>
-                                <li>전북 현대 모터스</li>
-                                <li>수원 삼성 블루윙즈</li>
-                                <li>강원 FC</li>
-                                <li>대구 FC</li>
-                                <li>성남 FC</li>
-                                <li>전남 드래곤즈</li>
-                                <li>울산 현대</li>
-                                <li>부산 아이파크</li>
-                                <li>포항 스틸러스</li>
-                            </ul>
-                        </div>
-                    </div>
+			<div class="select_wrap">
+			    <div class="select_box">
+			        <div class="select_team">
+			            <div class="team_txt">구단 선택</div>
+			            <div class="team_box">
+			                <ul class="soccer">
+			                    <li><a href="/team/soccer/info_fc_seoul">FC 서울</a></li>
+			                    <li>전북 현대 모터스</li>
+			                    <li>수원 FC</li>
+			                    <li>울산 현대 FC</li>
+			                    <li>포항 스틸러스</li>
+			                </ul>
+							<ul class="baseball">
+								<li>삼성 라이온즈</li>
+								<li>두산 베어스</li>
+								<li>기아 타이거즈</li>
+								<li>LG 트윈스</li>
+								<li>KT 위즈</li>
+							</ul>
+							<ul class="basketball">
+								<li>고양 소노</li>
+								<li>대구 한국가스공사</li>
+								<li>서울 sk</li>
+								<li>울산 현대모비스</li>
+								<li>창원 LG</li>
+							</ul>
+							<ul class="volleyball">
+								<li>수원 한국전력</li>
+								<li>안산 ok저축은행</li>
+								<li>의정부 kb손해보험</li>
+								<li>인천 대한항공 점보스</li>
+								<li>천안 현대캐피탈</li>
+							</ul>
+			            </div>
+			        </div>
 
-                    <div class="select_position">
-                        <div class="position_txt">포지션 🔽</div>
-                        <div class="position_box">
-                            <ul>
-                                <li>GK</li>
-                                <li>DF</li>
-                                <li>MF</li>
-                                <li>FW</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="search_box">
-                    <input type="search">
-                    <a href="#">검색</a>
-                </div>
-            </div>
+			        <div class="select_position">
+			            <div class="position_txt">포지션 선택</div>
+			            <div class="position_box">
+			                <ul class="soccer">
+			                    <li>감독</li>
+			                    <li>GK</li>
+			                    <li>DF</li>
+			                    <li>MF</li>
+			                    <li>FW</li>
+			                </ul>
+							<ul class="baseball">
+								<li>감독</li>
+								<li>포수</li>
+								<li>투수</li>
+								<li>외야수</li>
+								<li>내야수</li>
+							</ul>
+							<ul class="basketball">
+								<li>감독</li>
+								<li>센터</li>
+								<li>포워드</li>
+								<li>가드</li>
+							</ul>
+							<ul class="volleyball">
+								<li>감독</li>
+								<li>아포짓 스파이커</li>
+								<li>아웃사이드 히터</li>
+								<li>세터</li>
+								<li>미들 블로커</li>
+								<li>리베로</li>
+							</ul>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="search_box">
+			        <input type="search">
+			        <a href="#">검색</a>
+			    </div>
+			</div>
 
             <div class="team_info_wrap">
                 <div class="team_img">
-                    <img src="/images/구단/구단 엠블럼1.png" alt="">
+                    <img src="/images/구단/축구/서울fc.png" alt="">
                 </div>
 
                 <div class="team_info">
                     <div class="team_name">FC 서울</div>
 
-                    <div class="team_infos">
-                        FC 서울은 이러이러한 팀입니다
-                    </div>
-
                     <div class="go_team">
-                        <a href="#">사이트 바로가기</a>
+                        <a href="https://www.fcseoul.com/" target="_blank">사이트 바로가기</a>
                     </div>
                 </div>
             </div>
@@ -191,7 +222,9 @@
         </div>
     </div>
 
-    <footer></footer>
+    <th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/team/team_info.js"></script>
+<script src="/js/index.js"></script>
 </html>
