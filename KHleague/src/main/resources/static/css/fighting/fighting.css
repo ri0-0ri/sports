@@ -1,0 +1,233 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header,
+footer {
+    width: 100%;
+    height: 100px;
+}
+
+.page_title {
+    border-top: 1px solid #01203F;
+    width: 1440px;
+    margin: 0 auto;
+}
+
+.page_title h1 {
+    display: inline-block;
+    background-color: white;
+    position: relative;
+    top: -20px;
+    padding-right: 20px;
+}
+
+.figting_title {
+    display: flex;
+    width: 1440px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.fighting_infor {
+    border: 1px solid #ddd;
+    width: 170px;
+    margin-right: 20px;
+    margin-bottom: 62px;
+    border-radius: 10px;
+}
+
+.fighting_infor div {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.fighting_infor h3 {
+    padding-top: 8px;
+}
+
+.fighting_pic {
+    width: 1290px;
+    height: 491px;
+    background-image: url("../images/축구공.jpg");
+}
+
+.fighting_pic div {
+    position: relative;
+    left: 150px;
+    top: 250px;
+    font-size: 50px;
+    color: white;
+}
+
+.paper {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 30px 20px 50px;
+    border-radius: 10px;
+    background: #f4f4f4;
+}
+
+.paper .tit {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.paper>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.paper .team {
+    width: 120px;
+    text-align: center;
+}
+
+.paper .team p {
+    width: 40px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: #d9d9d9;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+.paper .point {
+    position: relative;
+}
+
+.paper .point>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.paper .point>div>div {
+    position: relative;
+    width: 510px;
+    height: 70px;
+    margin: 0 15px;
+    border: #ddd;
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.paper .point>div>div p {
+    border-radius: 10px;
+    height: 100%;
+}
+
+.paper .point>div>div.left p {
+    width: 80%;
+    margin-left: auto;
+    background: #FF3838;
+}
+
+.paper .point>div>div.right p {
+    width: 10%;
+    margin-right: auto;
+    background: #0344DC;
+}
+
+.paper .point>div>div span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #000;
+
+}
+
+.paper .point>p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 66px;
+    line-height: 36px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    font-weight: 700;
+}
+.hello_logo{
+    width: 1440px;
+    margin: 0 auto;
+    display: flex;
+}
+.fight_left {
+    width: 500px;
+    height: 474px;
+}
+
+.left_infor {
+    border-bottom: 1px solid black;
+}
+.right_infor {
+    border-bottom: 1px solid black;
+}
+
+.fight_logo {
+    width: 440px;
+
+}
+
+.fight_right {
+    width: 500px;
+    height: 474px;
+}
+.hello_logo{
+    margin-top: 50px;
+}
+.fight_title{
+    height: 86px;
+    background-color: #01203F;
+    color: white;
+    text-align: center;
+    line-height: 86px;
+}
+.left_infor div:nth-child(1){
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.left_infor div:nth-child(2){
+    height: 50px;
+    margin-bottom: -12px;
+}
+.fight_left div button {
+    width: 120px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    margin-top: 20px;
+}
+.fight_logo{
+    text-align: center;
+}
+#hello_btn{
+    text-align: center;
+}
+.right_infor div:nth-child(1){
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.right_infor div:nth-child(2){
+    height: 50px;
+    margin-bottom: -12px;
+}
+.fight_right div button {
+    width: 120px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    margin-top: 20px;
+}
