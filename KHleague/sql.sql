@@ -101,7 +101,7 @@ create table g_end_board(
 	teamnum int,
     constraint gE_teamnum foreign key(teamnum) references team(teamnum)
 );
---응원게시판 
+
 create table fboard(
 	fboardnum int primary key auto_increment,
     fboardtitle varchar(300),
@@ -111,7 +111,7 @@ create table fboard(
 	constraint fboard_userid foreign key(userid) references user(userid),
     constraint gWnum foreign key(gWnum) references g_will_board(gWnum)
 );
--- 이벤트 당첨 게시판
+
 create table eboard(
 	eboardnum int primary key auto_increment,
     eproduct varchar(300),
