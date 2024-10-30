@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.model.goods.GoodsDTO;
 import com.example.demo.service.goods.GoodsService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("goods/*")
 public class GoodsController {
@@ -18,12 +20,11 @@ public class GoodsController {
 	private GoodsService service;
 	
 	@GetMapping("goods")
-	public void goods(Model model) {
+	public void goods(Model model, HttpSession session) {
+		String loginUser = (String)session.getAttribute("loginUser");
+		System.out.println(loginUser);
 		List<GoodsDTO> goodsList = service.getgoods();
 		model.addAttribute("goodsList", goodsList);
-		for (GoodsDTO goods : goodsList) {
-	        System.out.println(goods.getGoodstype());
-	    }
 	}
 	
 	@GetMapping("prize")

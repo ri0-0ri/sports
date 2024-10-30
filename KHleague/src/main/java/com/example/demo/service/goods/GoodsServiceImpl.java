@@ -19,4 +19,10 @@ public class GoodsServiceImpl implements GoodsService {
 		return gmapper.getgoods();
 	}
 
+	@Override
+	public void putWish(int goodsnum, String userid) {
+		System.out.println(userid);
+		gmapper.putWish(goodsnum,userid);
+	}
+
 }

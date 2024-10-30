@@ -94,8 +94,8 @@ insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Bottom", "
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Accessories", "수원FC 슈니 더블 축구공 키링", 5000, "/images/굿즈/수원FC 슈니 더블 축구공 키링.png");
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Accessories", "JBFC 슬로건 볼캡(베이지)", 25000, "/images/굿즈/JBFC 슬로건 볼캡(베이지).jpg");
 
-insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "2024 스틸러스 트레이닝 팀컵 팬츠 (블랙)", 69000, "/images/굿즈/2024 스틸러스 트레이닝 팀컵 팬츠 (블랙).png");
-insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "2024 스틸러스 트레이닝 팀컵 팬츠 (블랙)", 69000, "/images/굿즈/2024 스틸러스 트레이닝 팀컵 팬츠 (블랙).png");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "수원FC 24 사인볼(남자)", 20000, "/images/굿즈/수원FC 24 사인볼(남자).jpg");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "2024 스틸러스 브랜딩 니트머플러", 28000, "/images/굿즈/2024 스틸러스 브랜딩 니트머플러.png");
 
 create table orders(
 	ordernum int primary key auto_increment,
@@ -109,6 +109,14 @@ create table orders(
     constraint sudannum foreign key(sudannum) references sudan(sudannum),
     constraint order_userid foreign key(userid) references user(userid),
     constraint goodsnum foreign key(goodsnum) references goods(goodsnum)
+);
+
+create table wishList(
+	wishnum int primary key auto_increment,
+    userid varchar(300),
+    goodsnum int,
+	constraint wish_userid foreign key(userid) references user(userid),
+	constraint goodsnumWish foreign key(goodsnum) references goods(goodsnum)
 );
 
 create table g_will_board(

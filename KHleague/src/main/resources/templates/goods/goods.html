@@ -12,6 +12,8 @@
 <body>
 	<th:block th:replace="~{layout/header::header}"></th:block>
 
+	<input type="hidden" name="userid" th:value="${session.loginUser}">
+	
     <div class="modal" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}" th:id="${goods.goodsnum}">
 	<form id="goodsForm" method="post">
 	<input type="hidden" name="goodsnum" th:value="${goods.goodsnum}">

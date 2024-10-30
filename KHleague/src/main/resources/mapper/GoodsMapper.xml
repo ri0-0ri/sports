@@ -4,5 +4,9 @@
    <select id="getgoods">
 	select * from goods
    </select>
+   
+   <insert id="putWish">
+   	insert into wishList(userid, goodsnum) values(#{userid}, #{goodsnum});
+   </insert>
 
 </mapper>
