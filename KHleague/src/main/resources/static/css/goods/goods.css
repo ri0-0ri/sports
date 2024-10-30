@@ -276,6 +276,8 @@ a{
     color: #fff;
     padding: 10px;
     cursor: pointer;
+	border: none;
+	width: 100%;
 }
 
 .go_payment:hover{
@@ -290,6 +292,8 @@ a{
     color: #B9B9C3;
     padding: 10px;
     cursor: pointer;
+	width: 100%;
+	background-color: #fff;
 }
 
 .go_cart:hover, .go_wishlist:hover{

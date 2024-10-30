@@ -10,5 +10,7 @@ import com.example.demo.model.goods.GoodsDTO;
 public interface GoodsMapper {
 
 	List<GoodsDTO> getgoods();
+
+	void putWish(int goodsnum, String userid);
 	
 }
