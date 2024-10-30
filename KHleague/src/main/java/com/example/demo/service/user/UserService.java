@@ -16,4 +16,9 @@ public class UserService {
     public void registerUser(UserDTO user) {
         userMapper.insertUser(user);
     }
+    
+    public boolean checkUserIdExists(String userid) {
+        return userMapper.existsByUserId(userid);
+    }
+
 }
