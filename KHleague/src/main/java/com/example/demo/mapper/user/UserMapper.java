@@ -12,4 +12,6 @@ public interface UserMapper {
 
     @Select("SELECT COUNT(*) > 0 FROM user WHERE userid = #{userid}")
     boolean existsByUserId(String userid);
+    
+    UserDTO findUserById(String userid);
 }

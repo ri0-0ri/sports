@@ -5,5 +5,7 @@
     INSERT INTO user (userid, username, userbirth, usergender, userphone, userpw, useraddr, userhomenum, userjoin)
     VALUES (#{userid}, #{username}, #{userbirth}, #{usergender}, #{userphone}, #{userpw}, #{useraddr}, #{userhomenum}, #{userjoin});
 </insert>
-
+ <select id="findUserById" resultType="com.example.demo.model.UserDTO.UserDTO">
+        SELECT * FROM user WHERE userid = #{userid}
+    </select>
 </mapper>

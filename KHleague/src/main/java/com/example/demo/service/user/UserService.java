@@ -20,5 +20,7 @@ public class UserService {
     public boolean checkUserIdExists(String userid) {
         return userMapper.existsByUserId(userid);
     }
-
+    public UserDTO findUserById(String userid) {
+        return userMapper.findUserById(userid);
+    }
 }
