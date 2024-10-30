@@ -9,4 +9,11 @@
    	insert into wishList(userid, goodsnum) values(#{userid}, #{goodsnum});
    </insert>
 
+	<select id="getWishgoods">
+		SELECT w.wishnum, w.userid, g.goodsnum, g.goodstype, g.goodsname, g.goodsprice, g.goodsimg
+		FROM wishList w
+		JOIN goods g ON w.goodsnum = g.goodsnum
+		WHERE w.userid = #{userid};
+	</select>
+
 </mapper>

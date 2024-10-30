@@ -22,7 +22,6 @@ public class GoodsController {
 	@GetMapping("goods")
 	public void goods(Model model, HttpSession session) {
 		String loginUser = (String)session.getAttribute("loginUser");
-		System.out.println(loginUser);
 		List<GoodsDTO> goodsList = service.getgoods();
 		model.addAttribute("goodsList", goodsList);
 	}

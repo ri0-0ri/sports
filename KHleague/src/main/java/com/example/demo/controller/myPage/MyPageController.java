@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.model.goods.GoodsDTO;
 import com.example.demo.service.goods.GoodsService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/mypage/")
 public class MyPageController {
@@ -35,16 +37,19 @@ public class MyPageController {
 	}
 
 	@GetMapping("mypage_wish")
-	public String ShowMyPage_wish(Model model, String userid) {
-//		List<GoodsDTO> goodsWishList = gservice.getWishgoods(userid);
-//		model.addAttribute("goodsList", goodsWishList);	
+	public String ShowMyPage_wish(Model model, HttpSession session) {
+		String userid = (String)session.getAttribute("loginUser");
+		
+		List<GoodsDTO> goodsWishList = gservice.getWishgoods(userid);
+		model.addAttribute("goodsList", goodsWishList);
+		
+		System.out.println(goodsWishList.size());
 		
 		return "mypage/mypage_wish";
 	}
 	
 	@PostMapping("mypage_wish")
 	public void mypage_wish(int goodsnum, String userid) {
-		System.out.println("Goods Number: " + goodsnum + ", User ID: " + userid);
 		gservice.putWish(goodsnum, userid);
 	}
 

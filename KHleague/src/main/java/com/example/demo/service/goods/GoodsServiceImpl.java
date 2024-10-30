@@ -21,8 +21,12 @@ public class GoodsServiceImpl implements GoodsService {
 
 	@Override
 	public void putWish(int goodsnum, String userid) {
-		System.out.println(userid);
 		gmapper.putWish(goodsnum,userid);
+	}
+
+	@Override
+	public List<GoodsDTO> getWishgoods(String userid) {
+		return gmapper.getWishgoods(userid);
 	}
 
 }

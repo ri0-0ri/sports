@@ -8,4 +8,6 @@ public interface GoodsService {
 	List<GoodsDTO> getgoods();
 
 	void putWish(int goodsnum, String userid);
+
+	List<GoodsDTO> getWishgoods(String userid);
 }

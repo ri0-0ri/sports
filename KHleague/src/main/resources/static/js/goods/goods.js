@@ -78,23 +78,27 @@ $(document).ready(function () {
 });
 
 // 폼 제출 각각 action 설정해주기
-function submitForm(actionUrl) {
-    // 'this'를 사용하여 클릭된 버튼의 context를 가져옵니다.
-    const form = $(event.target).closest('form'); // jQuery로 form 선택
-    const formData = form.serialize(); // 폼 데이터를 직렬화합니다.
-    console.log("Form Data:", formData); 
-    console.log("Submitting form with userid:", form.find('input[name="userid"]').val()); // userid 출력
-
-    $.ajax({
-        type: 'POST',
-        url: actionUrl,
-        data: formData,
-        success: function(response) {
-            close_modal();
-        },
-        error: function(xhr, status, error) {
-            console.error("Submission failed:", xhr.responseText);
-            alert("폼 제출에 실패했습니다. 다시 시도해 주세요.");
-        }
-    });
+function submitForm(actionUrl, event) {
+    event.preventDefault(); // 기본 제출 방지
+    
+    // 클릭된 버튼의 부모 폼 찾기
+    const form = $(event.target).closest('form'); 
+	const formData = form.serialize();
+	$.ajax({
+	        type: 'POST',
+	        url: actionUrl,
+	        data: formData,
+	        success: function(response) {
+				if(actionUrl === '/mypage/mypage_buy'){
+					alert("장바구니에 상품이 추가되었습니다!");
+				}
+				else if(actionUrl === '/mypage/mypage_wish'){
+					alert("위시리스트에 상품이 추가되었습니다!");
+				}
+	            close_modal();
+	        },
+	        error: function(xhr, status, error) {
+	            console.error("Submission failed:", xhr.responseText);
+	        }
+	    });
 }

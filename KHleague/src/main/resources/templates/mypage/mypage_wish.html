@@ -8,11 +8,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="/css/mypage/mypage_wish.css">
+	  <link rel="stylesheet" href="/css/goods/goods.css">
     <title>위시리스트(마이페이지)</title>
 </head>
 
 <body>
 <th:block th:replace="~{layout/header::header}"></th:block>
+<div class="modal" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}" th:id="${goods.goodsnum}">
+	<form th:id="${goods.goodsnum}" method="post">
+	<input type="hidden" name="userid" th:value="${session.loginUser}">
+	<input type="hidden" name="goodsnum" th:value="${goods.goodsnum}">
+		<!-- 이 폼에서는 DB 굿즈정보, 사용자가 선택한 굿즈사이즈, 사용자가 선택한 굿즈수량이 넘어갑니다 -->
+        <div class="modal_goods_popup">
+
+            <div class="modal_goods_close_btn">
+                <div onclick="close_modal()">닫기</div>
+            </div>
+
+            <div class="modal_goods_img">
+                <img th:src="${goods.goodsimg}" alt="">
+            </div>
+
+            <div class="modal_goods_info">
+                <div class="goods_status">
+                    <p class="new">NEW!</p>
+                    <p class="hot">HOT!</p>
+                </div>
+
+                <div class="goods_name">
+                    [[${goods.goodsname}]]
+                </div>
+
+                <div class="goods_price">
+                    [[${goods.goodsprice}]]
+                </div>
+
+                <div class="goods_options">
+                    <div class="goods_size_box" th:if="${goods.goodstype != 'Accessories' and goods.goodstype != 'Other items'}">
+                        <p>사이즈</p>
+                        <div class="goods_size_option">
+                            <select name="size" id="">
+                                <option value="">XL</option>
+                                <option value="">L</option>
+                                <option value="">M</option>
+                                <option value="">S</option>
+                                <option value="">XS</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="goods_num_box">
+                        <p>수량</p>
+                        <input type="number" class="quantity" name="quantity" min="1" value="1">
+                    </div>
+                </div>
+
+
+                <div class="payment_box">
+					<button type="button" class="go_payment" onclick="submitForm('/payment/payment')">
+						BUY NOW
+					</button>
+					<button type="button" class="go_cart" onclick="submitForm('/mypage/mypage_buy')">
+						ADD TO CART
+					</button>
+                </div>
+
+            </div>
+        </div>
+	</form>
+    </div>
+
+
     <div id="wrap">
         <div class="page_title">
             <h1>MyPage</h1>
@@ -36,19 +102,18 @@
                 <div>
                     <h1>WISH LIST</h1>
                 </div>
-                <div class="listlist">
-                    <div class="up_list">
-                        <div><img src="../images/굿즈사진 2.png" alt=""></div>
-                        <div><img src="../images/굿즈사진2 1.png" alt=""></div>
-                        <div><img src="../images/굿즈사진3 1.png" alt=""></div>
-                    </div>
-                    <div class="down_list">
-                        <div><img src="../images/굿즈사진 2.png" alt=""></div>
-                        <div><img src="../images/굿즈사진2 1.png" alt=""></div>
-                        <div><img src="../images/굿즈사진3 1.png" alt=""></div>
-                    </div>
-                </div>
-            </div>
+				<div class="no_goods" th:if="${goodsList == null and goodsList.size() == 0}">추가하신 상품이 없네요!</div>
+				<div class="goods_wrap">
+					<div class="goods" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}"
+						th:id="${goods.goodstype}">
+						<div class="himg">
+							<img th:src="${goods.goodsimg}" alt="" th:id="${goods.goodsnum}" onclick="open_modal(this)">
+						</div>
+					</div>
+					<!--굿즈 여기로 추가해줘-->
+				</div>
+				
+				</div>
         </div>
     </div>
 
@@ -56,4 +121,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="/js/mypage/wish_list.js"></script>
 </html>
