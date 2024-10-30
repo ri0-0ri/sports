@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-    <link rel="stylesheet" href="/css/login_page/login_page.css" />
+<head>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>로그인 페이지</title>
-  </head>
+	<link rel="stylesheet" href="/css/login_page/login_page.css" />
 
-  <body>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>로그인 페이지</title>
+</head>
 
-   <th:block th:replace="~{layout/header::header}"></th:block>
+<body>
 
-
-    <div id="wrap">
-      <div class="login">
-        <h1>LOGIN</h1>
-        <div>
-          <div>
-            <input type="text" id="id" placeholder="USER NAME" />
-          </div>
-          <div>
-            <input type="password" id="password" placeholder="PASSWORD" />
-          </div>
-        </div>
-        <button id="loginButton">LOGIN</button>
-        <p class="join-link">GO TO JOIN</p>
-      </div>
-    </div>
+	<th:block th:replace="~{layout/header::header}"></th:block>
 
 
-<th:block th:replace="~{layout/footer::footer}"></th:block>
+	<div id="wrap">
+		<div class="login">
+			<h1>LOGIN</h1>
+			<div>
+				<div>
+					<input type="text" id="id" placeholder="USER NAME" />
+				</div>
+				<div>
+					<input type="password" id="password" placeholder="PASSWORD" />
+				</div>
+			</div>
+			<button id="loginButton">LOGIN</button>
+			<p class="join-link">
+				<a href="/join/join.html">GO TO JOIN</a>
+			</p>
+			<p class="error-message" style="color: red;"></p>
+		</div>
+	</div>
 
 
-  </body>
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+	<script src="/js/login/login.js"></script>
+
+</body>
+
 </html>

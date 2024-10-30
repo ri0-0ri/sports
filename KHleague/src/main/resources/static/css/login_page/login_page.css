@@ -170,7 +170,7 @@ footer {
   cursor: pointer;
 }
 
-.join-link {
+.join-link a {
   margin-top: 10px;
   font-size: 12px;
   color: #01203f;
