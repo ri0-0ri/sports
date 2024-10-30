@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="goods_options">
-                    <div class="goods_size_box">
+                    <div class="goods_size_box" th:if="${goods.goodstype != 'Accessories' and goods.goodstype != 'Other items'}">
                         <p>사이즈</p>
                         <div class="goods_size_option">
                             <select name="" id="">
@@ -130,10 +130,10 @@
 
 			<div class="no_goods" th:if="${goodsList == null and goodsList.size() == 0}">이벤트가 열리지 않았습니다.. 기다려주세요!</div>
             <div class="goods_wrap">
-                <div class="goods" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}">
+                <div class="goods" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}" th:id="${goods.goodstype}">
                     <div class="himg">						
-						<img th:src="${goods.goodsimg}" alt="" th:id="${goods.goodsnum}"
-						onclick="open_modal(this)">
+					<img th:src="${goods.goodsimg}" alt="" th:id="${goods.goodsnum}"
+						onclick="open_modal(this)">	
 					</div>
                 </div>
 				<!--굿즈 여기로 추가해줘-->

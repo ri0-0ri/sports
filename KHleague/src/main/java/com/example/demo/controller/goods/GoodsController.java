@@ -22,7 +22,7 @@ public class GoodsController {
 		List<GoodsDTO> goodsList = service.getgoods();
 		model.addAttribute("goodsList", goodsList);
 		for (GoodsDTO goods : goodsList) {
-	        System.out.println(goods.getGoodsnum());
+	        System.out.println(goods.getGoodstype());
 	    }
 	}
 	

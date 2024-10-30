@@ -235,6 +235,10 @@ a{
     border-bottom: 1px solid #d9d9d9;
 }
 
+.goods_options div:first-child{
+	margin: 0;
+}
+
 .goods_size_box{
     display: flex;
     align-items: center;

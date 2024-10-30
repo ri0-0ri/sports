@@ -82,10 +82,20 @@ create table goods(
     goodsimg varchar(300)
 );
 select * from goods;
-insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("outerwear", "24 이동복 상의(레드)", 109000, "/images/굿즈/24 이동복 상의(레드).jpg");
-insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("outerwear", "JBFC 다이노스 PK 맨투맨", 69000, "/images/굿즈/JBFC 다이노스 PK 맨투맨.jpg");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Outerwear", "24 이동복 상의(레드)", 109000, "/images/굿즈/24 이동복 상의(레드).jpg");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Outerwear", "JBFC 다이노스 PK 맨투맨", 69000, "/images/굿즈/JBFC 다이노스 PK 맨투맨.jpg");
 
-insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("top", "JBFC 다이노스 PK 맨투맨", 69000, "/images/굿즈/JBFC 다이노스 PK 맨투맨.jpg");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Top", "24 연습복 긴팔 상의(블랙)", 59000, "/images/굿즈/24 연습복 긴팔 상의(블랙).jpg");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Top", "JBFC 아메리칸 풋볼져지 (화이트)", 99000, "/images/굿즈/JBFC 아메리칸 풋볼져지 (화이트).jpg");
+
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Bottom", "TIRO 24 트레이닝 팬츠 (네이비)", 87000, "/images/굿즈/TIRO 24 트레이닝 팬츠 (네이비).jpg");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Bottom", "2024 스틸러스 트레이닝 팀컵 팬츠 (블랙)", 69000, "/images/굿즈/2024 스틸러스 트레이닝 팀컵 팬츠 (블랙).png");
+
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Accessories", "수원FC 슈니 더블 축구공 키링", 5000, "/images/굿즈/수원FC 슈니 더블 축구공 키링.png");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Accessories", "JBFC 슬로건 볼캡(베이지)", 25000, "/images/굿즈/JBFC 슬로건 볼캡(베이지).jpg");
+
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "2024 스틸러스 트레이닝 팀컵 팬츠 (블랙)", 69000, "/images/굿즈/2024 스틸러스 트레이닝 팀컵 팬츠 (블랙).png");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "2024 스틸러스 트레이닝 팀컵 팬츠 (블랙)", 69000, "/images/굿즈/2024 스틸러스 트레이닝 팀컵 팬츠 (블랙).png");
 
 create table orders(
 	ordernum int primary key auto_increment,
