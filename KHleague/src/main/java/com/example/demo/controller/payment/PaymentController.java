@@ -1,20 +1,15 @@
-package com.example.demo.goods;
+package com.example.demo.controller.payment;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("goods/*")
-public class GoodsController {
+@RequestMapping("payment/*")
+public class PaymentController {
 	
-	@GetMapping("goods")
-	public void goods() {
-		
-	}
-	
-	@GetMapping("prize")
-	public void prize() {
+	@GetMapping("payment")
+	public void payment () {
 		
 	}
 }
