@@ -20,7 +20,7 @@ public class MyPageController {
 
 	@GetMapping("mypage_order")
 	public String Showmypage_order() {
-		return "mypage/mypage_order";
+		return "/mypage/mypage_order";
 	}
 
 	@GetMapping("mypage_wish")

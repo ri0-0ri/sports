@@ -276,6 +276,8 @@ a{
     color: #fff;
     padding: 10px;
     cursor: pointer;
+	border: none;
+	width: 100%;
 }
 
 .go_payment:hover{

@@ -13,6 +13,9 @@
 	<th:block th:replace="~{layout/header::header}"></th:block>
 
     <div class="modal" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}" th:id="${goods.goodsnum}">
+	<form id="goodsForm" method="post">
+	<input type="hidden" name="goodsnum" th:value="${goods.goodsnum}">
+		<!-- 이 폼에서는 DB 굿즈정보, 사용자가 선택한 굿즈사이즈, 사용자가 선택한 굿즈수량이 넘어갑니다 -->
         <div class="modal_goods_popup">
 
             <div class="modal_goods_close_btn">
@@ -41,7 +44,7 @@
                     <div class="goods_size_box" th:if="${goods.goodstype != 'Accessories' and goods.goodstype != 'Other items'}">
                         <p>사이즈</p>
                         <div class="goods_size_option">
-                            <select name="" id="">
+                            <select name="size" id="">
                                 <option value="">XL</option>
                                 <option value="">L</option>
                                 <option value="">M</option>
@@ -59,20 +62,21 @@
 
 
                 <div class="payment_box">
-                    <p class="go_payment">
-                        BUY NOW
-                    </p>
-                    <p class="go_cart">
-                        CART
-                    </p>
-                    <p class="go_wishlist">
-                        WISH LIST
-                    </p>
+					<button type="button" class="go_payment" onclick="submitForm('/payment/payment')">
+						BUY NOW
+					</button>
+					<button type="button" class="go_cart" onclick="submitForm('/mypage/mypage_buy')">
+						ADD TO CART
+					</button>
+					<button type="button" class="go_wishlist" onclick="submitForm('/mypage/mypage_wish')">
+						WISH LIST
+					</button>
                 </div>
 
             </div>
         </div>
     </div>
+	</form>
 
     <div class="top_container">
     </div>

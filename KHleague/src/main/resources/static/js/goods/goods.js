@@ -76,3 +76,10 @@ $(document).ready(function () {
 		});
    })
 });
+
+// 폼 제출 각각 action 설정해주기
+function submitForm(actionUrl) {
+    const form = document.getElementById('goodsForm');
+    form.action = actionUrl;
+    form.submit();
+}
