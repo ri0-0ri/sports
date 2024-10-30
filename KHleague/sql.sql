@@ -28,7 +28,7 @@ select * from eboard;
 
 create table user(
 	userid varchar(300) primary key,
-    userpw varchar(300),
+	userpw varchar(300),
    username varchar(300),
    userphone varchar(300),
    useraddr varchar(300),
@@ -118,6 +118,19 @@ create table wishList(
 	constraint wish_userid foreign key(userid) references user(userid),
 	constraint goodsnumWish foreign key(goodsnum) references goods(goodsnum)
 );
+drop table wishList;
+select * from wishList;
+
+create table buyList(
+	buynum int primary key auto_increment,
+    userid varchar(300),
+    goodsnum int,
+    size varchar(300),
+    quantity int,
+	constraint buy_userid foreign key(userid) references user(userid),
+	constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum)
+);
+select * from buyList;
 
 create table g_will_board(
 	gWnum int primary key auto_increment,
