@@ -19,8 +19,11 @@ public class GoodsController {
 	
 	@GetMapping("goods")
 	public void goods(Model model) {
-		List<GoodsDTO> goods = service.getgoods();
-		model.addAttribute("goods", goods);
+		List<GoodsDTO> goodsList = service.getgoods();
+		model.addAttribute("goodsList", goodsList);
+		for (GoodsDTO goods : goodsList) {
+	        System.out.println(goods.getGoodsnum());
+	    }
 	}
 	
 	@GetMapping("prize")

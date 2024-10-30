@@ -2,8 +2,12 @@
 function close_modal() {
     $('.modal').css('display', 'none');
 }
-function open_modal() {
-    $('.modal').css('display', 'block');
+function open_modal(element) {
+	const goodsid = $(element).attr('id');
+	
+	const thismodal = $(`.modal#${goodsid}`);	
+    thismodal.css('display', 'block');
+	
 }
 
 // goods js
@@ -51,7 +55,7 @@ $(document).ready(function () {
 $(document).ready(function () {
 	$('.goods_select_btn:contains("Outerwear")').addClass('act');
 	
-   $('.goods_select_btn').click(function(){
+	$('.goods_select_btn').click(function(){
 		$('.goods_select_btn').removeClass('act');
 		$(this).addClass('act');
    })

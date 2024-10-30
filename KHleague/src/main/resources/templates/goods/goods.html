@@ -12,7 +12,7 @@
 <body>
 	<th:block th:replace="~{layout/header::header}"></th:block>
 
-    <div class="modal" th:if="${goods != null and goods.size() > 0}" th:each="goods:${modal}">
+    <div class="modal" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}" th:id="${goods.goodsnum}">
         <div class="modal_goods_popup">
 
             <div class="modal_goods_close_btn">
@@ -20,7 +20,7 @@
             </div>
 
             <div class="modal_goods_img">
-                <img src="/images/굿즈/굿즈사진3.jpg" alt="">
+                <img th:src="${goods.goodsimg}" alt="">
             </div>
 
             <div class="modal_goods_info">
@@ -128,32 +128,15 @@
                 </select>
             </div>
 
-            <div class="goods_wrap" th:if="${goods != null and goods.size() > 0}" th:each="goods:${goods}">
-                <div class="goods">
-                    <img url="[[${goods.goodsimg}]]" onclick="open_modal()">
+			<div class="no_goods" th:if="${goodsList == null and goodsList.size() == 0}">이벤트가 열리지 않았습니다.. 기다려주세요!</div>
+            <div class="goods_wrap">
+                <div class="goods" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}">
+                    <div class="himg">						
+						<img th:src="${goods.goodsimg}" alt="" th:id="${goods.goodsnum}"
+						onclick="open_modal(this)">
+					</div>
                 </div>
-<!--                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
-                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
-                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
-                 굿즈 추가 
-                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
-                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
-                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
-                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>-->
+				<!--굿즈 여기로 추가해줘-->
             </div>
 
             <div class="paging">

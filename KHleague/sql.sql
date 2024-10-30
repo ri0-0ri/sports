@@ -82,7 +82,10 @@ create table goods(
     goodsimg varchar(300)
 );
 select * from goods;
-insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("outerwear", "24 이동복 상의(레드)", 109000, "https://files.fcseoul.com/multi01/SHOP/Product/Product/20243301017824_B.jpg");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("outerwear", "24 이동복 상의(레드)", 109000, "/images/굿즈/24 이동복 상의(레드).jpg");
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("outerwear", "JBFC 다이노스 PK 맨투맨", 69000, "/images/굿즈/JBFC 다이노스 PK 맨투맨.jpg");
+
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("top", "JBFC 다이노스 PK 맨투맨", 69000, "/images/굿즈/JBFC 다이노스 PK 맨투맨.jpg");
 
 create table orders(
 	ordernum int primary key auto_increment,
