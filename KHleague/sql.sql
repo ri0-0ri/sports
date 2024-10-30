@@ -32,7 +32,7 @@ create table user(
    username varchar(300),
    userphone varchar(300),
    useraddr varchar(300),
-   userReward varchar(300),
+   userReward varchar(300) default "5000",
    userbirth varchar(300),
    usergender varchar(300),
    userhomenum varchar(300),
@@ -44,12 +44,18 @@ create table sports(
     sport varchar(300)
 );
 
+insert into sports(sport) values("축구");
+insert into sports(sport) values("야구");
+insert into sports(sport) values("농구");
+insert into sports(sport) values("배구");
+
 create table team(
 	teamnum int primary key auto_increment,
     teamname varchar(300),
     sportsnum int,
     constraint sportsnum foreign key(sportsnum) references sports(sportsnum)
 );
+insert into team(teamname, sportsnum) values("FC서울", 1);
 
 create table player(
 	playernum int primary key auto_increment,
@@ -72,11 +78,11 @@ create table goods(
 	goodsnum int primary key auto_increment,
     goodstype varchar(300),
     goodsname varchar(300),
-    goodsSize varchar(300),
     goodsprice bigint,
-    teamnum int,
-    constraint goods_teamnum foreign key(teamnum) references team(teamnum)
+    goodsimg varchar(300)
 );
+select * from goods;
+insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("outerwear", "24 이동복 상의(레드)", 109000, "https://files.fcseoul.com/multi01/SHOP/Product/Product/20243301017824_B.jpg");
 
 create table orders(
 	ordernum int primary key auto_increment,

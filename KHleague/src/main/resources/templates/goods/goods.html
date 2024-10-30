@@ -12,7 +12,7 @@
 <body>
 	<th:block th:replace="~{layout/header::header}"></th:block>
 
-    <div class="modal">
+    <div class="modal" th:if="${goods != null and goods.size() > 0}" th:each="goods:${modal}">
         <div class="modal_goods_popup">
 
             <div class="modal_goods_close_btn">
@@ -30,11 +30,11 @@
                 </div>
 
                 <div class="goods_name">
-                    FC 서울 바람막이(black)
+                    [[${goods.goodsname}]]
                 </div>
 
                 <div class="goods_price">
-                    722,000 원
+                    [[${goods.goodsprice}]]
                 </div>
 
                 <div class="goods_options">
@@ -128,7 +128,20 @@
                 </select>
             </div>
 
-            <div class="goods_wrap">
+            <div class="goods_wrap" th:if="${goods != null and goods.size() > 0}" th:each="goods:${goods}">
+                <div class="goods">
+                    <img url="[[${goods.goodsimg}]]" onclick="open_modal()">
+                </div>
+<!--                <div class="goods">
+                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
+                </div>
+                <div class="goods">
+                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
+                </div>
+                <div class="goods">
+                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
+                </div>
+                 굿즈 추가 
                 <div class="goods">
                     <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
                 </div>
@@ -140,20 +153,7 @@
                 </div>
                 <div class="goods">
                     <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
-                <!-- 굿즈 추가 -->
-                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
-                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
-                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
-                <div class="goods">
-                    <img src="/images/굿즈/굿즈사진.jpg" alt="" onclick="open_modal()">
-                </div>
+                </div>-->
             </div>
 
             <div class="paging">
