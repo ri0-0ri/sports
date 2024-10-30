@@ -102,7 +102,7 @@
                 <div>
                     <h1>WISH LIST</h1>
                 </div>
-				<div class="no_goods" th:if="${goodsList == null and goodsList.size() == 0}">추가하신 상품이 없네요!</div>
+				<div class="no_goods" th:if="${goodsList == null or goodsList.size() == 0}">추가하신 상품이 없네요!</div>
 				<div class="goods_wrap">
 					<div class="goods" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}"
 						th:id="${goods.goodstype}">

@@ -47,11 +47,11 @@
                         <p>사이즈</p>
                         <div class="goods_size_option">
                             <select name="size" id="">
-                                <option value="">XL</option>
-                                <option value="">L</option>
-                                <option value="">M</option>
-                                <option value="">S</option>
-                                <option value="">XS</option>
+                                <option value="XL">XL</option>
+                                <option value="L">L</option>
+                                <option value="M">M</option>
+                                <option value="S">S</option>
+                                <option value="XS">XS</option>
                             </select>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
 					<button type="button" class="go_payment" onclick="submitForm('/payment/payment')">
 						BUY NOW
 					</button>
-					<button type="button" class="go_cart" onclick="submitForm('/mypage/mypage_buy')">
+					<button type="button" class="go_cart" onclick="submitForm('/mypage/mypage_buy', event)">
 						ADD TO CART
 					</button>
 					<button type="button" class="go_wishlist" onclick="submitForm('/mypage/mypage_wish', event)">
@@ -134,7 +134,7 @@
                 </select>
             </div>
 
-			<div class="no_goods" th:if="${goodsList == null and goodsList.size() == 0}">이벤트가 열리지 않았습니다.. 기다려주세요!</div>
+			<div class="no_goods" th:if="${goodsList == null or goodsList.size() == 0}">이벤트가 열리지 않았습니다.. 기다려주세요!</div>
             <div class="goods_wrap">
                 <div class="goods" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}" th:id="${goods.goodstype}">
                     <div class="himg">						

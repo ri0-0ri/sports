@@ -15,5 +15,13 @@
 		JOIN goods g ON w.goodsnum = g.goodsnum
 		WHERE w.userid = #{userid};
 	</select>
+	
+	<insert id="putBuy">
+   		insert into buyList(userid, goodsnum, size, quantity) values(#{userid}, #{goodsnum}, #{size}, #{quantity});
+   	</insert>
+   
+   <select id="getBuygoods">
+   		select * from buyList where userid=#{userid}
+   </select>
 
 </mapper>
