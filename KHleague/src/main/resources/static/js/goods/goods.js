@@ -49,13 +49,8 @@ $(document).ready(function () {
 
 // 굿즈 타입 선택하면 바뀌기
 $(document).ready(function () {
-	$('.goods_select_btn').filter(function() {
-	   if($(this).text() === "Outerwear"){
-		console.log($(this));
-		$(this).addClass('act');
-	   }
-	   
-	});
+	$('.goods_select_btn:contains("Outerwear")').addClass('act');
+	//이게 바뀌어야한다고
 	
    $('.goods_select_btn').click(function(){
 		$('.goods_select_btn').removeClass('act');
