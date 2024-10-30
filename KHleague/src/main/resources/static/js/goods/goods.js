@@ -54,6 +54,7 @@ $(document).ready(function () {
 		console.log($(this));
 		$(this).addClass('act');
 	   }
+	   
 	});
 	
    $('.goods_select_btn').click(function(){
