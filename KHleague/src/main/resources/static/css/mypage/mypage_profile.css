@@ -12,6 +12,7 @@ footer {
 
 #wrap{
 	margin-top: 100px;
+	margin-bottom: 50px;
 }
 .page_title {
     border-top: 1px solid #01203F;
@@ -56,7 +57,13 @@ footer {
 #my_profile{
     margin-top: 48px;
 }
-
+#my_profile a,
+#order a,
+#wish-list a,
+#bag a,
+#money a {
+    color: black; 
+}
 #order,
 #wish-list,
 #bag,
