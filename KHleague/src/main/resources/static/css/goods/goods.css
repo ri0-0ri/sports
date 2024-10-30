@@ -12,14 +12,6 @@ a{
     text-decoration: none;
 }
 
-header {
-    height: 100px;
-}
-
-footer{
-    height: 125px;
-}
-
 .container_wrap {
     display: flex;
     justify-content: center;
@@ -47,7 +39,6 @@ footer{
     margin: 0 50px;
     overflow: hidden;
     white-space: nowrap;
-    /* display: flex; */
     transition: transform 0.5s ease;
 }
 
@@ -70,7 +61,6 @@ footer{
 
 .slick-slide {
     width: auto !important;
-    height: 100px !important;
     display: inline-block !important;
     margin: 20px !important;
 }
@@ -81,6 +71,12 @@ footer{
     border-bottom: 1px solid #d9d9d9;
     text-align: center;
     padding: 20px;
+}
+
+.goods_team_txt p{
+	margin-bottom: 10px;
+	font-size: 18px;
+	color: #01203F;
 }
 
 .goods_team_txt{
@@ -98,17 +94,18 @@ footer{
 .goods_select_btn{
     margin: 20px;
     padding: 10px;
-    background-color: #B9B9C3;
+    background-color: #d9d9d9;
+	color: #fff;
     border-radius: 15px;
     width: 150px;
     text-align: center;
     cursor: pointer;
 }
 
-.goods_select_btn:active{
+.goods_select_btn.act{
     margin: 20px;
     padding: 10px;
-    background-color: #0344DC;
+    background-color: #01203F;
     color: #fff;
     border-radius: 15px;
     width: 150px;
@@ -298,4 +295,25 @@ footer{
     padding: 5px;
     border: 1px solid #D9D9D9;
     cursor: pointer;
+}
+
+/* 당첨 페이지 */
+.prize_txt{
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.prize_txt p{
+	color: #B9B9C3;
+}
+
+.prize_date{
+	display: flex;
+	justify-content: center;
+	margin: 0px 30px;
+	padding: 10px 20px;
+	border: 1px solid #d9d9d9;
+	color: #fff;
+	background-color: #01203F;
 }

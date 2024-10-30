@@ -12,14 +12,6 @@ a{
     text-decoration: none;
 }
 
-header {
-    height: 100px;
-}
-
-footer{
-    height: 125px;
-}
-
 .top_container{
     text-align: center;
     margin-top: 50px;

@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/payment.css">
-    <script src="/jquery-3.7.1.min.js"></script>
-    <script src="/script/script.js"></script>
+    <link rel="stylesheet" href="/css/payment/payment.css">
     <title>상품 결제 페이지</title>
 </head>
 
@@ -40,7 +38,7 @@
         </div>
     </div>
 
-    <header></header>
+    <th:block th:replace="~{layout/header::header}"></th:block>
 
     <div class="top_container">
         <div class="page_txt">상품 결제</div>
@@ -232,7 +230,9 @@
         </div>
     </div>
 
-    <footer></footer>
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/payment/payment.js"></script>
+<script src="/js/index.js"></script>
 </html>

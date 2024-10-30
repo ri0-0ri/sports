@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/refund.css">
-    <script src="/jquery-3.7.1.min.js"></script>
-    <script src="/script/script.js"></script>
+    <link rel="stylesheet" href="/css/refund/refund.css">
     <title>취소/환불 페이지</title>
 </head>
 
 <body>
-    <header></header>
+    <th:block th:replace="~{layout/header::header}"></th:block>
 
     <div class="top_container">
         <div class="page_txt">취소 / 환불</div>
@@ -231,7 +229,9 @@
         </div>
     </div>
 
-    <footer></footer>
+    <th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
-
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/refund/refund.js"></script>
+	<script src="/js/index.js"></script>
 </html>
