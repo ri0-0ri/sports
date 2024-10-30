@@ -34,3 +34,24 @@ function checkPassword() {
 // 입력 필드에 이벤트 리스너 추가
 passwordInput.addEventListener('input', checkPassword);
 confirmPasswordInput.addEventListener('input', checkPassword);
+
+
+function checkUserId() {
+    const userId = document.getElementById("userid").value;
+
+    fetch(`/join/checkUserId?userid=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            const resultSpan = document.getElementById("idCheckResult");
+            if (data.exists) {
+                resultSpan.textContent = "이미 사용 중인 아이디입니다.";
+                resultSpan.style.color = "red";
+            } else {
+                resultSpan.textContent = "사용 가능한 아이디입니다.";
+                resultSpan.style.color = "green";
+            }
+            resultSpan.style.display = "block";
+        })
+        .catch(error => console.error('Error:', error));
+}
+
