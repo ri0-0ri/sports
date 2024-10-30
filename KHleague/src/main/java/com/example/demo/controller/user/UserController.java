@@ -32,8 +32,9 @@ public class UserController {
 		if (user != null && user.getUserpw().equals(password)) {
 			// 로그인 성공 시 세션에 사용자 정보 저장 (선택적)
 			session.setAttribute("loginUser", user.getUserid());
-			session.setAttribute("username", user.getUsername()); // 세션에 사용자 이름 저장
-
+			session.setAttribute("username", user.getUsername());
+			session.setAttribute("useraddr", user.getUseraddr());
+			session.setAttribute("userphone", user.getUserphone());
 			response.put("success", true);
 			response.put("redirect", "/"); // 로그인 성공 시 이동할 경로
 		} else {

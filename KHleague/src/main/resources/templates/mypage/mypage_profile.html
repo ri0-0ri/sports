@@ -38,22 +38,21 @@
 					<div style="margin-bottom: 27px;">
 						<h2>기본정보</h2>
 					</div>
-					<div>APPLE</div>
-					<div style="margin-bottom: 10px;">
-						<h5>apple1234@naver.com</h5>
-					</div>
+				<p style="margin-bottom: 5px;"><span th:text="${userid}"></span></p >
+				<p style="margin-bottom: 5px;"><span th:text="${username}"></span></p>
+					
 					<div class="line1" style="margin-bottom: 19px;"></div>
 					<div class="simple-infor" style="margin-bottom: 27px;">
 						<div class="call">
 							<div style="margin-right: 20px;"><i class="fa-solid fa-phone"></i></div>
-							<div>010-1234-1234</div>
+							<p><span th:text="${userphone}"></span></p>
 						</div>
 						<div><button id="change">변경</button></div>
 					</div>
 					<div class="simple-infor" style="margin-bottom: 56px;">
 						<div class="call">
 							<div style="margin-right: 20px ;"><i class="fa-solid fa-house"></i></div>
-							<div>서울특별시 역삼구 KH 2층 201호</div>
+						  <p>주소: <span th:text="${useraddr}"></span></p>
 						</div>
 						<div><button id="change">변경</button></div>
 					</div>
@@ -116,6 +115,5 @@
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 	<script></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="/js/index.js"></script>
+
 </html>

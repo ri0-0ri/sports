@@ -17,45 +17,56 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/mypage/")
 public class MyPageController {
-	
+
 	@Autowired
 	GoodsService gservice;
 
 	@GetMapping("mypage_profile")
-	public String ShowMyPage_profile() {
+	public String showMyPageProfile(HttpSession session, Model model) {
+		String userid = (String) session.getAttribute("loginUser");
+		String username = (String) session.getAttribute("username");
+		String useraddr = (String) session.getAttribute("useraddr"); 
+		String userphone = (String) session.getAttribute("userphone"); 
+
+		
+		if (userid != null) {
+			model.addAttribute("userid", userid);
+			model.addAttribute("username", username);
+			model.addAttribute("useraddr", useraddr);
+			model.addAttribute("userphone", userphone); 
+		}
+
 		return "mypage/mypage_profile";
 	}
 
 	@GetMapping("mypage_money")
-	public String Showmypage_money() {
+	public String showMypageMoney() {
 		return "mypage/mypage_money";
 	}
 
 	@GetMapping("mypage_order")
-	public String Showmypage_order() {
+	public String showMypageOrder() {
 		return "/mypage/mypage_order";
 	}
 
 	@GetMapping("mypage_wish")
-	public String ShowMyPage_wish(Model model, HttpSession session) {
-		String userid = (String)session.getAttribute("loginUser");
-		
-		List<GoodsDTO> goodsWishList = gservice.getWishgoods(userid);
-		model.addAttribute("goodsList", goodsWishList);
-		
-		System.out.println(goodsWishList.size());
-		
+	 public String ShowMyPage_wish(Model model, HttpSession session) {
+	      String userid = (String)session.getAttribute("loginUser");
+	      
+	      List<GoodsDTO> goodsWishList = gservice.getWishgoods(userid);
+	      model.addAttribute("goodsList", goodsWishList);	      
+	      System.out.println(goodsWishList.size());
+	      
 		return "mypage/mypage_wish";
 	}
-	
+
 	@PostMapping("mypage_wish")
-	public void mypage_wish(int goodsnum, String userid) {
+	 public void mypage_wish(int goodsnum, String userid) {
 		gservice.putWish(goodsnum, userid);
 	}
 
 	@GetMapping("mypage_buy")
-	public String ShowMyPage_buy() {
+	public String showMyPageBuy() {
 		return "mypage/mypage_buy";
 	}
-
 }
