@@ -10,6 +10,7 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<link rel="stylesheet" href="/css/join/join.css">
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 </head>
@@ -68,9 +69,11 @@
 			<div class="container">
 				<h2>선택 항목</h2>
 				<label>주소</label>
-				<input type="text" name="useraddr" placeholder="주소">
-				<input type="text" placeholder="상세 주소">
-				<button class="btn-search">우편번호 찾기</button>
+				<input type="text" name="useraddr" id="useraddr" placeholder="주소">
+				<button type="button" class="btn-search" onclick="openPostCode()">우편번호 찾기</button>
+				<label>상세 주소</label>
+				<input type="text" name="userdetailaddr" id="userdetailaddr" placeholder="상세 주소">
+
 
 				<label>자택 전화</label>
 				<input type="text" name="userhomenum" placeholder="자택 전화번호 입력">
