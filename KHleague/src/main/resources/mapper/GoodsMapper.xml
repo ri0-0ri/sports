@@ -33,5 +33,9 @@
    	set size=#{size}, quantity=#{quantity}
    	where buynum=#{buynum}
    </update>
+   
+   <select id="getBuygoodsBybuynum">
+   		select * from buyList where buynum=#{buynum}
+   </select>
 
 </mapper>
