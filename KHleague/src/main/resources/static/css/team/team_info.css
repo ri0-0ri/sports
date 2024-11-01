@@ -15,7 +15,6 @@ a{
 .container_wrap {
     display: flex;
     justify-content: center;
-	margin-bottom: 50px;
 }
 
 .top_container {

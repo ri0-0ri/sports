@@ -47,28 +47,26 @@
             <div class="menu">
                 <p>마이페이지</p>
                 <div class="bar">
-                    <div>내 프로필</div>
+                    <div><a href="/mypage/mypage_profile">내 프로필</a></div>
                     <div><a href="/mypage/mypage_order">구매내역</a></div>
                     <div><a href="/mypage/mypage_wish">WishList</a></div>
                     <div><a href="/mypage/mypage_buy">장바구니</a></div>
-                    <div><a href="#">적립금</a></div>
+                    <div><a href="/mypage/mypage_money">적립금</a></div>
                 </div>
             </div>
         </div>
     </div>
 
-	<div class="line"></div>
+	<div class="hline"></div>
 
-	<!-- <div class="ball_wrap">
-        <img src="/images/아이콘/축구공.png" alt="" class="ball">
-        <img src="/images/아이콘/야구공.png" alt="" class="ball">
-        <img src="/images/아이콘/농구공.png" alt="" class="ball">
-        <img src="/images/아이콘/배구공.png" alt="" class="ball">
-    </div> -->
-
-	<div class="user_wrap">
+	<div class="user_wrap" th:if="${session.loginUser == '' or session.loginUser == null}">
 		<a href="/login_page/login_page.html" class="login_txt">로그인</a>
 		<div class="user_line"></div>
 		<a href="/join/join.html" class="join_txt">회원가입</a>
+	</div>
+	<div class="user_wrap" th:if="${session.loginUser != '' and session.loginUser != null}">
+		<a href="logout" class="login_txt">로그아웃</a>
+		<div class="user_line"></div>
+		<a href="/mypage/mypage_profile" class="join_txt">마이페이지</a>
 	</div>
 </header>

@@ -1,9 +1,14 @@
 package com.example.demo.controller.myPage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,23 +73,49 @@ public class MyPageController {
 
 	@GetMapping("mypage_buy")
 	public String showMyPageBuy(Model model, HttpSession session) {
+//		장바구니 테이블 내역을 가지고오기
 	    String userid = (String)session.getAttribute("loginUser");
 		List<BuyListDTO> goodsBuyinfo = gservice.getBuygoods(userid);
-	    model.addAttribute("goodsBuyinfo", goodsBuyinfo);
+		model.addAttribute("goodsBuyinfo", goodsBuyinfo);
 	    
-//	    List<Integer> goodsNums = goodsBuyinfo.stream()
-//	                                          .map(BuyListDTO::getGoodsnum)
-//	                                          .collect(Collection.toList());
+//	    장바구니 테이블을 굿즈넘버에 따라 그룹핑
+		Map<Integer, List<BuyListDTO>> goodsBuyInfoBygoodsnum = goodsBuyinfo.stream().collect(Collectors.groupingBy(BuyListDTO::getGoodsnum));
+		model.addAttribute("MgoodsbuyInfo", goodsBuyInfoBygoodsnum);
+		
+//	    해당 굿즈 정보 가지고오기
+	    List<GoodsDTO> goodsInfo = new ArrayList<>();
+	    for(BuyListDTO buy : goodsBuyinfo) {
+	    	// 장바구니 굿즈넘버 가져와서
+	    	int goodsnum = buy.getGoodsnum();	    	
+	        boolean check = false;
 
-//	    List<GoodsDTO> goodsInfo = gservice.goodsInfo(goodsNums);
-//	    model.addAttribute("goodsInfo", goodsInfo);
+	        // 중복 확인
+	        for (GoodsDTO goods : goodsInfo) {
+	            if (goods.getGoodsnum() == goodsnum) {
+	            	check = true;
+	                break;
+	            }
+	        }
+	        // 중복이 아닐 때만 추가
+	        if (!check) {
+	            goodsInfo.add(gservice.getgoodsBycart(goodsnum));
+	        } 			
+	    	System.out.println(goodsInfo);
+	    	
+	    }
+	    model.addAttribute("goodsInfo", goodsInfo);    
 	    
-	    System.out.println(goodsBuyinfo.size());
 		return "mypage/mypage_buy";
 	}
 	
 	@PostMapping("mypage_buy")
 	public void mypage_buy(int goodsnum, String userid, String size, int quantity) {
 		gservice.putBuy(goodsnum, userid, size, quantity);
+	}
+	
+	@PostMapping("mypage_buy_modify")
+	public ResponseEntity<Void> mypage_buy_modify(int goodsnum, String userid, String size, int quantity, int buynum) {
+		gservice.putBuy_modify(goodsnum, userid, size, quantity, buynum);
+		return ResponseEntity.ok().build();
 	}
 }

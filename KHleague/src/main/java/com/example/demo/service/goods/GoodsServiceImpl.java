@@ -3,6 +3,7 @@ package com.example.demo.service.goods;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.goods.GoodsMapper;
@@ -38,6 +39,16 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public List<BuyListDTO> getBuygoods(String userid) {
 		return gmapper.getBuygoods(userid);
+	}
+
+	@Override
+	public GoodsDTO getgoodsBycart(int goodsnum) {
+		return gmapper.getgoodsBycart(goodsnum);
+	}
+
+	@Override
+	public int putBuy_modify(int goodsnum, String userid, String size, int quantity, int buynum) {
+		return gmapper.putBuy_modify(goodsnum, userid, size, quantity, buynum);		
 	}
 
 }
