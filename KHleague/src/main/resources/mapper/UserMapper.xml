@@ -8,4 +8,27 @@
  <select id="findUserById" resultType="com.example.demo.model.UserDTO.UserDTO">
         SELECT * FROM user WHERE userid = #{userid}
     </select>
+    <update id="updateUsername">
+    UPDATE user 
+    SET username = #{value} 
+    WHERE userid = #{userid}
+</update>
+<update id="updateUserphone">
+    UPDATE user 
+    SET userphone = #{value} 
+    WHERE userid = #{userid}
+</update>
+
+<update id="updateUseraddr">
+    UPDATE user 
+    SET useraddr = #{value} 
+    WHERE userid = #{userid}
+</update>
+<update id="updateUserid">
+    UPDATE user 
+    SET userid = #{value} 
+    WHERE userid = #{userid}
+</update>
+
+
 </mapper>
