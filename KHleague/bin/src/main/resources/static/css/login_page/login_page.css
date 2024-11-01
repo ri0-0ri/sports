@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  z-index: 20;
+}
+
+.menus {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.menu {
+  padding: 30px;
+  position: relative;
+}
+
+.bar {
+  cursor: pointer;
+  padding: 20px 30px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  width: 100%;
+  height: 230px;
+  left: 0;
+  top: 90px;
+  z-index: 1;
+  text-align: center;
+}
+
+.bar div:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.bar div {
+  margin: 5px 0;
+  padding: 5px;
+}
+
+.bar.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.line {
+  width: 1px;
+  height: 30px;
+  background-color: #fff;
+}
+
+.ball_wrap {
+  display: flex;
+}
+
+.ball_wrap img {
+  width: 60px;
+  height: 60px;
+  margin: 20px;
+}
+
+.user_wrap {
+  display: flex;
+  align-items: center;
+}
+footer {
+  height: 125px;
+}
+
+.veryUp {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  background-color: black;
+  height: 80px;
+  line-height: 80px;
+}
+
+.veryUp div:nth-child(1) {
+  margin-left: 32px;
+}
+
+.footer_num {
+  display: flex;
+  margin-left: 155px;
+}
+
+.footer_logo {
+  display: flex;
+}
+
+.footer_logo div {
+  margin-right: 32px;
+}
+
+.footer_num div:nth-child(1) {
+  margin-right: 5px;
+}
+
+.footer_num div:nth-child(2) {
+  margin-left: 5px;
+}
+.veryDown {
+  line-height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+#wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 1008px;
+  background-image: url(../../images/로그인.jpg);
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(248, 248, 248, 0.9);
+  color: #01203f;
+  width: 500px;
+  height: 300px;
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: -20px;
+}
+
+#id,
+#password {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #01203f;
+  margin-bottom: 20px;
+}
+
+#loginButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #01203f;
+  color: #f8f8f8;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.join-link a {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #01203f;
+  cursor: pointer;
+}

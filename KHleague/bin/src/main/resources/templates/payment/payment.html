@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/payment/payment.css">
+    <title>상품 결제 페이지</title>
+</head>
+
+<body>
+    <div class="modal">
+        <div class="modal_delivery_popup">
+            <div class="delivery_memo">
+                <div class="memo_txt">배송메모 선택</div>
+                <div class="check_memo">
+                    선택 안함
+                </div>
+                <div class="check_memo">
+                    문앞에 놓아주세요.
+                </div>
+                <div class="check_memo">
+                    배송전 문자 남겨주세요.
+                </div>
+                <div class="check_memo">
+                    부재 시 연락 부탁드립니다.
+                </div>
+                <div class="check_memo" id="self_input">
+                    직접 입력
+                </div>
+                <input type="text" class="delevery_txt_self" style="display: none;">
+
+                <div class="close_btn" onclick="close_modal()">
+                    선택완료
+                </div>             
+            </div>
+
+        </div>
+    </div>
+
+    <th:block th:replace="~{layout/header::header}"></th:block>
+
+    <div class="top_container">
+        <div class="page_txt">상품 결제</div>
+        <div class="page_info_txt">상품 결제 페이지입니다. 꼼꼼히 읽고 결제 하세요. 배송비 필수확인!</div>
+    </div>
+
+    <div class="container_wrap">
+        <div class="container">
+            <div class="addr">
+                <p>배송지</p>
+                <div class="addr_box">
+                    <div class="modify_addr_btn">
+                        변경
+                    </div>
+                    <div class="addr_info">
+                        <div>김사과</div>
+                        <div>010-1234-1234</div>
+                        <div>서울특별시 역삼구 역삼동 KH아파트 1501호</div>
+                    </div>
+                    <div class="addr_self_txt">
+                        <div onclick="open_modal()" id="selected_delivery_txt">배송 메모를 선택해 주세요</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product">
+                <p>주문 상품</p>
+                <div class="product_box">
+                    <div class="product_info">
+                        <div class="product_img">
+                            <img src="/images/굿즈/굿즈사진2.jpg" alt="">
+                        </div>
+
+                        <div class="product_view">
+                            <div class="team">
+                                FC 서울
+                            </div>
+                            <div class="product_name">
+                                혹한기 바람막이(black)
+                            </div>
+
+                            <div class="product_options">
+                                <div class="product_size">
+                                    M
+                                </div>
+                                <div class="product_num">
+                                    1개
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product_price">
+                        <div class="total_num">
+                            총 1건
+                        </div>
+                        <div class="price">
+                            <div>상품금액</div>
+                            <div>
+                                570,360 원
+                            </div>
+                        </div>
+                        <div class="delivery">
+                            <div>배송비</div>
+                            <div>
+                                1,000,360 원
+                            </div>
+                        </div>
+                        <div class="total_price">
+                            <div>총 결제금액</div>
+                            <div>
+                                1,570,720 원
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="reward">
+                <p>적립금</p>
+                <div class="reward_box">
+                    <div class="now_reward">
+                        <div>현재 보유 적립금</div>
+                        <div class="rewards">
+                            <div class="reward_num">5000</div>
+                            <div>원</div>
+                        </div>
+                    </div>
+
+                    <div class="reward_txt">최소 3,000 원 이상 보유 시 사용 가능</div>
+
+                    <div class="use_box">
+                        <div class="input_box">
+                            <div class="inbox">
+                                <div class="use_txt">사용</div>
+                                <div class="input_area">
+                                    <input type="text" placeholder="0" id="use_reward">
+                                    <div class="won">원</div>
+                                </div>
+                            </div>
+
+                            <div class="use_btn">전액사용</div>
+                        </div>
+                    </div>
+
+                    <div class="after_box">
+                        <div class="privious">
+                            <div>사용 전</div>
+                            <div>1,570,720 원</div>
+                        </div>
+                        <div class="after">
+                            <div>사용 후</div>
+                            <div>1,560,720 원</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment">
+                <p>결제 수단</p>
+                <div class="payment_box">
+                    <div class="payment_choose_box">
+                        <div class="choose">
+                            <div class="choose_btn">
+                                <div class="in_btn"></div>
+                            </div>
+                            <div class="sudan">계좌결제</div>
+                        </div>
+                        <div class="choose">
+                            <div class="choose_btn">
+                                <div class="in_btn"></div>
+                            </div>
+                            <div class="sudan">카드결제</div>
+                        </div>
+                        <div class="choose">
+                            <div class="choose_btn">
+                                <div class="in_btn"></div>
+                            </div>
+                            <div class="sudan">일반결제</div>
+                        </div>
+                        <div class="choose">
+                            <div class="choose_btn">
+                                <div class="in_btn"></div>
+                            </div>
+                            <div class="sudan">간편결제</div>
+                        </div>
+
+                        <div class="pays">
+                            <img src="/images/결제/카카오페이.png" alt="">
+                            <img src="/images/결제/네이버페이.png" alt="">
+                            <img src="/images/결제/토스페이.png" alt="">
+                        </div>
+                    </div>
+
+                    <div class="payment_txt">
+                        <div class="txt1">
+                            <div>결제 및 할인 혜택 안내</div>
+                            <div>자세히</div>
+                        </div>
+
+                        <div class="txt2">
+                            <div>무이자 할부는 카드사별로 다를 수 있습니다.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="talk_txt">
+                <div class="talk_box">
+                    <div class="talking">
+                        <div>주문 내용을 확인하였으며 결제에 동의합니다.</div>
+                        <div>자세히</div>
+                    </div>
+
+                    <div class="talking">
+                        <div>개인정보 제공 동의</div>
+                        <div>자세히</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="go_payment_area">
+        <div class="go_payment">
+            <div>총 결제금액</div>
+            <div>1,565,680 원</div>
+        </div>
+    </div>
+
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/payment/payment.js"></script>
+<script src="/js/index.js"></script>
+</html>

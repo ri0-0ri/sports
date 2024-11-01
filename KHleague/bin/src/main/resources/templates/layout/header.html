@@ -1,0 +1,72 @@
+<header>
+	<link rel="stylesheet" href="/css/header.css">
+
+	<div class="logo">
+		<a href="/">KH LEAGUE</a>
+	</div>
+
+    <div class="menu_wrap">
+        <div class="menus">
+            <div class="menu">
+                <p>공지사항</p>
+                <div class="bar">
+                    <div>이벤트</div>
+                </div>
+            </div>
+            <div class="menu">
+                <p>경기정보</p>
+                <div class="bar">
+                    <div>축구</div>
+                    <div>야구</div>
+                    <div>농구</div>
+                    <div>배구</div>
+                </div>
+            </div>
+            <div class="menu">
+                <p>팀 소개</p>
+                <div class="bar">
+                    <div>축구</div>
+                    <div>야구</div>
+                    <div>농구</div>
+                    <div>배구</div>
+                </div>
+            </div>
+            <div class="menu">
+                <p>응원게시판</p>
+                <div class="bar">
+                    <div>응원의<br>한마디</div>
+                </div>
+            </div>
+            <div class="menu">
+                <p>경품 SHOP</p>
+                <div class="bar">
+                    <div><a href="/goods/goods">경품 SHOP</a></div>
+                    <div><a href="/goods/prize">당첨자 SHOP</a></div>
+                </div>
+            </div>
+            <div class="menu">
+                <p>마이페이지</p>
+                <div class="bar">
+                    <div><a href="/mypage/mypage_profile">내 프로필</a></div>
+                    <div><a href="/mypage/mypage_order">구매내역</a></div>
+                    <div><a href="/mypage/mypage_wish">WishList</a></div>
+                    <div><a href="/mypage/mypage_buy">장바구니</a></div>
+                    <div><a href="/mypage/mypage_money">적립금</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div class="hline"></div>
+
+	<div class="user_wrap" th:if="${session.loginUser == '' or session.loginUser == null}">
+		<a href="/login_page/login_page.html" class="login_txt">로그인</a>
+		<div class="user_line"></div>
+		<a href="/join/join.html" class="join_txt">회원가입</a>
+	</div>
+	<div class="user_wrap" th:if="${session.loginUser != '' and session.loginUser != null}">
+		<a href="logout" class="login_txt">로그아웃</a>
+		<div class="user_line"></div>
+		<a href="/mypage/mypage_profile" class="join_txt">마이페이지</a>
+	</div>
+</header>

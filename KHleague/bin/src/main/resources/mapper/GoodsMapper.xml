@@ -1,0 +1,37 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.goods.GoodsMapper">
+
+   <select id="getgoods">
+	select * from goods
+   </select>
+   
+   <insert id="putWish">
+   	insert into wishList(userid, goodsnum) values(#{userid}, #{goodsnum});
+   </insert>
+
+	<select id="getWishgoods">
+		SELECT w.wishnum, w.userid, g.goodsnum, g.goodstype, g.goodsname, g.goodsprice, g.goodsimg
+		FROM wishList w
+		JOIN goods g ON w.goodsnum = g.goodsnum
+		WHERE w.userid = #{userid};
+	</select>
+	
+	<insert id="putBuy">
+   		insert into buyList(userid, goodsnum, size, quantity) values(#{userid}, #{goodsnum}, #{size}, #{quantity});
+   	</insert>
+   
+   <select id="getBuygoods">
+   		select * from buyList where userid=#{userid}
+   </select>
+   
+   <select id="getgoodsBycart">
+   	select * from goods where goodsnum=#{goodsnum}
+   </select>
+   
+   <update id="putBuy_modify">
+   	update buyList
+   	set size=#{size}, quantity=#{quantity}
+   	where buynum=#{buynum}
+   </update>
+
+</mapper>
