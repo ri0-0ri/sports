@@ -51,4 +51,9 @@ public class GoodsServiceImpl implements GoodsService {
 		return gmapper.putBuy_modify(goodsnum, userid, size, quantity, buynum);		
 	}
 
+	@Override
+	public BuyListDTO getBuygoodsBybuynum(int buynum) {
+		return gmapper.getBuygoodsBybuynum(buynum);
+	}
+
 }

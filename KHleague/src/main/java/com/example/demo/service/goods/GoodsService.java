@@ -21,4 +21,6 @@ public interface GoodsService {
 	GoodsDTO getgoodsBycart(int goodsnum);
 
 	int putBuy_modify(int goodsnum, String userid, String size, int quantity, int buynum);
+
+	BuyListDTO getBuygoodsBybuynum(int buynum);
 }

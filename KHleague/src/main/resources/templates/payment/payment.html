@@ -14,7 +14,7 @@
             <div class="delivery_memo">
                 <div class="memo_txt">배송메모 선택</div>
                 <div class="check_memo">
-                    선택 안함
+                    배송 요청사항 없음.
                 </div>
                 <div class="check_memo">
                     문앞에 놓아주세요.
@@ -39,6 +39,9 @@
     </div>
 
     <th:block th:replace="~{layout/header::header}"></th:block>
+	
+	<!-- 결제 정보 제출 폼 -->
+	<form action="/payment/okpayment" method="post">		
 
     <div class="top_container">
         <div class="page_txt">상품 결제</div>
@@ -51,15 +54,19 @@
                 <p>배송지</p>
                 <div class="addr_box">
                     <div class="modify_addr_btn">
-                        변경
+                        주소선택
                     </div>
                     <div class="addr_info">
-                        <div>김사과</div>
-                        <div>010-1234-1234</div>
-                        <div>서울특별시 역삼구 역삼동 KH아파트 1501호</div>
+                        <div th:text="${user.username}"></div>
+                        <div th:text="${user.userphone}"></div>
+                        <div th:if="${user.useraddr == '' or user.useraddr == null}" style="color: #FF1700;">
+							주소 정보가 없습니다! (필수입력)
+						</div>
+						<div th:text="${user.useraddr}"></div>
                     </div>
                     <div class="addr_self_txt">
-                        <div onclick="open_modal()" id="selected_delivery_txt">배송 메모를 선택해 주세요</div>
+                        <input type="text" hidden id="deliveryMemoInput" value="">
+						<div onclick="open_modal()" id="selected_delivery_txt">배송 메모를 선택해 주세요</div>
                     </div>
                 </div>
             </div>
@@ -67,25 +74,22 @@
             <div class="product">
                 <p>주문 상품</p>
                 <div class="product_box">
-                    <div class="product_info">
+                    <div class="product_info" th:each="buyList:${goodsBuyinfo}">
                         <div class="product_img">
                             <img src="/images/굿즈/굿즈사진2.jpg" alt="">
                         </div>
 
                         <div class="product_view">
-                            <div class="team">
-                                FC 서울
-                            </div>
                             <div class="product_name">
-                                혹한기 바람막이(black)
+                                
                             </div>
 
                             <div class="product_options">
                                 <div class="product_size">
-                                    M
+                                    [[${buyList.size}]]
                                 </div>
                                 <div class="product_num">
-                                    1개
+                                    [[${buyList.quantity}]] 개
                                 </div>
                             </div>
                         </div>
@@ -93,7 +97,7 @@
 
                     <div class="product_price">
                         <div class="total_num">
-                            총 1건
+                            총 [[${#lists.size(goodsBuyinfo)}]]건
                         </div>
                         <div class="price">
                             <div>상품금액</div>
@@ -104,7 +108,7 @@
                         <div class="delivery">
                             <div>배송비</div>
                             <div>
-                                1,000,360 원
+                                5000 원
                             </div>
                         </div>
                         <div class="total_price">
@@ -229,6 +233,8 @@
             <div>1,565,680 원</div>
         </div>
     </div>
+	
+	</form>
 
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>

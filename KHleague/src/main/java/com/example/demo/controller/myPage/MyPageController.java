@@ -87,21 +87,18 @@ public class MyPageController {
 	    for(BuyListDTO buy : goodsBuyinfo) {
 	    	// 장바구니 굿즈넘버 가져와서
 	    	int goodsnum = buy.getGoodsnum();	    	
-	        boolean check = false;
-
-	        // 중복 확인
-	        for (GoodsDTO goods : goodsInfo) {
-	            if (goods.getGoodsnum() == goodsnum) {
-	            	check = true;
-	                break;
-	            }
-	        }
-	        // 중복이 아닐 때만 추가
-	        if (!check) {
-	            goodsInfo.add(gservice.getgoodsBycart(goodsnum));
-	        } 			
-	    	System.out.println(goodsInfo);
-	    	
+			
+			boolean check = false;
+			 
+			for (GoodsDTO goods : goodsInfo) {
+				if (goods.getGoodsnum() == goodsnum){
+					check = true;
+					break;
+				}
+			}
+			if (!check) {
+			goodsInfo.add(gservice.getgoodsBycart(goodsnum)); 
+	    }
 	    }
 	    model.addAttribute("goodsInfo", goodsInfo);    
 	    
