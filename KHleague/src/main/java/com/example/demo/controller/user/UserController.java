@@ -1,10 +1,12 @@
 package com.example.demo.controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.model.UserDTO.UserDTO;
@@ -52,4 +54,14 @@ public class UserController {
 		req.getSession().invalidate();
 		return "redirect:/";
 	}
+	@PostMapping("/updateUserInfo")
+	@ResponseBody
+	public ResponseEntity<Void> updateUserInfo(@RequestParam String field, @RequestParam String value, HttpSession session) {
+	    String userid = (String) session.getAttribute("loginUser");
+	    userService.updateUserField(userid, field, value); // 필드와 값으로 업데이트
+
+	    return ResponseEntity.ok().build();
+	}
+
+	
 }

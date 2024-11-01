@@ -39,29 +39,30 @@
 						<h2>기본정보</h2>
 					</div>
 					<p style="margin-bottom: 5px;">
-					               <span th:text="${userid}"></span>
-					               <span><button id="change">변경</button></span>
-					            </p>
-					            <p style="margin-bottom: 5px;">
-					               <span th:text="${username}"></span>
-					               <span><button id="change">변경</button></span>
-					            </p>
-
+					    <span data-field="userid" th:text="${userid}"></span>
+				
+					</p>
+					<p style="margin-bottom: 5px;">
+					    <span data-field="username" th:text="${username}"></span>
+					    <span><button id="usernameChangeButton" class="change" data-modal="usernameModal">변경</button></span>
+					</p>
 					
 					<div class="line1" style="margin-bottom: 19px;"></div>
 					<div class="simple-infor" style="margin-bottom: 27px;">
 						<div class="call">
 							<div style="margin-right: 20px;"><i class="fa-solid fa-phone"></i></div>
-							<p><span th:text="${userphone}"></span></p>
+							<p>
+								<span data-field="userphone" th:text="${userphone}"></span>
+							</p>
 						</div>
-						<div><button id="change">변경</button></div>
+						<div><button id="userphoneChangeButton" class="change" data-modal="userphoneModal">변경</button></div>
 					</div>
 					<div class="simple-infor" style="margin-bottom: 56px;">
 						<div class="call">
-							<div style="margin-right: 20px ;"><i class="fa-solid fa-house"></i></div>
-						  <p>주소: <span th:text="${useraddr}"></span></p>
+							<div style="margin-right: 20px;"><i class="fa-solid fa-house"></i></div>
+						  <p>주소: <span data-field="useraddr"  th:text="${useraddr}"></span></p>
 						</div>
-						<div><button id="change">변경</button></div>
+						<div><button id="useraddrChangeButton" class="change" data-modal="useraddrModal">변경</button></div>
 					</div>
 				</div>
 
@@ -73,7 +74,7 @@
 					<div class="simple-infor" style="margin-bottom: 27px;">
 						<div class="call">
 							<div style="margin-right: 20px;"><i class="fa-solid fa-phone"></i></div>
-							<div style="line-height: 30px;">휴대전화</div>
+							<div class="line-height: 30px;">휴대전화</div>
 						</div>
 						<div class="switch">
 							<label class="switch">
@@ -119,11 +120,57 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- 모달 이름-->
+	<div id="usernameModal" class="modal" style="display:none;">
+	    <div class="modal-content">
+	        <span class="closeModal">&times;</span>
+	        <h2>변경하실 이름을 작성해주세요!</h2>
+	        <input type="text" id="usernameInput" placeholder="새 사용자 이름">
+	        <button id="confirmUsername">확인</button>
+	    </div>
+	</div>
+	<!-- 전화번호 모달-->
+	<div id="userphoneModal" class="modal" style="display:none;">
+	    <div class="modal-content">
+	        <span class="closeModal">&times;</span>
+	        <p>변경하실 전화번호를 적어주세요!</p>
+	        <input type="text" id="userphoneInput">
+	        <button id="confirmUserphone">확인</button>
+	    </div>
+	</div>
+	<!-- 주소 변경 모달 -->
+	<div id="useraddrModal" class="modal" style="display:none;">
+	    <div class="modal-content">
+	        <span class="closeModal" id="closeUseraddrModal">&times;</span>
+	        <p>주소를 선택하세요!</p>
+	        <label>주소</label>
+	        <input type="text" id="useraddr" placeholder="주소 입력" readonly>
+	        <button type="button" class="btn-search" onclick="openPostCode()">우편번호 찾기</button>
+	        <label>상세 주소</label>
+	        <input type="text" id="userdetailaddr" placeholder="상세 주소">
+	        <button id="confirmUseraddr">확인</button>
+	    </div>
+	</div>
+
+	<!-- 주소 변경 버튼 -->
+	<button id="useraddrChangeButton" class="change">주소 변경</button>
+
+	<!-- 아이디 변경-->
+	<div id="useridModal" class="modal" style="display:none;">
+	    <div class="modal-content">
+	        <span class="closeModal">&times;</span>
+	        <p>변경하실 아이디를 적어주세요!</p>
+	        <input type="text" id="useridInput">
+	        <button id="confirmUserid">확인</button>
+	    </div>
+	</div>
+
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
-	
-	<!--지은이 누나 안녕-->
-	<!-- 풀디언니 안녕 -->
+
+	<!-- 스크립트 -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="/js/index.js"></script>
+	<script src="/js/mypage/profile.js"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="/js/index.js"></script>
 </html>
