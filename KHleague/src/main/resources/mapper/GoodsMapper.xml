@@ -23,5 +23,15 @@
    <select id="getBuygoods">
    		select * from buyList where userid=#{userid}
    </select>
+   
+   <select id="getgoodsBycart">
+   	select * from goods where goodsnum=#{goodsnum}
+   </select>
+   
+   <update id="putBuy_modify">
+   	update buyList
+   	set size=#{size}, quantity=#{quantity}
+   	where buynum=#{buynum}
+   </update>
 
 </mapper>

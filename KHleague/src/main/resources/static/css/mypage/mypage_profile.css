@@ -4,12 +4,6 @@
     padding: 0;
 }
 
-header,
-footer {
-    width: 100%;
-    height: 100px;
-}
-
 #wrap{
 	margin-top: 100px;
 	margin-bottom: 50px;
