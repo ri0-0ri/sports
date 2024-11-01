@@ -1,0 +1,193 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header,
+footer {
+    width: 100%;
+    height: 100px;
+}
+#wrap{
+	margin-top: 100px;
+}
+.page_title {
+    border-top: 1px solid #01203F;
+    width: 1440px;
+    margin: 0 auto;
+
+}
+#my_profile a,
+#order a,
+#wish-list a,
+#bag a,
+#money a {
+    color: black; 
+}
+.page_title h1 {
+    display: inline-block;
+    background-color: white;
+    position: relative;
+    top: -20px;
+    padding-right: 20px;
+}
+
+.mypage {
+    width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 50px;
+}
+
+.mypage_cata {
+    border: none;
+    width: 373px;
+    height: 838px;
+    justify-content: center;
+    text-align: center;
+    margin-right: 162px;
+    box-shadow: 0px 4px 8px rgba(0, 2, 40, 0.4);
+    /* 수평, 수직, 흐림, 그림자 색상 */
+}
+
+#profile {
+    width: 166px;
+    height: 166px;
+    border: 1px solid black;
+    margin: 0 auto;
+    border-radius: 50%;
+    margin-top: 88px;
+}
+
+#my_profile {
+    margin-top: 48px;
+}
+
+#order,
+#wish-list,
+#bag,
+#money {
+    margin-top: 25px;
+}
+
+.line {
+    margin: 0 auto;
+    width: 304px;
+    border-top: 3px solid #D9D9D9;
+    margin-top: 134px;
+}
+
+#logo_name {
+    margin-top: 15px;
+    color: #D9D9D9;
+}
+
+.choices {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 43px;
+    color: #D9D9D9;
+}
+
+.choices div:nth-child(1) {
+    margin-right: 27px;
+}
+
+.choices div:nth-child(2) {
+    margin-left: 27px;
+}
+
+
+.list {
+    width: 905px;
+    /* border: 1px solid red; */
+}
+
+.price-infor {
+    display: flex;
+    width: 904px;
+    height: 190px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: space-around;
+    margin-top: 20px;
+
+}
+
+.price-infor div {
+    text-align: center;
+    width: 100px;
+    height: 120px;
+    /* border: 1px solid blue; */
+    line-height: 100px;
+}
+
+.infor_infor p {
+    margin-top: -20px;
+}
+
+.date_time {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 65px;
+    height: 190px;
+}
+
+.up-side {
+    display: flex;
+    line-height: 50px;
+}
+
+.up-side div {
+    margin-left: 20px;
+    margin-top: 24px;
+}
+
+#btn {
+    margin-left: 24px;
+}
+
+#btn button {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    width: 76px;
+    height: 44px;
+    border-radius: 10px;
+}
+
+.date-selection {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 42px;
+}
+
+.start-date {
+    margin-right: 26px;
+}
+
+.end-date {
+    margin-left: 26px;
+}
+
+.list_title {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
+    justify-content: space-around;
+    height: 33px;
+    line-height: 30px;
+    margin-top: 67px;
+}
+
+.item-inforinfor {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    line-height: 200px;
+    margin-top: 20px;
+}

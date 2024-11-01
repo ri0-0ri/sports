@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/team/team_info.css">
+    <title>Team INFO</title>
+</head>
+
+<body>
+   <th:block th:replace="~{layout/header::header}"></th:block>
+
+    <div class="modal">
+        <div class="modal_popup">
+            <div class="modal_img">
+                <div class="img_bg">
+                    <img src="/images/선수/선수프로필.jpg" alt="">
+                </div>
+
+                <div class="type">
+                    <div>SOCCER</div>
+                    <img src="/images/구단/구단 엠블럼1.png" alt="">
+                </div>
+            </div>
+
+            <div class="modal_info">
+                <div class="modal_player_name">
+                    <p>세르게이 예바노비치</p>
+                    <p>Sergay Evanobich</p>
+                </div>
+
+                <div class="modal_player_info">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>국적</td>
+                                <td>소련</td>
+                            </tr>
+                            <tr>
+                                <td>포지션</td>
+                                <td>미드필더</td>
+                            </tr>
+                            <tr>
+                                <td>생년월일</td>
+                                <td>2024-10-25</td>
+                            </tr>
+                            <tr>
+                                <td>키</td>
+                                <td>160.5cm</td>
+                            </tr>
+                            <tr>
+                                <td>몸무게</td>
+                                <td>78g</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="modal_close_btn">
+                <div onclick="close_modal()">닫기</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="top_container">
+    </div>
+
+    <div class="container_wrap">
+        <div class="container">
+            <div class="sports_btn">
+                <div>축구</div>
+                <div>야구</div>
+                <div>농구</div>
+                <div>배구</div>
+            </div>
+
+			<div class="select_wrap">
+			    <div class="select_box">
+			        <div class="select_team">
+			            <div class="team_txt">구단 선택</div>
+			            <div class="team_box">
+			                <ul class="soccer">
+			                    <li><a href="/team/soccer/info_fc_seoul">FC 서울</a></li>
+			                    <li>전북 현대 모터스</li>
+			                    <li>수원 FC</li>
+			                    <li>울산 현대 FC</li>
+			                    <li>포항 스틸러스</li>
+			                </ul>
+							<ul class="baseball">
+								<li>삼성 라이온즈</li>
+								<li>두산 베어스</li>
+								<li>기아 타이거즈</li>
+								<li>LG 트윈스</li>
+								<li>KT 위즈</li>
+							</ul>
+							<ul class="basketball">
+								<li>고양 소노</li>
+								<li>대구 한국가스공사</li>
+								<li>서울 sk</li>
+								<li>울산 현대모비스</li>
+								<li>창원 LG</li>
+							</ul>
+							<ul class="volleyball">
+								<li>수원 한국전력</li>
+								<li>안산 ok저축은행</li>
+								<li>의정부 kb손해보험</li>
+								<li>인천 대한항공 점보스</li>
+								<li>천안 현대캐피탈</li>
+							</ul>
+			            </div>
+			        </div>
+
+			        <div class="select_position">
+			            <div class="position_txt">포지션 선택</div>
+			            <div class="position_box">
+			                <ul class="soccer">
+			                    <li>감독</li>
+			                    <li>GK</li>
+			                    <li>DF</li>
+			                    <li>MF</li>
+			                    <li>FW</li>
+			                </ul>
+							<ul class="baseball">
+								<li>감독</li>
+								<li>포수</li>
+								<li>투수</li>
+								<li>외야수</li>
+								<li>내야수</li>
+							</ul>
+							<ul class="basketball">
+								<li>감독</li>
+								<li>센터</li>
+								<li>포워드</li>
+								<li>가드</li>
+							</ul>
+							<ul class="volleyball">
+								<li>감독</li>
+								<li>아포짓 스파이커</li>
+								<li>아웃사이드 히터</li>
+								<li>세터</li>
+								<li>미들 블로커</li>
+								<li>리베로</li>
+							</ul>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="search_box">
+			        <input type="search">
+			        <a href="#">검색</a>
+			    </div>
+			</div>
+
+            <div class="team_info_wrap">
+                <div class="team_img">
+                    <img src="/images/구단/축구/서울fc.png" alt="">
+                </div>
+
+                <div class="team_info">
+                    <div class="team_name">FC 서울</div>
+
+                    <div class="go_team">
+                        <a href="https://www.fcseoul.com/" target="_blank">사이트 바로가기</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player_info_wrap">
+                <div class="players">
+                    <div class="player">
+                        <img src="/images/선수/선수프로필.jpg" alt="" onclick="open_modal()">
+                        <div>김사과</div>
+                    </div>
+                    <div class="player">
+                        <img src="/images/선수/선수프로필.jpg" alt="">
+                        <div>김사과</div>
+                    </div>
+                    <div class="player">
+                        <img src="/images/선수/선수프로필.jpg" alt="">
+                        <div>김사과</div>
+                    </div>
+                    <div class="player">
+                        <img src="/images/선수/선수프로필.jpg" alt="">
+                        <div>김사과</div>
+                    </div>
+                    <div class="player">
+                        <img src="/images/선수/선수프로필.jpg" alt="">
+                        <div>김사과</div>
+                    </div>
+
+                    <!-- 여기로 선수 추가 -->
+                    <div class="player">
+                        <img src="/images/선수/선수프로필.jpg" alt="">
+                        <div>김사과</div>
+                    </div>
+                    <div class="player">
+                        <img src="/images/선수/선수프로필.jpg" alt="">
+                        <div>김사과</div>
+                    </div>
+                    <div class="player">
+                        <img src="/images/선수/선수프로필.jpg" alt="">
+                        <div>김사과</div>
+                    </div>
+                    <div class="player">
+                        <img src="/images/선수/선수프로필.jpg" alt="">
+                        <div>김사과</div>
+                    </div>
+                    <div class="player">
+                        <img src="/images/선수/선수프로필.jpg" alt="">
+                        <div>김사과</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plus_btn">
+                <div>더보기</div>
+            </div>
+
+        </div>
+    </div>
+
+    <th:block th:replace="~{layout/footer::footer}"></th:block>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/team/team_info.js"></script>
+<script src="/js/index.js"></script>
+</html>

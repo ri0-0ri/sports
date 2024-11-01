@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/goods/goods.css">
+				
+    <title>GOODS</title>
+</head>
+
+<body>
+	<th:block th:replace="~{layout/header::header}"></th:block>
+
+	
+    <div class="modal" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}" th:id="${goods.goodsnum}">
+	<form th:id="${goods.goodsnum}" method="post">
+	<input type="hidden" name="userid" th:value="${session.loginUser}">
+	<input type="hidden" name="goodsnum" th:value="${goods.goodsnum}">
+		<!-- 이 폼에서는 DB 굿즈정보, 사용자가 선택한 굿즈사이즈, 사용자가 선택한 굿즈수량이 넘어갑니다 -->
+        <div class="modal_goods_popup">
+
+            <div class="modal_goods_close_btn">
+                <div onclick="close_modal()">닫기</div>
+            </div>
+
+            <div class="modal_goods_img">
+                <img th:src="${goods.goodsimg}" alt="">
+            </div>
+
+            <div class="modal_goods_info">
+                <div class="goods_status">
+                    <p class="new">NEW!</p>
+                    <p class="hot">HOT!</p>
+                </div>
+
+                <div class="goods_name">
+                    [[${goods.goodsname}]]
+                </div>
+
+                <div class="goods_price">
+                    [[${goods.goodsprice}]]
+                </div>
+
+                <div class="goods_options">
+                    <div class="goods_size_box" th:if="${goods.goodstype != 'Accessories' and goods.goodstype != 'Other items'}">
+                        <p>사이즈</p>
+                        <div class="goods_size_option">
+                            <select name="size" id="">
+                                <option value="XL">XL</option>
+                                <option value="L">L</option>
+                                <option value="M">M</option>
+                                <option value="S">S</option>
+                                <option value="XS">XS</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="goods_num_box">
+                        <p>수량</p>
+                        <input type="number" class="quantity" name="quantity" min="1" value="1">
+                    </div>
+                </div>
+
+
+                <div class="payment_box">
+					<button type="button" class="go_payment" onclick="submitForm('/payment/payment', event)">
+						BUY NOW
+					</button>
+					<button type="button" class="go_cart" onclick="submitForm('/mypage/mypage_buy', event)">
+						ADD TO CART
+					</button>
+					<button type="button" class="go_wishlist" onclick="submitForm('/mypage/mypage_wish', event)">
+						WISH LIST
+					</button>
+                </div>
+
+            </div>
+        </div>
+	</form>
+    </div>
+
+    <div class="top_container">
+    </div>
+
+    <div class="container_wrap">
+        <div class="container">
+            <div class="teams_box">
+                <div class="left_btn">
+                    <p>〈</p>
+                </div>
+
+                <div class="teams">
+					<div>제 2회 경품 - FC서울 바람막이</div>
+					<div>제 3회 경품 - FC서울 바람막이</div>
+					<div>제 2회 경품 - FC서울 바람막이</div>
+					<div>제 2회 경품 - FC서울 바람막이</div>
+					<div>제 2회 경품 - FC서울 바람막이</div>
+                </div>
+
+                <div class="right_btn">
+                    <p>〉</p>
+                </div>
+            </div>
+
+            <div class="goods_team_txt_box">
+                <div class="goods_team_txt">
+                    이벤트 경품 SHOP
+                </div>
+            </div>
+
+            <div class="goods_select_box">
+                <div class="goods_select_btn">
+                    Outerwear
+                </div>
+                <div class="goods_select_btn">
+                    Top
+                </div>
+                <div class="goods_select_btn">
+                    Bottom
+                </div>
+                <div class="goods_select_btn">
+                    Accessories
+                </div>
+                <div class="goods_select_btn">
+                    Other items
+                </div>
+            </div>
+
+            <div class="view_option">
+                <select>
+                    <option value="">인기순</option>
+                    <option value="">최신순</option>
+                </select>
+            </div>
+
+			<div class="no_goods" th:if="${goodsList == null or goodsList.size() == 0}">이벤트가 열리지 않았습니다.. 기다려주세요!</div>
+            <div class="goods_wrap">
+                <div class="goods" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}" th:id="${goods.goodstype}">
+                    <div class="himg">						
+					<img th:src="${goods.goodsimg}" alt="" th:id="${goods.goodsnum}"
+						onclick="open_modal(this)">	
+					</div>
+                </div>
+				<!--굿즈 여기로 추가해줘-->
+            </div>
+
+            <div class="paging">
+                <p>《</p>
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+                <p>4</p>
+                <p>》</p>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="~{layout/footer::footer}"></th:block>
+</body>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/goods/goods.js"></script>
+	<script src="/js/index.js"></script>
+    <!-- 슬릭 js -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</html>

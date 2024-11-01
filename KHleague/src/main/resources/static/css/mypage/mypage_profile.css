@@ -111,12 +111,17 @@
     display: flex;
     justify-content: space-between;
 }
+.simple > p{
+
+display: flex;
+justify-content: space-between;
+}
 .simple{
     padding-left: 26px;
     padding-right: 26px;
     border: 1px solid black;
     padding-top: 10px;
- height: 280px;
+ height: 330px;
  border-radius: 10px;
  margin-bottom: 30px;
 }
