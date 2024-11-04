@@ -27,6 +27,7 @@ select * from fboard;
 select * from eboard;
 
 
+
 CREATE TABLE user (
     userid VARCHAR(300) PRIMARY KEY,
     userpw VARCHAR(300),
@@ -45,7 +46,7 @@ INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, use
 VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04', 'admin');
 
 create table sports(
-	sportsnum int primary key auto_increment,
+   sportsnum int primary key auto_increment,
     sport varchar(300)
 );
 
@@ -55,7 +56,7 @@ insert into sports(sport) values("농구");
 insert into sports(sport) values("배구");
 
 create table team(
-	teamnum int primary key auto_increment,
+   teamnum int primary key auto_increment,
     teamname varchar(300),
     sportsnum int,
     teamloggo varchar(300),
@@ -71,7 +72,7 @@ insert into team(teamname, sportsnum) values("수원 한국전력", 4);
 insert into team(teamname, sportsnum) values("안산 ok저축은행", 4);
 
 create table player(
-	playernum int primary key auto_increment,
+   playernum int primary key auto_increment,
     playername varchar(300),
     playerEname varchar(300),
     playerCountry varchar(300),
@@ -268,11 +269,11 @@ INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, 
 
  
 create table sudan(
-	sudannum int primary key
+   sudannum int primary key
 );
 
 create table goods(
-	goodsnum int primary key auto_increment,
+   goodsnum int primary key auto_increment,
     goodstype varchar(300),
     goodsname varchar(300),
     goodsprice bigint,
@@ -295,7 +296,7 @@ insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other item
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "2024 스틸러스 브랜딩 니트머플러", 28000, "/images/굿즈/2024 스틸러스 브랜딩 니트머플러.png");
 
 create table orders(
-	ordernum int primary key auto_increment,
+   ordernum int primary key auto_increment,
     orderdatetime datetime,
     deliveryPlace varchar(300),
     deliveryMemo varchar(300),
@@ -309,53 +310,53 @@ create table orders(
 );
 
 create table wishList(
-	wishnum int primary key auto_increment,
+   wishnum int primary key auto_increment,
     userid varchar(300),
     goodsnum int,
-	constraint wish_userid foreign key(userid) references user(userid),
-	constraint goodsnumWish foreign key(goodsnum) references goods(goodsnum)
+   constraint wish_userid foreign key(userid) references user(userid),
+   constraint goodsnumWish foreign key(goodsnum) references goods(goodsnum)
 );
 drop table wishList;
 select * from wishList;
 
 create table buyList(
-	buynum int primary key auto_increment,
+   buynum int primary key auto_increment,
     userid varchar(300),
     goodsnum int,
     size varchar(300),
     quantity int,
-	constraint buy_userid foreign key(userid) references user(userid),
-	constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum)
+   constraint buy_userid foreign key(userid) references user(userid),
+   constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum)
 );
 select * from buyList;
 
 create table g_will_board(
-	gWnum int primary key auto_increment,
+   gWnum int primary key auto_increment,
     gWdate datetime,
     teamnum int,
     constraint gW_teamnum foreign key(teamnum) references team(teamnum)
 );
 
 create table g_end_board(
-	gEnum int primary key auto_increment,
+   gEnum int primary key auto_increment,
     gEdate datetime,
     gEscore varchar(300),
-	teamnum int,
+   teamnum int,
     constraint gE_teamnum foreign key(teamnum) references team(teamnum)
 );
 
 create table fboard(
-	fboardnum int primary key auto_increment,
+   fboardnum int primary key auto_increment,
     fboardtitle varchar(300),
     fboardcontent varchar(3000),
     userid varchar(300),
     gWnum int,
-	constraint fboard_userid foreign key(userid) references user(userid),
+   constraint fboard_userid foreign key(userid) references user(userid),
     constraint gWnum foreign key(gWnum) references g_will_board(gWnum)
 );
 
 create table eboard(
-	eboardnum int primary key auto_increment,
+   eboardnum int primary key auto_increment,
     eproduct varchar(300),
     edate varchar(300),
     eboardcontent varchar(3000),
