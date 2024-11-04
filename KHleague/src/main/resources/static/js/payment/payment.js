@@ -161,6 +161,8 @@ $(document).ready(function () {
 		$('input[name="sudannum"]').val(sudannum);
 		$('input[name="userid"]').val(userid);
 		$('input[name="goodsnum"]').val(goodsnum);
+		
+					
 	});
 });
 
@@ -170,23 +172,46 @@ $(document).ready(function () {
 		const pnames = $('.product_name').text() + "외 " + (parseInt($('.total_num').text().trim()) - 1) + "건";
 		console.log(pnames);
 
-		const total = $('.after_reward').eq(0).text().trim();
+		const total = parseInt($('.after_reward').eq(0).text().trim());		
 		console.log(total);
 
 		let data = {
-			name: pnames,
-			totalPrice: 20000
+			"cid": "TC0ONETIME",
+			"partner_order_id": "partner_order_id",
+			"partner_user_id": "partner_user_id",
+			"item_name": "초코파이",
+			"quantity": "1",
+			"total_amount": "2200",
+			"vat_amount": "200",
+			"tax_free_amount": "0",
+			"approval_url": "https://developers.kakao.com/success",
+			"fail_url": "https://developers.kakao.com/fail",
+			"cancel_url": "https://developers.kakao.com/cancel"
 		};
+
+		/*	$.ajax({
+				type: 'POST',
+				url: '/payment/open_kakao',
+				data: JSON.stringify(data),
+				contentType: 'application/json',
+				success: function(response) {
+					location.href = response.next_redirect_pc_url;
+				}
+			});
+		});*/
+
 
 		$.ajax({
 			type: 'POST',
 			url: '/payment/open_kakao',
-			data: JSON.stringify(data),
-			contentType: 'application/json',
-			success: function(response) {
-				location.href = response.next_redirect_pc_url;
+			dataType: 'json',
+/*			data: JSON.stringify(data),
+			contentType: 'application/json',*/
+			success: function(data) {
+				alert(JSON.stringify(data));
+				var box = data.next_redirect_pc_url;
+				window.open(box);
 			}
 		});
-	});
-
+	})
 });

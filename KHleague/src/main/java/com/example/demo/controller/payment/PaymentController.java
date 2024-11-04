@@ -1,8 +1,10 @@
 package com.example.demo.controller.payment;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -78,22 +80,22 @@ public class PaymentController {
 	
 	@PostMapping("open_kakao")
 	@ResponseBody
-	public String kakaopay() {
+	public String kakaopay(@RequestParam String name, Integer totalPrice) {
 		try {
 			URL url = new URL("https://open-api.kakaopay.com/online/v1/payment/ready");
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Authorization", "SECRET_KEY DEV082C51D29EDB518D5AB58F83F9F9249C1B2A8");
-			con.setRequestProperty("Content-Typ", "application/json");
+			con.setRequestProperty("Content-Type", "application/json");
 			con.setDoOutput(true);
 			
 			String paramiter = "cid=TC0ONETIME&"
-					+ "partner_order_id=&"
-					+ "partner_user_id=&"
-					+ "item_name=&"
-					+ "quantity=&"
-					+ "total_amount=&"
-					+ "tax_free_amount=&"
+					+ "partner_order_id=주문&" // 주문번호
+					+ "partner_user_id=banana&" // 고객이름
+					+ "item_name=바보&" // 아이템네임
+					+ "quantity=2&" // 수량
+					+ "total_amount=10&" // 가격
+					+ "tax_free_amount=5&" // 텍스프리
 					+ "approval_url=/mypage/mypage_order&" // 성공시 url
 					+ "cancel_url=/mypage/mypage_buy&" // 취소시 url
 					+ "fail_url=/payment/payment"; // 실패시 url
@@ -105,7 +107,17 @@ public class PaymentController {
 			
 			// 실제 통신하는부분
 			int result = con.getResponseCode();
-//			InputStream receive = con.
+			InputStream receive; // 데이터 받는애
+			// 결과가 정상이면
+			if(result==200) {
+				receive = con.getInputStream();
+			}
+			else {
+				receive = con.getErrorStream();
+			}
+			InputStreamReader reader = new InputStreamReader(receive); // 받는애가 받은걸 읽을 줄 아는애
+			BufferedReader change = new BufferedReader(reader); // 형변환하는애
+			return change.readLine(); // 문자열로 받습니다
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
