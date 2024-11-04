@@ -69,4 +69,9 @@
 		<div class="user_line"></div>
 		<a href="/mypage/mypage_profile" class="join_txt">마이페이지</a>
 	</div>
+	<div class="user_wrap" th:if="${session.loginUser === 'admin'}">
+		<a href="logout" class="login_txt">로그아웃</a>
+		<div class="user_line"></div>
+		<a href="/mypage/mypage_profile" class="join_txt">관리자페이지</a>
+	</div>
 </header>

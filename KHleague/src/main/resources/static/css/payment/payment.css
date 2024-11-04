@@ -167,9 +167,10 @@ a{
     text-align: left;
 }
 
-.total_num{
+.total_box{
     font-size: 20px;
     margin-top: 20px;
+	display: flex;
 }
 
 .price, .delivery{
@@ -483,4 +484,12 @@ a{
 
 .rewards div:last-child{
     margin-left: 5px;
+}
+
+.pays img.nochoose{
+	opacity: 0.5;
+}
+
+footer{
+	margin-top: 0px !important;
 }
