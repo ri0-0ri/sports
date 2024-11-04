@@ -27,8 +27,8 @@ select * from fboard;
 select * from eboard;
 
 create table user(
-	userid varchar(300) primary key,
-	userpw varchar(300),
+   userid varchar(300) primary key,
+   userpw varchar(300),
    username varchar(300),
    userphone varchar(300),
    useraddr varchar(300),
@@ -40,7 +40,7 @@ create table user(
 );
 
 create table sports(
-	sportsnum int primary key auto_increment,
+   sportsnum int primary key auto_increment,
     sport varchar(300)
 );
 
@@ -50,15 +50,22 @@ insert into sports(sport) values("농구");
 insert into sports(sport) values("배구");
 
 create table team(
-	teamnum int primary key auto_increment,
+   teamnum int primary key auto_increment,
     teamname varchar(300),
     sportsnum int,
     constraint sportsnum foreign key(sportsnum) references sports(sportsnum)
 );
 insert into team(teamname, sportsnum) values("FC서울", 1);
+insert into team(teamname, sportsnum) values("전북 현대 모터스", 1);
+insert into team(teamname, sportsnum) values("삼성 라이온즈", 2);
+insert into team(teamname, sportsnum) values("두산 베어스", 2);
+insert into team(teamname, sportsnum) values("고양 소노", 3);
+insert into team(teamname, sportsnum) values("대구 한국가스공사", 3);
+insert into team(teamname, sportsnum) values("수원 한국전력", 4);
+insert into team(teamname, sportsnum) values("안산 ok저축은행", 4);
 
 create table player(
-	playernum int primary key auto_increment,
+   playernum int primary key auto_increment,
     playername varchar(300),
     playerEname varchar(300),
     playerCountry varchar(300),
@@ -68,7 +75,7 @@ create table player(
     playerP varchar(300),
     teamnum int,
     playerimage varchar(300),
-    constraint player_teamnum foreign key(teamnum) references team(teamnum)
+    constraint player_teamnum foreign key(teamnum) references team(sportsnum)
 );
 
 
@@ -94,13 +101,172 @@ INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, 
 ('한승규', 'Han Seung-kyu', '대한민국', 26, '182cm', '77kg', '수비수', 1, 'image18.jpg'),
 ('송진우', 'Song Jin-woo', '대한민국', 31, '186cm', '82kg', '골키퍼', 1, 'image19.jpg'),
 ('이용', 'Lee Yong', '대한민국', 36, '180cm', '74kg', '수비수', 1, 'image20.jpg');
+#전북 현대 모터스
+ INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
+('권창훈', 'Kwon Chang-hoon', '대한민국', 28, '175cm', '70kg', '미드필더', 1, 'image1.jpg'),
+('이주용', 'Lee Joo-young', '대한민국', 29, '180cm', '75kg', '수비수', 1, 'image2.jpg'),
+('김신욱', 'Kim Shin-wook', '대한민국', 35, '194cm', '92kg', '포워드', 1, 'image3.jpg'),
+('이용', 'Lee Yong', '대한민국', 36, '180cm', '74kg', '수비수', 1, 'image4.jpg'),
+('정영선', 'Jeong Young-sun', '대한민국', 30, '178cm', '73kg', '미드필더', 1, 'image5.jpg'),
+('김민재', 'Kim Min-jae', '대한민국', 27, '185cm', '80kg', '수비수', 1, 'image6.jpg'),
+('송범근', 'Song Bum-keun', '대한민국', 25, '186cm', '83kg', '골키퍼', 1, 'image7.jpg'),
+('이정협', 'Lee Jeong-hyeop', '대한민국', 30, '182cm', '78kg', '포워드', 1, 'image8.jpg'),
+('황인범', 'Hwang In-beom', '대한민국', 27, '177cm', '72kg', '미드필더', 1, 'image9.jpg'),
+('한교원', 'Han Kyo-won', '대한민국', 30, '181cm', '76kg', '미드필더', 1, 'image10.jpg'),
+('김보경', 'Kim Bo-kyung', '대한민국', 32, '175cm', '71kg', '미드필더', 1, 'image11.jpg'),
+('오반석', 'Oh Ban-seok', '대한민국', 29, '180cm', '78kg', '수비수', 1, 'image12.jpg'),
+('조현우', 'Jo Hyun-woo', '대한민국', 32, '185cm', '82kg', '골키퍼', 1, 'image13.jpg'),
+('이승기', 'Lee Seung-ki', '대한민국', 34, '183cm', '80kg', '미드필더', 1, 'image14.jpg'),
+('안재현', 'An Jae-hyun', '대한민국', 26, '179cm', '74kg', '수비수', 1, 'image15.jpg'),
+('홍정호', 'Hong Jung-ho', '대한민국', 34, '182cm', '80kg', '수비수', 1, 'image16.jpg'),
+('김재환', 'Kim Jae-hwan', '대한민국', 28, '176cm', '72kg', '포워드', 1, 'image17.jpg'),
+('이주영', 'Lee Joo-young', '대한민국', 26, '178cm', '75kg', '미드필더', 1, 'image18.jpg'),
+('변선수', 'Byeon Seon-su', '대한민국', 24, '184cm', '78kg', '미드필더', 1, 'image19.jpg'),
+('김기희', 'Kim Gi-hee', '대한민국', 33, '180cm', '78kg', '수비수', 1, 'image20.jpg');
+#삼성 라이온즈
+INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
+('이승엽', 'Lee Seung-yeop', '대한민국', 48, '183cm', '90kg', '1루수', 2, 'image1.jpg'),
+('박해민', 'Park Hae-min', '대한민국', 32, '180cm', '75kg', '외야수', 2, 'image2.jpg'),
+('강민호', 'Kang Min-ho', '대한민국', 38, '178cm', '85kg', '포수', 2, 'image3.jpg'),
+('김상수', 'Kim Sang-soo', '대한민국', 34, '181cm', '80kg', '내야수', 2, 'image4.jpg'),
+('최채흥', 'Choi Chae-hung', '대한민국', 29, '185cm', '90kg', '투수', 2, 'image5.jpg'),
+('이창섭', 'Lee Chang-seob', '대한민국', 27, '176cm', '72kg', '내야수', 2, 'image6.jpg'),
+('이재현', 'Lee Jae-hyun', '대한민국', 25, '183cm', '78kg', '외야수', 2, 'image7.jpg'),
+('김지찬', 'Kim Ji-chan', '대한민국', 24, '178cm', '74kg', '내야수', 2, 'image8.jpg'),
+('이용찬', 'Lee Yong-chan', '대한민국', 30, '185cm', '88kg', '투수', 2, 'image9.jpg'),
+('변우혁', 'Byeon Woo-hyuk', '대한민국', 28, '179cm', '77kg', '외야수', 2, 'image10.jpg'),
+('김성욱', 'Kim Sung-wook', '대한민국', 29, '182cm', '80kg', '내야수', 2, 'image11.jpg'),
+('정인욱', 'Jeong In-wook', '대한민국', 32, '180cm', '76kg', '투수', 2, 'image12.jpg'),
+('강준석', 'Kang Jun-seok', '대한민국', 26, '181cm', '79kg', '내야수', 2, 'image13.jpg'),
+('김현수', 'Kim Hyun-soo', '대한민국', 33, '184cm', '83kg', '외야수', 2, 'image14.jpg'),
+('한승주', 'Han Seung-joo', '대한민국', 24, '175cm', '70kg', '포수', 2, 'image15.jpg'),
+('박민우', 'Park Min-woo', '대한민국', 31, '177cm', '72kg', '내야수', 2, 'image16.jpg'),
+('이상화', 'Lee Sang-hwa', '대한민국', 29, '180cm', '75kg', '외야수', 2, 'image17.jpg'),
+('조상우', 'Jo Sang-woo', '대한민국', 27, '186cm', '82kg', '투수', 2, 'image18.jpg'),
+('정경호', 'Jeong Gyeong-ho', '대한민국', 34, '182cm', '78kg', '내야수', 2, 'image19.jpg'),
+('김유신', 'Kim Yu-shin', '대한민국', 30, '179cm', '73kg', '외야수', 2, 'image20.jpg');
+
+#두산 베어스 
+INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
+('김재호', 'Kim Jae-ho', '대한민국', 36, '180cm', '75kg', '내야수', 2, 'image1.jpg'),
+('박건우', 'Park Gun-woo', '대한민국', 31, '181cm', '80kg', '외야수', 2, 'image2.jpg'),
+('정수빈', 'Jung Soo-bin', '대한민국', 30, '178cm', '76kg', '외야수', 2, 'image3.jpg'),
+('오재원', 'Oh Jae-won', '대한민국', 37, '182cm', '82kg', '내야수', 2, 'image4.jpg'),
+('양의지', 'Yang Eui-ji', '대한민국', 36, '183cm', '85kg', '포수', 2, 'image5.jpg'),
+('이용찬', 'Lee Yong-chan', '대한민국', 30, '185cm', '88kg', '투수', 2, 'image6.jpg'),
+('최주환', 'Choi Joo-hwan', '대한민국', 29, '180cm', '77kg', '내야수', 2, 'image7.jpg'),
+('김민식', 'Kim Min-sik', '대한민국', 28, '176cm', '72kg', '포수', 2, 'image8.jpg'),
+('이유찬', 'Lee Yoo-chan', '대한민국', 25, '179cm', '74kg', '투수', 2, 'image9.jpg'),
+('최형우', 'Choi Hyung-woo', '대한민국', 34, '182cm', '80kg', '외야수', 2, 'image10.jpg'),
+('권휘', 'Kwon Hwi', '대한민국', 26, '178cm', '73kg', '내야수', 2, 'image11.jpg'),
+('정진호', 'Jeong Jin-ho', '대한민국', 32, '180cm', '76kg', '내야수', 2, 'image12.jpg'),
+('허경민', 'Heo Kyung-min', '대한민국', 29, '177cm', '75kg', '내야수', 2, 'image13.jpg'),
+('이정용', 'Lee Jeong-yong', '대한민국', 30, '181cm', '79kg', '투수', 2, 'image14.jpg'),
+('이현호', 'Lee Hyun-ho', '대한민국', 24, '182cm', '77kg', '투수', 2, 'image15.jpg'),
+('김대우', 'Kim Dae-woo', '대한민국', 27, '185cm', '83kg', '외야수', 2, 'image16.jpg'),
+('장원준', 'Jang Won-jun', '대한민국', 35, '180cm', '82kg', '투수', 2, 'image17.jpg'),
+('권혁', 'Kwon Hyuk', '대한민국', 33, '177cm', '73kg', '투수', 2, 'image18.jpg'),
+('이재원', 'Lee Jae-won', '대한민국', 26, '179cm', '74kg', '내야수', 2, 'image19.jpg'),
+('윤명준', 'Yoon Myung-jun', '대한민국', 29, '180cm', '78kg', '외야수', 2, 'image20.jpg');
+
+#고양 소노
+INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
+('김선형', 'Kim Sun-hyung', '대한민국', 32, '180cm', '75kg', '가드', 3, 'image1.jpg'),
+('이대성', 'Lee Dae-sung', '대한민국', 30, '185cm', '80kg', '포워드', 3, 'image2.jpg'),
+('정효근', 'Jung Hyo-geun', '대한민국', 28, '190cm', '85kg', '센터', 3, 'image3.jpg'),
+('양홍석', 'Yang Hong-seok', '대한민국', 26, '188cm', '78kg', '포워드', 3, 'image4.jpg'),
+('이정현', 'Lee Jung-hyun', '대한민국', 31, '182cm', '77kg', '가드', 3, 'image5.jpg'),
+('장재석', 'Jang Jae-seok', '대한민국', 34, '192cm', '88kg', '센터', 3, 'image6.jpg'),
+('이재도', 'Lee Jae-do', '대한민국', 29, '178cm', '73kg', '가드', 3, 'image7.jpg'),
+('한호빈', 'Han Ho-bin', '대한민국', 24, '186cm', '79kg', '포워드', 3, 'image8.jpg'),
+('전준범', 'Jeon Jun-beom', '대한민국', 25, '181cm', '74kg', '가드', 3, 'image9.jpg'),
+('최준용', 'Choi Jun-yong', '대한민국', 27, '189cm', '80kg', '포워드', 3, 'image10.jpg'),
+('김민수', 'Kim Min-soo', '대한민국', 28, '183cm', '76kg', '가드', 3, 'image11.jpg'),
+('강상재', 'Kang Sang-jae', '대한민국', 30, '188cm', '82kg', '센터', 3, 'image12.jpg'),
+('이상민', 'Lee Sang-min', '대한민국', 33, '179cm', '72kg', '가드', 3, 'image13.jpg'),
+('안영준', 'An Young-jun', '대한민국', 26, '186cm', '75kg', '포워드', 3, 'image14.jpg'),
+('유재학', 'Yoo Jae-hak', '대한민국', 34, '191cm', '87kg', '센터', 3, 'image15.jpg'),
+('오세근', 'Oh Se-geun', '대한민국', 36, '194cm', '90kg', '센터', 3, 'image16.jpg'),
+('김동욱', 'Kim Dong-wook', '대한민국', 29, '182cm', '78kg', '가드', 3, 'image17.jpg'),
+('신지혜', 'Shin Ji-hye', '대한민국', 25, '177cm', '70kg', '가드', 3, 'image18.jpg'),
+('이형석', 'Lee Hyung-seok', '대한민국', 27, '188cm', '81kg', '포워드', 3, 'image19.jpg'),
+('황희찬', 'Hwang Hee-chan', '대한민국', 28, '184cm', '79kg', '포워드', 3, 'image20.jpg');
+
+#대구 한국가스공사
+INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
+('김준일', 'Kim Joon-il', '대한민국', 29, '185cm', '80kg', '포워드', 3, 'image1.jpg'),
+('이종현', 'Lee Jong-hyun', '대한민국', 28, '191cm', '90kg', '센터', 3, 'image2.jpg'),
+('이현중', 'Lee Hyun-jung', '대한민국', 25, '180cm', '75kg', '가드', 3, 'image3.jpg'),
+('정진훈', 'Jeong Jin-hoon', '대한민국', 30, '182cm', '78kg', '가드', 3, 'image4.jpg'),
+('권혁', 'Kwon Hyuk', '대한민국', 32, '184cm', '85kg', '포워드', 3, 'image5.jpg'),
+('강우람', 'Kang Woo-ram', '대한민국', 27, '190cm', '88kg', '센터', 3, 'image6.jpg'),
+('박세완', 'Park Se-wan', '대한민국', 26, '179cm', '72kg', '가드', 3, 'image7.jpg'),
+('홍성욱', 'Hong Seong-wook', '대한민국', 31, '178cm', '74kg', '가드', 3, 'image8.jpg'),
+('오상욱', 'Oh Sang-wook', '대한민국', 29, '184cm', '82kg', '포워드', 3, 'image9.jpg'),
+('이동엽', 'Lee Dong-yeop', '대한민국', 30, '187cm', '80kg', '센터', 3, 'image10.jpg'),
+('서명진', 'Seo Myung-jin', '대한민국', 28, '183cm', '76kg', '가드', 3, 'image11.jpg'),
+('이관희', 'Lee Kwan-hee', '대한민국', 33, '181cm', '78kg', '내야수', 3, 'image12.jpg'),
+('최준호', 'Choi Jun-ho', '대한민국', 27, '179cm', '73kg', '가드', 3, 'image13.jpg'),
+('유경훈', 'Yoo Kyung-hoon', '대한민국', 30, '185cm', '85kg', '포워드', 3, 'image14.jpg'),
+('안상준', 'An Sang-jun', '대한민국', 26, '188cm', '80kg', '센터', 3, 'image15.jpg'),
+('이상민', 'Lee Sang-min', '대한민국', 34, '190cm', '87kg', '센터', 3, 'image16.jpg'),
+('김원준', 'Kim Won-joon', '대한민국', 29, '180cm', '75kg', '가드', 3, 'image17.jpg'),
+('문희원', 'Moon Hee-won', '대한민국', 24, '177cm', '70kg', '가드', 3, 'image18.jpg'),
+('조성민', 'Jo Sung-min', '대한민국', 27, '182cm', '78kg', '포워드', 3, 'image19.jpg'),
+('신민수', 'Shin Min-soo', '대한민국', 28, '184cm', '79kg', '포워드', 3, 'image20.jpg');
+
+# 수원 한국전력
+INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
+('서명진', 'Seo Myung-jin', '대한민국', 30, '182cm', '80kg', '가드', 4, 'image1.jpg'),
+('이상민', 'Lee Sang-min', '대한민국', 34, '180cm', '78kg', '가드', 4, 'image2.jpg'),
+('김지완', 'Kim Ji-wan', '대한민국', 28, '185cm', '83kg', '포워드', 4, 'image3.jpg'),
+('이동관', 'Lee Dong-kwan', '대한민국', 27, '178cm', '75kg', '가드', 4, 'image4.jpg'),
+('장문혁', 'Jang Mun-hyuk', '대한민국', 29, '190cm', '85kg', '센터', 4, 'image5.jpg'),
+('오상욱', 'Oh Sang-wook', '대한민국', 32, '184cm', '80kg', '포워드', 4, 'image6.jpg'),
+('양희종', 'Yang Hee-jong', '대한민국', 35, '187cm', '88kg', '센터', 4, 'image7.jpg'),
+('이주연', 'Lee Joo-yeon', '대한민국', 25, '180cm', '75kg', '가드', 4, 'image8.jpg'),
+('최진수', 'Choi Jin-soo', '대한민국', 31, '182cm', '79kg', '포워드', 4, 'image9.jpg'),
+('정승원', 'Jeong Seung-won', '대한민국', 26, '179cm', '74kg', '가드', 4, 'image10.jpg'),
+('이찬영', 'Lee Chan-young', '대한민국', 28, '183cm', '76kg', '가드', 4, 'image11.jpg'),
+('김선기', 'Kim Sun-gi', '대한민국', 29, '186cm', '80kg', '센터', 4, 'image12.jpg'),
+('박재민', 'Park Jae-min', '대한민국', 30, '178cm', '72kg', '가드', 4, 'image13.jpg'),
+('이종현', 'Lee Jong-hyun', '대한민국', 33, '191cm', '90kg', '센터', 4, 'image14.jpg'),
+('강성훈', 'Kang Sung-hoon', '대한민국', 24, '175cm', '70kg', '가드', 4, 'image15.jpg'),
+('유재석', 'Yoo Jae-seok', '대한민국', 36, '182cm', '79kg', '포워드', 4, 'image16.jpg'),
+('김태형', 'Kim Tae-hyung', '대한민국', 29, '180cm', '75kg', '가드', 4, 'image17.jpg'),
+('박찬호', 'Park Chan-ho', '대한민국', 25, '184cm', '82kg', '포워드', 4, 'image18.jpg'),
+('이유빈', 'Lee Yoo-bin', '대한민국', 27, '179cm', '73kg', '가드', 4, 'image19.jpg'),
+('정진원', 'Jeong Jin-won', '대한민국', 28, '181cm', '78kg', '포워드', 4, 'image20.jpg');
+#안산 ok저축은행
+INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
+('이재도', 'Lee Jae-do', '대한민국', 29, '180cm', '75kg', '가드', 4, 'image1.jpg'),
+('김형빈', 'Kim Hyung-bin', '대한민국', 26, '188cm', '80kg', '포워드', 4, 'image2.jpg'),
+('안영준', 'An Young-jun', '대한민국', 27, '186cm', '79kg', '센터', 4, 'image3.jpg'),
+('최진호', 'Choi Jin-ho', '대한민국', 31, '182cm', '78kg', '가드', 4, 'image4.jpg'),
+('서동철', 'Seo Dong-cheol', '대한민국', 28, '190cm', '85kg', '센터', 4, 'image5.jpg'),
+('윤호상', 'Yoon Ho-sang', '대한민국', 30, '183cm', '76kg', '가드', 4, 'image6.jpg'),
+('김지수', 'Kim Ji-soo', '대한민국', 25, '179cm', '73kg', '가드', 4, 'image7.jpg'),
+('정윤성', 'Jeong Yoon-sung', '대한민국', 34, '180cm', '75kg', '포워드', 4, 'image8.jpg'),
+('이민호', 'Lee Min-ho', '대한민국', 29, '187cm', '81kg', '센터', 4, 'image9.jpg'),
+('한상민', 'Han Sang-min', '대한민국', 26, '182cm', '79kg', '가드', 4, 'image10.jpg'),
+('오현준', 'Oh Hyun-jun', '대한민국', 32, '179cm', '74kg', '가드', 4, 'image11.jpg'),
+('문준호', 'Moon Jun-ho', '대한민국', 28, '185cm', '78kg', '포워드', 4, 'image12.jpg'),
+('강민재', 'Kang Min-jae', '대한민국', 27, '184cm', '80kg', '센터', 4, 'image13.jpg'),
+('정석현', 'Jeong Seok-hyun', '대한민국', 29, '180cm', '75kg', '가드', 4, 'image14.jpg'),
+('이병호', 'Lee Byeong-ho', '대한민국', 31, '182cm', '82kg', '포워드', 4, 'image15.jpg'),
+('최규민', 'Choi Gyu-min', '대한민국', 30, '181cm', '78kg', '가드', 4, 'image16.jpg'),
+('유영주', 'Yoo Young-joo', '대한민국', 25, '176cm', '70kg', '가드', 4, 'image17.jpg'),
+('윤태영', 'Yoon Tae-young', '대한민국', 34, '179cm', '73kg', '포워드', 4, 'image18.jpg'),
+('조현호', 'Jo Hyun-ho', '대한민국', 28, '190cm', '88kg', '센터', 4, 'image19.jpg'),
+('허범수', 'Heo Beom-soo', '대한민국', 29, '182cm', '80kg', '포워드', 4, 'image20.jpg');
+
  
 create table sudan(
-	sudannum int primary key
+   sudannum int primary key
 );
 
 create table goods(
-	goodsnum int primary key auto_increment,
+   goodsnum int primary key auto_increment,
     goodstype varchar(300),
     goodsname varchar(300),
     goodsprice bigint,
@@ -123,7 +289,7 @@ insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other item
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "2024 스틸러스 브랜딩 니트머플러", 28000, "/images/굿즈/2024 스틸러스 브랜딩 니트머플러.png");
 
 create table orders(
-	ordernum int primary key auto_increment,
+   ordernum int primary key auto_increment,
     orderdatetime datetime,
     deliveryPlace varchar(300),
     deliveryMemo varchar(300),
@@ -137,53 +303,53 @@ create table orders(
 );
 
 create table wishList(
-	wishnum int primary key auto_increment,
+   wishnum int primary key auto_increment,
     userid varchar(300),
     goodsnum int,
-	constraint wish_userid foreign key(userid) references user(userid),
-	constraint goodsnumWish foreign key(goodsnum) references goods(goodsnum)
+   constraint wish_userid foreign key(userid) references user(userid),
+   constraint goodsnumWish foreign key(goodsnum) references goods(goodsnum)
 );
 drop table wishList;
 select * from wishList;
 
 create table buyList(
-	buynum int primary key auto_increment,
+   buynum int primary key auto_increment,
     userid varchar(300),
     goodsnum int,
     size varchar(300),
     quantity int,
-	constraint buy_userid foreign key(userid) references user(userid),
-	constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum)
+   constraint buy_userid foreign key(userid) references user(userid),
+   constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum)
 );
 select * from buyList;
 
 create table g_will_board(
-	gWnum int primary key auto_increment,
+   gWnum int primary key auto_increment,
     gWdate datetime,
     teamnum int,
     constraint gW_teamnum foreign key(teamnum) references team(teamnum)
 );
 
 create table g_end_board(
-	gEnum int primary key auto_increment,
+   gEnum int primary key auto_increment,
     gEdate datetime,
     gEscore varchar(300),
-	teamnum int,
+   teamnum int,
     constraint gE_teamnum foreign key(teamnum) references team(teamnum)
 );
 
 create table fboard(
-	fboardnum int primary key auto_increment,
+   fboardnum int primary key auto_increment,
     fboardtitle varchar(300),
     fboardcontent varchar(3000),
     userid varchar(300),
     gWnum int,
-	constraint fboard_userid foreign key(userid) references user(userid),
+   constraint fboard_userid foreign key(userid) references user(userid),
     constraint gWnum foreign key(gWnum) references g_will_board(gWnum)
 );
 
 create table eboard(
-	eboardnum int primary key auto_increment,
+   eboardnum int primary key auto_increment,
     eproduct varchar(300),
     edate varchar(300),
     eboardcontent varchar(3000),
