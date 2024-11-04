@@ -30,18 +30,7 @@ select * from eboard;
 select * from wishList;
 select * from buyList;
 
-create table user(
-   userid varchar(300) primary key,
-   userpw varchar(300),
-   username varchar(300),
-   userphone varchar(300),
-   useraddr varchar(300),
-   userReward int default "5000",
-   userbirth varchar(300),
-   usergender varchar(300),
-   userhomenum varchar(300),
-   userjoin varchar(300)
-);
+
 select * from user;
 
 update user set userReward=5000;

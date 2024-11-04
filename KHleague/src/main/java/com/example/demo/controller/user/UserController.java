@@ -3,6 +3,7 @@ package com.example.demo.controller.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -72,4 +74,17 @@ public class UserController {
 
         return ResponseEntity.ok().build();
     }
+    @GetMapping("/admin/users")
+    @ResponseBody
+    public List<UserDTO> getAllUsers() {
+        return userService.getAllUsers(); // 모든 유저를 반환하는 서비스 메서드 호출
+    }
+    @DeleteMapping("/admin/deleteUser")
+    @ResponseBody
+    public ResponseEntity<Void> deleteUser(@RequestParam String userid) {
+        userService.deleteUser(userid); // 유저 삭제를 위한 서비스 메서드 호출
+        return ResponseEntity.ok().build();
+    }
+
+
 }
