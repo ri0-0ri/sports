@@ -1,7 +1,9 @@
 package com.example.demo.controller.payment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,20 +33,43 @@ public class PaymentController {
 	
 	@GetMapping("payment")
 	public String payment(@RequestParam List<Integer> buynum, Model model, HttpSession session) {
-		System.out.println("Received buynum: " + buynum);
+//		System.out.println("Received buynum: " + buynum);
+//		List<BuyListDTO> goodsBuyinfo = new ArrayList<>();
+//		List<GoodsDTO> goodsinfo = new ArrayList<>();
+//		for(Integer singleBuynum : buynum) {
+//			goodsBuyinfo.add(gservice.getBuygoodsBybuynum(singleBuynum));
+//			goodsinfo.add(gservice.getgoodsBycart(gservice.getBuygoodsBybuynum(singleBuynum).getGoodsnum()));
+//		}
+//		model.addAttribute("goodsBuyinfo", goodsBuyinfo);	
+//		model.addAttribute("goodsinfo", goodsinfo);
+//		
+//		String userid = (String)session.getAttribute("loginUser");
+//		UserDTO user = uservice.findUserById(userid);
+//		model.addAttribute("user", user);
+//		System.out.println(user);
+//		
+		long totalAmount = 0;
 		List<BuyListDTO> goodsBuyinfo = new ArrayList<>();
-		List<GoodsDTO> goodsinfo = new ArrayList<>();
-		for(Integer singleBuynum : buynum) {
-			goodsBuyinfo.add(gservice.getBuygoodsBybuynum(singleBuynum));
-			goodsinfo.add(gservice.getgoodsBycart(gservice.getBuygoodsBybuynum(singleBuynum).getGoodsnum()));
-		}
-		model.addAttribute("goodsBuyinfo", goodsBuyinfo);	
-		model.addAttribute("goodsinfo", goodsinfo);
+		Map<Integer, GoodsDTO> goodsMap = new HashMap<>();
+		for (Integer singleBuynum : buynum) {
+		    BuyListDTO buyListDTO = gservice.getBuygoodsBybuynum(singleBuynum);
+		    GoodsDTO goodsDTO = gservice.getgoodsBycart(buyListDTO.getGoodsnum());
+		    goodsBuyinfo.add(buyListDTO);
+		    goodsMap.put(buyListDTO.getGoodsnum(), goodsDTO);
+		    totalAmount += gservice.getgoodsBycart(buyListDTO.getGoodsnum()).getGoodsprice() * gservice.getBuygoodsBybuynum(singleBuynum).getQuantity();
+		    System.out.println(gservice.getgoodsBycart(buyListDTO.getGoodsnum()).getGoodsprice());
+		    System.out.println(gservice.getBuygoodsBybuynum(singleBuynum).getQuantity());
+		}	    
+	    model.addAttribute("goodsBuyinfo", goodsBuyinfo);
+	    model.addAttribute("goodsMap", goodsMap);
+	    model.addAttribute("total", totalAmount);
+	    System.out.println(goodsMap);
+	    System.out.println(totalAmount);
+
+	    String userid = (String) session.getAttribute("loginUser");
+	    UserDTO user = uservice.findUserById(userid);
+	    model.addAttribute("user", user);
 		
-		String userid = (String)session.getAttribute("loginUser");
-		UserDTO user = uservice.findUserById(userid);
-		model.addAttribute("user", user);
-		System.out.println(user);
 		
         return "payment/payment";
     }

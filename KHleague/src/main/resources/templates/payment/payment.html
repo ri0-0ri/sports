@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/payment/payment.css">
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <title>상품 결제 페이지</title>
 </head>
 
@@ -53,16 +54,19 @@
             <div class="addr">
                 <p>배송지</p>
                 <div class="addr_box">
-                    <div class="modify_addr_btn">
+                    <div class="modify_addr_btn" onclick="openPostCode()">
                         주소선택
                     </div>
-                    <div class="addr_info">
+                    <div class="user_info">
                         <div th:text="${user.username}"></div>
                         <div th:text="${user.userphone}"></div>
                         <div th:if="${user.useraddr == '' or user.useraddr == null}" style="color: #FF1700;">
 							주소 정보가 없습니다! (필수입력)
 						</div>
-						<div th:text="${user.useraddr}"></div>
+						<div class="addr_self_box">						
+						<input id="useraddr" type="text" th:value="${user.useraddr}" readonly /> 
+						<input type="text" id="userdetailaddr" placeholder="상세주소 입력"></input>
+						</div>
                     </div>
                     <div class="addr_self_txt">
                         <input type="text" hidden id="deliveryMemoInput" value="">
@@ -76,18 +80,16 @@
                 <div class="product_box">
                     <div class="product_info" th:each="buyList:${goodsBuyinfo}">
                         <div class="product_img">
-                            <img src="/images/굿즈/굿즈사진2.jpg" alt="">
+                            <img th:src="${goodsMap[buyList.goodsnum].goodsimg}" alt="">
                         </div>
 
                         <div class="product_view">
-                            <div class="product_name">
-                                
+                            <div class="product_name" th:text="${goodsMap[buyList.goodsnum].goodsname}">
+								
                             </div>
 
                             <div class="product_options">
-                                <div class="product_size">
-                                    [[${buyList.size}]]
-                                </div>
+                                <div class="product_size" th:text="${buyList.size != null and buyList.size != '' ? buyList.size : 'Free'}"></div>
                                 <div class="product_num">
                                     [[${buyList.quantity}]] 개
                                 </div>
@@ -99,9 +101,9 @@
                         <div class="total_num">
                             총 [[${#lists.size(goodsBuyinfo)}]]건
                         </div>
-                        <div class="price">
-                            <div>상품금액</div>
-                            <div>
+                        <div class="price" th:each="buyList:${goodsBuyinfo}">
+                            <div>[[${goodsMap[buyList.goodsnum].goodsname}]]</div>
+                            <div th:text="${goodsMap[buyList.goodsnum].goodsprice}">
                                 570,360 원
                             </div>
                         </div>
@@ -111,10 +113,10 @@
                                 5000 원
                             </div>
                         </div>
-                        <div class="total_price">
+                        <div class="total_price" th:each="buyList:${goodsBuyinfo}">
                             <div>총 결제금액</div>
                             <div>
-                                1,570,720 원
+								[[${total}]] 원
                             </div>
                         </div>
                     </div>

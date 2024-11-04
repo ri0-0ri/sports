@@ -47,3 +47,16 @@ $(document).ready(function () {
         $(this).find('.in_btn').addClass('actbtn');
     });
 });
+
+// 주소 검색 기능
+function openPostCode() {
+	new daum.Postcode({
+		oncomplete: function(data) {
+			// 도로명 주소를 해당 입력란에 채우기
+			$('#useraddr').val(data.roadAddress);
+
+			// 상세 주소 입력란으로 포커스 이동
+			document.getElementById('userdetailaddr').focus();
+		}
+	}).open();
+}
