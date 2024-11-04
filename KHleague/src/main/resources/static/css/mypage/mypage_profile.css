@@ -255,7 +255,26 @@ input:checked + .slider:before {
     margin-left: 10px; /* X 버튼과 모달 경계 사이 여백 추가 */
 cursor: pointer;
 }
-
+.closeModal{
+/*	background-color: green;*/
+	margin-left: 440px;
+	cursor: pointer;
+}
+.btn-search{
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	background-color: #01203F;
+	color: white;
+}
+#confirmUsername, #confirmUserphone, #confirmUseraddr{
+	width: 50px;
+	height: 30px;
+	background-color: #01203F;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
 .close:hover,
 .close:focus {
     color: #ff0000; /* 호버 시 색상 변경 */
