@@ -276,8 +276,13 @@ INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, 
 
  
 create table sudan(
-   sudannum int primary key
+   sudannum int primary key auto_increment,
+   sudanname varchar(300)
 );
+insert into sudan(sudanname) values("계좌결제");
+insert into sudan(sudanname) values("카드결제");
+insert into sudan(sudanname) values("일반결제");
+insert into sudan(sudanname) values("간편결제");
 
 create table goods(
    goodsnum int primary key auto_increment,
