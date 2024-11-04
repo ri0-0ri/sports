@@ -1,6 +1,9 @@
 package com.example.demo.mapper.user;
 
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -20,5 +23,10 @@ public interface UserMapper {
     void updateUseraddr(@Param("userid") String userid, @Param("value") String useraddr);
     void updateUserid(@Param("userid") String userid, @Param("value") String newUserid);
 
+    @Select("SELECT * FROM user")
+    List<UserDTO> findAllUsers(); // 모든 유저를 선택하는 메서드
+    @Delete("DELETE FROM user WHERE userid = #{userid}")
+    void deleteUser(String userid); // 유저 삭제 메서드
 
+    
 }

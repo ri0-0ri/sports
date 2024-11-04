@@ -1,5 +1,7 @@
 package com.example.demo.service.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,12 @@ public class UserService {
 	            userMapper.updateUserid(userid, value);
 	            break;
 	    }
+	}
+	public List<UserDTO> getAllUsers() {
+	    return userMapper.findAllUsers(); // 모든 유저를 반환하는 매퍼 메서드 호출
+	}
+	public void deleteUser(String userid) {
+	    userMapper.deleteUser(userid); // 유저 삭제를 위한 매퍼 메서드 호출
 	}
 
 
