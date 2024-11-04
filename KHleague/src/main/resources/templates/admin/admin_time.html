@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../../style/admin/admain_time.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지-경기일정</title>
+	<link rel="stylesheet" href="/css/admin/admin_time.css">
+</head>
+
+<body>
+   <th:block th:replace="~{layout/header::header}"></th:block>
+    <div id="wrap">
+        <div class="page_title">
+            <h1>Admin</h1>
+        </div>
+        <div class="mypage">
+            <div class="mypage_cata">
+                   <div id="profile"><img src="../images/Group 100.png" alt=""></div>
+                <div id="admin_user"><a href="admin_user">유저 관리</a></div>
+                <div id="admin_event"> 이벤트 추가</div>
+                <div id="admin_time">경기 일정 관리</div>
+
+                <div class="line"></div>
+                <div id="logo_name">KH LEAGUE</div>
+                <div class="choices">
+                    <div>로그아웃</div>
+                    <div>회원 탈퇴</div>
+                </div>
+            </div>
+            <div class="list">
+                <div class="cata_title">
+                    <h2>경기 일정</h2>
+                </div>
+                <div class="date_plus">
+                    <div>
+                        <label for="">1팀</label>
+                        <select name="team1" id="team1">
+                            <option value="FC서울">FC서울</option>
+                            <option value="전북 현대 모터스">전북 현대 모터스</option>
+                            <option value="삼성 라이온즈">삼성 라이온즈</option>
+                            <option value="두산 베어스">두산 베어스</option>
+                            <option value="고양 소노">고양 소노</option>
+                            <option value="대구 한국가스공사">대구 한국가스공사</option>
+                            <option value="수원 한국전력">수원 한국전력</option>
+                            <option value="안산 ok저축은행">안산 ok저축은행</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h2>VS</h2>
+                    </div>
+                    <div>
+                        <label for="">2팀</label>
+                        <select name="team2" id="team2">
+                            <option value="FC서울">FC서울</option>
+                            <option value="전북 현대 모터스">전북 현대 모터스</option>
+                            <option value="삼성 라이온즈">삼성 라이온즈</option>
+                            <option value="두산 베어스">두산 베어스</option>
+                            <option value="고양 소노">고양 소노</option>
+                            <option value="대구 한국가스공사">대구 한국가스공사</option>
+                            <option value="수원 한국전력">수원 한국전력</option>
+                            <option value="안산 ok저축은행">안산 ok저축은행</option>
+                        </select>
+                    </div>
+                    <div>
+
+
+                        <label>경기일정</label>
+                        <input type="date">
+                    </div>
+                    <div><button>추가</button></div>
+                </div>
+
+
+                <table>
+                    <tr>
+                        <td>1팀</td>
+                        <td>2팀</td>
+                        <td>경기일정</td>
+                        <td>기타</td>
+                    </tr>
+                    <tr>
+                        <td>윤경수</td>
+                        <td>윤혜정</td>
+                        <td>2024-12-30</td>
+                        <td><button>취소</button></td>
+                    </tr>
+                    <tr>
+                        <td>윤경수</td>
+                        <td>윤혜정</td>
+                        <td>2024-12-30</td>
+                        <td><button>취소</button></td>
+                    </tr>
+                    <tr>
+                        <td>윤경수</td>
+                        <td>윤혜정</td>
+                        <td>2024-12-30</td>
+                        <td><button>취소</button></td>
+                    </tr>
+                    <tr>
+                        <td>윤경수</td>
+                        <td>윤혜정</td>
+                        <td>2024-12-30</td>
+                        <td><button>취소</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+   <th:block th:replace="~{layout/footer::footer}"></th:block>
+</body>
+
+</html>

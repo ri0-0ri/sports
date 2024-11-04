@@ -46,6 +46,24 @@ select * from user;
 
 update user set userReward=5000;
 
+
+CREATE TABLE user (
+    userid VARCHAR(300) PRIMARY KEY,
+    userpw VARCHAR(300),
+    username VARCHAR(300),
+    userphone VARCHAR(300),
+    useraddr VARCHAR(300),
+    userReward VARCHAR(300) DEFAULT '5000',
+    userbirth VARCHAR(300),
+    usergender VARCHAR(300),
+    userhomenum VARCHAR(300),
+    userjoin VARCHAR(300),
+    role VARCHAR(50) DEFAULT 'user'
+);
+#관리자 계정 추가 
+INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin, role)
+VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04', 'admin');
+
 create table sports(
    sportsnum int primary key auto_increment,
     sport varchar(300)
@@ -60,6 +78,7 @@ create table team(
    teamnum int primary key auto_increment,
     teamname varchar(300),
     sportsnum int,
+    teamloggo varchar(300),
     constraint sportsnum foreign key(sportsnum) references sports(sportsnum)
 );
 insert into team(teamname, sportsnum) values("FC서울", 1);
