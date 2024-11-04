@@ -9,26 +9,16 @@
     <title>상품 결제 페이지</title>
 </head>
 
-<body>
+<body>	
     <div class="modal">
         <div class="modal_delivery_popup">
             <div class="delivery_memo">
                 <div class="memo_txt">배송메모 선택</div>
-                <div class="check_memo">
-                    배송 요청사항 없음.
-                </div>
-                <div class="check_memo">
-                    문앞에 놓아주세요.
-                </div>
-                <div class="check_memo">
-                    배송전 문자 남겨주세요.
-                </div>
-                <div class="check_memo">
-                    부재 시 연락 부탁드립니다.
-                </div>
-                <div class="check_memo" id="self_input">
-                    직접 입력
-                </div>
+                <div class="check_memo">배송 요청사항 없음.</div>
+                <div class="check_memo">문앞에 놓아주세요.</div>
+                <div class="check_memo">배송전 문자 남겨주세요.</div>
+                <div class="check_memo">부재 시 연락 부탁드립니다.</div>
+                <div class="check_memo" id="self_input">직접 입력</div>
                 <input type="text" class="delevery_txt_self" style="display: none;">
 
                 <div class="close_btn" onclick="close_modal()">
@@ -79,6 +69,7 @@
                 <p>주문 상품</p>
                 <div class="product_box">
                     <div class="product_info" th:each="buyList:${goodsBuyinfo}">
+						<input type="hidden" th:value="${goodsMap[buyList.goodsnum].goodsnum}" class="goodsnums">
                         <div class="product_img">
                             <img th:src="${goodsMap[buyList.goodsnum].goodsimg}" alt="">
                         </div>
@@ -98,13 +89,12 @@
                     </div>
 
                     <div class="product_price">
-                        <div class="total_num">
-                            총 [[${#lists.size(goodsBuyinfo)}]]건
+                        <div class="total_box">
+                            총&nbsp;<div class="total_num">[[${#lists.size(goodsBuyinfo)}]]</div>건
                         </div>
                         <div class="price" th:each="buyList:${goodsBuyinfo}">
                             <div>[[${goodsMap[buyList.goodsnum].goodsname}]]</div>
-                            <div th:text="${goodsMap[buyList.goodsnum].goodsprice}">
-                                570,360 원
+                            <div th:with="productPrice=${goodsMap[buyList.goodsnum].goodsprice}" th:text="${productPrice * buyList.quantity}">
                             </div>
                         </div>
                         <div class="delivery">
@@ -130,7 +120,7 @@
                     <div class="now_reward">
                         <div>현재 보유 적립금</div>
                         <div class="rewards">
-                            <div class="reward_num">5000</div>
+                            <div class="reward_num" th:text="${user.userReward}"></div>
                             <div>원</div>
                         </div>
                     </div>
@@ -154,11 +144,15 @@
                     <div class="after_box">
                         <div class="privious">
                             <div>사용 전</div>
-                            <div>1,570,720 원</div>
+							<div style="display: flex;">		
+                            <div class="privious_reward">[[${total}]]</div><div>&nbsp;원</div>
+							</div>
                         </div>
                         <div class="after">
                             <div>사용 후</div>
-                            <div>1,560,720 원</div>
+							<div style="display: flex;">
+                            <div class="after_reward">[[${total}]]</div><div>&nbsp;원</div>
+							</div>
                         </div>
                     </div>
                 </div>
@@ -193,10 +187,10 @@
                             <div class="sudan">간편결제</div>
                         </div>
 
-                        <div class="pays">
-                            <img src="/images/결제/카카오페이.png" alt="">
-                            <img src="/images/결제/네이버페이.png" alt="">
-                            <img src="/images/결제/토스페이.png" alt="">
+                        <div class="pays" style="display: none;">							
+							<img src="/images/결제/카카오페이.png" id="open_kakao">
+							<img src="/images/결제/네이버페이.png" id="open_naver">
+							<img src="/images/결제/토스페이.png" id="open_toss">
                         </div>
                     </div>
 
@@ -230,11 +224,21 @@
     </div>
 
     <div class="go_payment_area">
-        <div class="go_payment">
+        <div class="go_payment" style="cursor: pointer;">
             <div>총 결제금액</div>
-            <div>1,565,680 원</div>
+			<div style="display: flex;">				
+            <div class="after_reward">[[${total}]]</div><div>&nbsp;원</div>
+			</div>
         </div>
     </div>
+	
+	<input type="hidden" name="deliveryPlace">
+	<input type="hidden" name="deliveryMemo">
+	<input type="hidden" name="totalPrice">
+	<input type="hidden" name="sudannum">
+	<input type="hidden" name="gannum">
+	<input type="hidden" name="userid" th:value="${user.userid}">
+	<input type="hidden" name="goodsnum">
 	
 	</form>
 

@@ -13,6 +13,8 @@ drop table g_will_board;
 drop table g_end_board;
 drop table fboard;
 drop table eboard;
+drop table wishList;
+drop table buyList;
 
 select * from user;
 select * from sports;
@@ -25,7 +27,24 @@ select * from g_will_board;
 select * from g_end_board;
 select * from fboard;
 select * from eboard;
+select * from wishList;
+select * from buyList;
 
+create table user(
+   userid varchar(300) primary key,
+   userpw varchar(300),
+   username varchar(300),
+   userphone varchar(300),
+   useraddr varchar(300),
+   userReward int default "5000",
+   userbirth varchar(300),
+   usergender varchar(300),
+   userhomenum varchar(300),
+   userjoin varchar(300)
+);
+select * from user;
+
+update user set userReward=5000;
 
 
 CREATE TABLE user (
@@ -84,7 +103,6 @@ create table player(
     playerimage varchar(300),
     constraint player_teamnum foreign key(teamnum) references team(sportsnum)
 );
-
 
 #FC 서울 팀 20명 (이미지는 넣어야함 )
 INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
@@ -279,7 +297,6 @@ create table goods(
     goodsprice bigint,
     goodsimg varchar(300)
 );
-select * from goods;
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Outerwear", "24 이동복 상의(레드)", 109000, "/images/굿즈/24 이동복 상의(레드).jpg");
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Outerwear", "JBFC 다이노스 PK 맨투맨", 69000, "/images/굿즈/JBFC 다이노스 PK 맨투맨.jpg");
 
@@ -296,8 +313,8 @@ insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other item
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "2024 스틸러스 브랜딩 니트머플러", 28000, "/images/굿즈/2024 스틸러스 브랜딩 니트머플러.png");
 
 create table orders(
-   ordernum int primary key auto_increment,
-    orderdatetime datetime,
+	ordernum int primary key auto_increment,
+    orderdatetime datetime default now(),
     deliveryPlace varchar(300),
     deliveryMemo varchar(300),
     totalPrice bigint,
@@ -308,6 +325,7 @@ create table orders(
     constraint order_userid foreign key(userid) references user(userid),
     constraint goodsnum foreign key(goodsnum) references goods(goodsnum)
 );
+select * from orders;
 
 create table wishList(
    wishnum int primary key auto_increment,
@@ -316,8 +334,6 @@ create table wishList(
    constraint wish_userid foreign key(userid) references user(userid),
    constraint goodsnumWish foreign key(goodsnum) references goods(goodsnum)
 );
-drop table wishList;
-select * from wishList;
 
 create table buyList(
    buynum int primary key auto_increment,
@@ -328,7 +344,6 @@ create table buyList(
    constraint buy_userid foreign key(userid) references user(userid),
    constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum)
 );
-select * from buyList;
 
 create table g_will_board(
    gWnum int primary key auto_increment,
