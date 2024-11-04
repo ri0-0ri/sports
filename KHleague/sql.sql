@@ -67,9 +67,34 @@ create table player(
     playerW varchar(300),
     playerP varchar(300),
     teamnum int,
+    playerimage varchar(300),
     constraint player_teamnum foreign key(teamnum) references team(teamnum)
 );
 
+
+#FC 서울 팀 20명 (이미지는 넣어야함 )
+INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
+('김용대', 'Kim Yong-dae', '대한민국', 37, '185cm', '80kg', '골키퍼', 1, 'image1.jpg'),
+('이청용', 'Lee Chung-yong', '대한민국', 35, '175cm', '70kg', '미드필더', 1, 'image2.jpg'),
+('박주영', 'Park Ju-young', '대한민국', 38, '182cm', '77kg', '포워드', 1, 'image3.jpg'),
+('오스마르', 'Osmar', '스페인', 32, '180cm', '75kg', '미드필더', 1, 'image4.jpg'),
+('이승기', 'Lee Seung-ki', '대한민국', 34, '183cm', '78kg', '수비수', 1, 'image5.jpg'),
+('주세종', 'Joo Se-jong', '대한민국', 29, '176cm', '72kg', '미드필더', 1, 'image6.jpg'),
+('한동민', 'Han Dong-min', '대한민국', 27, '177cm', '73kg', '수비수', 1, 'image7.jpg'),
+('문서원', 'Moon Seo-won', '대한민국', 25, '180cm', '80kg', '미드필더', 1, 'image8.jpg'),
+('이태석', 'Lee Tae-seok', '대한민국', 28, '185cm', '85kg', '수비수', 1, 'image9.jpg'),
+('조영욱', 'Cho Young-wook', '대한민국', 24, '182cm', '76kg', '포워드', 1, 'image10.jpg'),
+('고요한', 'Ko Yo-han', '대한민국', 30, '177cm', '73kg', '수비수', 1, 'image11.jpg'),
+('이진현', 'Lee Jin-hyun', '대한민국', 29, '179cm', '74kg', '미드필더', 1, 'image12.jpg'),
+('세징야', 'Sejingya', '브라질', 32, '174cm', '70kg', '미드필더', 1, 'image13.jpg'),
+('박재현', 'Park Jae-hyun', '대한민국', 26, '180cm', '76kg', '미드필더', 1, 'image14.jpg'),
+('김신욱', 'Kim Shin-wook', '대한민국', 35, '194cm', '92kg', '포워드', 1, 'image15.jpg'),
+('여름', 'Yeoreum', '대한민국', 24, '178cm', '72kg', '미드필더', 1, 'image16.jpg'),
+('신진호', 'Shin Jin-ho', '대한민국', 33, '179cm', '75kg', '미드필더', 1, 'image17.jpg'),
+('한승규', 'Han Seung-kyu', '대한민국', 26, '182cm', '77kg', '수비수', 1, 'image18.jpg'),
+('송진우', 'Song Jin-woo', '대한민국', 31, '186cm', '82kg', '골키퍼', 1, 'image19.jpg'),
+('이용', 'Lee Yong', '대한민국', 36, '180cm', '74kg', '수비수', 1, 'image20.jpg');
+ 
 create table sudan(
 	sudannum int primary key
 );
