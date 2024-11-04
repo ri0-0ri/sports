@@ -136,6 +136,9 @@ footer {
     border: none;
     border-radius: 5px;
 }
+#admin_user {
+	margin-top: 48px;
+}
 #admin_user a,
 #admin_event a,
 #admin_time a {

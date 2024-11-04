@@ -70,14 +70,14 @@ create table team(
     teamloggo varchar(300),
     constraint sportsnum foreign key(sportsnum) references sports(sportsnum)
 );
-insert into team(teamname, sportsnum) values("FC서울", 1);
-insert into team(teamname, sportsnum) values("전북 현대 모터스", 1);
-insert into team(teamname, sportsnum) values("삼성 라이온즈", 2);
-insert into team(teamname, sportsnum) values("두산 베어스", 2);
-insert into team(teamname, sportsnum) values("고양 소노", 3);
-insert into team(teamname, sportsnum) values("대구 한국가스공사", 3);
-insert into team(teamname, sportsnum) values("수원 한국전력", 4);
-insert into team(teamname, sportsnum) values("안산 ok저축은행", 4);
+insert into team(teamname, sportsnum, teamloggo) values("FC서울", 1, '');
+insert into team(teamname, sportsnum, teamloggo) values("전북 현대 모터스", 1,'');
+insert into team(teamname, sportsnum, teamloggo) values("삼성 라이온즈", 2,'');
+insert into team(teamname, sportsnum, teamloggo) values("두산 베어스", 2,'');
+insert into team(teamname, sportsnum, teamloggo) values("고양 소노", 3,'');
+insert into team(teamname, sportsnum, teamloggo) values("대구 한국가스공사", 3,'');
+insert into team(teamname, sportsnum, teamloggo) values("수원 한국전력", 4,'');
+insert into team(teamname, sportsnum, teamloggo) values("안산 ok저축은행", 4,'');
 
 create table player(
    playernum int primary key auto_increment,
@@ -338,6 +338,7 @@ create table g_will_board(
    gWnum int primary key auto_increment,
     gWdate datetime,
     teamnum int,
+    gwtime datetime,
     constraint gW_teamnum foreign key(teamnum) references team(teamnum)
 );
 
