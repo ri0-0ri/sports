@@ -125,6 +125,11 @@ a{
     display: flex;
     justify-content: space-around;
     align-items: center;
+	margin-bottom: 15px;
+}
+
+.product_info:last-child{
+	margin-bottom: 0px;
 }
 
 .product_img img{
@@ -145,6 +150,7 @@ a{
 .product_name{
     font-size: 20px;
     margin-bottom: 10px;
+	max-width: 230px;
 }
 
 .product_options{

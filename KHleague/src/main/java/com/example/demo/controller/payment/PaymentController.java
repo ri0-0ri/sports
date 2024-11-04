@@ -48,18 +48,23 @@ public class PaymentController {
 //		model.addAttribute("user", user);
 //		System.out.println(user);
 //		
+		long totalAmount = 0;
 		List<BuyListDTO> goodsBuyinfo = new ArrayList<>();
-	    Map<BuyListDTO, GoodsDTO> goodsMap = new HashMap<>();
-
-	    for (Integer singleBuynum : buynum) {
-	        BuyListDTO buyListDTO = gservice.getBuygoodsBybuynum(singleBuynum);
-	        GoodsDTO goodsDTO = gservice.getgoodsBycart(buyListDTO.getGoodsnum());
-	        goodsBuyinfo.add(buyListDTO);
-	        goodsMap.put(buyListDTO, goodsDTO); // BuyListDTO와 GoodsDTO를 매핑하여 저장
-	    }
-	    
+		Map<Integer, GoodsDTO> goodsMap = new HashMap<>();
+		for (Integer singleBuynum : buynum) {
+		    BuyListDTO buyListDTO = gservice.getBuygoodsBybuynum(singleBuynum);
+		    GoodsDTO goodsDTO = gservice.getgoodsBycart(buyListDTO.getGoodsnum());
+		    goodsBuyinfo.add(buyListDTO);
+		    goodsMap.put(buyListDTO.getGoodsnum(), goodsDTO);
+		    totalAmount += gservice.getgoodsBycart(buyListDTO.getGoodsnum()).getGoodsprice() * gservice.getBuygoodsBybuynum(singleBuynum).getQuantity();
+		    System.out.println(gservice.getgoodsBycart(buyListDTO.getGoodsnum()).getGoodsprice());
+		    System.out.println(gservice.getBuygoodsBybuynum(singleBuynum).getQuantity());
+		}	    
 	    model.addAttribute("goodsBuyinfo", goodsBuyinfo);
-	    model.addAttribute("goodsMap", goodsMap); // Map을 모델에 추가
+	    model.addAttribute("goodsMap", goodsMap);
+	    model.addAttribute("total", totalAmount);
+	    System.out.println(goodsMap);
+	    System.out.println(totalAmount);
 
 	    String userid = (String) session.getAttribute("loginUser");
 	    UserDTO user = uservice.findUserById(userid);
