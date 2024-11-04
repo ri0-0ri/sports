@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/payment/payment.css">
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <title>상품 결제 페이지</title>
 </head>
 
@@ -53,16 +54,19 @@
             <div class="addr">
                 <p>배송지</p>
                 <div class="addr_box">
-                    <div class="modify_addr_btn">
+                    <div class="modify_addr_btn" onclick="openPostCode()">
                         주소선택
                     </div>
-                    <div class="addr_info">
+                    <div class="user_info">
                         <div th:text="${user.username}"></div>
                         <div th:text="${user.userphone}"></div>
                         <div th:if="${user.useraddr == '' or user.useraddr == null}" style="color: #FF1700;">
 							주소 정보가 없습니다! (필수입력)
 						</div>
-						<div th:text="${user.useraddr}"></div>
+						<div class="addr_self_box">						
+						<input id="useraddr" type="text" th:value="${user.useraddr}" readonly /> 
+						<input type="text" id="userdetailaddr" placeholder="상세주소 입력"></input>
+						</div>
                     </div>
                     <div class="addr_self_txt">
                         <input type="text" hidden id="deliveryMemoInput" value="">
@@ -80,8 +84,8 @@
                         </div>
 
                         <div class="product_view">
-                            <div class="product_name">
-                                
+                            <div class="product_name" th:text="${buyList.goods.goodsname}">
+								
                             </div>
 
                             <div class="product_options">
