@@ -33,7 +33,7 @@ select * from buyList;
 
 select * from user;
 
-update user set userReward=5000;
+update user set userpoint=11000 where userid="apple";
 
 
 CREATE TABLE user (
@@ -47,6 +47,7 @@ CREATE TABLE user (
     usergender VARCHAR(300),
     userhomenum VARCHAR(300),
     userjoin VARCHAR(300),
+    userpoint int default 0,
     role VARCHAR(50) DEFAULT 'user'
 );
 #관리자 계정 추가 
@@ -274,11 +275,6 @@ INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, 
 ('조현호', 'Jo Hyun-ho', '대한민국', 28, '190cm', '88kg', '센터', 4, 'image19.jpg'),
 ('허범수', 'Heo Beom-soo', '대한민국', 29, '182cm', '80kg', '포워드', 4, 'image20.jpg');
 
- 
-create table sudan(
-   sudannum int primary key
-);
-
 create table goods(
    goodsnum int primary key auto_increment,
     goodstype varchar(300),
@@ -302,18 +298,17 @@ insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other item
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "2024 스틸러스 브랜딩 니트머플러", 28000, "/images/굿즈/2024 스틸러스 브랜딩 니트머플러.png");
 
 create table orders(
-	ordernum int primary key auto_increment,
+   ordernum int primary key auto_increment,
     orderdatetime datetime default now(),
     deliveryPlace varchar(300),
     deliveryMemo varchar(300),
-    totalPrice bigint,
+    totalPrice int,
     sudannum int,
     userid varchar(300),
-    goodsnum int,
-    constraint sudannum foreign key(sudannum) references sudan(sudannum),
-    constraint order_userid foreign key(userid) references user(userid),
-    constraint goodsnum foreign key(goodsnum) references goods(goodsnum)
+    goodsnums varchar(300),
+    constraint order_userid foreign key(userid) references user(userid)
 );
+drop table orders;
 select * from orders;
 
 create table wishList(
@@ -343,6 +338,7 @@ CREATE TABLE g_will_board (
     CONSTRAINT gW_team1num FOREIGN KEY (team1name) REFERENCES team(teamname),
     CONSTRAINT gW_team2num FOREIGN KEY (team2name) REFERENCES team(teamname)
 );
+select * from g_will_board;
 
 create table g_end_board(
    gEnum int primary key auto_increment,

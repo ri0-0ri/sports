@@ -49,5 +49,9 @@ public class UserService {
 	    userMapper.deleteUser(userid); // 유저 삭제를 위한 매퍼 메서드 호출
 	}
 
+	public void putpoint(int point, String userid) {
+		userMapper.putpoint(point, userid);
+	}
+
 
 }

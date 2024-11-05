@@ -12,6 +12,7 @@ public class UserDTO {
 	private String usergender;
 	private String userhomenum;
 	private String userjoin;
+	private int userpoint;
 
 	// Getters and Setters
 	public String getUserid() {
@@ -28,6 +29,14 @@ public class UserDTO {
 	
 	public void setUserReward(int userReward) {
 		this.userReward = userReward;
+	}
+	
+	public int getUserpoint() {
+		return userpoint;
+	}
+	
+	public void setUserpoint(int userpoint) {
+		this.userpoint = userpoint;
 	}
 
 	public String getUsername() {

@@ -28,5 +28,7 @@ public interface UserMapper {
     @Delete("DELETE FROM user WHERE userid = #{userid}")
     void deleteUser(String userid); // 유저 삭제 메서드
 
+	void putpoint(int point, String userid);
+
     
 }

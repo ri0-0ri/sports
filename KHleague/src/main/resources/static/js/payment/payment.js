@@ -5,6 +5,9 @@ function close_modal() {
 function open_modal() {
     $('.modal').css('display', 'block');
 }
+function close_payment() {
+    $('.wrapper').css('display', 'none');
+}
 
 // payment js
 // 배송메모 선택
@@ -39,37 +42,41 @@ $(document).ready(function () {
         $('.in_btn').removeClass('actbtn');
         $(this).find('.in_btn').addClass('actbtn');
 		
-		if($(this).next('.sudan').text().trim()==="간편결제"){
-			$('.pays').css('display','flex');
+		if($(this).next('.sudan').text().trim()==="포인트결제"){
+			$('.point').css('display','block');
+			const have_point = parseInt($('.have_point').text().trim());
+			const totalPrice = parseInt($('.after_reward').eq(0).text().trim());
+			if(have_point>totalPrice){
+				$('#for_point').addClass('opa');
+				$('.userpoint').prop('readonly', true);
+			}
 		}
 		else {
-		   $('.pays').css('display', 'none');
+		   $('.point').css('display', 'none');
 		}
 		
 		// 선택된 결제 방법의 수단 번호 설정
 		const paymentMethod = $(this).next('.sudan').text().trim();
 		let sudannum;
 		switch (paymentMethod) {
-			case "계좌결제":
+			case "포인트결제":
 				sudannum = "1"; // 예시로 1을 설정
 				break;
-			case "카드결제":
-				sudannum = "2"; // 예시로 2를 설정
-				break;
-			case "일반결제":
-				sudannum = "3"; // 예시로 3을 설정
-				break;
 			case "간편결제":
-				sudannum = "4"; // 예시로 4를 설정
+				sudannum = "2"; // 예시로 4를 설정
 				break;
 			default:
 				sudannum = "0"; // 기본값
 				break;
 		}
 		$('input[name="sudannum"]').val(sudannum);
-
+		console.log(sudannum);
     });
 });
+
+function cancelpoint(){
+	$('.userpoint').val('');
+}
 
 // 주소 검색 기능
 function openPostCode() {
@@ -93,7 +100,7 @@ $(document).ready(function () {
 
         const after_reward = previous_reward - useReward;
 
-        $('.after_reward').text(after_reward.toLocaleString());
+        $('.after_reward').text(after_reward);
     });
 
     // 전액 사용 버튼 클릭 시 처리
@@ -112,27 +119,7 @@ $(document).ready(function () {
 	}
 });
 
-// 결제방법 선택
-$(document).ready(function(){
-	$(".pays img").click(function () {
-		$('input[name="sudannum"]').val("4");
-		$(".pays img").addClass('nochoose');
-		$(this).removeClass('nochoose');
-		let gannum;
-		if($(this).attr('id')==='open_kakao'){
-			gannum = "1";
-		}
-		else if($(this).attr('id')==='open_naver'){
-			gannum = "2";
-		}
-		else{
-			gannum = "3";
-		}		
-		$('input[name="gannum"]').val(gannum);
-	});
-});
-
-// order DTO 만들기
+// order DTO 만들고 결제진행
 $(document).ready(function () {			
 	$(".go_payment").click(function(e) {
 		const deliveryPlace = $('#useraddr').val()+"//"+$('#userdetailaddr').val();
@@ -142,9 +129,9 @@ $(document).ready(function () {
 			deliveryMemo="배송메모 없음";
 		}
 		console.log(deliveryMemo);
-		const totalPrice = $('.after_reward').eq(0).text().trim();
+		const totalPrice = parseInt($('.after_reward').eq(0).text().trim());
 		console.log(totalPrice);
-		const sudannum = $('input[name="sudannum"]').val()+"//"+$('input[name="gannum"]').val();
+		const sudannum = $('input[name="sudannum"]').val();
 		console.log(sudannum);
 		const userid = $('input[name="userid"]').val();
 		console.log(userid);
@@ -154,39 +141,45 @@ $(document).ready(function () {
 		});
 		goodsnum = goodsnum.join("//");
 		console.log(goodsnum);
+		
+		const userpoint = $('input[name="userpoint"]').val();
+		console.log(userpoint);
 
 		$('input[name="deliveryPlace"]').val(deliveryPlace);
 		$('input[name="deliveryMemo"]').val(deliveryMemo);
 		$('input[name="totalPrice"]').val(totalPrice);
 		$('input[name="sudannum"]').val(sudannum);
 		$('input[name="userid"]').val(userid);
-		$('input[name="goodsnum"]').val(goodsnum);
+		$('input[name="goodsnums"]').val(goodsnum);
+		
+		$('input[name="userpoint"]').val(userpoint);	
+		
+		// 수단넘버에 따라 결제 진행
+		if (sudannum === "1") {        
+			const form = $('#paymentForm');				
+			form.submit();
+		}			
+		// 토스페이먼츠 오픈
+		else if (sudannum === "2") {
+			$('.wrapper').css('display', 'block');
+		}		
 	});
 });
 
-// 카카오페이 결제 팝업창
+// 포인트 충전
 $(document).ready(function () {	
-	$(".go_payment").click(function(e) {
-		const pnames = $('.product_name').text() + "외 " + (parseInt($('.total_num').text().trim()) - 1) + "건";
-		console.log(pnames);
-
-		const total = $('.after_reward').eq(0).text().trim();
-		console.log(total);
-
-		let data = {
-			name: pnames,
-			totalPrice: 20000
-		};
-
-		$.ajax({
-			type: 'POST',
-			url: '/payment/open_kakao',
-			data: JSON.stringify(data),
-			contentType: 'application/json',
-			success: function(response) {
-				location.href = response.next_redirect_pc_url;
-			}
-		});
-	});
-
+	$(".putpoint").click(function() {
+		const userpointhap = (parseInt($('.userpoint').val())+parseInt($('.have_point').text()));
+		console.log(userpointhap);
+		const totalPrice = parseInt($('.after_reward').eq(0).text().trim());
+		console.log(totalPrice);
+				
+		if(userpointhap<totalPrice){
+			alert("결제 잔액보다 충전금액이 모자랍니다!");
+		}
+		else{
+			alert("해당 금액만큼 충전 후 결제 진행됩니다!");
+			$(".putpoint").css('background-color','#0344DC');
+		}
+	})
 });

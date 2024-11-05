@@ -1,8 +1,10 @@
 package com.example.demo.controller.payment;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,9 +27,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.model.UserDTO.UserDTO;
 import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.goods.GoodsDTO;
-import com.example.demo.model.payment.kakaopayDTO;
+import com.example.demo.model.payment.OrderDTO;
 import com.example.demo.service.goods.GoodsService;
-import com.example.demo.service.payment.PayService;
+import com.example.demo.service.payment.PaymentService;
 import com.example.demo.service.user.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -42,7 +45,7 @@ public class PaymentController {
 	UserService uservice;
 	
 	@Autowired
-	PayService pservice;
+	PaymentService pservice;
 	
 	@GetMapping("payment")
 	public String payment(@RequestParam List<Integer> buynum, Model model, HttpSession session) {	
@@ -55,8 +58,8 @@ public class PaymentController {
 		    goodsBuyinfo.add(buyListDTO);
 		    goodsMap.put(buyListDTO.getGoodsnum(), goodsDTO);
 		    totalAmount += gservice.getgoodsBycart(buyListDTO.getGoodsnum()).getGoodsprice() * gservice.getBuygoodsBybuynum(singleBuynum).getQuantity();
-		    System.out.println(gservice.getgoodsBycart(buyListDTO.getGoodsnum()).getGoodsprice());
-		    System.out.println(gservice.getBuygoodsBybuynum(singleBuynum).getQuantity());
+//		    System.out.println(gservice.getgoodsBycart(buyListDTO.getGoodsnum()).getGoodsprice());
+//		    System.out.println(gservice.getBuygoodsBybuynum(singleBuynum).getQuantity());
 		}	    
 	    model.addAttribute("goodsBuyinfo", goodsBuyinfo);
 	    model.addAttribute("goodsMap", goodsMap);
@@ -70,49 +73,27 @@ public class PaymentController {
         return "payment/payment";
     }
 	
-	/*
-	 * @PostMapping("open_kakao") public @ResponseBody kakaopayDTO
-	 * kakaopay_ready(@RequestParam Map<String, Object> params) { kakaopayDTO res =
-	 * pservice.kakaopay(params); // log.info(res.toString()); return res; }
-	 */
-	
-	@PostMapping("open_kakao")
-	@ResponseBody
-	public String kakaopay() {
-		try {
-			URL url = new URL("https://open-api.kakaopay.com/online/v1/payment/ready");
-			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			con.setRequestMethod("POST");
-			con.setRequestProperty("Authorization", "SECRET_KEY DEV082C51D29EDB518D5AB58F83F9F9249C1B2A8");
-			con.setRequestProperty("Content-Typ", "application/json");
-			con.setDoOutput(true);
-			
-			String paramiter = "cid=TC0ONETIME&"
-					+ "partner_order_id=&"
-					+ "partner_user_id=&"
-					+ "item_name=&"
-					+ "quantity=&"
-					+ "total_amount=&"
-					+ "tax_free_amount=&"
-					+ "approval_url=/mypage/mypage_order&" // 성공시 url
-					+ "cancel_url=/mypage/mypage_buy&" // 취소시 url
-					+ "fail_url=/payment/payment"; // 실패시 url
-			
-			OutputStream give = con.getOutputStream(); // 전깃줄만들고
-			DataOutputStream givedata = new DataOutputStream(give); // 데이터주는애
-			givedata.writeBytes(paramiter); // 데이터주는애한테 파라미터를 쥐어주고
-			givedata.close(); // 닫아주면서 데이터주는애가 가지고있는 파라미터를 전깃줄에 태워 보내요
-			
-			// 실제 통신하는부분
-			int result = con.getResponseCode();
-//			InputStream receive = con.
-			
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	@PostMapping("okpayment")
+	public String okpayment(OrderDTO order,  @RequestParam String userpoint) {	
+		String userid = order.getUserid();
+		int point = 0;		
+		// 넘어온 userpoint가 0보다 크면 충전했다는 뜻
+		// 기존 유저가 가지고있는 포인트가 결제할 금액보다 작아서 그만큼 충전해야한다는의미
+		// 기존 유저포인트 불러와서 충전할 포인트 더하고 총 금액 마이너스해야함
+		if(Integer.parseInt(userpoint)>0) {			
+			point = (uservice.findUserById(userid).getUserpoint()+Integer.parseInt(userpoint))-order.getTotalPrice();
 		}
-		return null;
+		// 넘어온 userpoint가 0보다 작거나 같다면 충전하지 않았다는뜻
+		// 기존 유저포인트가져와서 결제할 금액 빼면 나머지 포인트
+		else {
+			point = uservice.findUserById(userid).getUserpoint()-order.getTotalPrice();
+		}
+		System.out.println("남은포인트"+point);		
+		
+		pservice.putorder(order);
+		uservice.putpoint(point, userid);
+		
+		return "mypage/mypage_order";		
 	}
 	
 }
