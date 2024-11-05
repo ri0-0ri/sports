@@ -346,20 +346,6 @@ a{
     margin-left: 20px;
 }
 
-.pays{
-    margin-top: 15px;
-    border: 1px solid #d9d9d9;
-    padding: 16px 20px 20px 20px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    cursor: pointer;
-}
-
-.pays img{
-    width: 100px;
-}
-
 .payment_txt{
     margin-top: 20px;
 }
@@ -486,8 +472,24 @@ a{
     margin-left: 5px;
 }
 
-.pays img.nochoose{
-	opacity: 0.5;
+.point{
+	display: flex;
+	align-items: center;
+}
+
+.point_box{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.point input{
+	border: 1px solid #d9d9d9;
+	width: 330px;
+	height: 30px;
+	text-align: left;
+	font-size: 15px;
+	outline: none;
 }
 
 footer{

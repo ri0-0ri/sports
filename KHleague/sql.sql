@@ -279,9 +279,7 @@ create table sudan(
    sudannum int primary key auto_increment,
    sudanname varchar(300)
 );
-insert into sudan(sudanname) values("계좌결제");
-insert into sudan(sudanname) values("카드결제");
-insert into sudan(sudanname) values("일반결제");
+insert into sudan(sudanname) values("충전결제");
 insert into sudan(sudanname) values("간편결제");
 
 create table goods(
@@ -308,6 +306,7 @@ insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other item
 
 create table orders(
 	ordernum int primary key auto_increment,
+    orderid varchar(300),
     orderdatetime datetime default now(),
     deliveryPlace varchar(300),
     deliveryMemo varchar(300),

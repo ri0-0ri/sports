@@ -5,6 +5,9 @@ function close_modal() {
 function open_modal() {
     $('.modal').css('display', 'block');
 }
+function close_payment() {
+    $('.wrapper').css('display', 'none');
+}
 
 // payment js
 // 배송메모 선택
@@ -39,28 +42,22 @@ $(document).ready(function () {
         $('.in_btn').removeClass('actbtn');
         $(this).find('.in_btn').addClass('actbtn');
 		
-		if($(this).next('.sudan').text().trim()==="간편결제"){
-			$('.pays').css('display','flex');
+		if($(this).next('.sudan').text().trim()==="충전결제"){
+			$('.point').css('display','flex');
 		}
 		else {
-		   $('.pays').css('display', 'none');
+		   $('.point').css('display', 'none');
 		}
 		
 		// 선택된 결제 방법의 수단 번호 설정
 		const paymentMethod = $(this).next('.sudan').text().trim();
 		let sudannum;
 		switch (paymentMethod) {
-			case "계좌결제":
+			case "충전결제":
 				sudannum = "1"; // 예시로 1을 설정
 				break;
-			case "카드결제":
-				sudannum = "2"; // 예시로 2를 설정
-				break;
-			case "일반결제":
-				sudannum = "3"; // 예시로 3을 설정
-				break;
 			case "간편결제":
-				sudannum = "4"; // 예시로 4를 설정
+				sudannum = "2"; // 예시로 4를 설정
 				break;
 			default:
 				sudannum = "0"; // 기본값
@@ -112,26 +109,6 @@ $(document).ready(function () {
 	}
 });
 
-// 결제방법 선택
-$(document).ready(function(){
-	$(".pays img").click(function () {
-		$('input[name="sudannum"]').val("4");
-		$(".pays img").addClass('nochoose');
-		$(this).removeClass('nochoose');
-		let gannum;
-		if($(this).attr('id')==='open_kakao'){
-			gannum = "1";
-		}
-		else if($(this).attr('id')==='open_naver'){
-			gannum = "2";
-		}
-		else{
-			gannum = "3";
-		}		
-		$('input[name="gannum"]').val(gannum);
-	});
-});
-
 // order DTO 만들기
 $(document).ready(function () {			
 	$(".go_payment").click(function(e) {
@@ -162,41 +139,13 @@ $(document).ready(function () {
 		$('input[name="userid"]').val(userid);
 		$('input[name="goodsnum"]').val(goodsnum);
 		
-					
+		/* 폼 제출 */		
 	});
 });
 
-// 카카오페이 결제 팝업창
+// 토스페이먼츠 결제 팝업창
 $(document).ready(function () {	
-	$(".go_payment").click(function(e) {
-		const pnames = $('.product_name').text() + "외 " + (parseInt($('.total_num').text().trim()) - 1) + "건";
-		console.log(pnames);
-		
-		const quantity = parseInt($('.total_num').text().trim());
-
-		const total = parseInt($('.after_reward').eq(0).text().trim());		
-		console.log(total);
-
-		let data = {
-			item_name : pnames,
-			quantity : quantity,
-			total_amount : total,
-			vat_amount : "0",
-			tax_free_amount : "0"
-		};
-
-		$.ajax({
-			type: 'POST',
-			url: '/payment/open_kakao',
-			data: JSON.stringify(data),
-			contentType: 'application/json',
-			success: function(response) {
-				location.href = response.next_redirect_pc_url;
-			},
-			error: function(response) {
-				
-				console.log("...",response);
-			}
-			})
+	$(".go_payment").click(function(e) {		
+		$('.wrapper').css('display', 'block');
 	})
 });
