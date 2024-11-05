@@ -317,28 +317,29 @@
 	      }),
 	    ]);
 
-	    // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
+		// ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
 	    // @docs https://docs.tosspayments.com/sdk/v2/js#widgetsrequestpayment
 	    button.addEventListener("click", async function () {
 		const pnames = document.querySelector('.product_name').textContent + "외 " + (parseInt(document.querySelector('.total_num').textContent.trim()) - 1) + "건";
 		const username = document.querySelector('.username').textContent;
 		const userphone = document.querySelector('.userphone').textContent.replace(/-/g, '');
-	      // 결제를 요청하기 전에 orderId, amount를 서버에 저장하세요.
-	      // 결제 과정에서 악의적으로 결제 금액이 바뀌는 것을 확인하는 용도입니다.
-	      await widgets.requestPayment({
-	        orderId: generateRandomString(),
-	        orderName: pnames,
-	        successUrl: window.location.origin + "/mypage/mypage_order",
-	        failUrl: window.location.origin + "/mypage/mypage_buy",
-	        customerEmail: "",
-	        customerName: username,
-	        customerMobilePhone: userphone,			
-	      }).then(function () {
-		    // 결제가 완료된 후 폼 제출
-		  	document.getElementById("paymentForm").submit();
-		  });
+		
+		widgets.requestPayment({
+  			orderId: generateRandomString(),
+  			orderName: pnames,
+  			customerEmail: "",
+  			customerName: username,
+		}).then(function () {
+			document.getElementById("paymentForm").submit();
+		});
+
+		  
+		  
+		  
+
 	    });
 	  }
+	  
 
 	  function generateRandomString() {
 	    return window.btoa(Math.random()).slice(0, 20);

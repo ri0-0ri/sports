@@ -115,23 +115,27 @@ footer {
 .price {
     margin-top: 58px;
     border: 1px solid black;
-    height: 190px;
+/*    height: 300px;*/
     border-radius: 10px;
+	padding: 20px;
 }
 
 .price div {
-    margin-left: 67px;
+    margin-left: 20px;
 }
 
 .money h3 {
-    color: #D9D9D9;
+    color: #01203F;
 }
 
 .line1 {
     width: 799px;
 }
 
-.money,
+#point{
+	margin-top: 20px;
+}
+
 .money1,
 .line1 {
     margin-top: 18px;
