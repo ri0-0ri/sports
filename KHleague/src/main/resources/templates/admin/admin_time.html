@@ -35,47 +35,30 @@
 				</div>
 				<div class="date_plus">
 					<div>
-						<label for="" style="padding-left: 10px;">1팀</label>
+						<label for="team1" style="padding-left: 10px;">1팀</label>
 						<select name="team1" id="team1">
-							<option value="FC서울">FC서울</option>
-							<option value="전북 현대 모터스">전북 현대 모터스</option>
-							<option value="삼성 라이온즈">삼성 라이온즈</option>
-							<option value="두산 베어스">두산 베어스</option>
-							<option value="고양 소노">고양 소노</option>
-							<option value="대구 한국가스공사">대구 한국가스공사</option>
-							<option value="수원 한국전력">수원 한국전력</option>
-							<option value="안산 ok저축은행">안산 ok저축은행</option>
+							<option th:each="team : ${teams}" th:value="${team.teamname}" th:text="${team.teamname}">
+							</option>
 						</select>
 					</div>
 					<div>
 						<h2>VS</h2>
 					</div>
 					<div>
-						<label for="">2팀</label>
+						<label for="team2">2팀</label>
 						<select name="team2" id="team2">
-							<option value="FC서울">FC서울</option>
-							<option value="전북 현대 모터스">전북 현대 모터스</option>
-							<option value="삼성 라이온즈">삼성 라이온즈</option>
-							<option value="두산 베어스">두산 베어스</option>
-							<option value="고양 소노">고양 소노</option>
-							<option value="대구 한국가스공사">대구 한국가스공사</option>
-							<option value="수원 한국전력">수원 한국전력</option>
-							<option value="안산 ok저축은행">안산 ok저축은행</option>
+							<option th:each="team : ${teams}" th:value="${team.teamname}" th:text="${team.teamname}">
+							</option>
 						</select>
 					</div>
 					<div>
-
-
-					
 						<input type="date">
 					</div>
 					<div>
-					
 						<input type="time">
 					</div>
 					<div><button>추가</button></div>
 				</div>
-
 
 				<table>
 					<tr>
@@ -92,7 +75,6 @@
 						<td>오전 06:14</td>
 						<td><button>취소</button></td>
 					</tr>
-					
 				</table>
 			</div>
 		</div>
