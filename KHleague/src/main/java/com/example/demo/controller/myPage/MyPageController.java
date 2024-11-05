@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.model.UserDTO.UserDTO;
 import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.goods.GoodsDTO;
 import com.example.demo.service.goods.GoodsService;
+import com.example.demo.service.user.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -27,6 +29,9 @@ public class MyPageController {
 
 	@Autowired
 	GoodsService gservice;
+	
+	@Autowired
+	UserService uservice;
 
 	@GetMapping("mypage_profile")
 	public String showMyPageProfile(HttpSession session, Model model) {
@@ -47,7 +52,11 @@ public class MyPageController {
 	}
 
 	@GetMapping("mypage_money")
-	public String showMypageMoney() {
+	public String showMypageMoney(Model model, HttpSession session) {
+		String userid = (String)session.getAttribute("loginUser");
+		UserDTO user = uservice.findUserById(userid);
+		model.addAttribute("user", user);
+		
 		return "mypage/mypage_money";
 	}
 
@@ -115,4 +124,5 @@ public class MyPageController {
 		gservice.putBuy_modify(goodsnum, userid, size, quantity, buynum);
 		return ResponseEntity.ok().build();
 	}
+	
 }

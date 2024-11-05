@@ -76,24 +76,30 @@ public class PaymentController {
 	@PostMapping("okpayment")
 	public String okpayment(OrderDTO order,  @RequestParam String userpoint) {	
 		String userid = order.getUserid();
-		int point = 0;		
-		// 넘어온 userpoint가 0보다 크면 충전했다는 뜻
-		// 기존 유저가 가지고있는 포인트가 결제할 금액보다 작아서 그만큼 충전해야한다는의미
-		// 기존 유저포인트 불러와서 충전할 포인트 더하고 총 금액 마이너스해야함
-		if(Integer.parseInt(userpoint)>0) {			
-			point = (uservice.findUserById(userid).getUserpoint()+Integer.parseInt(userpoint))-order.getTotalPrice();
+		int point = 0;
+		// sudannum 1은 포인트결제
+		if(order.getSudannum()==1) {			
+			// 넘어온 userpoint가 0보다 크면 충전했다는 뜻
+			// 기존 유저가 가지고있는 포인트가 결제할 금액보다 작아서 그만큼 충전해야한다는의미
+			// 기존 유저포인트 불러와서 충전할 포인트 더하고 총 금액 마이너스해야함
+			if(Integer.parseInt(userpoint)>0) {			
+				point = (uservice.findUserById(userid).getUserpoint()+Integer.parseInt(userpoint))-order.getTotalPrice();
+			}
+			// 넘어온 userpoint가 0보다 작거나 같다면 충전하지 않았다는뜻
+			// 기존 유저포인트가져와서 결제할 금액 빼면 나머지 포인트
+			else {
+				point = uservice.findUserById(userid).getUserpoint()-order.getTotalPrice();
+			}
+			System.out.println("남은포인트"+point);		
+			pservice.putorder(order);
+			uservice.putpoint(point, userid);
 		}
-		// 넘어온 userpoint가 0보다 작거나 같다면 충전하지 않았다는뜻
-		// 기존 유저포인트가져와서 결제할 금액 빼면 나머지 포인트
+		// sudannum 2는 간편결제
 		else {
-			point = uservice.findUserById(userid).getUserpoint()-order.getTotalPrice();
-		}
-		System.out.println("남은포인트"+point);		
+			pservice.putorder(order);
+		}		
 		
-		pservice.putorder(order);
-		uservice.putpoint(point, userid);
-		
-		return "mypage/mypage_order";		
+		return "redirect:/mypage/mypage_order";		
 	}
 	
 }
