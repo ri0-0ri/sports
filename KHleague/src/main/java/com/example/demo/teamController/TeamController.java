@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/team/*")
 public class TeamController {
-	
+
 	@GetMapping("team_info")
 	public void team_info() {
-		
+
 	}
-	
+
 	@GetMapping("soccer/info_fc_seoul")
-	public void fc_seoul() {}
+	public void fc_seoul() {
+	}
+
 }
