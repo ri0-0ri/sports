@@ -42,8 +42,14 @@ $(document).ready(function () {
         $('.in_btn').removeClass('actbtn');
         $(this).find('.in_btn').addClass('actbtn');
 		
-		if($(this).next('.sudan').text().trim()==="충전결제"){
-			$('.point').css('display','flex');
+		if($(this).next('.sudan').text().trim()==="포인트결제"){
+			$('.point').css('display','block');
+			const have_point = parseInt($('.have_point').text().trim());
+			const totalPrice = parseInt($('.after_reward').eq(0).text().trim());
+			if(have_point>totalPrice){
+				$('#for_point').addClass('opa');
+				$('.userpoint').prop('readonly', true);
+			}
 		}
 		else {
 		   $('.point').css('display', 'none');
@@ -53,7 +59,7 @@ $(document).ready(function () {
 		const paymentMethod = $(this).next('.sudan').text().trim();
 		let sudannum;
 		switch (paymentMethod) {
-			case "충전결제":
+			case "포인트결제":
 				sudannum = "1"; // 예시로 1을 설정
 				break;
 			case "간편결제":
@@ -64,9 +70,13 @@ $(document).ready(function () {
 				break;
 		}
 		$('input[name="sudannum"]').val(sudannum);
-
+		console.log(sudannum);
     });
 });
+
+function cancelpoint(){
+	$('.userpoint').val('');
+}
 
 // 주소 검색 기능
 function openPostCode() {
@@ -90,7 +100,7 @@ $(document).ready(function () {
 
         const after_reward = previous_reward - useReward;
 
-        $('.after_reward').text(after_reward.toLocaleString());
+        $('.after_reward').text(after_reward);
     });
 
     // 전액 사용 버튼 클릭 시 처리
@@ -109,7 +119,7 @@ $(document).ready(function () {
 	}
 });
 
-// order DTO 만들기
+// order DTO 만들고 결제진행
 $(document).ready(function () {			
 	$(".go_payment").click(function(e) {
 		const deliveryPlace = $('#useraddr').val()+"//"+$('#userdetailaddr').val();
@@ -119,9 +129,9 @@ $(document).ready(function () {
 			deliveryMemo="배송메모 없음";
 		}
 		console.log(deliveryMemo);
-		const totalPrice = $('.after_reward').eq(0).text().trim();
+		const totalPrice = parseInt($('.after_reward').eq(0).text().trim());
 		console.log(totalPrice);
-		const sudannum = $('input[name="sudannum"]').val()+"//"+$('input[name="gannum"]').val();
+		const sudannum = $('input[name="sudannum"]').val();
 		console.log(sudannum);
 		const userid = $('input[name="userid"]').val();
 		console.log(userid);
@@ -131,21 +141,45 @@ $(document).ready(function () {
 		});
 		goodsnum = goodsnum.join("//");
 		console.log(goodsnum);
+		
+		const userpoint = $('input[name="userpoint"]').val();
+		console.log(userpoint);
 
 		$('input[name="deliveryPlace"]').val(deliveryPlace);
 		$('input[name="deliveryMemo"]').val(deliveryMemo);
 		$('input[name="totalPrice"]').val(totalPrice);
 		$('input[name="sudannum"]').val(sudannum);
 		$('input[name="userid"]').val(userid);
-		$('input[name="goodsnum"]').val(goodsnum);
+		$('input[name="goodsnums"]').val(goodsnum);
 		
-		/* 폼 제출 */		
+		$('input[name="userpoint"]').val(userpoint);	
+		
+		// 수단넘버에 따라 결제 진행
+		if (sudannum === "1") {        
+			const form = $('#paymentForm');				
+			form.submit();
+		}			
+		// 토스페이먼츠 오픈
+		else if (sudannum === "2") {
+			$('.wrapper').css('display', 'block');
+		}		
 	});
 });
 
-// 토스페이먼츠 결제 팝업창
+// 포인트 충전
 $(document).ready(function () {	
-	$(".go_payment").click(function(e) {		
-		$('.wrapper').css('display', 'block');
+	$(".putpoint").click(function() {
+		const userpointhap = (parseInt($('.userpoint').val())+parseInt($('.have_point').text()));
+		console.log(userpointhap);
+		const totalPrice = parseInt($('.after_reward').eq(0).text().trim());
+		console.log(totalPrice);
+				
+		if(userpointhap<totalPrice){
+			alert("결제 잔액보다 충전금액이 모자랍니다!");
+		}
+		else{
+			alert("해당 금액만큼 충전 후 결제 진행됩니다!");
+			$(".putpoint").css('background-color','#0344DC');
+		}
 	})
 });

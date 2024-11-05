@@ -37,7 +37,7 @@
     <th:block th:replace="~{layout/header::header}"></th:block>
 	
 	<!-- 결제 정보 제출 폼 -->
-	<form action="/payment/okpayment" method="post">		
+	<form action="/payment/okpayment" method="post" id="paymentForm">		
 
     <div class="top_container">
         <div class="page_txt">상품 결제</div>
@@ -171,15 +171,26 @@
                             <div class="choose_btn">
                                 <div class="in_btn"></div>
                             </div>
-                            <div class="sudan">충전결제</div>
+                            <div class="sudan">포인트결제</div>
                         </div>
 						
 						<div class="point" style="display: none;">
-							<div>충전포인트</div>
-							<div class="point_box">								
-								<input type="text" class="use_point">
-								<p>p</p>
-							</div>							
+							<div class="point_wrap">								
+								<div>보유 포인트</div>
+								<div class="point_box">								
+									<div th:text="${user.userpoint == null ? 0 : user.userpoint}" class="have_point"></div>
+									<p>p</p>
+								</div>							
+							</div>
+							<div class="point_wrap" id="for_point">								
+								<div>충전포인트</div>
+								<div class="point_box">								
+									<input type="text" name="userpoint" class="userpoint" value="0">
+									<p>p</p>
+									<div class="putpoint">충전</div>
+									<div class="cancelpoint" onclick="cancelpoint()">취소</div>
+								</div>							
+							</div>
 						</div>
 						
                         <div class="choose">
@@ -220,7 +231,7 @@
     </div>
 
     <div class="go_payment_area">
-        <div class="go_payment" style="cursor: pointer;">
+        <div class="go_payment" style="cursor: pointer;" onclick="go_payment()">
             <div>총 결제금액</div>
 			<div style="display: flex;">				
             <div class="after_reward">[[${total}]]</div><div>&nbsp;원</div>
@@ -230,11 +241,10 @@
 	
 	<input type="hidden" name="deliveryPlace">
 	<input type="hidden" name="deliveryMemo">
-	<input type="hidden" name="totalPrice">
+	<input type="number" name="totalPrice" style="display: none;">
 	<input type="hidden" name="sudannum">
-	<input type="hidden" name="gannum">
 	<input type="hidden" name="userid" th:value="${user.userid}" class="userid">
-	<input type="hidden" name="goodsnum">
+	<input type="hidden" name="goodsnums">
 	<div class="username" style="display: none;">[[${user.username}]]</div>
 	<div class="userphone" style="display: none;">[[${user.userphone}]]</div>
 	
@@ -322,8 +332,11 @@
 	        failUrl: window.location.origin + "/mypage/mypage_buy",
 	        customerEmail: "",
 	        customerName: username,
-	        customerMobilePhone: userphone,
-	      });
+	        customerMobilePhone: userphone,			
+	      }).then(function () {
+		    // 결제가 완료된 후 폼 제출
+		  	document.getElementById("paymentForm").submit();
+		  });
 	    });
 	  }
 

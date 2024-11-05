@@ -30,5 +30,10 @@
     WHERE userid = #{userid}
 </update>
 
+<update id="putpoint">
+	UPDATE user 
+    SET userpoint = #{point} 
+    WHERE userid = #{userid}
+</update>
 
 </mapper>

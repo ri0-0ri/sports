@@ -237,16 +237,19 @@ a{
 .input_box{
     display: flex;
     justify-content: space-between;
+	align-items: center;
 }
 
 .inbox{
     display: flex;
     border: 1px solid #B9B9C3;
+	align-items: center;
     padding: 10px;
 }
 
 .input_area{
     display: flex;
+	align-items: center;
 }
 
 .input_area input[type=text]{
@@ -472,24 +475,60 @@ a{
     margin-left: 5px;
 }
 
+.point_wrap{
+	margin: 10px 0;
+}
+
 .point{
-	display: flex;
-	align-items: center;
+	margin: 20px 0;
 }
 
 .point_box{
 	display: flex;
-	justify-content: space-around;
+	justify-content: right;
 	align-items: center;
+	margin-top: 10px;
+}
+
+.point_box p{
+	margin-left: 10px;
+	color: #B9B9C3;
 }
 
 .point input{
 	border: 1px solid #d9d9d9;
 	width: 330px;
-	height: 30px;
-	text-align: left;
+	height: 40px;
+	text-align: right;
 	font-size: 15px;
 	outline: none;
+	padding: 5px;
+}
+
+.putpoint{
+	background-color: #B9B9C3;
+	padding: 10px;
+	color: #fff;
+	margin-left: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.cancelpoint{
+	background-color: #B9B9C3;
+	padding: 10px;
+	color: #fff;
+	margin-left: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.cancelpoint:active{
+	background-color: #0344DC;
+}
+
+#for_point.opa{
+	opacity: 0.5;
 }
 
 footer{
