@@ -1,5 +1,7 @@
 package com.example.demo.mapper.gWillBoard;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import com.example.demo.modal.gWillBoardDTO.GWillBoardDTO;
@@ -8,4 +10,6 @@ import com.example.demo.modal.gWillBoardDTO.GWillBoardDTO;
 public interface GWillBoardMapper {
 	@Insert("INSERT INTO g_will_board (gWdate, team1name, team2name, gwtime) VALUES (#{gWdate}, #{team1name}, #{team2name}, #{gwtime})")
 	void insertGWillBoard(GWillBoardDTO gWillBoardDTO);
+	
+	List<GWillBoardDTO> getgWillList();
 }
