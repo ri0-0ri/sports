@@ -65,7 +65,7 @@ insert into sports(sport) values("배구");
 
 create table team(
    teamnum int primary key auto_increment,
-    teamname varchar(300),
+    teamname varchar(300) UNIQUE,
     sportsnum int,
     teamloggo varchar(300),
     constraint sportsnum foreign key(sportsnum) references sports(sportsnum)
@@ -334,12 +334,14 @@ create table buyList(
    constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum)
 );
 
-create table g_will_board(
-   gWnum int primary key auto_increment,
-    gWdate datetime,
-    teamnum int,
-    gwtime datetime,
-    constraint gW_teamnum foreign key(teamnum) references team(teamnum)
+CREATE TABLE g_will_board (
+    gWnum INT PRIMARY KEY AUTO_INCREMENT,
+    gWdate DATETIME,
+    team1name VARCHAR(300),
+    team2name VARCHAR(300),
+    gwtime DATETIME,
+    CONSTRAINT gW_team1num FOREIGN KEY (team1name) REFERENCES team(teamname),
+    CONSTRAINT gW_team2num FOREIGN KEY (team2name) REFERENCES team(teamname)
 );
 
 create table g_end_board(
