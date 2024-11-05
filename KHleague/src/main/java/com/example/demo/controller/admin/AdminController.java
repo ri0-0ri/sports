@@ -5,6 +5,7 @@ import com.example.demo.model.teamDTO.TeamDTO;
 import com.example.demo.service.team.TeamService;
 import com.example.demo.service.gWillBoard.GWillBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,4 +54,14 @@ public class AdminController {
 
 		return "redirect:/admin/admin_time"; // 알림 메시지 추가 필요
 	}
+	
+	@GetMapping("getList")
+    public ResponseEntity<List<GWillBoardDTO>> getgWillList() {
+        List<GWillBoardDTO> boardList = gWillBoardService.getgWillList(); 
+        
+        
+        
+        return ResponseEntity.ok(boardList);
+    }
+	
 }

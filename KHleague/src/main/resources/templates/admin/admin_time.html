@@ -66,7 +66,7 @@
 						<div><button type="submit">추가</button></div>
 					</div>
 				</form>
-				<table>
+				<table id="time_table">
 					<tr>
 						<td>1팀</td>
 						<td>2팀</td>
@@ -87,5 +87,35 @@
 	</div>
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(document).ready(function() {
+   
+       function getList() {
+           $.ajax({
+               url: '/admin/getList',
+               type: 'GET',
+               success: function(boardList) {
+                  boardList.forEach(board => {
+                       const boardHtml = `
+                     <tr>
+                        <td>${board.team1name}</td>
+                        <td>${board.team2name}</td>
+                        <td>${board.gWdate}</td>
+                        <td>${board.gwtime}</td>
+                        <td><button class="cancel-btn">취소</button></td>
+                     </tr>
+                       `;
+                       $('#time_table').append(boardHtml);
+                   });
+               },
+               error: function(xhr, status, error) {
+                   console.error("댓글 불러오기 실패: ", error);
+               }
+           });
+       }
 
+       getList(); // 페이지 로드 시 댓글 목록 불러오기
+   });
+</script>
 </html>
