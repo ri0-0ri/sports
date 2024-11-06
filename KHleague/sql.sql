@@ -6,7 +6,6 @@ drop table user;
 drop table sports;
 drop table team;
 drop table player;
-drop table sudan;
 drop table goods;
 drop table orders;
 drop table g_will_board;
@@ -15,12 +14,12 @@ drop table fboard;
 drop table eboard;
 drop table wishList;
 drop table buyList;
+drop table money;
 
 select * from user;
 select * from sports;
 select * from team;
 select * from player;
-select * from sudan;
 select * from goods;
 select * from orders;
 select * from g_will_board;
@@ -29,7 +28,7 @@ select * from fboard;
 select * from eboard;
 select * from wishList;
 select * from buyList;
-
+select * from money;
 
 select * from user;
 
@@ -42,7 +41,7 @@ CREATE TABLE user (
     username VARCHAR(300),
     userphone VARCHAR(300),
     useraddr VARCHAR(300),
-    userReward VARCHAR(300) DEFAULT '5000',
+    userReward VARCHAR(300),
     userbirth VARCHAR(300),
     usergender VARCHAR(300),
     userhomenum VARCHAR(300),
@@ -53,6 +52,19 @@ CREATE TABLE user (
 #관리자 계정 추가 
 INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin, role)
 VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04', 'admin');
+
+create table money(
+	moneyId int auto_increment primary key,
+    moneydate datetime default now(),
+    moneytype varchar(300),
+	moneyname varchar(300),
+    change_money varchar(300),
+    userid varchar(300),
+	constraint useridR foreign key(userid) references user(userid)
+);
+drop table money;
+select * from money;
+SELECT * FROM money WHERE userid = 'test';
 
 create table sports(
    sportsnum int primary key auto_increment,
@@ -348,14 +360,13 @@ create table g_end_board(
     constraint gE_teamnum foreign key(teamnum) references team(teamnum)
 );
 
-create table fboard(
-   fboardnum int primary key auto_increment,
-    fboardtitle varchar(300),
-    fboardcontent varchar(3000),
-    userid varchar(300),
-    gWnum int,
-   constraint fboard_userid foreign key(userid) references user(userid),
-    constraint gWnum foreign key(gWnum) references g_will_board(gWnum)
+CREATE TABLE fboard (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    gWnum INT, 
+    user_id VARCHAR(255), 
+    content TEXT,  -- 채팅 내용
+    FOREIGN KEY (gWnum) REFERENCES g_will_board(gWnum) ON DELETE CASCADE,  
+    FOREIGN KEY (user_id) REFERENCES user(userid)  
 );
 
 create table eboard(

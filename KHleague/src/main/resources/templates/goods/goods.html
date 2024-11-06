@@ -55,6 +55,10 @@
                             </select>
                         </div>
                     </div>
+					
+					<div class="goods_size_box" style="display: none;" th:if="${goods.goodstype == 'Accessories' or goods.goodstype == 'Other items'}">
+					    <input type="hidden" name="size" value="free" />
+					</div>
 
                     <div class="goods_num_box">
                         <p>수량</p>
@@ -64,7 +68,7 @@
 
 
                 <div class="payment_box">
-					<button type="button" class="go_payment" onclick="submitForm('/payment/payment', event)">
+					<button type="button" class="go_payment" onclick="submitForm('/payment/single_payment', event)">
 						BUY NOW
 					</button>
 					<button type="button" class="go_cart" onclick="submitForm('/mypage/mypage_buy', event)">

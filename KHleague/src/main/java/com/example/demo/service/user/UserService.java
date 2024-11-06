@@ -27,31 +27,37 @@ public class UserService {
 	}
 
 	public void updateUserField(String userid, String field, String value) {
-	    switch (field) {
-	        case "username":
-	            userMapper.updateUsername(userid, value);
-	            break;
-	        case "userphone":
-	            userMapper.updateUserphone(userid, value);
-	            break;
-	        case "useraddr":
-	            userMapper.updateUseraddr(userid, value);
-	            break;
-	        case "userid":
-	            userMapper.updateUserid(userid, value);
-	            break;
-	    }
+		switch (field) {
+		case "username":
+			userMapper.updateUsername(userid, value);
+			break;
+		case "userphone":
+			userMapper.updateUserphone(userid, value);
+			break;
+		case "useraddr":
+			userMapper.updateUseraddr(userid, value);
+			break;
+		case "userid":
+			userMapper.updateUserid(userid, value);
+			break;
+		}
 	}
+
 	public List<UserDTO> getAllUsers() {
-	    return userMapper.findAllUsers(); // 모든 유저를 반환하는 매퍼 메서드 호출
+		return userMapper.findAllUsers(); // 모든 유저를 반환하는 매퍼 메서드 호출
 	}
+
 	public void deleteUser(String userid) {
-	    userMapper.deleteUser(userid); // 유저 삭제를 위한 매퍼 메서드 호출
+		userMapper.deleteUser(userid); // 유저 삭제를 위한 매퍼 메서드 호출
 	}
 
 	public void putpoint(int point, String userid) {
 		userMapper.putpoint(point, userid);
 	}
 
+	
+	 public void updateUserReward(int newReward, String userid) {
+	 userMapper.updateUserReward(newReward, userid);
+	 }
 
 }

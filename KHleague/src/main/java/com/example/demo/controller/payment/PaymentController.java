@@ -27,8 +27,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.model.UserDTO.UserDTO;
 import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.goods.GoodsDTO;
+import com.example.demo.model.moneyDTO.MoneyDTO;
 import com.example.demo.model.payment.OrderDTO;
 import com.example.demo.service.goods.GoodsService;
+import com.example.demo.service.money.MoneyService;
 import com.example.demo.service.payment.PaymentService;
 import com.example.demo.service.user.UserService;
 
@@ -46,6 +48,9 @@ public class PaymentController {
 	
 	@Autowired
 	PaymentService pservice;
+	
+	@Autowired
+	MoneyService mservice;
 	
 	@GetMapping("payment")
 	public String payment(@RequestParam List<Integer> buynum, Model model, HttpSession session) {	
@@ -73,31 +78,82 @@ public class PaymentController {
         return "payment/payment";
     }
 	
+	@GetMapping("single_payment")
+	public void single_payment(@RequestParam String userid, @RequestParam String goodsnum, @RequestParam String size, @RequestParam String quantity, Model model){
+		System.out.println(userid);
+		System.out.println(goodsnum);
+		System.out.println(size);
+		System.out.println(quantity);
+		
+		int intgoodsnum = Integer.parseInt(goodsnum);		
+		UserDTO user = uservice.findUserById(userid);
+		model.addAttribute("user", user);
+		GoodsDTO goods = gservice.getgoodsBycart(intgoodsnum);
+		model.addAttribute("goods", goods);
+		
+		model.addAttribute("size", size);
+		model.addAttribute("quantity", quantity);
+//		return "payment/single_payment?userid=" + userid + "&goodsnum=" + goodsnum + "&size=" + size + "&quantity=" + quantity;
+	}
+	
 	@PostMapping("okpayment")
-	public String okpayment(OrderDTO order,  @RequestParam String userpoint) {	
+	public String okpayment(OrderDTO order,  @RequestParam String userpoint, @RequestParam String userReward) {	
 		String userid = order.getUserid();
 		int point = 0;
 		// sudannum 1은 포인트결제
-		if(order.getSudannum()==1) {			
+		if(order.getSudannum()==1) {
+			MoneyDTO money = new MoneyDTO();
+			money.setUserid(userid);
+			money.setMoneytype("포인트");
 			// 넘어온 userpoint가 0보다 크면 충전했다는 뜻
 			// 기존 유저가 가지고있는 포인트가 결제할 금액보다 작아서 그만큼 충전해야한다는의미
 			// 기존 유저포인트 불러와서 충전할 포인트 더하고 총 금액 마이너스해야함
 			if(Integer.parseInt(userpoint)>0) {			
 				point = (uservice.findUserById(userid).getUserpoint()+Integer.parseInt(userpoint))-order.getTotalPrice();
+				// money DB 바꿔주기(충전)
+				money.setMoneyname("포인트 충전");
+				money.setChange_money("+"+userpoint);
+				mservice.putmoney(money);
 			}
 			// 넘어온 userpoint가 0보다 작거나 같다면 충전하지 않았다는뜻
 			// 기존 유저포인트가져와서 결제할 금액 빼면 나머지 포인트
 			else {
 				point = uservice.findUserById(userid).getUserpoint()-order.getTotalPrice();
 			}
-			System.out.println("남은포인트"+point);		
+			// money DB 바꿔주기(사용)
+			money.setMoneyname("포인트 사용");
+			money.setChange_money("-"+order.getTotalPrice());
+			mservice.putmoney(money);
+			System.out.println("남은포인트"+point);	
 			pservice.putorder(order);
 			uservice.putpoint(point, userid);
 		}
 		// sudannum 2는 간편결제
 		else {
 			pservice.putorder(order);
-		}		
+		}
+		
+		// 유저 적립금 변경
+		int minusReward = Integer.parseInt(userReward); // 삭제할 적립금
+		int plusReward = (int)(order.getTotalPrice()*(10.0 / 100)); // 추가할 적립금
+		int newReward = uservice.findUserById(userid).getUserReward()-minusReward+plusReward;
+		System.out.println("삭제된 적립금:"+minusReward+" 추가할적립금:"+plusReward+" 최종적립금:"+newReward);
+		uservice.updateUserReward(newReward, userid);
+		
+		// 적립금 테이블 변경		
+		MoneyDTO money = new MoneyDTO();
+		money.setUserid(userid);
+		money.setMoneytype("적립금");
+		// 만약 유저가 적립금을 사용했다면
+		if(minusReward>0) {
+			money.setMoneyname("적립금 사용");
+			money.setChange_money("-"+minusReward);
+			mservice.putmoney(money);
+		}
+		// 적립금을 추가만 한 경우
+		money.setMoneyname("결제 적립금");
+		money.setChange_money("+"+plusReward);
+		mservice.putmoney(money);
 		
 		return "redirect:/mypage/mypage_order";		
 	}

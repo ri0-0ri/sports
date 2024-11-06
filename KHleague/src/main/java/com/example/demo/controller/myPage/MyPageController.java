@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.model.UserDTO.UserDTO;
 import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.goods.GoodsDTO;
+import com.example.demo.model.moneyDTO.MoneyDTO;
 import com.example.demo.service.goods.GoodsService;
+import com.example.demo.service.money.MoneyService;
 import com.example.demo.service.user.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -32,6 +34,9 @@ public class MyPageController {
 	
 	@Autowired
 	UserService uservice;
+	
+	@Autowired
+	MoneyService rservice;
 
 	@GetMapping("mypage_profile")
 	public String showMyPageProfile(HttpSession session, Model model) {
@@ -56,6 +61,11 @@ public class MyPageController {
 		String userid = (String)session.getAttribute("loginUser");
 		UserDTO user = uservice.findUserById(userid);
 		model.addAttribute("user", user);
+		
+		List<MoneyDTO> money = rservice.getmoney(userid);
+		model.addAttribute("money", money);
+		System.out.println(money);
+		
 		
 		return "mypage/mypage_money";
 	}

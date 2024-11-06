@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.model.UserDTO.UserDTO;
+import com.example.demo.model.moneyDTO.MoneyDTO;
+import com.example.demo.service.money.MoneyService;
 import com.example.demo.service.user.UserService;
 
 @Controller
@@ -22,6 +24,9 @@ public class JoinController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	MoneyService mservice;
 
 	@GetMapping("join")
 	public String showJoinPage() {
@@ -32,6 +37,15 @@ public class JoinController {
 	@PostMapping("join")
 	public String registerUser(@ModelAttribute UserDTO user, Model model) {
 		userService.registerUser(user);
+		
+		// 가입 적립금 5000원 추가
+		MoneyDTO money = new MoneyDTO();
+		money.setMoneytype("적립금");
+		money.setUserid(user.getUserid());
+		money.setMoneyname("가입 축하 적립금");
+		money.setChange_money("+5000");
+		mservice.putmoney(money);
+		
 		model.addAttribute("message", "회원가입이 성공적으로 완료되었습니다!");
 		return "index";
 	}
