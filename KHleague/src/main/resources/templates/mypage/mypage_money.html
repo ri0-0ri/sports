@@ -50,13 +50,13 @@
 					</div>
                 </div>
                 <div class="price-btn">
-                    <button class="all">전체</button>
-                    <button class="reward">적립금</button>
-                    <button class="point">포인트</button>
-                    <button class="plus">충전</button>
-                    <button class="minus">사용</button>
-                    <button class="cancel">취소</button>
-                    <button class="end">소멸</button>
+                    <button id="all">전체</button>
+                    <button id="reward">적립금</button>
+                    <button id="points">포인트</button>
+                    <button id="plus">충전</button>
+                    <button id="minus">사용</button>
+                    <button id="cancel">취소</button>
+                    <button id="end">소멸</button>
                 </div>
 				
                 <div class="price_list" th:each="money:${money}" th:id="${money.moneyname}">

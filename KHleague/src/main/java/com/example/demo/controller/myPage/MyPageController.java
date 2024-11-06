@@ -128,6 +128,11 @@ public class MyPageController {
 		gservice.putBuy(goodsnum, userid, size, quantity);
 	}
 	
+	@PostMapping("delete_wish")
+	public void delete_wish(int wishnum) {
+		gservice.deleteWish(wishnum);
+	}
+	
 	@PostMapping("mypage_buy_modify")
 	public ResponseEntity<Void> mypage_buy_modify(int goodsnum, String userid, String size, int quantity, int buynum) {
 		gservice.putBuy_modify(goodsnum, userid, size, quantity, buynum);

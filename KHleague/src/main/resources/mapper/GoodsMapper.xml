@@ -38,4 +38,9 @@
    		select * from buyList where buynum=#{buynum}
    </select>
 
+	<delete id="deleteWish">
+		delete from wishList
+		where wishnum=#{wishnum}
+	</delete>
+
 </mapper>

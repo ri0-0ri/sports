@@ -23,4 +23,6 @@ public interface GoodsService {
 	int putBuy_modify(int goodsnum, String userid, String size, int quantity, int buynum);
 
 	BuyListDTO getBuygoodsBybuynum(int buynum);
+
+	void deleteWish(int wishnum);
 }

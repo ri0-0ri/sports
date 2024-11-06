@@ -65,11 +65,14 @@
 
 
                 <div class="payment_box">
-					<button type="button" class="go_payment" onclick="submitForm('/payment/payment')">
+					<button type="button" class="go_payment" onclick="submitForm('/payment/single_payment', event)">
 						BUY NOW
 					</button>
-					<button type="button" class="go_cart" onclick="submitForm('/mypage/mypage_buy')">
+					<button type="button" class="go_cart" onclick="submitForm('/mypage/mypage_buy', event)">
 						ADD TO CART
+					</button>
+					<button type="button" class="delete_wish" onclick="submitForm('/mypage/delete_wish', event)">
+						DELETE ITEM
 					</button>
                 </div>
 
@@ -102,7 +105,10 @@
                 <div>
                     <h1>WISH LIST</h1>
                 </div>
-				<div class="no_goods" th:if="${goodsList == null or goodsList.size() == 0}">추가하신 상품이 없네요!</div>
+				<div class="no_goods" th:if="${goodsList == null or goodsList.size() == 0}">
+					<p>추가하신 상품이 없네요!</p>
+					<a href="/goods/goods">GO SHOP</a>
+				</div>
 				<div class="goods_wrap">
 					<div class="goods" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}"
 						th:id="${goods.goodstype}">
