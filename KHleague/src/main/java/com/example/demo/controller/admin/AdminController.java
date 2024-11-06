@@ -59,8 +59,13 @@ public class AdminController {
 	public ResponseEntity<List<GWillBoardDTO>> getgWillList() {
 		List<GWillBoardDTO> boardList = gWillBoardService.getgWillList();
 		// 데이터 확인용 로그 출력
-	
 		return ResponseEntity.ok(boardList);
 	}
 
+	// 경기 일정 취소
+	@PostMapping("cancel_schedule")
+	public String cancelSchedule(@RequestParam int gWnum) {
+		gWillBoardService.deleteGWillBoard(gWnum); // 해당 일정 삭제
+		return "redirect:/admin/admin_time"; // 취소 후 일정 목록 페이지로 리다이렉트
+	}
 }

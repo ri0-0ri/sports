@@ -23,4 +23,8 @@ public class GWillBoardServiceImpl implements GWillBoardService {
        List<GWillBoardDTO> boardList = gWillBoardMapper.getgWillList();
        return boardList;
     } 
+    @Override
+    public void deleteGWillBoard(int gWnum) {
+        gWillBoardMapper.deleteGWillBoard(gWnum); // 일정 삭제
+    }
 }
