@@ -111,7 +111,7 @@
                         <div class="total_price">
                             <div>총 결제금액</div>
                             <div>
-								[[${goods.goodsprice}]] 원
+								[[${goods.goodsprice+5000}]] 원
                             </div>
                         </div>
                     </div>
@@ -150,13 +150,13 @@
                         <div class="privious">
                             <div>사용 전</div>
 							<div style="display: flex;">		
-                            <div class="privious_reward">[[${goods.goodsprice}]]</div><div>&nbsp;원</div>
+                            <div class="privious_reward">[[${goods.goodsprice+5000}]]</div><div>&nbsp;원</div>
 							</div>
                         </div>
                         <div class="after">
                             <div>사용 후</div>
 							<div style="display: flex;">
-                            <div class="after_reward">[[${goods.goodsprice}]]</div><div>&nbsp;원</div>
+                            <div class="after_reward">[[${goods.goodsprice+5000}]]</div><div>&nbsp;원</div>
 							</div>
                         </div>
                     </div>
@@ -234,7 +234,7 @@
         <div class="go_payment" style="cursor: pointer;" onclick="go_payment()">
             <div>총 결제금액</div>
 			<div style="display: flex;">				
-            <div class="after_reward">[[${total}]]</div><div>&nbsp;원</div>
+            <div class="after_reward">[[${goods.goodsprice+5000}]]</div><div>&nbsp;원</div>
 			</div>
         </div>
     </div>

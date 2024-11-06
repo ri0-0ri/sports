@@ -30,8 +30,8 @@ import com.example.demo.model.goods.GoodsDTO;
 import com.example.demo.model.moneyDTO.MoneyDTO;
 import com.example.demo.model.payment.OrderDTO;
 import com.example.demo.service.goods.GoodsService;
+import com.example.demo.service.money.MoneyService;
 import com.example.demo.service.payment.PaymentService;
-import com.example.demo.service.reward.RewardService;
 import com.example.demo.service.user.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -50,7 +50,7 @@ public class PaymentController {
 	PaymentService pservice;
 	
 	@Autowired
-	RewardService rservice;
+	MoneyService mservice;
 	
 	@GetMapping("payment")
 	public String payment(@RequestParam List<Integer> buynum, Model model, HttpSession session) {	
@@ -101,19 +101,30 @@ public class PaymentController {
 		String userid = order.getUserid();
 		int point = 0;
 		// sudannum 1은 포인트결제
-		if(order.getSudannum()==1) {			
+		if(order.getSudannum()==1) {
+			MoneyDTO money = new MoneyDTO();
+			money.setUserid(userid);
+			money.setMoneytype("포인트");
 			// 넘어온 userpoint가 0보다 크면 충전했다는 뜻
 			// 기존 유저가 가지고있는 포인트가 결제할 금액보다 작아서 그만큼 충전해야한다는의미
 			// 기존 유저포인트 불러와서 충전할 포인트 더하고 총 금액 마이너스해야함
 			if(Integer.parseInt(userpoint)>0) {			
 				point = (uservice.findUserById(userid).getUserpoint()+Integer.parseInt(userpoint))-order.getTotalPrice();
+				// money DB 바꿔주기(충전)
+				money.setMoneyname("포인트 충전");
+				money.setChange_money("+"+userpoint);
+				mservice.putmoney(money);
 			}
 			// 넘어온 userpoint가 0보다 작거나 같다면 충전하지 않았다는뜻
 			// 기존 유저포인트가져와서 결제할 금액 빼면 나머지 포인트
 			else {
 				point = uservice.findUserById(userid).getUserpoint()-order.getTotalPrice();
 			}
-			System.out.println("남은포인트"+point);		
+			// money DB 바꿔주기(사용)
+			money.setMoneyname("포인트 사용");
+			money.setChange_money("-"+order.getTotalPrice());
+			mservice.putmoney(money);
+			System.out.println("남은포인트"+point);	
 			pservice.putorder(order);
 			uservice.putpoint(point, userid);
 		}
@@ -130,19 +141,19 @@ public class PaymentController {
 		uservice.updateUserReward(newReward, userid);
 		
 		// 적립금 테이블 변경		
-		MoneyDTO reward = new MoneyDTO();
+		MoneyDTO money = new MoneyDTO();
+		money.setUserid(userid);
+		money.setMoneytype("적립금");
 		// 만약 유저가 적립금을 사용했다면
 		if(minusReward>0) {
-			reward.setUserid(userid);
-			reward.setRewardname("적립금 사용");
-			reward.setChange_reward("-"+minusReward);
-			rservice.putreward(reward);
+			money.setMoneyname("적립금 사용");
+			money.setChange_money("-"+minusReward);
+			mservice.putmoney(money);
 		}
 		// 적립금을 추가만 한 경우
-		reward.setUserid(userid);
-		reward.setRewardname("결제 적립금");
-		reward.setChange_reward("+"+plusReward);
-		rservice.putreward(reward);
+		money.setMoneyname("결제 적립금");
+		money.setChange_money("+"+plusReward);
+		mservice.putmoney(money);
 		
 		return "redirect:/mypage/mypage_order";		
 	}

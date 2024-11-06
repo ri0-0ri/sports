@@ -14,7 +14,7 @@ drop table fboard;
 drop table eboard;
 drop table wishList;
 drop table buyList;
-drop table reward;
+drop table money;
 
 select * from user;
 select * from sports;
@@ -28,7 +28,7 @@ select * from fboard;
 select * from eboard;
 select * from wishList;
 select * from buyList;
-select * from reward;
+select * from money;
 
 select * from user;
 
@@ -54,15 +54,17 @@ INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, use
 VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04', 'admin');
 
 create table money(
-	rewardId int auto_increment primary key,
-    rewarddate datetime default now(),
-	rewardname varchar(300),
-    change_reward varchar(300),
+	moneyId int auto_increment primary key,
+    moneydate datetime default now(),
+    moneytype varchar(300),
+	moneyname varchar(300),
+    change_money varchar(300),
     userid varchar(300),
 	constraint useridR foreign key(userid) references user(userid)
 );
-drop table reward;
-select * from reward;
+drop table money;
+select * from money;
+SELECT * FROM money WHERE userid = 'test';
 
 create table sports(
    sportsnum int primary key auto_increment,
@@ -358,14 +360,13 @@ create table g_end_board(
     constraint gE_teamnum foreign key(teamnum) references team(teamnum)
 );
 
-create table fboard(
-   fboardnum int primary key auto_increment,
-    fboardtitle varchar(300),
-    fboardcontent varchar(3000),
-    userid varchar(300),
-    gWnum int,
-   constraint fboard_userid foreign key(userid) references user(userid),
-    constraint gWnum foreign key(gWnum) references g_will_board(gWnum)
+CREATE TABLE fboard (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    gWnum INT, 
+    user_id VARCHAR(255), 
+    content TEXT,  -- 채팅 내용
+    FOREIGN KEY (gWnum) REFERENCES g_will_board(gWnum) ON DELETE CASCADE,  
+    FOREIGN KEY (user_id) REFERENCES user(userid)  
 );
 
 create table eboard(

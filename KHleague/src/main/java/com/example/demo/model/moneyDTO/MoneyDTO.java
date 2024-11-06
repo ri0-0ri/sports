@@ -1,14 +1,15 @@
 package com.example.demo.model.moneyDTO;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
 @Data
 public class MoneyDTO {
-	private int rewardID;
-	private LocalDate rewarddate;
-	private String rewardname;
-	private String change_reward;
+	private int moneyID;
+	private LocalDateTime moneydate;
+	private String moneytype;
+	private String moneyname;
+	private String change_money;
 	private String userid;
 }

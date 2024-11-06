@@ -20,7 +20,7 @@ import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.goods.GoodsDTO;
 import com.example.demo.model.moneyDTO.MoneyDTO;
 import com.example.demo.service.goods.GoodsService;
-import com.example.demo.service.reward.RewardService;
+import com.example.demo.service.money.MoneyService;
 import com.example.demo.service.user.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -36,7 +36,7 @@ public class MyPageController {
 	UserService uservice;
 	
 	@Autowired
-	RewardService rservice;
+	MoneyService rservice;
 
 	@GetMapping("mypage_profile")
 	public String showMyPageProfile(HttpSession session, Model model) {
@@ -62,9 +62,10 @@ public class MyPageController {
 		UserDTO user = uservice.findUserById(userid);
 		model.addAttribute("user", user);
 		
-		List<MoneyDTO> reward = rservice.getreward(userid);
-		model.addAttribute("reward", reward);
-		System.out.println(reward);
+		List<MoneyDTO> money = rservice.getmoney(userid);
+		model.addAttribute("money", money);
+		System.out.println(money);
+		
 		
 		return "mypage/mypage_money";
 	}

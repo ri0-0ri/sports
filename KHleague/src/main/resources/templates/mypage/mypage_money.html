@@ -57,37 +57,22 @@
                     <button>소멸</button>
                 </div>
 
-                <div class="price_list" th:if="${reward != null and reward.size() > 0}" th:each="reward:${reward}">
+                <div class="price_list" th:each="money:${money}">
                     <div>
                         <div style="margin-bottom: 26px; color:#D9D9D9;">
                             <p>2024.09.12</p>
                         </div>
                         <div class="price-cash">
                             <div style="display: flex;">
-                                <div>적립</div>
-                                <div style="padding-left: 30px;">상품 구매</div>
+                                <div>[[${money.moneytype}]]</div>
+                                <div style="padding-left: 30px;">[[${money.moneyname}]]</div>
                             </div>
-                            <div>+ 9,800원</div>
+                            <div>[[${money.change_money}]] 원</div>
+                            <div>[[${money.moneydate}]]</div>
                         </div>
                     </div>
                     <div class="line2"></div>
                 </div>
-                <div class="price_list">
-                    <div>
-                        <div style="margin-bottom: 26px; color:#D9D9D9;">
-                            <p>2024.09.12</p>
-                        </div>
-                        <div class="price-cash">
-                            <div style="display: flex;">
-                                <div>적립</div>
-                                <div style="padding-left: 30px;">상품 구매</div>
-                            </div>
-                            <div>+ 9,800원</div>
-                        </div>
-                    </div>
-                    <div class="line2"></div>
-                </div>
-
 
             </div>
         </div>
