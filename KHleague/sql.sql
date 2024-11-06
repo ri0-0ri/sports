@@ -353,13 +353,17 @@ CREATE TABLE g_will_board (
 );
 select * from g_will_board;
 
-create table g_end_board(
-   gEnum int primary key auto_increment,
-    gEdate datetime,
-    gEscore varchar(300),
-   teamnum int,
-    constraint gE_teamnum foreign key(teamnum) references team(teamnum)
+CREATE TABLE g_end_board (
+    gEnum INT PRIMARY KEY AUTO_INCREMENT,
+    gEdate DATETIME,
+    team1score INT,
+    team2score INT,
+     team1name VARCHAR(300),  
+    team2name VARCHAR(300), 
+    CONSTRAINT team1name FOREIGN KEY (team1name) REFERENCES team(teamname),
+    CONSTRAINT team2name FOREIGN KEY (team2name) REFERENCES team(teamname)
 );
+
 
 CREATE TABLE fboard (
     id INT AUTO_INCREMENT PRIMARY KEY, 
