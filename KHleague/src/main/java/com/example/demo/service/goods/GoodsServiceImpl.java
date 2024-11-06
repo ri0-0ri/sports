@@ -56,4 +56,19 @@ public class GoodsServiceImpl implements GoodsService {
 		return gmapper.getBuygoodsBybuynum(buynum);
 	}
 
+	@Override
+	public void deleteWish(int wishnum) {
+		gmapper.deleteWish(wishnum);
+	}
+
+	@Override
+	public int getwishnumBygoodsnum(int goodsnum, String userid) {
+		return gmapper.getwishnumBygoodsnum(goodsnum, userid);
+	}
+
+	@Override
+	public void deleteBuy(int buynum) {
+		gmapper.deleteBuy(buynum);
+	}
+
 }

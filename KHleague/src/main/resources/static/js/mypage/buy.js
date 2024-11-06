@@ -76,3 +76,27 @@ function go_buy(event) {
         alert("상품을 선택해 주세요.");
     }
 }
+
+// 장바구니 삭제
+function delete_buy() {
+    const buynum = parseInt($(this).closest('.item').find('input[name="buynum"]').val());
+    console.log("buynum:", buynum);
+	$.ajax({
+		type: 'POST',
+		url: '/mypage/deletebuy',
+		data: {buynum:buynum},
+		success: function(response) {
+			alert("상품이 삭제되었습니다!");
+			location.reload();
+		},
+		error: function(xhr, status, error) {
+			console.error("Submission failed:", xhr.responseText);
+		}
+	});
+}
+
+// jQuery로 click 이벤트 바인딩
+$(document).ready(function() {
+    // .deletebtn 클릭 시 delete_buy 함수 호출
+    $('.deletebtn').on('click', delete_buy);
+});

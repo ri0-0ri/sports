@@ -137,3 +137,16 @@ margin-right: 50px;
     height: 263px;
     margin-top: 75px;
 }
+
+.no_goods a{
+	background-color: #01203F;
+	padding: 10px;
+}
+
+.no_goods{
+	margin-top: 30px;
+}
+
+.no_goods p{
+	margin-bottom: 30px;
+}
