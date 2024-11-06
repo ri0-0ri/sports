@@ -54,14 +54,13 @@ public class AdminController {
 
 		return "redirect:/admin/admin_time"; // 알림 메시지 추가 필요
 	}
-	
+
 	@GetMapping("getList")
-    public ResponseEntity<List<GWillBoardDTO>> getgWillList() {
-        List<GWillBoardDTO> boardList = gWillBoardService.getgWillList(); 
-        
-        
-        
-        return ResponseEntity.ok(boardList);
-    }
+	public ResponseEntity<List<GWillBoardDTO>> getgWillList() {
+		List<GWillBoardDTO> boardList = gWillBoardService.getgWillList();
+		// 데이터 확인용 로그 출력
 	
+		return ResponseEntity.ok(boardList);
+	}
+
 }

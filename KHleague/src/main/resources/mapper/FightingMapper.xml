@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.fighting.FightingMapper">
+
+	<!-- 상위 3개 일정 조회 -->
+	<select id="getTop3FightingSchedules"
+		resultType="com.example.demo.modal.gWillBoardDTO.GWillBoardDTO">
+		SELECT gWtime, team1name, team2name
+		FROM g_will_board
+		WHERE gWtime > NOW()
+		ORDER BY gWtime ASC
+		LIMIT 3;
+	</select>
+
+</mapper>
