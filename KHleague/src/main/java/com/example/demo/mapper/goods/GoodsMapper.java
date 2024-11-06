@@ -28,5 +28,9 @@ public interface GoodsMapper {
 	BuyListDTO getBuygoodsBybuynum(int buynum);
 
 	void deleteWish(int wishnum);
+
+	int getwishnumBygoodsnum(int goodsnum, String userid);
+
+	void deleteBuy(int buynum);
 	
 }

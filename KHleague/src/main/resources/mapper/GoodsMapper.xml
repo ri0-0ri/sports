@@ -42,5 +42,16 @@
 		delete from wishList
 		where wishnum=#{wishnum}
 	</delete>
+	
+	<select id="getwishnumBygoodsnum">
+		select wishnum
+		from wishList
+		where userid=#{userid} and goodsnum=#{goodsnum}
+	</select>
+	
+	<delete id="deleteBuy">
+		delete from buyList
+		where buynum=#{buynum}
+	</delete>
 
 </mapper>

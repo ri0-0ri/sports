@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.model.UserDTO.UserDTO;
 import com.example.demo.model.goods.BuyListDTO;
@@ -129,14 +130,33 @@ public class MyPageController {
 	}
 	
 	@PostMapping("delete_wish")
-	public void delete_wish(int wishnum) {
+	// 스프링 MVC는 기본적으로 컨트롤러클래스 안에서 메소드가 void로 반환되면
+	// 뷰를 찾으려고함 > 실제로 해당 템플릿이 없으면 DB처리는 제대로 되지만 500에러가남
+	// putbuy는 실제로 mypage_buy라는 템플릿이 있어서 에러가 나지 않은것
+	// ResponseEntity를 달아주고 성공값이 200을 return 해줘야함
+	public ResponseEntity<Void> delete_wish(int wishnum) {
 		gservice.deleteWish(wishnum);
+		return ResponseEntity.ok().build();
+	}
+	
+	@PostMapping("deletebuy")
+	public ResponseEntity<Void> deletebuy(int buynum) {
+		gservice.deleteBuy(buynum);
+		return ResponseEntity.ok().build();
 	}
 	
 	@PostMapping("mypage_buy_modify")
 	public ResponseEntity<Void> mypage_buy_modify(int goodsnum, String userid, String size, int quantity, int buynum) {
 		gservice.putBuy_modify(goodsnum, userid, size, quantity, buynum);
 		return ResponseEntity.ok().build();
+	}
+	
+	@PostMapping("getwishnumBygoodsnum")
+	@ResponseBody
+	public int getwishnumBygoodsnum(int goodsnum, String userid) {
+		int wishnum = gservice.getwishnumBygoodsnum(goodsnum, userid);
+		System.out.println(wishnum);
+		return wishnum;
 	}
 	
 }

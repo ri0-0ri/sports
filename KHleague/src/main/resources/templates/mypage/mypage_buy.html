@@ -120,14 +120,15 @@
 									
 									<input type="hidden" name="userid" th:value="${session.loginUser}">
 									<input type="hidden" name="goodsnum" th:value="${goods.goodsnum}">
-									<input type="hidden" name="buynum" th:value="${buyList.buynum}">
 									
 									<div>
 										<input type="checkbox" id="checkbox"
 											th:value="${buyList.buynum}">
 										<label>10월 28일 발송 예정</label>
 									</div>
+									
 									<div class="item">
+									<input type="hidden" name="buynum" th:value="${buyList.buynum}">
 										<div class="item-img"><img th:src="${goods.goodsimg}" alt=""></div>
 										<div class="explain">
 											<div>
@@ -143,11 +144,12 @@
 											</div>
 											<div class="price">[[${goods.goodsprice}]]원</div>
 											<div class="item_btn">
-												<button type="button" th:attr="onclick='open_modal(this, '+ ${buyList.buynum} +')'" th:id="${goods.goodsnum}">옵션 변경</button>
-												<button>쿠폰 사용</button>
+												<button class="changebtn" type="button" th:attr="onclick='open_modal(this, '+ ${buyList.buynum} +')'" th:id="${goods.goodsnum}">옵션 변경</button>
+												<div class="deletebtn">삭제</div>
 											</div>
 										</div>
 									</div>
+									
 								</div>
 							</div>
 						</div>
