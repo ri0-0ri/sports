@@ -36,7 +36,7 @@ public class MyPageController {
 	UserService uservice;
 	
 	@Autowired
-	MoneyService rservice;
+	MoneyService mservice;
 
 	@GetMapping("mypage_profile")
 	public String showMyPageProfile(HttpSession session, Model model) {
@@ -62,10 +62,9 @@ public class MyPageController {
 		UserDTO user = uservice.findUserById(userid);
 		model.addAttribute("user", user);
 		
-		List<MoneyDTO> money = rservice.getmoney(userid);
+		List<MoneyDTO> money = mservice.getmoney(userid);
 		model.addAttribute("money", money);
 		System.out.println(money);
-		
 		
 		return "mypage/mypage_money";
 	}

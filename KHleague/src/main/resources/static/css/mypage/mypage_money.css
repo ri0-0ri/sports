@@ -177,3 +177,7 @@ footer {
    margin-top: 20px;
    width: 904px;
 }
+
+button.act{
+	background-color: #01203F;
+}

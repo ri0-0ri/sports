@@ -53,18 +53,19 @@ CREATE TABLE user (
 INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin, role)
 VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04', 'admin');
 
+# 주의! 이 테이블은 무조건 moneyname에 적립금/포인트/충전/사용/취소/소멸 과 같은 단어가 들어가야함
+# 혹시나 moneyname을 set해줄때 주의해서 넣어주세요
 create table money(
 	moneyId int auto_increment primary key,
     moneydate datetime default now(),
     moneytype varchar(300),
 	moneyname varchar(300),
-    change_money varchar(300),
+    changeMoney varchar(300),
     userid varchar(300),
 	constraint useridR foreign key(userid) references user(userid)
 );
 drop table money;
 select * from money;
-SELECT * FROM money WHERE userid = 'test';
 
 create table sports(
    sportsnum int primary key auto_increment,

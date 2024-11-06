@@ -112,7 +112,7 @@ public class PaymentController {
 				point = (uservice.findUserById(userid).getUserpoint()+Integer.parseInt(userpoint))-order.getTotalPrice();
 				// money DB 바꿔주기(충전)
 				money.setMoneyname("포인트 충전");
-				money.setChange_money("+"+userpoint);
+				money.setChangeMoney("+"+userpoint);
 				mservice.putmoney(money);
 			}
 			// 넘어온 userpoint가 0보다 작거나 같다면 충전하지 않았다는뜻
@@ -122,7 +122,7 @@ public class PaymentController {
 			}
 			// money DB 바꿔주기(사용)
 			money.setMoneyname("포인트 사용");
-			money.setChange_money("-"+order.getTotalPrice());
+			money.setChangeMoney("-"+order.getTotalPrice());
 			mservice.putmoney(money);
 			System.out.println("남은포인트"+point);	
 			pservice.putorder(order);
@@ -147,12 +147,12 @@ public class PaymentController {
 		// 만약 유저가 적립금을 사용했다면
 		if(minusReward>0) {
 			money.setMoneyname("적립금 사용");
-			money.setChange_money("-"+minusReward);
+			money.setChangeMoney("-"+minusReward);
 			mservice.putmoney(money);
 		}
 		// 적립금을 추가만 한 경우
 		money.setMoneyname("결제 적립금");
-		money.setChange_money("+"+plusReward);
+		money.setChangeMoney("+"+plusReward);
 		mservice.putmoney(money);
 		
 		return "redirect:/mypage/mypage_order";		
