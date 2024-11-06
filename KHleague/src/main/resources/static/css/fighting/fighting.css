@@ -26,24 +26,29 @@ margin-top: 100px;
     padding-right: 20px;
 }
 
-.figting_title {
+.fighting_title {
     display: flex;
     width: 1440px;
     margin: 0 auto;
     margin-top: 50px;
-}
 
+}
 .fighting_infor {
     border: 1px solid #ddd;
     width: 170px;
     margin-right: 20px;
     margin-bottom: 62px;
     border-radius: 10px;
+	height: 123px;
+	text-align: center;
 }
-
+.fighting_infor h4{
+	padding-top: 5px;
+}
 .fighting_infor div {
     padding-left: 20px;
     margin-bottom: 15px;
+	margin-top: 10px;
 }
 
 .fighting_infor h3 {
