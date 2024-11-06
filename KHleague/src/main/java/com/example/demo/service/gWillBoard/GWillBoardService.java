@@ -8,4 +8,5 @@ public interface GWillBoardService {
     void addGWillBoard(GWillBoardDTO gWillBoardDTO); // 일정 추가 메서드
     
     List<GWillBoardDTO> getgWillList();
+    void deleteGWillBoard(int gWnum); // 일정 삭제 메서드
 }

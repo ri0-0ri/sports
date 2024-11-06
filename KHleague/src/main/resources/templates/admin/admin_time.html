@@ -7,7 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>마이페이지-경기일정</title>
 	<link rel="stylesheet" href="/css/admin/admin_time.css">
-	
 </head>
 
 <body>
@@ -70,54 +69,77 @@
 						<td>경기시간</td>
 						<td>기타</td>
 					</tr>
-					<tr>
-						<td>윤경수</td>
-						<td>윤혜정</td>
-						<td>2024-12-30</td>
-						<td>오전 06:14</td>
-						<td><button>취소</button></td>
-					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
-</body>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="/js/admin/admin_time.js"></script>
-<script>
 
-	$(document).ready(function () {
-		function getList() {
-			$.ajax({
-				url: '/admin/getList',
-				type: 'GET',
-				success: function (boardList) {
-					boardList.forEach(board => {
-						// 날짜와 시간 분리
-						const formattedDate = board.gwdate.split('T')[0]; // 날짜만 표시
-						const formattedTime = board.gwtime.split('T')[1].slice(0, 5); // 시간만 표시 (HH:mm)
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="/js/admin/admin_time.js"></script>
+	<script>
+		$(document).ready(function () {
+			// 경기 일정 목록을 불러오는 함수
+			function getList() {
+				$.ajax({
+					url: '/admin/getList',
+					type: 'GET',
+					success: function (boardList) {
+						$('#time_table').find("tr:gt(0)").remove(); // 기존 데이터 삭제
+						boardList.forEach(board => {
+							console.log(board);  // board 객체 확인
 
-						const boardHtml = `
-	                        <tr>
-	                            <td>${board.team1name}</td>
-	                            <td>${board.team2name}</td>
-	                            <td>${formattedDate}</td>
-	                            <td>${formattedTime}</td>
-	                            <td><button class="cancel-btn">취소</button></td>
-	                        </tr>
-	                    `;
-						$('#time_table').append(boardHtml);
-					});
-				},
-				error: function (xhr, status, error) {
-					console.error("댓글 불러오기 실패: ", error);
+							// 날짜와 시간 분리
+							const formattedDate = board.gwdate.split('T')[0]; // 날짜만 표시
+							const formattedTime = board.gwtime.split('T')[1].slice(0, 5); // 시간만 표시 (HH:mm)
+
+							// 경기 일정을 테이블에 추가
+							const boardHtml = `
+		                        <tr>
+		                            <td>${board.team1name}</td>
+		                            <td>${board.team2name}</td>
+		                            <td>${formattedDate}</td>
+		                            <td>${formattedTime}</td>
+		                            <td><button class="cancel-btn" data-id="${board.gwnum}">취소</button></td>
+		                        </tr>
+		                    `;
+							$('#time_table').append(boardHtml);
+						});
+					},
+					error: function (xhr, status, error) {
+						console.error("경기 일정 불러오기 실패: ", error);
+					}
+				});
+			}
+			getList(); // 페이지 로드 시 경기 일정 목록 불러오기
+
+			// 취소 버튼 클릭 시 삭제 요청
+			$(document).on('click', '.cancel-btn', function () {
+				const gWnum = $(this).data('id'); // 삭제할 일정의 gWnum 가져오기
+				
+				if (gWnum === undefined) {
+					alert("gWnum 값이 올바르게 설정되지 않았습니다.");
+				} else {
+					if (confirm("정말로 취소하시겠습니까?")) {
+						// AJAX 요청 수정
+						$.ajax({
+							type: 'POST',  // DELETE를 POST로 변경
+							url: '/admin/cancel_schedule',  // 기존 경로
+							data: {gWnum: gWnum},  // 삭제할 경기 번호
+							success: function (response) {
+								// 삭제 성공 시 처리
+								location.reload();  // 페이지 새로고침
+							},
+							error: function (xhr, status, error) {
+								console.error('삭제 실패:', error);
+							}
+						});
+
+					}
 				}
 			});
-		}
-		getList(); // 페이지 로드 시 댓글 목록 불러오기
-	});
-
-</script>
+		});
+	</script>
+</body>
 
 </html>
