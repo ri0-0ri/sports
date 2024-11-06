@@ -76,7 +76,11 @@ margin-top: 100px;
     border-radius: 10px;
     background: #f4f4f4;
 }
-
+#team1_name, #team2_name{
+	font-size: 18px;
+	font-weight: bold;
+	
+}
 .paper .tit {
     margin-bottom: 20px;
     text-align: center;
@@ -100,7 +104,15 @@ margin-top: 100px;
     line-height: 40px;
     font-size: 14px;
 }
-
+.team button {
+	margin-top: 5px;
+	width: 75px;
+	height: 40px;
+	background-color: #01203F;
+	color: white;
+	border-radius: 10px;
+	cursor: pointer;
+}
 .paper .point {
     position: relative;
 }
@@ -127,7 +139,7 @@ margin-top: 100px;
 }
 
 .paper .point>div>div.left p {
-    width: 80%;
+    width: 10%;
     margin-left: auto;
     background: #FF3838;
 }
