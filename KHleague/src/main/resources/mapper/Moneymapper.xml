@@ -1,11 +1,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.money.MoneyMapper">
 	<insert id="putmoney">
-		insert into money(moneytype, moneyname, change_money, userid) values(#{moneytype}, #{moneyname}, #{change_money}, #{userid})
+		insert into money(moneytype, moneyname, changeMoney, userid) values(#{moneytype}, #{moneyname}, #{changeMoney}, #{userid})
 	</insert>
 
 	<select id="getmoney">
-		select * from money where userid=#{userid}
+		select * from money where userid=#{userid} order by moneyId desc;
 	</select>
 
 </mapper>

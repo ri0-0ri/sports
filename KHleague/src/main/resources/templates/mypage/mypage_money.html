@@ -50,25 +50,26 @@
 					</div>
                 </div>
                 <div class="price-btn">
-                    <button>전체</button>
-                    <button>적립</button>
-                    <button>사용</button>
-                    <button>취소</button>
-                    <button>소멸</button>
+                    <button class="all">전체</button>
+                    <button class="reward">적립금</button>
+                    <button class="point">포인트</button>
+                    <button class="plus">충전</button>
+                    <button class="minus">사용</button>
+                    <button class="cancel">취소</button>
+                    <button class="end">소멸</button>
                 </div>
-
-                <div class="price_list" th:each="money:${money}">
+				
+                <div class="price_list" th:each="money:${money}" th:id="${money.moneyname}">
                     <div>
                         <div style="margin-bottom: 26px; color:#D9D9D9;">
-                            <p>2024.09.12</p>
+                            <p class="datetime">[[${money.moneydate}]]</p>
                         </div>
                         <div class="price-cash">
                             <div style="display: flex;">
-                                <div>[[${money.moneytype}]]</div>
+                                <div class="moneytype">[[${money.moneytype}]]</div>
                                 <div style="padding-left: 30px;">[[${money.moneyname}]]</div>
                             </div>
-                            <div>[[${money.change_money}]] 원</div>
-                            <div>[[${money.moneydate}]]</div>
+                            <div>[[${money.changeMoney}]] 원</div>
                         </div>
                     </div>
                     <div class="line2"></div>
@@ -84,4 +85,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="/js/mypage/money.js"></script>
 </html>

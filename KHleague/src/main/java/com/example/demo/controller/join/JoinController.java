@@ -43,7 +43,7 @@ public class JoinController {
 		money.setMoneytype("적립금");
 		money.setUserid(user.getUserid());
 		money.setMoneyname("가입 축하 적립금");
-		money.setChange_money("+5000");
+		money.setChangeMoney("+5000");
 		mservice.putmoney(money);
 		
 		model.addAttribute("message", "회원가입이 성공적으로 완료되었습니다!");

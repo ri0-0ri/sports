@@ -10,6 +10,6 @@ public class MoneyDTO {
 	private LocalDateTime moneydate;
 	private String moneytype;
 	private String moneyname;
-	private String change_money;
+	private String changeMoney;
 	private String userid;
 }
