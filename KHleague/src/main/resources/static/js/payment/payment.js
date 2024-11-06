@@ -122,8 +122,14 @@ $(document).ready(function () {
 // order DTO 만들고 결제진행
 $(document).ready(function () {			
 	$(".go_payment").click(function(e) {
-		const deliveryPlace = $('#useraddr').val()+"//"+$('#userdetailaddr').val();
+/*		const deliveryPlace = $('#useraddr').val()+"//"+$('#userdetailaddr').val();*/
+		let deliveryPlace = $('#useraddr').val();
+		const userdetailaddr = $('#userdetailaddr').val();
+		if (userdetailaddr !== "") {
+		    deliveryPlace = deliveryPlace+"//"+userdetailaddr;
+		}			
 		console.log(deliveryPlace);
+		
 		let deliveryMemo = $('#selected_delivery_txt').text().trim();
 		if(deliveryMemo==="배송 메모를 선택해 주세요"){
 			deliveryMemo="배송메모 없음";
@@ -139,11 +145,17 @@ $(document).ready(function () {
 		$('.goodsnums').each(function() {
 			goodsnum.push($(this).val());
 		});
-		goodsnum = goodsnum.join("//");
+		if (goodsnum.length > 1) {
+		    goodsnum = goodsnum.join("//");
+		} else {
+		    goodsnum = goodsnum[0] || "";
+		}
 		console.log(goodsnum);
 		
+		const userReward = $('input[name="userReward"]').val();
+		console.log("리워드"+userReward);
 		const userpoint = $('input[name="userpoint"]').val();
-		console.log(userpoint);
+		console.log("포인트"+userpoint);
 
 		$('input[name="deliveryPlace"]').val(deliveryPlace);
 		$('input[name="deliveryMemo"]').val(deliveryMemo);
@@ -151,7 +163,7 @@ $(document).ready(function () {
 		$('input[name="sudannum"]').val(sudannum);
 		$('input[name="userid"]').val(userid);
 		$('input[name="goodsnums"]').val(goodsnum);
-		
+		$('input[name="userReward"]').val(userReward);
 		$('input[name="userpoint"]').val(userpoint);	
 		
 		// 수단넘버에 따라 결제 진행

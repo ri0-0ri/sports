@@ -54,6 +54,17 @@ CREATE TABLE user (
 INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin, role)
 VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04', 'admin');
 
+create table reward(
+	rewardId int auto_increment primary key,
+    rewardname default("적립금"),
+    rewarddate datetime default now(),
+    plus_reward int,
+    userid varchar(300),
+	constraint useridR foreign key(userid) references user(userid)
+);
+drop table reward;
+select * from reward;
+
 create table sports(
    sportsnum int primary key auto_increment,
     sport varchar(300)

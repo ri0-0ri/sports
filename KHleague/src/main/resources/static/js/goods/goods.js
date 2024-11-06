@@ -92,6 +92,7 @@ function submitForm(actionUrl, event) {
     const form = $(event.target).closest('form'); 
 	const formData = form.serialize();
 	console.log(formData);
+	
 	$.ajax({
 	        type: 'POST',
 	        url: actionUrl,
@@ -99,9 +100,15 @@ function submitForm(actionUrl, event) {
 	        success: function(response) {
 				if(actionUrl === '/mypage/mypage_buy'){
 					alert("장바구니에 상품이 추가되었습니다!");
+					if(confirm("장바구니 이동하기")){
+						window.location.href = "/mypage/mypage_buy";
+					}
 				}
 				else if(actionUrl === '/mypage/mypage_wish'){
 					alert("위시리스트에 상품이 추가되었습니다!");
+					if(confirm("위시리스트 보러가기")){
+						window.location.href = "/mypage/mypage_wish";
+					}
 				}
 	            close_modal();
 	        },
@@ -109,4 +116,22 @@ function submitForm(actionUrl, event) {
 	            console.error("Submission failed:", xhr.responseText);
 	        }
 	    });
+	$.ajax({
+		type: 'GET',
+		url: actionUrl,
+		data: formData,
+		success: function(response) {
+			if (actionUrl === '/payment/single_payment') {
+				// 쿼리스트링 만들고 넘겨주기
+				// 가져가는것 userid, goodsnum, size, quantity > formData
+				// formData 쿼리스트링으로 바꿔주기
+				window.location.href = '/payment/single_payment?' + formData;
+			}
+			close_modal();
+		},
+		error: function(xhr, status, error) {
+			console.error("Submission failed:", xhr.responseText);
+		}
+	});		
+		
 }

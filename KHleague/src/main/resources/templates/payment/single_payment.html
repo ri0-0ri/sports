@@ -73,21 +73,21 @@
             <div class="product">
                 <p>주문 상품</p>
                 <div class="product_box">
-                    <div class="product_info" th:each="buyList:${goodsBuyinfo}">
-						<input type="hidden" th:value="${goodsMap[buyList.goodsnum].goodsnum}" class="goodsnums">
+                    <div class="product_info">
+						<input type="hidden" th:value="${goods.goodsnum}" class="goodsnums">
                         <div class="product_img">
-                            <img th:src="${goodsMap[buyList.goodsnum].goodsimg}" alt="">
+                            <img th:src="${goods.goodsimg}" alt="">
                         </div>
 
                         <div class="product_view">
-                            <div class="product_name" th:text="${goodsMap[buyList.goodsnum].goodsname}">
+                            <div class="product_name" th:text="${goods.goodsname}">
 								
                             </div>
 
                             <div class="product_options">
-                                <div class="product_size" th:text="${buyList.size != null and buyList.size != '' ? buyList.size : 'Free'}"></div>
+                                <div class="product_size" th:text="${size}"></div>
                                 <div class="product_num">
-                                    [[${buyList.quantity}]] 개
+                                    [[${quantity}]] 개
                                 </div>
                             </div>
                         </div>
@@ -95,11 +95,11 @@
 
                     <div class="product_price">
                         <div class="total_box">
-                            총&nbsp;<div class="total_num">[[${#lists.size(goodsBuyinfo)}]]</div>건
+                            총&nbsp;<div class="total_num">1</div>건
                         </div>
-                        <div class="price" th:each="buyList:${goodsBuyinfo}">
-                            <div>[[${goodsMap[buyList.goodsnum].goodsname}]]</div>
-                            <div th:with="productPrice=${goodsMap[buyList.goodsnum].goodsprice}" th:text="${productPrice * buyList.quantity + ' 원'}">
+                        <div class="price">
+                            <div>[[${goods.goodsname}]]</div>
+                            <div th:text="${goods.goodsprice+' 원'}">
                             </div>
                         </div>
                         <div class="delivery">
@@ -108,10 +108,10 @@
                                 5000 원
                             </div>
                         </div>
-                        <div class="total_price" th:each="buyList:${goodsBuyinfo}">
+                        <div class="total_price">
                             <div>총 결제금액</div>
                             <div>
-								[[${total}]] 원
+								[[${goods.goodsprice}]] 원
                             </div>
                         </div>
                     </div>
@@ -150,13 +150,13 @@
                         <div class="privious">
                             <div>사용 전</div>
 							<div style="display: flex;">		
-                            <div class="privious_reward">[[${total}]]</div><div>&nbsp;원</div>
+                            <div class="privious_reward">[[${goods.goodsprice}]]</div><div>&nbsp;원</div>
 							</div>
                         </div>
                         <div class="after">
                             <div>사용 후</div>
 							<div style="display: flex;">
-                            <div class="after_reward">[[${total}]]</div><div>&nbsp;원</div>
+                            <div class="after_reward">[[${goods.goodsprice}]]</div><div>&nbsp;원</div>
 							</div>
                         </div>
                     </div>
@@ -332,10 +332,6 @@
 		}).then(function () {
 			document.getElementById("paymentForm").submit();
 		});
-
-		  
-		  
-		  
 
 	    });
 	  }

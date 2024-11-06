@@ -36,4 +36,10 @@
     WHERE userid = #{userid}
 </update>
 
+<update id="updateUserReward">
+	UPDATE user 
+    SET userReward = #{newReward} 
+    WHERE userid = #{userid}
+</update>
+
 </mapper>

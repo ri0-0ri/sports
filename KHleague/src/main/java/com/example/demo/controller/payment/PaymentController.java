@@ -28,6 +28,7 @@ import com.example.demo.model.UserDTO.UserDTO;
 import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.goods.GoodsDTO;
 import com.example.demo.model.payment.OrderDTO;
+import com.example.demo.model.rewardDTO.RewardDTO;
 import com.example.demo.service.goods.GoodsService;
 import com.example.demo.service.payment.PaymentService;
 import com.example.demo.service.user.UserService;
@@ -73,8 +74,26 @@ public class PaymentController {
         return "payment/payment";
     }
 	
+	@GetMapping("single_payment")
+	public void single_payment(@RequestParam String userid, @RequestParam String goodsnum, @RequestParam String size, @RequestParam String quantity, Model model){
+		System.out.println(userid);
+		System.out.println(goodsnum);
+		System.out.println(size);
+		System.out.println(quantity);
+		
+		int intgoodsnum = Integer.parseInt(goodsnum);		
+		UserDTO user = uservice.findUserById(userid);
+		model.addAttribute("user", user);
+		GoodsDTO goods = gservice.getgoodsBycart(intgoodsnum);
+		model.addAttribute("goods", goods);
+		
+		model.addAttribute("size", size);
+		model.addAttribute("quantity", quantity);
+//		return "payment/single_payment?userid=" + userid + "&goodsnum=" + goodsnum + "&size=" + size + "&quantity=" + quantity;
+	}
+	
 	@PostMapping("okpayment")
-	public String okpayment(OrderDTO order,  @RequestParam String userpoint) {	
+	public String okpayment(OrderDTO order,  @RequestParam String userpoint, @RequestParam String userReward) {	
 		String userid = order.getUserid();
 		int point = 0;
 		// sudannum 1은 포인트결제
@@ -97,7 +116,21 @@ public class PaymentController {
 		// sudannum 2는 간편결제
 		else {
 			pservice.putorder(order);
-		}		
+		}
+		
+		// 유저 적립금 변경
+		int minusReward = Integer.parseInt(userReward); // 삭제할 적립금
+		int plusReward = order.getTotalPrice()*(10 / 100); // 추가할 적립금
+		int newReward = uservice.findUserById(userid).getUserReward()-minusReward+plusReward;
+		System.out.println("삭제된 적립금:"+minusReward+" 추가할적립금:"+plusReward+" 최종적립금:"+newReward);
+		uservice.updateUserReward(newReward, userid);
+		// 적립금 DB 변경
+		
+		/*
+		 * if(minusReward>0) { // 만약 유저가 적립금을 사용했다면 RewardDTO reward = new RewardDTO();
+		 * reward.setUserid(userid); reward.setRewardname("적립금 사용"); } // 적립금을 추가만 한 경우
+		 */		
+
 		
 		return "redirect:/mypage/mypage_order";		
 	}
