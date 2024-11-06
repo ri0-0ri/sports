@@ -1,0 +1,11 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.reward.RewardMapper">
+	<insert id="putreward">
+		insert into reward(rewardname, change_reward, userid) values(#{rewardname}, #{change_reward}, #{userid})
+	</insert>
+
+	<select id="getreward">
+		select * from reward where userid=#{userid}
+	</select>
+
+</mapper>

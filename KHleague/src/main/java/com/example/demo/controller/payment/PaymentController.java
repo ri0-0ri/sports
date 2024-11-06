@@ -27,10 +27,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.model.UserDTO.UserDTO;
 import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.goods.GoodsDTO;
+import com.example.demo.model.moneyDTO.MoneyDTO;
 import com.example.demo.model.payment.OrderDTO;
-import com.example.demo.model.rewardDTO.RewardDTO;
 import com.example.demo.service.goods.GoodsService;
 import com.example.demo.service.payment.PaymentService;
+import com.example.demo.service.reward.RewardService;
 import com.example.demo.service.user.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -47,6 +48,9 @@ public class PaymentController {
 	
 	@Autowired
 	PaymentService pservice;
+	
+	@Autowired
+	RewardService rservice;
 	
 	@GetMapping("payment")
 	public String payment(@RequestParam List<Integer> buynum, Model model, HttpSession session) {	
@@ -120,17 +124,25 @@ public class PaymentController {
 		
 		// 유저 적립금 변경
 		int minusReward = Integer.parseInt(userReward); // 삭제할 적립금
-		int plusReward = order.getTotalPrice()*(10 / 100); // 추가할 적립금
+		int plusReward = (int)(order.getTotalPrice()*(10.0 / 100)); // 추가할 적립금
 		int newReward = uservice.findUserById(userid).getUserReward()-minusReward+plusReward;
 		System.out.println("삭제된 적립금:"+minusReward+" 추가할적립금:"+plusReward+" 최종적립금:"+newReward);
 		uservice.updateUserReward(newReward, userid);
-		// 적립금 DB 변경
 		
-		/*
-		 * if(minusReward>0) { // 만약 유저가 적립금을 사용했다면 RewardDTO reward = new RewardDTO();
-		 * reward.setUserid(userid); reward.setRewardname("적립금 사용"); } // 적립금을 추가만 한 경우
-		 */		
-
+		// 적립금 테이블 변경		
+		MoneyDTO reward = new MoneyDTO();
+		// 만약 유저가 적립금을 사용했다면
+		if(minusReward>0) {
+			reward.setUserid(userid);
+			reward.setRewardname("적립금 사용");
+			reward.setChange_reward("-"+minusReward);
+			rservice.putreward(reward);
+		}
+		// 적립금을 추가만 한 경우
+		reward.setUserid(userid);
+		reward.setRewardname("결제 적립금");
+		reward.setChange_reward("+"+plusReward);
+		rservice.putreward(reward);
 		
 		return "redirect:/mypage/mypage_order";		
 	}
