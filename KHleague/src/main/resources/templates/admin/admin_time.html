@@ -7,11 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>마이페이지-경기일정</title>
 	<link rel="stylesheet" href="/css/admin/admin_time.css">
-	<script>
-		function showAlert() {
-			alert("추가되었습니다.");
-		}
-	</script>
+	
 </head>
 
 <body>
@@ -88,34 +84,40 @@
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/admin/admin_time.js"></script>
 <script>
-$(document).ready(function() {
-   
-       function getList() {
-           $.ajax({
-               url: '/admin/getList',
-               type: 'GET',
-               success: function(boardList) {
-                  boardList.forEach(board => {
-                       const boardHtml = `
-                     <tr>
-                        <td>${board.team1name}</td>
-                        <td>${board.team2name}</td>
-                        <td>${board.gWdate}</td>
-                        <td>${board.gwtime}</td>
-                        <td><button class="cancel-btn">취소</button></td>
-                     </tr>
-                       `;
-                       $('#time_table').append(boardHtml);
-                   });
-               },
-               error: function(xhr, status, error) {
-                   console.error("댓글 불러오기 실패: ", error);
-               }
-           });
-       }
 
-       getList(); // 페이지 로드 시 댓글 목록 불러오기
-   });
+	$(document).ready(function () {
+		function getList() {
+			$.ajax({
+				url: '/admin/getList',
+				type: 'GET',
+				success: function (boardList) {
+					boardList.forEach(board => {
+						// 날짜와 시간 분리
+						const formattedDate = board.gwdate.split('T')[0]; // 날짜만 표시
+						const formattedTime = board.gwtime.split('T')[1].slice(0, 5); // 시간만 표시 (HH:mm)
+
+						const boardHtml = `
+	                        <tr>
+	                            <td>${board.team1name}</td>
+	                            <td>${board.team2name}</td>
+	                            <td>${formattedDate}</td>
+	                            <td>${formattedTime}</td>
+	                            <td><button class="cancel-btn">취소</button></td>
+	                        </tr>
+	                    `;
+						$('#time_table').append(boardHtml);
+					});
+				},
+				error: function (xhr, status, error) {
+					console.error("댓글 불러오기 실패: ", error);
+				}
+			});
+		}
+		getList(); // 페이지 로드 시 댓글 목록 불러오기
+	});
+
 </script>
+
 </html>
