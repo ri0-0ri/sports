@@ -21,6 +21,7 @@ import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.goods.GoodsDTO;
 import com.example.demo.model.moneyDTO.MoneyDTO;
 import com.example.demo.model.payment.OrderDTO;
+import com.example.demo.model.payment.OrderListDTO;
 import com.example.demo.service.goods.GoodsService;
 import com.example.demo.service.money.MoneyService;
 import com.example.demo.service.payment.PaymentService;
@@ -81,7 +82,14 @@ public class MyPageController {
 		
 		List<OrderDTO> orders = pservice.getorderByuser(userid);
 		model.addAttribute("orders", orders);
+		System.out.println("오더가져오기"+orders);
 		
+		List<OrderListDTO> orderlist = pservice.getorderlist();	    
+	    Map<Integer, List<OrderListDTO>> orderlistByordernum = orderlist.stream()
+	            .collect(Collectors.groupingBy(OrderListDTO::getOrdernum));
+	        
+	    model.addAttribute("orderlistByordernum", orderlistByordernum);
+	    System.out.println("오더넘버로가져오기"+orderlistByordernum);
 		
 		return "/mypage/mypage_order";
 	}

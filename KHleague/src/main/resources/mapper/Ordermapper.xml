@@ -21,5 +21,9 @@
 	<select id="getorderlastnum">
 		SELECT ordernum FROM orders ORDER BY ordernum DESC LIMIT 1
 	</select>
+	
+	<select id="getorderlist">
+		select * from orderList;
+	</select>
 
 </mapper>

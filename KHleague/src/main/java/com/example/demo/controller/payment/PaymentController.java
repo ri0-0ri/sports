@@ -99,7 +99,7 @@ public class PaymentController {
 	
 	@PostMapping("okpayment")
 	public String okpayment(OrderDTO order,  @RequestParam String userpoint, @RequestParam String userReward,
-			@RequestParam String size, @RequestParam String quantity, @RequestParam String goodsnums) {
+			@RequestParam(required = false) String size, @RequestParam(required = false) String quantity, @RequestParam(required = false) String goodsnums) {
 		System.out.println("Received buynum: " + order.getBuynum());
 		String userid = order.getUserid();
 		int point = 0;

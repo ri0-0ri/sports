@@ -87,9 +87,11 @@
 
                             <div class="product_options">
                                 <div class="product_size" th:text="${buyList.size != null and buyList.size != '' ? buyList.size : 'Free'}"></div>
-                                <div class="product_num">
-                                    [[${buyList.quantity}]] 개
-                                </div>
+								<div style="display: flex;">										
+								    <div class="product_num" th:text="${buyList.quantity}">
+								    </div>
+								         <div>개</div>
+								</div>
                             </div>
                         </div>
                     </div>

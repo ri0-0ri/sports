@@ -15,6 +15,7 @@ drop table eboard;
 drop table wishList;
 drop table buyList;
 drop table money;
+drop table orderList;
 
 select * from user;
 select * from sports;
@@ -52,6 +53,9 @@ CREATE TABLE user (
 #관리자 계정 추가 
 INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin, role)
 VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04', 'admin');
+#삭제테스트
+INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin)
+VALUES ('banana', '12345678', '바나나', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04');
 
 # 주의! 이 테이블은 무조건 moneyname에 적립금/포인트/충전/사용/취소/소멸 과 같은 단어가 들어가야함
 # 혹시나 moneyname을 set해줄때 주의해서 넣어주세요
@@ -342,12 +346,11 @@ create table buyList(
     quantity int,
    constraint buy_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
    constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
-
 );
 select * from buyList;
 
 create table orderList(
-orderListid int primary key auto_increment,
+	orderListid int primary key auto_increment,
     ordernum int,
 	buynum int ,
     userid varchar(300),
@@ -357,6 +360,7 @@ orderListid int primary key auto_increment,
    constraint orderlist_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
    constraint goodsnumOrderlist foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
+drop table orderList;
 select * from orderList;
 
 CREATE TABLE g_will_board (

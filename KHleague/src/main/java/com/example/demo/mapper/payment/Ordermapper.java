@@ -21,4 +21,6 @@ public interface Ordermapper {
 
 	int getorderlastnum();
 
+	List<OrderListDTO> getorderlist();
+
 }
