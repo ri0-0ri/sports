@@ -80,6 +80,7 @@ public class MyPageController {
 		String userid = (String)session.getAttribute("loginUser");
 		
 		List<OrderDTO> orderlist = pservice.getorderByuser(userid);
+		model.addAttribute("orderlist", orderlist);
 		
 		return "/mypage/mypage_order";
 	}

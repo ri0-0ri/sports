@@ -31,4 +31,5 @@ public interface GoodsService {
 	void deleteBuy(int buynum);
 
 	Integer getbuynumBygoodsnum(int goodsnum, String userid, String size);
+
 }

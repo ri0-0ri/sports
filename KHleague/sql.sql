@@ -313,12 +313,14 @@ insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other item
 create table orders(
    ordernum int primary key auto_increment,
     orderdatetime datetime default now(),
+    
     deliveryPlace varchar(300),
     deliveryMemo varchar(300),
     totalPrice int,
     sudannum int,
     userid varchar(300),
-    goodsnums varchar(300),
+    ordername varchar(300),
+    buynum varchar(300),
     constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE
 );
 drop table orders;
@@ -343,6 +345,17 @@ create table buyList(
    constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
 select * from buyList;
+
+create table orderList(
+   buynum int primary key,
+    userid varchar(300),
+    goodsnum int,
+    size varchar(300),
+    quantity int,
+   constraint orderlist_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
+   constraint goodsnumOrderlist foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
+);
+select * from orderList;
 
 CREATE TABLE g_will_board (
     gWnum INT PRIMARY KEY AUTO_INCREMENT,

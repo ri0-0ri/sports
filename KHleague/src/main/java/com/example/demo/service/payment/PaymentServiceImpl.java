@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.payment.Ordermapper;
+import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.payment.OrderDTO;
 
 @Service
@@ -21,8 +22,17 @@ public class PaymentServiceImpl implements PaymentService{
 
 	@Override
 	public List<OrderDTO> getorderByuser(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		return omapper.getorderByuser(userid);
+	}
+
+	@Override
+	public void putorderList(BuyListDTO buyListDTO) {
+		omapper.putorderList(buyListDTO);
+	}
+
+	@Override
+	public void deletebuyList(int buynum) {
+		omapper.deletebuyList(buynum);
 	}
 
 }

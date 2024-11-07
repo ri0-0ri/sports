@@ -13,5 +13,6 @@ public class OrderDTO {
     private int totalPrice;
     private int sudannum;
     private String userid;
-    private String goodsnums;
+    private String ordername;
+    private String buynum;
 }

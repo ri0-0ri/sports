@@ -36,9 +36,14 @@ $(document).ready(function () {
     });
 });
 
+let isRewardPay = false;
 // 결제 수단
 $(document).ready(function () {
     $('.choose_btn').click(function () {
+		if (isRewardPay) {
+			return; 
+		}
+				
         $('.in_btn').removeClass('actbtn');
         $(this).find('.in_btn').addClass('actbtn');
 		
@@ -66,7 +71,7 @@ $(document).ready(function () {
 				sudannum = "2"; // 예시로 4를 설정
 				break;
 			default:
-				sudannum = "0"; // 기본값
+				sudannum = "3"; // 포인트결제
 				break;
 		}
 		$('input[name="sudannum"]').val(sudannum);
@@ -106,7 +111,18 @@ $(document).ready(function () {
     // 전액 사용 버튼 클릭 시 처리
     $('.use_btn').click(function () {
         const totalReward = parseInt($('.reward_num').text().replace(/,/g, ''));
-        $('#use_reward').val(totalReward);
+		const totalPrice = parseInt($('.after_reward').eq(0).text().trim());
+		console.log(totalReward + "+"+totalPrice);
+		// 적립금 결제한것
+		if(totalReward>totalPrice){
+			$('#use_reward').val(totalPrice);
+			$('#rewardpay').find('.in_btn').addClass('actbtn');
+			isRewardPay = true;
+			$('input[name="sudannum"]').val("3");
+		}
+		else{
+        	$('#use_reward').val(totalReward);			
+		}
         $('#use_reward').trigger('input');
     });
 	
@@ -128,20 +144,24 @@ $(document).ready(function () {
 		if (userdetailaddr !== "") {
 		    deliveryPlace = deliveryPlace+"//"+userdetailaddr;
 		}			
-		console.log(deliveryPlace);
+		console.log("배송장소 "+deliveryPlace);
 		
 		let deliveryMemo = $('#selected_delivery_txt').text().trim();
 		if(deliveryMemo==="배송 메모를 선택해 주세요"){
 			deliveryMemo="배송메모 없음";
 		}
-		console.log(deliveryMemo);
+		console.log("배송메모 "+deliveryMemo);
+		
 		const totalPrice = parseInt($('.after_reward').eq(0).text().trim());
-		console.log(totalPrice);
+		console.log("총 금액 "+totalPrice);
+		
 		const sudannum = $('input[name="sudannum"]').val();
-		console.log(sudannum);
+		console.log("수단넘버 "+sudannum);
+		
 		const userid = $('input[name="userid"]').val();
 		console.log(userid);
-		let goodsnum = [];
+		
+/*		let goodsnum = [];
 		$('.goodsnums').each(function() {
 			goodsnum.push($(this).val());
 		});
@@ -150,8 +170,27 @@ $(document).ready(function () {
 		} else {
 		    goodsnum = goodsnum[0] || "";
 		}
-		console.log(goodsnum);
+		console.log("굿즈넘버 "+goodsnum);*/
 		
+		let ordername = "";
+		if(parseInt(document.querySelector('.total_num').textContent.trim()) > 1){		
+			ordername = document.querySelector('.product_name').textContent + "외 " + (parseInt(document.querySelector('.total_num').textContent.trim()) - 1) + "건";
+		}
+		else{
+			ordername = document.querySelector('.product_name').textContent
+		}
+		console.log("오더네임"+ordername);
+		
+		// finalBuynum을 배열로 초기화
+		let finalBuynum = [];
+		$('input[name="buynums"]').each(function() {
+		    finalBuynum.push($(this).val());
+		});
+		finalBuynum = finalBuynum.join("//");
+		$('input[name="buynum"]').val(finalBuynum); 
+
+		console.log("최종확인: " + $('input[name="buynum"]').val());
+	
 		const userReward = $('input[name="userReward"]').val();
 		console.log("리워드"+userReward);
 		const userpoint = $('input[name="userpoint"]').val();
@@ -162,13 +201,17 @@ $(document).ready(function () {
 		$('input[name="totalPrice"]').val(totalPrice);
 		$('input[name="sudannum"]').val(sudannum);
 		$('input[name="userid"]').val(userid);
-		$('input[name="goodsnums"]').val(goodsnum);
+		$('input[name="ordername"]').val(ordername);
+		
+/*		$('input[name="goodsnums"]').val(goodsnum);*/
 		$('input[name="userReward"]').val(userReward);
 		$('input[name="userpoint"]').val(userpoint);	
 		
 		// 수단넘버에 따라 결제 진행
 		if (sudannum === "1") {        
-			const form = $('#paymentForm');				
+			const form = $('#paymentForm');
+			const formDataArray = form.serializeArray();
+			console.log(formDataArray);				
 			form.submit();
 		}			
 		// 토스페이먼츠 오픈
