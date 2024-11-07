@@ -18,4 +18,6 @@ public interface PaymentService {
 
 	int getorderlastnum();
 
+	List<OrderListDTO> getorderlist();
+
 }

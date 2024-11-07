@@ -41,4 +41,9 @@ public class PaymentServiceImpl implements PaymentService{
 		return omapper.getorderlastnum();
 	}
 
+	@Override
+	public List<OrderListDTO> getorderlist() {
+		return omapper.getorderlist();
+	}
+
 }

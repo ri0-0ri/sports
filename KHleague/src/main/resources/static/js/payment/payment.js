@@ -181,7 +181,6 @@ $(document).ready(function () {
 		}
 		console.log("오더네임"+ordername);
 		
-		// finalBuynum을 배열로 초기화
 		let finalBuynum = [];
 		$('input[name="buynums"]').each(function() {
 		    finalBuynum.push($(this).val());
@@ -193,7 +192,7 @@ $(document).ready(function () {
 		const userReward = $('input[name="userReward"]').val();
 		console.log("리워드"+userReward);
 		const userpoint = $('input[name="userpoint"]').val();
-		console.log("포인트"+userpoint);
+		console.log("포인트"+userpoint);	
 
 		$('input[name="deliveryPlace"]').val(deliveryPlace);
 		$('input[name="deliveryMemo"]').val(deliveryMemo);
@@ -204,10 +203,10 @@ $(document).ready(function () {
 		
 		$('input[name="goodsnums"]').val(goodsnum);
 		$('input[name="userReward"]').val(userReward);
-		$('input[name="userpoint"]').val(userpoint);	
+		$('input[name="userpoint"]').val(userpoint);
 		
 		// 수단넘버에 따라 결제 진행
-		if (sudannum === "1") {        
+		if (sudannum === "1") {
 			const form = $('#paymentForm');
 			const formDataArray = form.serializeArray();
 			console.log(formDataArray);				
