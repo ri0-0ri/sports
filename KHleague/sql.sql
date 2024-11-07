@@ -62,9 +62,7 @@ create table money(
    moneyname varchar(300),
     changeMoney varchar(300),
     userid varchar(300),
-
    constraint useridR foreign key(userid) references user(userid) ON DELETE CASCADE
-
 );
 drop table money;
 select * from money;
@@ -315,22 +313,17 @@ insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other item
 create table orders(
    ordernum int primary key auto_increment,
     orderdatetime datetime default now(),
-    
     deliveryPlace varchar(300),
     deliveryMemo varchar(300),
     totalPrice int,
     sudannum int,
     userid varchar(300),
-
     ordername varchar(300),
     buynum varchar(300),
-
     constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE
 );
 drop table orders;
 select * from orders;
-SHOW CREATE TABLE orders;
-
 
 create table wishList(
    wishnum int primary key auto_increment,
@@ -351,13 +344,12 @@ create table buyList(
    constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 
 );
-
-
-);
 select * from buyList;
 
 create table orderList(
-   buynum int primary key,
+orderListid int primary key auto_increment,
+    ordernum int,
+	buynum int ,
     userid varchar(300),
     goodsnum int,
     size varchar(300),
@@ -366,7 +358,6 @@ create table orderList(
    constraint goodsnumOrderlist foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
 select * from orderList;
-
 
 CREATE TABLE g_will_board (
     gWnum INT PRIMARY KEY AUTO_INCREMENT,
@@ -398,8 +389,6 @@ INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name)
 VALUES ('2024-11-04 13:21:00', 1, 4, '수원 한국전력', '안산 ok저축은행');
 INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name) 
 VALUES ('2024-11-03 13:21:00', 1, 4, '전북 현대 모터스', '안산 ok저축은행');
-
-#-
 
 CREATE TABLE fboard (
     id INT AUTO_INCREMENT PRIMARY KEY, 

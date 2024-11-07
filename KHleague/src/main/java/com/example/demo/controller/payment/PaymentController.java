@@ -98,7 +98,8 @@ public class PaymentController {
 	}
 	
 	@PostMapping("okpayment")
-	public String okpayment(OrderDTO order,  @RequestParam String userpoint, @RequestParam String userReward) {
+	public String okpayment(OrderDTO order,  @RequestParam String userpoint, @RequestParam String userReward,
+			@RequestParam String size, @RequestParam String quantity, @RequestParam String goodsnums) {
 		System.out.println("Received buynum: " + order.getBuynum());
 		String userid = order.getUserid();
 		int point = 0;
@@ -126,12 +127,16 @@ public class PaymentController {
 			money.setMoneyname("포인트 사용");
 			money.setChangeMoney("-"+order.getTotalPrice());
 			mservice.putmoney(money);
-			System.out.println("남은포인트"+point);	
+			System.out.println("남은포인트"+point);
+			
+			// 오더테이블에 추가
 			pservice.putorder(order);
+			// 포인트 추가
 			uservice.putpoint(point, userid);
 		}
 		// sudannum 2는 간편결제
 		else {
+			// 오더테이블에 추가
 			pservice.putorder(order);
 		}
 		
@@ -157,22 +162,45 @@ public class PaymentController {
 		money.setChangeMoney("+"+plusReward);
 		mservice.putmoney(money);
 		
+		// buynums가 있다? 장바구니에서 결제한것
 		// 장바구니(buylist) 객체를 결제했으면 주문내역(orderlist)로 옮겨주기
-		String buynums = order.getBuynum();
-		String[] buynumArray = buynums.split("//");
-
-		List<Integer> buynumList = new ArrayList<>();
-		for (String buynum : buynumArray) {
-		    buynumList.add(Integer.parseInt(buynum));
+		if(order.getBuynum() != null && !order.getBuynum().isEmpty()) {		
+			String buynums = order.getBuynum();
+			String[] buynumArray = buynums.split("//");
+			
+			List<Integer> buynumList = new ArrayList<>();
+			for (String buynum : buynumArray) {
+				buynumList.add(Integer.parseInt(buynum));
+			}
+			
+			for (int buynum : buynumList) {
+				BuyListDTO buyListDTO = gservice.getBuygoodsBybuynum(buynum);
+				System.out.println(buyListDTO);
+				// 가져온 리스트 주문내역으로 옮기기
+				OrderListDTO orderListDTO = new OrderListDTO();
+				int ordernum = pservice.getorderlastnum();
+				orderListDTO.setOrdernum(ordernum);
+				orderListDTO.setBuynum(buynum);
+				orderListDTO.setGoodsnum(buyListDTO.getGoodsnum());
+				orderListDTO.setUserid(userid);
+				orderListDTO.setSize(buyListDTO.getSize());
+				orderListDTO.setQuantity(buyListDTO.getQuantity());				
+				pservice.putorderList(orderListDTO);
+				
+				// 장바구니에서 삭제
+				pservice.deletebuyList(buynum);
+			}
 		}
-
-		for (int buynum : buynumList) {
-		    BuyListDTO buyListDTO = gservice.getBuygoodsBybuynum(buynum);
-		    System.out.println(buyListDTO);
-		    // 가져온 리스트 주문내역으로 옮기기
-		    pservice.putorderList(buyListDTO);
-		    // 장바구니에서 삭제
-		    pservice.deletebuyList(buynum);
+		// buynums가 없으면 직접결제한것
+		else {			
+			 OrderListDTO orderListDTOsin = new OrderListDTO();
+			 int ordernum = pservice.getorderlastnum();
+			 orderListDTOsin.setOrdernum(ordernum);
+			 orderListDTOsin.setGoodsnum(Integer.parseInt(goodsnums));
+			 orderListDTOsin.setUserid(userid);
+			 orderListDTOsin.setSize(size);
+			 orderListDTOsin.setQuantity(Integer.parseInt(quantity));
+			 pservice.putorderList(orderListDTOsin);		 
 		}
 		
 		return "redirect:/mypage/mypage_order";		

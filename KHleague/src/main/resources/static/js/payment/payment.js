@@ -161,7 +161,7 @@ $(document).ready(function () {
 		const userid = $('input[name="userid"]').val();
 		console.log(userid);
 		
-/*		let goodsnum = [];
+		let goodsnum = [];
 		$('.goodsnums').each(function() {
 			goodsnum.push($(this).val());
 		});
@@ -170,7 +170,7 @@ $(document).ready(function () {
 		} else {
 		    goodsnum = goodsnum[0] || "";
 		}
-		console.log("굿즈넘버 "+goodsnum);*/
+		console.log("굿즈넘버들 "+goodsnum);
 		
 		let ordername = "";
 		if(parseInt(document.querySelector('.total_num').textContent.trim()) > 1){		
@@ -188,7 +188,6 @@ $(document).ready(function () {
 		});
 		finalBuynum = finalBuynum.join("//");
 		$('input[name="buynum"]').val(finalBuynum); 
-
 		console.log("최종확인: " + $('input[name="buynum"]').val());
 	
 		const userReward = $('input[name="userReward"]').val();
@@ -203,7 +202,7 @@ $(document).ready(function () {
 		$('input[name="userid"]').val(userid);
 		$('input[name="ordername"]').val(ordername);
 		
-/*		$('input[name="goodsnums"]').val(goodsnum);*/
+		$('input[name="goodsnums"]').val(goodsnum);
 		$('input[name="userReward"]').val(userReward);
 		$('input[name="userpoint"]').val(userpoint);	
 		
