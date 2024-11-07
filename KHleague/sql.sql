@@ -318,13 +318,12 @@ create table orders(
     totalPrice int,
     sudannum int,
     userid varchar(300),
-    goodsnums varchar(300),
+    ordername varchar(300),
+    buynum varchar(300),
     constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE
 );
 drop table orders;
 select * from orders;
-SHOW CREATE TABLE orders;
-
 
 create table wishList(
    wishnum int primary key auto_increment,
@@ -343,8 +342,22 @@ create table buyList(
     quantity int,
    constraint buy_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
    constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
+
 );
 select * from buyList;
+
+create table orderList(
+orderListid int primary key auto_increment,
+    ordernum int,
+	buynum int ,
+    userid varchar(300),
+    goodsnum int,
+    size varchar(300),
+    quantity int,
+   constraint orderlist_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
+   constraint goodsnumOrderlist foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
+);
+select * from orderList;
 
 CREATE TABLE g_will_board (
     gWnum INT PRIMARY KEY AUTO_INCREMENT,
