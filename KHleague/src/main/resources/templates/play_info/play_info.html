@@ -2,11 +2,9 @@
 <html lang="en">
 
 <head>
-
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
 		integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/play_infor/play_infor.css">
@@ -21,13 +19,7 @@
 		<div class="page_title">
 			<h1>Sports NEWS</h1>
 		</div>
-		<div class="infor_btn">
-			<button>축구</button>
-			<button>야구</button>
-			<button>농구</button>
-			<button>배구</button>
-			
-		</div>
+
 		<!-- 달력  -->
 		<div class="date">
 			<div class="day_title">
@@ -148,98 +140,61 @@
 			</div>
 		</div>
 		<div class="line"></div>
+
+		<!-- 경기 예정 -->
 		<div class="play_infor">
 			<div class="play_infor_title">
 				<p>경기 예정</p>
+				<!--g_will_board-->
 			</div>
 			<div class="play_infor_main">
-				<div>
-					<div>13:00</div>
-				
-				</div>
-				<div>
-					<div>윤경수 팀</div>
-					<div>12</div>
-					<div>예정</div>
-					<div>2</div>
-					<div>윤혜정 팀</div>
-				</div>
-				<div>
-					<button class="play_infor_main_btn">응원</button>
-				</div>
-			</div>
-			<div class="play_infor_main">
-				<div>
-					<div>13:00</div>
-				
-				</div>
-				<div>
-					<div>윤경수 팀</div>
-					<div>12</div>
-					<div>예정</div>
-					<div>2</div>
-					<div>윤혜정 팀</div>
-				</div>
-				<div>
-					<button class="play_infor_main_btn">응원</button>
+				<div th:each="game : ${upcomingGames}" class="hi">
+					<div>
+						<div th:text="${game.gwtime}" id="zz">13:00</div> <!-- 경기 시간 -->
+					</div>
+					<div>
+						<div th:text="${game.team1name} " id="zz">윤경수 팀</div> <!-- 팀1 이름 -->
+						<div style="margin-left: 50px;">예정</div>
+						<div th:text="${game.team2name}" id="zz" style="margin-left: 200px;">윤혜정 팀</div> <!-- 팀2 이름 -->
+					</div>
+					<div>
+						<button class="play_infor_main_btn">
+							<a href="/fighting/fighting">응원</a>
+						</button>
+
+					</div>
 				</div>
 			</div>
-			<div class="play_infor_main">
-				<div>
-					<div>13:00</div>
-			
-				</div>
-				<div>
-					<div>윤경수 팀</div>
-					<div>12</div>
-					<div>예정</div>
-					<div>2</div>
-					<div>윤혜정 팀</div>
-				</div>
-				<div>
-					<button class="play_infor_main_btn">응원</button>
-				</div>
-			</div>
+			</br>
+
+			<!-- 경기 종료 -->
 			<div class="play_infor_title">
 				<p>경기 종료</p>
 			</div>
 			<div class="play_infor_main">
-				<div>
-					<div>13:00</div>
-				
-				</div>
-				<div>
-					<div>윤경수 팀</div>
-					<div>12</div>
-					<div>종료</div>
-					<div>2</div>
-					<div>윤혜정 팀</div>
-				</div>
-				<div>
-					<button class="play_infor_main_btn">기록</button>
-				</div>
-			</div>
-			<div class="play_infor_main">
-				<div>
-					<div>13:00</div>
-					
-				</div>
-				<div>
-					<div>윤경수 팀</div>
-					<div>12</div>
-					<div>종료</div>
-					<div>2</div>
-					<div>윤혜정 팀</div>
-				</div>
-				<div>
-					<button class="play_infor_main_btn">기록</button>
+				<div th:each="game : ${endedGames}" class="hi">
+					<div>
+						<div th:text="${game.gEdate}" id="zz">13:00</div> <!-- 경기 종료 시간 -->
+					</div>
+					<div>
+						<div th:text="${game.team1name}" id="zz">윤경수 팀</div> <!-- 팀1 이름 -->
+						<div th:text="${game.team1score}" id="zz">12</div> <!-- 팀1 점수 -->
+						<div style="margin-left: -50px;">종료</div>
+						<div th:text="${game.team2score}" id="zz" style="margin-left: 100px;">2</div> <!-- 팀2 점수 -->
+						<div th:text="${game.team2name}" id="zz">윤혜정 팀</div> <!-- 팀2 이름 -->
+					</div>
+					<div>
+						<button class="play_infor_main_btn">기록</button>
+					</div>
 				</div>
 			</div>
-		</div>
-		<th:block th:replace="~{layout/footer::footer}"></th:block>
-		<script src="/js/play_infor/경기정보.js"></script>
 
-  
+		</div>
+
+		<th:block th:replace="~{layout/footer::footer}"></th:block>
+
+		<script src="/js/play_infor/경기정보.js"></script>
+	</div>
 </body>
 
 </html>
