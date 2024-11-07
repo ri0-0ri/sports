@@ -2,8 +2,20 @@
 <mapper namespace="com.example.demo.mapper.payment.Ordermapper">
 	
 	<insert id="putorder">
-		insert into orders(deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, goodsnums)
-		values(#{deliveryPlace}, #{deliveryMemo}, #{totalPrice}, #{sudannum}, #{userid}, #{goodsnums})
+		insert into orders(deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum)
+		values(#{deliveryPlace}, #{deliveryMemo}, #{totalPrice}, #{sudannum}, #{userid}, #{ordername}, #{buynum})
 	</insert>
+	
+	<select id="getorderByuser">
+		select * from orders where userid=#{userid}
+	</select>
+	
+	<insert id="putorderList">
+		insert into orderList(buynum, userid, goodsnum, size, quantity) values(#{buynum}, #{userid}, #{goodsnum}, #{size}, #{quantity});
+	</insert>
+	
+	<delete id="deletebuyList">
+		delete from buyList where buynum=#{buynum}
+	</delete>
 
 </mapper>

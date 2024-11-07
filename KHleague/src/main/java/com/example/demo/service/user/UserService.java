@@ -5,14 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.mapper.money.MoneyMapper;
 import com.example.demo.mapper.user.UserMapper;
 import com.example.demo.model.UserDTO.UserDTO;
+import com.example.demo.model.payment.OrderDTO;
 
 @Service
 public class UserService {
 
 	@Autowired
 	private UserMapper userMapper;
+	
 
 	public void registerUser(UserDTO user) {
 		userMapper.insertUser(user);
@@ -48,6 +51,7 @@ public class UserService {
 	}
 
 	public void deleteUser(String userid) {
+
 		userMapper.deleteUser(userid); // 유저 삭제를 위한 매퍼 메서드 호출
 	}
 
