@@ -364,6 +364,16 @@ CREATE TABLE g_end_board (
     CONSTRAINT team2name FOREIGN KEY (team2name) REFERENCES team(teamname)
 );
 
+INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name) 
+VALUES ('2024-11-07 13:21:00', 1, 4, '전북 현대 모터스', '삼성 라이온즈');
+INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name) 
+VALUES ('2024-11-05 13:21:00', 1, 4, 'FC서울', '고양 소노');
+INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name) 
+VALUES ('2024-11-04 13:21:00', 1, 4, '수원 한국전력', '안산 ok저축은행');
+INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name) 
+VALUES ('2024-11-03 13:21:00', 1, 4, '전북 현대 모터스', '안산 ok저축은행');
+
+#-
 
 CREATE TABLE fboard (
     id INT AUTO_INCREMENT PRIMARY KEY, 
