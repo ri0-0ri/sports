@@ -57,7 +57,7 @@
 	<select id="getbuynumBygoodsnum">
 		select buynum
 		from buyList
-		where goodsnum=#{goodsnum} and userid=#{userid}
+		where goodsnum=#{goodsnum} and size=#{size} and userid=#{userid}
 	</select>
 
 </mapper>

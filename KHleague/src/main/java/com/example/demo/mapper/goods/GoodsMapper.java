@@ -29,10 +29,11 @@ public interface GoodsMapper {
 
 	void deleteWish(int wishnum);
 
-	int getwishnumBygoodsnum(int goodsnum, String userid);
+	/* int getwishnumBygoodsnum(int goodsnum, String userid); */
+	Integer getwishnumBygoodsnum(int goodsnum, String userid); 
 
 	void deleteBuy(int buynum);
 
-	Integer getbuynumBygoodsnum(int goodsnum, String userid);
+	Integer getbuynumBygoodsnum(int goodsnum, String userid, String size);
 	
 }
