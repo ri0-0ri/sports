@@ -20,8 +20,10 @@ import com.example.demo.model.UserDTO.UserDTO;
 import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.goods.GoodsDTO;
 import com.example.demo.model.moneyDTO.MoneyDTO;
+import com.example.demo.model.payment.OrderDTO;
 import com.example.demo.service.goods.GoodsService;
 import com.example.demo.service.money.MoneyService;
+import com.example.demo.service.payment.PaymentService;
 import com.example.demo.service.user.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -38,6 +40,9 @@ public class MyPageController {
 	
 	@Autowired
 	MoneyService mservice;
+	
+	@Autowired
+	PaymentService pservice;
 
 	@GetMapping("mypage_profile")
 	public String showMyPageProfile(HttpSession session, Model model) {
@@ -71,7 +76,12 @@ public class MyPageController {
 	}
 
 	@GetMapping("mypage_order")
-	public String showMypageOrder() {
+	public String showMypageOrder(Model model, HttpSession session) {
+		String userid = (String)session.getAttribute("loginUser");
+		
+		List<OrderDTO> orderlist = pservice.getorderByuser(userid);
+		model.addAttribute("orderlist", orderlist);
+		
 		return "/mypage/mypage_order";
 	}
 
@@ -153,10 +163,26 @@ public class MyPageController {
 	
 	@PostMapping("getwishnumBygoodsnum")
 	@ResponseBody
-	public int getwishnumBygoodsnum(int goodsnum, String userid) {
-		int wishnum = gservice.getwishnumBygoodsnum(goodsnum, userid);
-		System.out.println(wishnum);
+	public Integer getwishnumBygoodsnum(int goodsnum, String userid) {
+		Integer wishnum = gservice.getwishnumBygoodsnum(goodsnum, userid);
+		System.out.println("위시넘"+wishnum);
+		
+		if (wishnum == 0 || wishnum==null) {
+	        return 0;
+	    }
 		return wishnum;
+	}
+	
+	@PostMapping("getbuynumBygoodsnum")
+	@ResponseBody
+	public Integer getbuynumBygoodsnum(int goodsnum, String userid, String size) {
+		Integer buynum = gservice.getbuynumBygoodsnum(goodsnum, userid, size);
+		 System.out.println("buynum: " + buynum);
+		 
+		if (buynum == 0 || buynum==null) {
+	        return 0;
+	    }
+		return buynum;
 	}
 	
 }

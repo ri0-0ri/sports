@@ -74,6 +74,7 @@
                 <p>주문 상품</p>
                 <div class="product_box">
                     <div class="product_info" th:each="buyList:${goodsBuyinfo}">
+						<input type="hidden" name="buynums" th:value="${buyList.buynum}">
 						<input type="hidden" th:value="${goodsMap[buyList.goodsnum].goodsnum}" class="goodsnums">
                         <div class="product_img">
                             <img th:src="${goodsMap[buyList.goodsnum].goodsimg}" alt="">
@@ -199,6 +200,12 @@
                             </div>
                             <div class="sudan">간편결제</div>
                         </div>                   
+                        <div class="choose">
+                            <div class="choose_btn" id="rewardpay">
+                                <div class="in_btn"></div>
+                            </div>
+                            <div class="sudan">적립금결제</div>
+                        </div>                   
                     </div>
 
                     <div class="payment_txt">
@@ -244,7 +251,10 @@
 	<input type="number" name="totalPrice" style="display: none;">
 	<input type="hidden" name="sudannum">
 	<input type="hidden" name="userid" th:value="${user.userid}" class="userid">
-	<input type="hidden" name="goodsnums">
+<!--	<input type="hidden" name="goodsnums">-->
+	<input type="hidden" name="ordername">
+	<input type="hidden" name="buynum">
+	
 	<div class="username" style="display: none;">[[${user.username}]]</div>
 	<div class="userphone" style="display: none;">[[${user.userphone}]]</div>
 	
@@ -320,7 +330,13 @@
 		// ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
 	    // @docs https://docs.tosspayments.com/sdk/v2/js#widgetsrequestpayment
 	    button.addEventListener("click", async function () {
-		const pnames = document.querySelector('.product_name').textContent + "외 " + (parseInt(document.querySelector('.total_num').textContent.trim()) - 1) + "건";
+		let pnames = "";
+			if(parseInt(document.querySelector('.total_num').textContent.trim()) > 1){		
+				pnames = document.querySelector('.product_name').textContent + "외 " + (parseInt(document.querySelector('.total_num').textContent.trim()) - 1) + "건";
+			}
+			else{
+				pnames = document.querySelector('.product_name').textContent
+			}				
 		const username = document.querySelector('.username').textContent;
 		const userphone = document.querySelector('.userphone').textContent.replace(/-/g, '');
 		

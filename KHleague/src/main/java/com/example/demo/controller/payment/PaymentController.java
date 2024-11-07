@@ -29,6 +29,7 @@ import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.goods.GoodsDTO;
 import com.example.demo.model.moneyDTO.MoneyDTO;
 import com.example.demo.model.payment.OrderDTO;
+import com.example.demo.model.payment.OrderListDTO;
 import com.example.demo.service.goods.GoodsService;
 import com.example.demo.service.money.MoneyService;
 import com.example.demo.service.payment.PaymentService;
@@ -97,7 +98,8 @@ public class PaymentController {
 	}
 	
 	@PostMapping("okpayment")
-	public String okpayment(OrderDTO order,  @RequestParam String userpoint, @RequestParam String userReward) {	
+	public String okpayment(OrderDTO order,  @RequestParam String userpoint, @RequestParam String userReward) {
+		System.out.println("Received buynum: " + order.getBuynum());
 		String userid = order.getUserid();
 		int point = 0;
 		// sudannum 1은 포인트결제
@@ -154,6 +156,24 @@ public class PaymentController {
 		money.setMoneyname("결제 적립금");
 		money.setChangeMoney("+"+plusReward);
 		mservice.putmoney(money);
+		
+		// 장바구니(buylist) 객체를 결제했으면 주문내역(orderlist)로 옮겨주기
+		String buynums = order.getBuynum();
+		String[] buynumArray = buynums.split("//");
+
+		List<Integer> buynumList = new ArrayList<>();
+		for (String buynum : buynumArray) {
+		    buynumList.add(Integer.parseInt(buynum));
+		}
+
+		for (int buynum : buynumList) {
+		    BuyListDTO buyListDTO = gservice.getBuygoodsBybuynum(buynum);
+		    System.out.println(buyListDTO);
+		    // 가져온 리스트 주문내역으로 옮기기
+		    pservice.putorderList(buyListDTO);
+		    // 장바구니에서 삭제
+		    pservice.deletebuyList(buynum);
+		}
 		
 		return "redirect:/mypage/mypage_order";		
 	}
