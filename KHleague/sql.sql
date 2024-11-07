@@ -56,13 +56,15 @@ VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '20
 # 주의! 이 테이블은 무조건 moneyname에 적립금/포인트/충전/사용/취소/소멸 과 같은 단어가 들어가야함
 # 혹시나 moneyname을 set해줄때 주의해서 넣어주세요
 create table money(
-	moneyId int auto_increment primary key,
+   moneyId int auto_increment primary key,
     moneydate datetime default now(),
     moneytype varchar(300),
-	moneyname varchar(300),
+   moneyname varchar(300),
     changeMoney varchar(300),
     userid varchar(300),
-	constraint useridR foreign key(userid) references user(userid) ON DELETE CASCADE
+
+   constraint useridR foreign key(userid) references user(userid) ON DELETE CASCADE
+
 );
 drop table money;
 select * from money;
@@ -319,12 +321,16 @@ create table orders(
     totalPrice int,
     sudannum int,
     userid varchar(300),
+
     ordername varchar(300),
     buynum varchar(300),
+
     constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE
 );
 drop table orders;
 select * from orders;
+SHOW CREATE TABLE orders;
+
 
 create table wishList(
    wishnum int primary key auto_increment,
@@ -343,6 +349,10 @@ create table buyList(
     quantity int,
    constraint buy_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
    constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
+
+);
+
+
 );
 select * from buyList;
 
@@ -356,6 +366,7 @@ create table orderList(
    constraint goodsnumOrderlist foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
 select * from orderList;
+
 
 CREATE TABLE g_will_board (
     gWnum INT PRIMARY KEY AUTO_INCREMENT,
