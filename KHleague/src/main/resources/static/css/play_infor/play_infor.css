@@ -81,6 +81,13 @@ header {
 	text-align: center;
 	font-size: 20px;
 	line-height: 50px;
+	display: flex;
+	flex-direction: column;
+	transition: transform 0.3s ease;
+	/* 부드러운 이동 */
+}
+#day_title_btn, #day_main_btn {
+    transition: transform 0.3s ease; /* 부드러운 이동 */
 }
 
 .today {
@@ -234,15 +241,30 @@ header {
 	font-weight: bold;
 	font-size: 35px;
 }
-play_infor_main > div{
+
+play_infor_main>div {
 	width: 150px;
 }
-.items{
+
+.items {
 	width: 200px;
 }
-#zz{
+
+#zz {
 	width: 200px;
 }
+
+/* 날짜 컨트롤을 중앙에 배치 */
+.date-controls {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#games .game {
+	display: none;
+	/* 필터링을 위해 기본적으로 숨김 처리 */
+}
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
 	.play_infor_main {
