@@ -92,30 +92,82 @@ function submitForm(actionUrl, event) {
     const form = $(event.target).closest('form'); 
 	const formData = form.serialize();
 	console.log(formData);
-	
-	$.ajax({
-	        type: 'POST',
-	        url: actionUrl,
-	        data: formData,
-	        success: function(response) {
-				if(actionUrl === '/mypage/mypage_buy'){
-					alert("장바구니에 상품이 추가되었습니다!");
-					if(confirm("장바구니 이동하기")){
-						window.location.href = "/mypage/mypage_buy";
-					}
+	const goodsnum = form.find('input[name=goodsnum]').val(); 
+	console.log(goodsnum);
+	const size = form.find('input[name="size"], select[name="size"]').val();
+	console.log("Selected size: " + size);
+
+	if(actionUrl === '/mypage/mypage_buy'){
+		// 장바구니에 중복된 상품 있는지? 확인 ajax
+		$.ajax({
+			type: 'POST',
+			url: '/mypage/getbuynumBygoodsnum',
+			data: { goodsnum: goodsnum, userid: userid, size:size},
+			success: function(response) {
+				if (response > 0 || response == null) {
+					// 있으면 알럿		
+					alert("장바구니에 해당 상품과 옵션이 존재합니다!");
 				}
-				else if(actionUrl === '/mypage/mypage_wish'){
-					alert("위시리스트에 상품이 추가되었습니다!");
-					if(confirm("위시리스트 보러가기")){
-						window.location.href = "/mypage/mypage_wish";
-					}
+				else{
+					// 없으면 ajx 수행			
+					$.ajax({
+						type: 'POST',
+						url: actionUrl,
+						data: formData,
+						success: function(response) {
+							alert("장바구니에 상품이 추가되었습니다!");
+							if (confirm("장바구니 이동하기")) {
+								window.location.href = "/mypage/mypage_buy";
+							}
+						},
+						error: function(xhr, status, error) {
+							console.error("Submission failed:", xhr.responseText);
+						}
+					});
 				}
-	            close_modal();
-	        },
-	        error: function(xhr, status, error) {
-	            console.error("Submission failed:", xhr.responseText);
-	        }
-	    });
+			},
+			error: function(xhr, status, error) {
+				console.error("Submission failed:", xhr.responseText);
+			}
+		});
+		
+	}						
+	else if(actionUrl === '/mypage/mypage_wish'){
+		// 위시리스트에 중복된 상품 있는지? 확인 ajax
+		$.ajax({
+			type: 'POST',
+			url: '/mypage/getwishnumBygoodsnum',
+			data: { goodsnum: goodsnum, userid: userid},
+			success: function(response) {
+				if (response > 0 || response == null) {
+					// 있으면 알럿		
+					alert("위시리스트에 해당 상품이 존재합니다!");
+				}
+				else{
+					// 없으면 ajx 수행			
+					$.ajax({
+						type: 'POST',
+						url: actionUrl,
+						data: formData,
+						success: function(response) {
+							alert("위시리스트에 상품이 추가되었습니다!");
+							if(confirm("위시리스트 보러가기")){
+							window.location.href = "/mypage/mypage_wish";
+							}
+						},
+						error: function(xhr, status, error) {
+							console.error("Submission failed:", xhr.responseText);
+						}
+					});
+				}
+			},
+			error: function(xhr, status, error) {
+				console.error("Submission failed:", xhr.responseText);
+			}
+		});					
+	}
+	close_modal();				
+		
 	$.ajax({
 		type: 'GET',
 		url: actionUrl,

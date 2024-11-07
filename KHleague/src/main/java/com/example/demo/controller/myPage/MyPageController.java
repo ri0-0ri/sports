@@ -153,10 +153,26 @@ public class MyPageController {
 	
 	@PostMapping("getwishnumBygoodsnum")
 	@ResponseBody
-	public int getwishnumBygoodsnum(int goodsnum, String userid) {
-		int wishnum = gservice.getwishnumBygoodsnum(goodsnum, userid);
-		System.out.println(wishnum);
+	public Integer getwishnumBygoodsnum(int goodsnum, String userid) {
+		Integer wishnum = gservice.getwishnumBygoodsnum(goodsnum, userid);
+		System.out.println("위시넘"+wishnum);
+		
+		if (wishnum == 0 || wishnum==null) {
+	        return 0;
+	    }
 		return wishnum;
+	}
+	
+	@PostMapping("getbuynumBygoodsnum")
+	@ResponseBody
+	public Integer getbuynumBygoodsnum(int goodsnum, String userid, String size) {
+		Integer buynum = gservice.getbuynumBygoodsnum(goodsnum, userid, size);
+		 System.out.println("buynum: " + buynum);
+		 
+		if (buynum == 0 || buynum==null) {
+	        return 0;
+	    }
+		return buynum;
 	}
 	
 }

@@ -53,5 +53,11 @@
 		delete from buyList
 		where buynum=#{buynum}
 	</delete>
+	
+	<select id="getbuynumBygoodsnum">
+		select buynum
+		from buyList
+		where goodsnum=#{goodsnum} and size=#{size} and userid=#{userid}
+	</select>
 
 </mapper>

@@ -60,15 +60,28 @@ public class GoodsServiceImpl implements GoodsService {
 	public void deleteWish(int wishnum) {
 		gmapper.deleteWish(wishnum);
 	}
-
+	
 	@Override
-	public int getwishnumBygoodsnum(int goodsnum, String userid) {
-		return gmapper.getwishnumBygoodsnum(goodsnum, userid);
+	public Integer getwishnumBygoodsnum(int goodsnum, String userid) {
+		Integer wishnum = gmapper.getwishnumBygoodsnum(goodsnum, userid);
+	    if (wishnum == null) {
+	        return 0;
+	    }
+	    return wishnum;
 	}
 
 	@Override
 	public void deleteBuy(int buynum) {
 		gmapper.deleteBuy(buynum);
+	}
+
+	@Override
+	public Integer getbuynumBygoodsnum(int goodsnum, String userid, String size) {
+		Integer buynum = gmapper.getbuynumBygoodsnum(goodsnum, userid, size);
+	    if (buynum == null) {
+	        return 0;
+	    }
+	    return buynum;
 	}
 
 }
