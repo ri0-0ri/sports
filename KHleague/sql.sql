@@ -62,7 +62,7 @@ create table money(
 	moneyname varchar(300),
     changeMoney varchar(300),
     userid varchar(300),
-	constraint useridR foreign key(userid) references user(userid)
+	constraint useridR foreign key(userid) references user(userid) ON DELETE CASCADE
 );
 drop table money;
 select * from money;
@@ -319,7 +319,7 @@ create table orders(
     sudannum int,
     userid varchar(300),
     goodsnums varchar(300),
-    constraint order_userid foreign key(userid) references user(userid)
+    constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE
 );
 drop table orders;
 select * from orders;
@@ -328,9 +328,10 @@ create table wishList(
    wishnum int primary key auto_increment,
     userid varchar(300),
     goodsnum int,
-   constraint wish_userid foreign key(userid) references user(userid),
-   constraint goodsnumWish foreign key(goodsnum) references goods(goodsnum)
+   constraint wish_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
+   constraint goodsnumWish foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
+select * from wishList;
 
 create table buyList(
    buynum int primary key auto_increment,
@@ -338,9 +339,10 @@ create table buyList(
     goodsnum int,
     size varchar(300),
     quantity int,
-   constraint buy_userid foreign key(userid) references user(userid),
-   constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum)
+   constraint buy_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
+   constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
+select * from buyList;
 
 CREATE TABLE g_will_board (
     gWnum INT PRIMARY KEY AUTO_INCREMENT,
