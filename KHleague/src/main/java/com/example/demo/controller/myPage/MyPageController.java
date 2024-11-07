@@ -159,4 +159,16 @@ public class MyPageController {
 		return wishnum;
 	}
 	
+	@PostMapping("getbuynumBygoodsnum")
+	@ResponseBody
+	public Integer getbuynumBygoodsnum(int goodsnum, String userid) {
+		Integer buynum = gservice.getbuynumBygoodsnum(goodsnum, userid);
+		 System.out.println("buynum: " + buynum);
+		 
+		if (buynum == 0 || buynum==null) {
+	        return 0;
+	    }
+		return buynum;
+	}
+	
 }

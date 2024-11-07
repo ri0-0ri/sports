@@ -71,4 +71,13 @@ public class GoodsServiceImpl implements GoodsService {
 		gmapper.deleteBuy(buynum);
 	}
 
+	@Override
+	public Integer getbuynumBygoodsnum(int goodsnum, String userid) {
+		Integer buynum = gmapper.getbuynumBygoodsnum(goodsnum, userid);
+	    if (buynum == null) {
+	        return 0;
+	    }
+	    return buynum;
+	}
+
 }

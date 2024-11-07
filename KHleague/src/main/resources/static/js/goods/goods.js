@@ -92,30 +92,63 @@ function submitForm(actionUrl, event) {
     const form = $(event.target).closest('form'); 
 	const formData = form.serialize();
 	console.log(formData);
+	const goodsnum = form.find('input[name=goodsnum]').val(); 
+	console.log(goodsnum);
+
+	if(actionUrl === '/mypage/mypage_buy'){
+		// 장바구니에 중복된 상품 있는지? 확인 ajax
+		$.ajax({
+			type: 'POST',
+			url: '/mypage/getbuynumBygoodsnum',
+			data: { goodsnum: goodsnum, userid: userid },
+			success: function(response) {
+				if (response > 0 || response == null) {
+					// 네 하면 장바구니의 상품 찾아서 수량 1개 업
+					confirm("장바구니에 이미 해당 상품이 존재합니다! 추가하시겠습니까?");
+				}
+				else{
+					// 없으면 ajx 수행			
+					$.ajax({
+						type: 'POST',
+						url: actionUrl,
+						data: formData,
+						success: function(response) {
+							alert("장바구니에 상품이 추가되었습니다!");
+							if (confirm("장바구니 이동하기")) {
+								window.location.href = "/mypage/mypage_buy";
+							}
+						},
+						error: function(xhr, status, error) {
+							console.error("Submission failed:", xhr.responseText);
+						}
+					});
+				}
+			},
+			error: function(xhr, status, error) {
+				console.error("Submission failed:", xhr.responseText);
+			}
+		});
+		
+	}
+		
 	
-	$.ajax({
-	        type: 'POST',
-	        url: actionUrl,
-	        data: formData,
-	        success: function(response) {
-				if(actionUrl === '/mypage/mypage_buy'){
-					alert("장바구니에 상품이 추가되었습니다!");
-					if(confirm("장바구니 이동하기")){
-						window.location.href = "/mypage/mypage_buy";
-					}
-				}
-				else if(actionUrl === '/mypage/mypage_wish'){
-					alert("위시리스트에 상품이 추가되었습니다!");
-					if(confirm("위시리스트 보러가기")){
-						window.location.href = "/mypage/mypage_wish";
-					}
-				}
-	            close_modal();
-	        },
-	        error: function(xhr, status, error) {
-	            console.error("Submission failed:", xhr.responseText);
-	        }
-	    });
+			
+	else if(actionUrl === '/mypage/mypage_wish'){
+		// 위시리스트에 중복된 상품 있는지? 확인 ajax
+					
+		//있으면 폼 제출
+					
+		// 없으면 제출 ㄴㄴ
+					
+		alert("위시리스트에 상품이 추가되었습니다!");
+		if(confirm("위시리스트 보러가기")){
+		window.location.href = "/mypage/mypage_wish";
+		}
+	}
+	close_modal();
+			
+		
+		
 	$.ajax({
 		type: 'GET',
 		url: actionUrl,

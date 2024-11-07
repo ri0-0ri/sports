@@ -32,5 +32,7 @@ public interface GoodsMapper {
 	int getwishnumBygoodsnum(int goodsnum, String userid);
 
 	void deleteBuy(int buynum);
+
+	Integer getbuynumBygoodsnum(int goodsnum, String userid);
 	
 }
