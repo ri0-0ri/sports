@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.mapper.payment.Ordermapper;
 import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.payment.OrderDTO;
+import com.example.demo.model.payment.OrderListDTO;
 
 @Service
 public class PaymentServiceImpl implements PaymentService{
@@ -26,13 +27,18 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	@Override
-	public void putorderList(BuyListDTO buyListDTO) {
+	public void putorderList(OrderListDTO buyListDTO) {
 		omapper.putorderList(buyListDTO);
 	}
 
 	@Override
 	public void deletebuyList(int buynum) {
 		omapper.deletebuyList(buynum);
+	}
+
+	@Override
+	public int getorderlastnum() {
+		return omapper.getorderlastnum();
 	}
 
 }

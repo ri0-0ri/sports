@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class OrderListDTO {
+	private int orderListid;
+	private int ordernum;
 	private int buynum;
 	private String userid;
 	private int goodsnum;

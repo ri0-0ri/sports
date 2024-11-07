@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.payment.OrderDTO;
+import com.example.demo.model.payment.OrderListDTO;
 
 @Mapper
 public interface Ordermapper {
@@ -14,8 +15,10 @@ public interface Ordermapper {
 
 	List<OrderDTO> getorderByuser(String userid);
 
-	void putorderList(BuyListDTO buyListDTO);
+	void putorderList(OrderListDTO buyListDTO);
 
 	void deletebuyList(int buynum);
+
+	int getorderlastnum();
 
 }

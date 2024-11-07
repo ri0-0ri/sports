@@ -85,10 +85,14 @@
                             </div>
 
                             <div class="product_options">
+								<input type="hidden" th:value="${size}" name="size">
+								<input type="hidden" th:value="${quantity}" name="quantity">
                                 <div class="product_size" th:text="${size}"></div>
-                                <div class="product_num" th:text="${quantity}">
-                                     <p>개</p>
-                                </div>
+								<div style="display: flex;">										
+	                                <div class="product_num" th:text="${quantity}">
+	                                </div>
+	                                     <div>개</div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -249,8 +253,8 @@
 	<input type="hidden" name="deliveryMemo">
 	<input type="number" name="totalPrice" style="display: none;">
 	<input type="hidden" name="sudannum">
-	<input type="hidden" name="userid" th:value="${user.userid}" class="userid">
-
+	<input type="hidden" name="userid" th:value="${user.userid}" class="userid">	
+	<input type="hidden" name="goodsnums">
 	<input type="hidden" name="ordername">
 	<input type="hidden" name="buynum">
 	

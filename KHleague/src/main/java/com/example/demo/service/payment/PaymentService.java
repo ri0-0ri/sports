@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.model.goods.BuyListDTO;
 import com.example.demo.model.payment.OrderDTO;
+import com.example.demo.model.payment.OrderListDTO;
 
 public interface PaymentService {
 
@@ -11,8 +12,10 @@ public interface PaymentService {
 
 	List<OrderDTO> getorderByuser(String userid);
 
-	void putorderList(BuyListDTO buyListDTO);
+	void putorderList(OrderListDTO buyListDTO);
 
 	void deletebuyList(int buynum);
+
+	int getorderlastnum();
 
 }

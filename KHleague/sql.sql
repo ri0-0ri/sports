@@ -56,13 +56,13 @@ VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '20
 # 주의! 이 테이블은 무조건 moneyname에 적립금/포인트/충전/사용/취소/소멸 과 같은 단어가 들어가야함
 # 혹시나 moneyname을 set해줄때 주의해서 넣어주세요
 create table money(
-	moneyId int auto_increment primary key,
+   moneyId int auto_increment primary key,
     moneydate datetime default now(),
     moneytype varchar(300),
-	moneyname varchar(300),
+   moneyname varchar(300),
     changeMoney varchar(300),
     userid varchar(300),
-	constraint useridR foreign key(userid) references user(userid) ON DELETE CASCADE
+   constraint useridR foreign key(userid) references user(userid) ON DELETE CASCADE
 );
 drop table money;
 select * from money;
@@ -313,18 +313,18 @@ insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other item
 create table orders(
    ordernum int primary key auto_increment,
     orderdatetime datetime default now(),
-    
     deliveryPlace varchar(300),
     deliveryMemo varchar(300),
     totalPrice int,
     sudannum int,
     userid varchar(300),
-    ordername varchar(300),
-    buynum varchar(300),
+    goodsnums varchar(300),
     constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE
 );
 drop table orders;
 select * from orders;
+SHOW CREATE TABLE orders;
+
 
 create table wishList(
    wishnum int primary key auto_increment,
@@ -345,17 +345,6 @@ create table buyList(
    constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
 select * from buyList;
-
-create table orderList(
-   buynum int primary key,
-    userid varchar(300),
-    goodsnum int,
-    size varchar(300),
-    quantity int,
-   constraint orderlist_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
-   constraint goodsnumOrderlist foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
-);
-select * from orderList;
 
 CREATE TABLE g_will_board (
     gWnum INT PRIMARY KEY AUTO_INCREMENT,
@@ -387,8 +376,6 @@ INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name)
 VALUES ('2024-11-04 13:21:00', 1, 4, '수원 한국전력', '안산 ok저축은행');
 INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name) 
 VALUES ('2024-11-03 13:21:00', 1, 4, '전북 현대 모터스', '안산 ok저축은행');
-
-#-
 
 CREATE TABLE fboard (
     id INT AUTO_INCREMENT PRIMARY KEY, 

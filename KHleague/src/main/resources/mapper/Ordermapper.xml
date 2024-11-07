@@ -11,11 +11,15 @@
 	</select>
 	
 	<insert id="putorderList">
-		insert into orderList(buynum, userid, goodsnum, size, quantity) values(#{buynum}, #{userid}, #{goodsnum}, #{size}, #{quantity});
+		insert into orderList(ordernum, buynum, userid, goodsnum, size, quantity) values(#{ordernum}, #{buynum}, #{userid}, #{goodsnum}, #{size}, #{quantity});
 	</insert>
 	
 	<delete id="deletebuyList">
 		delete from buyList where buynum=#{buynum}
 	</delete>
+	
+	<select id="getorderlastnum">
+		SELECT ordernum FROM orders ORDER BY ordernum DESC LIMIT 1
+	</select>
 
 </mapper>

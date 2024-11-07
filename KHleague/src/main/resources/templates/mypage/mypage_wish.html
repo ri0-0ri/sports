@@ -56,6 +56,10 @@
                             </select>
                         </div>
                     </div>
+					
+					<div class="goods_size_box" style="display: none;" th:if="${goods.goodstype == 'Accessories' or goods.goodstype == 'Other items'}">
+						    <input type="hidden" name="size" value="free" />
+						</div>
 
                     <div class="goods_num_box">
                         <p>수량</p>

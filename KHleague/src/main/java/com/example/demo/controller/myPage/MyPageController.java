@@ -79,8 +79,9 @@ public class MyPageController {
 	public String showMypageOrder(Model model, HttpSession session) {
 		String userid = (String)session.getAttribute("loginUser");
 		
-		List<OrderDTO> orderlist = pservice.getorderByuser(userid);
-		model.addAttribute("orderlist", orderlist);
+		List<OrderDTO> orders = pservice.getorderByuser(userid);
+		model.addAttribute("orders", orders);
+		
 		
 		return "/mypage/mypage_order";
 	}
