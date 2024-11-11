@@ -12,5 +12,9 @@ public interface MoneyMapper {
 	void putmoney(MoneyDTO money);
 
 	List<MoneyDTO> getmoney(String userid);
+
+	List<MoneyDTO> getallmoney();
+
+	void updatemoney(MoneyDTO money);
 	
 }

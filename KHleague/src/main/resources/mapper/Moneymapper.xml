@@ -7,5 +7,15 @@
 	<select id="getmoney">
 		select * from money where userid=#{userid} order by moneyId desc;
 	</select>
+	
+	<select id="getallmoney">
+		select * from money
+	</select>
+	
+	<update id="updatemoney">
+		UPDATE money
+    	SET moneyname = #{moneyname}
+    	WHERE moneyId = #{moneyId}
+	</update>
 
 </mapper>

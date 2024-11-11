@@ -51,12 +51,9 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	public void change_state() {
 		List<OrderDTO> orderlists = omapper.getorders();
-		System.out.println("모든오더리스트!!"+orderlists);
 		LocalDate now = LocalDate.now();
 		for(OrderDTO order : orderlists) {
-			System.out.println(order.getOrderdatetime());
-			LocalDate orderdate = order.getOrderdatetime();
-			
+			LocalDate orderdate = order.getOrderdatetime();		
 			long daysBetween = ChronoUnit.DAYS.between(orderdate, now);
 			
 			if(daysBetween==1) {

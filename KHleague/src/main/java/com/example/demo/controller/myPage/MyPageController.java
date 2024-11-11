@@ -75,6 +75,8 @@ public class MyPageController {
 		model.addAttribute("money", money);
 		System.out.println(money);
 		
+	    change_money();
+		
 		return "mypage/mypage_money";
 	}
 
@@ -105,9 +107,6 @@ public class MyPageController {
 	    }
 	    model.addAttribute("allGoodsByOrdernum", allGoodsByOrdernum);
 	    System.out.println("allGoodsByOrdernum"+allGoodsByOrdernum);
-	    
-	    // 주문상태
-	    change_state();
 
 		return "/mypage/mypage_order";
 	}
@@ -215,6 +214,10 @@ public class MyPageController {
 	@Scheduled(cron = "0 0 0 * * ?") 
 	public void change_state() {
 		pservice.change_state();
+	}
+	
+	public void change_money() {
+		mservice.change_money();
 	}
 	
 }
