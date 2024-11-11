@@ -32,7 +32,6 @@ select * from buyList;
 select * from money;
 
 select * from user;
-
 update user set userpoint=11000 where userid="apple";
 
 
@@ -324,7 +323,8 @@ create table orders(
     userid varchar(300),
     ordername varchar(300),
     buynum varchar(300),
-    constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE
+    constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
+    state varchar(300) default("결제완료")
 );
 drop table orders;
 select * from orders;

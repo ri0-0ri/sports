@@ -91,16 +91,6 @@ public class MyPageController {
 	    model.addAttribute("orderlistByordernum", orderlistByordernum);
 	    System.out.println("오더넘버로가져오기"+orderlistByordernum);
 	    
-		/*
-		 * for(OrderListDTO order : orderlist) { List<GoodsDTO> goods =
-		 * gservice.getgoodsBygoodsnum(order.getGoodsnum()); Map<Integer,
-		 * List<GoodsDTO>> goodsByordergoodsnum = goods.stream()
-		 * .collect(Collectors.groupingBy(GoodsDTO::getGoodsnum));
-		 * 
-		 * model.addAttribute("goodsByordergoodsnum", goodsByordergoodsnum);
-		 * System.out.println("굿즈가져옴 "+goodsByordergoodsnum); }
-		 */
-	    
 	    Map<Integer, List<GoodsDTO>> allGoodsByOrdernum = new HashMap<>();
 
 	    for (OrderListDTO order : orderlist) {
@@ -110,10 +100,8 @@ public class MyPageController {
 	                .computeIfAbsent(order.getOrdernum(), k -> new ArrayList<>())
 	                .addAll(goods);
 	        }
-	        // 디버깅을 위한 출력
 	        System.out.println("굿즈가져옴 " + goods);
 	    }
-	    // 최종적으로 allGoodsByOrdernum을 모델에 추가
 	    model.addAttribute("allGoodsByOrdernum", allGoodsByOrdernum);
 	    System.out.println("allGoodsByOrdernum"+allGoodsByOrdernum);
 

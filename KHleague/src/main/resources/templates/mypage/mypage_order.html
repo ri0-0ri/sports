@@ -119,10 +119,9 @@
 	                        <div id="quantity">2개</div>
 	                        <div id="price">[[${orders.totalPrice}]] 원</div>
 	                        <div id="state">
-								배송중
-								<button>취소</button>
+								[[${orders.state}]]
 							</div>
-							<div id="plus_info">+</div>													
+							<div class="open_btn">+</div>													
 						</div>
 						
 						<div class="infobox">
@@ -160,6 +159,9 @@
 								<div class="sudan">
 									[[${orders.sudannum}]]
 								</div>
+							</div>
+							<div class="refundbox">
+								<button>주문취소</button>
 							</div>							
 						</div>
 						</div>
