@@ -51,3 +51,4 @@ function updateVoteBar() {
 	document.querySelector('.left p').style.width = `${team1Percentage}%`;
 	document.querySelector('.right p').style.width = `${team2Percentage}%`;
 }
+

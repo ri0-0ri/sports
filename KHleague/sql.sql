@@ -403,13 +403,14 @@ INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name)
 VALUES ('2024-11-03 13:21:00', 1, 4, '전북 현대 모터스', '안산 ok저축은행');
 
 CREATE TABLE fboard (
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    gWnum INT, 
-    user_id VARCHAR(255), 
-    content TEXT,  -- 채팅 내용
-    FOREIGN KEY (gWnum) REFERENCES g_will_board(gWnum) ON DELETE CASCADE,  
-    FOREIGN KEY (user_id) REFERENCES user(userid)  
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255),  -- 사용자 ID
+    content TEXT,          -- 채팅 내용
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 작성 시간
+    chat_type INT,         -- 1 = 왼쪽 채팅, 2 = 오른쪽 채팅
+    FOREIGN KEY (user_id) REFERENCES user(userid)
 );
+
 
 create table eboard(
    eboardnum int primary key auto_increment,
