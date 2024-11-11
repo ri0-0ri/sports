@@ -184,10 +184,52 @@ footer {
     margin-top: 67px;
 }
 
-.item-inforinfor {
+.orders{
     display: flex;
     justify-content: space-around;
     text-align: center;
-    line-height: 200px;
-    margin-top: 20px;
+    line-height: 100px;
+}
+
+.ordersInfo, .deliveryInfo, .sudanInfo{
+	border: 1px solid #d9d9d9;
+}
+
+.ordersInfo{
+	display: flex;
+	padding: 10px;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.goodstable{
+	display: flex;
+	align-items: center;
+}
+
+.ordersInfo div{
+	margin: 10px;
+}
+
+.goodsoption{
+	margin-left: 50px !important;
+}
+
+.infobox{
+	border: 1px solid #d9d9d9;
+	padding: 20px;
+}
+
+.goodsimg img{
+	width: 150px;
+}
+
+.deliveryInfo{
+	background-color: #F2F2F2;
+	padding: 10px;
+}
+
+.deliveryInfo div:last-child{
+	margin-top: 15px;
 }

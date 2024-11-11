@@ -84,4 +84,9 @@ public class GoodsServiceImpl implements GoodsService {
 	    return buynum;
 	}
 
+	@Override
+	public List<GoodsDTO> getgoodsBygoodsnum(int goodsnum) {
+		return gmapper.getgoodsBygoodsnum(goodsnum);
+	}
+
 }

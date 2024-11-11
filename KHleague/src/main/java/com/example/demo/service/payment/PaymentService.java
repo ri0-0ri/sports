@@ -18,6 +18,6 @@ public interface PaymentService {
 
 	int getorderlastnum();
 
-	List<OrderListDTO> getorderlist();
+	List<OrderListDTO> getorderlist(String userid);
 
 }

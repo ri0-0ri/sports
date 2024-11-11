@@ -42,8 +42,8 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	@Override
-	public List<OrderListDTO> getorderlist() {
-		return omapper.getorderlist();
+	public List<OrderListDTO> getorderlist(String userid) {
+		return omapper.getorderlist(userid);
 	}
 
 }

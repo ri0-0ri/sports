@@ -32,4 +32,6 @@ public interface GoodsService {
 
 	Integer getbuynumBygoodsnum(int goodsnum, String userid, String size);
 
+	List<GoodsDTO> getgoodsBygoodsnum(int goodsnum);
+
 }

@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="getorderlist">
-		select * from orderList;
+		select * from orderList where userid=#{userid}
 	</select>
 
 </mapper>
