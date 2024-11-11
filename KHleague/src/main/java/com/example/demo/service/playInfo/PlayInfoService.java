@@ -13,4 +13,6 @@ public interface PlayInfoService {
 	// 월별 경기 예정 데이터를 가져오는 메서드 추가
 	List<GWillBoardDTO> getUpcomingGamesByMonth(int month); // 월별 경기 예정 데이터
 
+	// 월별 경기 종료 데이터를 가져오는 메서드 추가
+	List<GEndBoardDTO> getEndedGamesByMonth(int month); // 월별 경기 종료 데이터
 }

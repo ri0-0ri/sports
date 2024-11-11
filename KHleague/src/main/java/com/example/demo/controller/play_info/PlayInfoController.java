@@ -40,8 +40,13 @@ public class PlayInfoController {
 	// 월별 경기 데이터를 가져오는 메서드
 	@GetMapping("play_info/month")
 	public String showPlayInfoByMonth(@RequestParam("month") int month, Model model) {
+		// 월별 경기 예정 데이터
 		List<GWillBoardDTO> upcomingGamesByMonth = playInfoService.getUpcomingGamesByMonth(month);
+		// 월별 경기 종료 데이터
+		List<GEndBoardDTO> endedGamesByMonth = playInfoService.getEndedGamesByMonth(month);
+
 		model.addAttribute("upcomingGames", upcomingGamesByMonth);
+		model.addAttribute("endedGames", endedGamesByMonth); // 월별 종료된 경기 데이터 추가
 		return "play_info/play_info";
 	}
 
