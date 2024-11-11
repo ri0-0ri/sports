@@ -29,40 +29,40 @@
 					</div>
 				</div>
 				<!-- 월들 -->
-				<div class="days month" id="month-1">
+				<div class="days month" id="month-1" onclick="filterGamesByMonth(1)">
 					<p>1월</p>
 				</div>
-				<div class="days month" id="month-2">
+				<div class="days month" id="month-2" onclick="filterGamesByMonth(2)">
 					<p>2월</p>
 				</div>
-				<div class="days month" id="month-3">
+				<div class="days month" id="month-3" onclick="filterGamesByMonth(3)">
 					<p>3월</p>
 				</div>
-				<div class="days month" id="month-4">
+				<div class="days month" id="month-4" onclick="filterGamesByMonth(4)">
 					<p>4월</p>
 				</div>
-				<div class="days month" id="month-5">
+				<div class="days month" id="month-5" onclick="filterGamesByMonth(5)">
 					<p>5월</p>
 				</div>
-				<div class="days month" id="month-6">
+				<div class="days month" id="month-6" onclick="filterGamesByMonth(6)">
 					<p>6월</p>
 				</div>
-				<div class="days month" id="month-7">
+				<div class="days month" id="month-7" onclick="filterGamesByMonth(7)">
 					<p>7월</p>
 				</div>
-				<div class="days month" id="month-8">
+				<div class="days month" id="month-8" onclick="filterGamesByMonth(8)">
 					<p>8월</p>
 				</div>
-				<div class="days month" id="month-9">
+				<div class="days month" id="month-9" onclick="filterGamesByMonth(9)">
 					<p>9월</p>
 				</div>
-				<div class="days month" id="month-10">
+				<div class="days month" id="month-10" onclick="filterGamesByMonth(10)">
 					<p>10월</p>
 				</div>
-				<div class="days month" id="month-11">
+				<div class="days month" id="month-11" onclick="filterGamesByMonth(11)">
 					<p>11월</p>
 				</div>
-				<div class="days month" id="month-12">
+				<div class="days month" id="month-12" onclick="filterGamesByMonth(12)">
 					<p>12월</p>
 				</div>
 				<button id="day_main_btn"> <i class="fa-solid fa-angle-right"></i></button>
@@ -81,7 +81,7 @@
 						<div th:text="${game.gwtime}" id="zz">13:00</div>
 					</div>
 					<div>
-						<div th:text="${game.team1name} " id="zz">윤경수 팀</div>
+						<div th:text="${game.team1name}" id="zz">윤경수 팀</div>
 						<div style="margin-left: 50px;">예정</div>
 						<div th:text="${game.team2name}" id="zz" style="margin-left: 200px;">윤혜정 팀</div>
 					</div>
@@ -120,6 +120,15 @@
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 
 	<script src="/js/play_infor/경기정보.js"></script>
+
+	<script>
+		// 월별 경기 필터링 함수
+		function filterGamesByMonth(month) {
+			// 월을 기준으로 서버에서 데이터를 가져오기 위해 URL을 수정
+			window.location.href = '/play_info/play_info/month?month=' + month;
+		}
+	</script>
+
 </body>
 
 </html>
