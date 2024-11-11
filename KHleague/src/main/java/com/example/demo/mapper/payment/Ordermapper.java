@@ -23,4 +23,6 @@ public interface Ordermapper {
 
 	List<OrderListDTO> getorderlist(String userid);
 
+	List<OrderDTO> getorders();
+
 }

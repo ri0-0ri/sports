@@ -25,5 +25,9 @@
 	<select id="getorderlist">
 		select * from orderList where userid=#{userid}
 	</select>
+	
+	<select id="getorders">
+		select * from orders
+	</select>
 
 </mapper>

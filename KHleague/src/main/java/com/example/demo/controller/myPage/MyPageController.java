@@ -104,6 +104,9 @@ public class MyPageController {
 	    }
 	    model.addAttribute("allGoodsByOrdernum", allGoodsByOrdernum);
 	    System.out.println("allGoodsByOrdernum"+allGoodsByOrdernum);
+	    
+	    // 주문상태
+	    change_state();
 
 		return "/mypage/mypage_order";
 	}
@@ -206,6 +209,10 @@ public class MyPageController {
 	        return 0;
 	    }
 		return buynum;
+	}
+	
+	public void change_state() {
+		pservice.change_state();
 	}
 	
 }

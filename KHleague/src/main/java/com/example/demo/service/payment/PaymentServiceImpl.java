@@ -46,4 +46,10 @@ public class PaymentServiceImpl implements PaymentService{
 		return omapper.getorderlist(userid);
 	}
 
+	@Override
+	public void change_state() {
+		List<OrderDTO> orderlists = omapper.getorders();
+		System.out.println("모든오더리스트!!"+orderlists);
+	}
+
 }

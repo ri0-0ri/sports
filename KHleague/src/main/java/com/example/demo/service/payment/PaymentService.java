@@ -20,4 +20,6 @@ public interface PaymentService {
 
 	List<OrderListDTO> getorderlist(String userid);
 
+	void change_state();
+
 }
