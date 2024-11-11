@@ -113,7 +113,7 @@
                         <div id="state">상태</div>
 						<div id="plus_info">자세히보기</div>
                     </div>
-                    <div class="item-inforinfor" th:if="${orders != null and orders != ''}" th:each="orders:${orders}">
+                    <div class="item-inforinfor" th:if="${orders != null and orders != ''}" th:each="orders:${orders}" th:id="${orders.ordernum}">
 						<div class="orders">
 	                        <div id="date">[[${orders.orderdatetime}]]</div>
 	                        <div id="product">[[${orders.ordername}]]</div>
@@ -162,7 +162,7 @@
 								</div>
 							</div>
 							<div class="refundbox">
-								<button>주문취소</button>
+								<button class="refundbtn" th:onclick="|go_refund(${orders.ordernum})|">주문취소</button>
 							</div>							
 						</div>
 						</div>

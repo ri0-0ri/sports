@@ -73,4 +73,14 @@ public class PaymentServiceImpl implements PaymentService{
 		}
 	}
 
+	@Override
+	public OrderDTO getorderByordernum(int ordernum) {
+		return omapper.getorderByordernum(ordernum);
+	}
+
+	@Override
+	public List<OrderListDTO> getorderlistByordernum(int ordernum, String userid) {
+		return omapper.getorderlistByordernum(ordernum, userid);
+	}
+
 }

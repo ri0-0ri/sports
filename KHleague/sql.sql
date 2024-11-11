@@ -65,6 +65,7 @@ create table money(
    moneyname varchar(300),
     changeMoney varchar(300),
     userid varchar(300),
+    ordernum int,
    constraint useridR foreign key(userid) references user(userid) ON DELETE CASCADE
 );
 drop table money;

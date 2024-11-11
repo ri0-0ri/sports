@@ -27,4 +27,8 @@ public interface Ordermapper {
 
 	void updatestate(OrderDTO order);
 
+	OrderDTO getorderByordernum(int ordernum);
+
+	List<OrderListDTO> getorderlistByordernum(int ordernum, String userid);
+
 }

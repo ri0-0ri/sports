@@ -105,6 +105,10 @@ public class PaymentController {
 		int point = 0;
 		// sudannum 1은 포인트결제
 		if(order.getSudannum()==1) {
+			// 오더테이블에 추가
+			pservice.putorder(order);
+			int ordernum = pservice.getorderlastnum();
+			
 			MoneyDTO money = new MoneyDTO();
 			money.setUserid(userid);
 			money.setMoneytype("포인트");
@@ -116,6 +120,8 @@ public class PaymentController {
 				// money DB 바꿔주기(충전)
 				money.setMoneyname("포인트 충전");
 				money.setChangeMoney("+"+userpoint);
+				// 오더넘버 넘겨주기
+				money.setOrdernum(ordernum);
 				mservice.putmoney(money);
 			}
 			// 넘어온 userpoint가 0보다 작거나 같다면 충전하지 않았다는뜻
@@ -126,11 +132,11 @@ public class PaymentController {
 			// money DB 바꿔주기(사용)
 			money.setMoneyname("포인트 사용");
 			money.setChangeMoney("-"+order.getTotalPrice());
+			// 오더넘버 넘겨주기
+			money.setOrdernum(ordernum);
 			mservice.putmoney(money);
 			System.out.println("남은포인트"+point);
 			
-			// 오더테이블에 추가
-			pservice.putorder(order);
 			// 포인트 추가
 			uservice.putpoint(point, userid);
 		}
@@ -155,11 +161,17 @@ public class PaymentController {
 		if(minusReward>0) {
 			money.setMoneyname("적립금 사용");
 			money.setChangeMoney("-"+minusReward);
+			// 오더넘버 넘겨주기
+			int ordernum = pservice.getorderlastnum();
+			money.setOrdernum(ordernum);
 			mservice.putmoney(money);
 		}
 		// 적립금을 추가만 한 경우
 		money.setMoneyname("결제 적립금");
 		money.setChangeMoney("+"+plusReward);
+		// 오더넘버 넘겨주기
+		int ordernum = pservice.getorderlastnum();
+		money.setOrdernum(ordernum);
 		mservice.putmoney(money);
 		
 		// buynums가 있다? 장바구니에서 결제한것
@@ -178,8 +190,8 @@ public class PaymentController {
 				System.out.println(buyListDTO);
 				// 가져온 리스트 주문내역으로 옮기기
 				OrderListDTO orderListDTO = new OrderListDTO();
-				int ordernum = pservice.getorderlastnum();
-				orderListDTO.setOrdernum(ordernum);
+				int ordernums = pservice.getorderlastnum();
+				orderListDTO.setOrdernum(ordernums);
 				orderListDTO.setBuynum(buynum);
 				orderListDTO.setGoodsnum(buyListDTO.getGoodsnum());
 				orderListDTO.setUserid(userid);
@@ -194,8 +206,8 @@ public class PaymentController {
 		// buynums가 없으면 직접결제한것
 		else {			
 			 OrderListDTO orderListDTOsin = new OrderListDTO();
-			 int ordernum = pservice.getorderlastnum();
-			 orderListDTOsin.setOrdernum(ordernum);
+			 int ordernums = pservice.getorderlastnum();
+			 orderListDTOsin.setOrdernum(ordernums);
 			 orderListDTOsin.setGoodsnum(Integer.parseInt(goodsnums));
 			 orderListDTOsin.setUserid(userid);
 			 orderListDTOsin.setSize(size);

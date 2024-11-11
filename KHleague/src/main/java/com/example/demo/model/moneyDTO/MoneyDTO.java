@@ -12,4 +12,5 @@ public class MoneyDTO {
 	private String moneyname;
 	private String changeMoney;
 	private String userid;
+	private int ordernum;
 }
