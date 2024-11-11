@@ -23,7 +23,17 @@
 	</select>
 	
 	<select id="getorderlist">
-		select * from orderList;
+		select * from orderList where userid=#{userid}
 	</select>
+	
+	<select id="getorders">
+		select * from orders
+	</select>
+	
+	<update id="updatestate">
+	    UPDATE orders
+   	 	SET state = #{state}
+    	WHERE ordernum = #{ordernum}
+	</update>
 
 </mapper>

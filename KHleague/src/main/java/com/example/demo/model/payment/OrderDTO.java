@@ -15,4 +15,5 @@ public class OrderDTO {
     private String userid;
     private String ordername;
     private String buynum;
+    private String state;
 }

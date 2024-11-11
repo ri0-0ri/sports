@@ -32,7 +32,6 @@ select * from buyList;
 select * from money;
 
 select * from user;
-
 update user set userpoint=11000 where userid="apple";
 
 
@@ -324,10 +323,19 @@ create table orders(
     userid varchar(300),
     ordername varchar(300),
     buynum varchar(300),
-    constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE
+    constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
+    state varchar(300) default'결제완료'
 );
 drop table orders;
 select * from orders;
+insert into orders(orderdatetime, deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum)
+values("2024-11-10 11:08:48", "장소1", "메모1", "1500", "1", "apple", "오더네임1", "바이넘버1");
+insert into orders(orderdatetime, deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum)
+values("2024-11-08 11:08:48", "장소1", "메모1", "1500", "1", "apple", "오더네임1", "바이넘버1");
+insert into orders(orderdatetime, deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum)
+values("2024-11-06 11:08:48", "장소1", "메모1", "1500", "1", "apple", "오더네임1", "바이넘버1");
+insert into orders(orderdatetime, deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum)
+values("2024-11-04 11:08:48", "장소1", "메모1", "1500", "1", "apple", "오더네임1", "바이넘버1");
 
 create table wishList(
    wishnum int primary key auto_increment,

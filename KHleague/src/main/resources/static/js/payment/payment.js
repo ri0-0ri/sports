@@ -206,7 +206,7 @@ $(document).ready(function () {
 		$('input[name="userpoint"]').val(userpoint);
 		
 		// 수단넘버에 따라 결제 진행
-		if (sudannum === "1") {
+		if (sudannum === "1" || sudannum === "3") {
 			const form = $('#paymentForm');
 			const formDataArray = form.serializeArray();
 			console.log(formDataArray);				

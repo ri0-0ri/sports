@@ -35,23 +35,23 @@
                 </div>
                 <div class="price-infor">
                     <div class="infor_infor">
-                        <h3>0</h3>
+                        <h3 id="received">0</h3>
                         <p>주문접수</p>
                     </div>
                     <div class="infor_infor">
-                        <h3>0</h3>
-                        <p>결제완료</p>
+                        <h3 id="product_ready">0</h3>
+                        <p>상품준비중</p>
                     </div>
                     <div class="infor_infor">
-                        <h3>0</h3>
+                        <h3 id="delivery_ready">0</h3>
                         <p>배송준비중</p>
                     </div>
                     <div class="infor_infor">
-                        <h3>0</h3>
+                        <h3 id="delivery_ing">0</h3>
                         <p>배송중 </p>
                     </div>
                     <div class="infor_infor">
-                        <h3>0</h3>
+                        <h3 id="delivery_ok">0</h3>
                         <p>배송완료</p>
                     </div>
                 </div>
@@ -61,12 +61,13 @@
                         <div>
                             <p>구매기간</p>
                         </div>
+						<div id="btn"><button class="all">전체</button></div>
                         <div id="btn"><button>1개월</button></div>
                         <div id="btn"><button>3개월</button></div>
                         <div id="btn"><button>6개월</button></div>
                         <div id="btn"><button>12개월</button></div>
                     </div>
-                    <div class="down_side">
+<!--                    <div class="down_side">
                         <div class="date-selection">
 
                             <div class="start-date">
@@ -100,23 +101,71 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
 
                 <div class="item_list">
                     <div class="list_title">
                         <div>주문일자</div>
-                        <div>상품</div>
-                        <div>수량</div>
-                        <div>주문금액</div>
-                        <div>상태</div>
+                        <div id="product">상품</div>
+                        <div id="quantity">수량</div>
+                        <div id="price">주문금액</div>
+                        <div id="state">상태</div>
+						<div id="plus_info">자세히보기</div>
                     </div>
-                    <div class="item-inforinfor">
-                        <div></div>
-                        <div><img src="../images/굿즈사진2 1.png" alt=""></div>
-                        <div>2개</div>
-                        <div>360,000원</div>
-                        <div>배송중<button>취소</button></div>
+                    <div class="item-inforinfor" th:if="${orders != null and orders != ''}" th:each="orders:${orders}">
+						<div class="orders">
+	                        <div id="date">[[${orders.orderdatetime}]]</div>
+	                        <div id="product">[[${orders.ordername}]]</div>
+	                        <div id="quantity">2개</div>
+	                        <div id="price">[[${orders.totalPrice}]] 원</div>
+	                        <div class="state">
+								[[${orders.state}]]
+							</div>
+							<div class="open_btn">+</div>													
+						</div>
+						
+						<div class="infobox">
+							<div>
+							
+							<div class="close_btn">X</div>
+																				
+							<div class="ordersInfo" th:each="orderList : ${orderlistByordernum[orders.ordernum]}">
+																		
+								<div class="goodstable" th:each="goods : ${allGoodsByOrdernum[orderList.ordernum]}" th:if="${goods.goodsnum == orderList.goodsnum}">
+									<div class="goodsimg">
+										<img th:src="${goods.goodsimg}">
+									</div>
+									<div class="goodsminibox">										
+										<div class="goodsname" th:text="${goods.goodsname}"></div>
+										<div class="goodsprice" th:text="${goods.goodsprice}"></div>
+									</div>
+								</div>
+								
+								<div class="goodsoption">									
+									<div class="goodssize" th:text="${'사이즈 : '+orderList.size}"></div>
+									<div class="goodsquantity" th:text="${'수량 : '+orderList.quantity}"></div>
+								</div>
+							</div>
+							
+							<div class="deliveryInfo">
+								<div class="deliveryplace">
+									[[${orders.deliveryPlace}]]
+								</div>
+								<div class="deliverymemo">
+									[[${orders.deliveryMemo}]]
+								</div>
+							</div>
+							<div class="sudanInfo">
+								<div class="sudan">
+									[[${orders.sudannum}]]
+								</div>
+							</div>
+							<div class="refundbox">
+								<button>주문취소</button>
+							</div>							
+						</div>
+						</div>
                     </div>
                 </div>
             </div>
@@ -130,4 +179,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="/js/mypage/order.js"></script>
 </html>

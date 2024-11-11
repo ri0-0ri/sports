@@ -59,5 +59,9 @@
 		from buyList
 		where goodsnum=#{goodsnum} and size=#{size} and userid=#{userid}
 	</select>
+	
+	<select id="getgoodsBygoodsnum">
+		select * from goods where goodsnum=#{goodsnum}
+	</select>
 
 </mapper>

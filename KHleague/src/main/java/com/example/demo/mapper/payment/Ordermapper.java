@@ -21,6 +21,10 @@ public interface Ordermapper {
 
 	int getorderlastnum();
 
-	List<OrderListDTO> getorderlist();
+	List<OrderListDTO> getorderlist(String userid);
+
+	List<OrderDTO> getorders();
+
+	void updatestate(OrderDTO order);
 
 }
