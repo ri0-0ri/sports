@@ -9,4 +9,7 @@ public interface PlayInfoService {
 	List<GWillBoardDTO> getUpcomingGames(); // 경기 예정 데이터
 
 	List<GEndBoardDTO> getEndedGames(); // 경기 종료 데이터
+
+	public List<GWillBoardDTO> getGamesByMonth(int month); // 월별 경기 예정 데이터 조회
+
 }

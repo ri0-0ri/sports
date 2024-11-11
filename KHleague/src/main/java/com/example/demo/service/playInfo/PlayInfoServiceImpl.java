@@ -24,4 +24,10 @@ public class PlayInfoServiceImpl implements PlayInfoService {
 	public List<GEndBoardDTO> getEndedGames() {
 		return playInfoMapper.getEndedGames();
 	}
+
+	@Override
+	public List<GWillBoardDTO> getGamesByMonth(int month) {
+		return playInfoMapper.getGamesByMonth(month); // Mapper 호출
+	}
+
 }

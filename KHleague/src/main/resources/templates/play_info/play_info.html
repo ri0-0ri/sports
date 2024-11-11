@@ -14,103 +14,56 @@
 <body>
 	<th:block th:replace="~{layout/header::header}"></th:block>
 	<div id="wrap">
-
-		<!-- 제목과 카테고리 -->
 		<div class="page_title">
 			<h1>Sports NEWS</h1>
 		</div>
 
-		<!-- 달력  -->
+		<!-- 달력 -->
 		<div class="date">
-			<div class="day_title">
-				<button id="day_title_btn"><i class="fa-solid fa-angle-left"></i></button>
-				<div class="day_date" id="currentDate" data-current-date="2024-10-25">
-					<p id="todayDate"></p>
-				</div>
-				<button id="day_title_btn"><i class="fa-solid fa-angle-right"></i></button>
-			</div>
 			<div class="day_main">
-
 				<button id="day_main_btn"><i class="fa-solid fa-angle-left"></i></button>
 				<div class="days">
 					<div class="day">
 						<p class="weekday-text"></p>
 						<p class="day-text"></p>
-						
 					</div>
-
 				</div>
-				<div class="days">
-					<div>
-						<p>1월</p>
-					</div>
-					
+				<!-- 월들 -->
+				<div class="days month" id="month-1">
+					<p>1월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>2월</p>
-					</div>
-					
+				<div class="days month" id="month-2">
+					<p>2월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>3월</p>
-					</div>
-				
+				<div class="days month" id="month-3">
+					<p>3월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>4월</p>
-					</div>
-					
+				<div class="days month" id="month-4">
+					<p>4월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>5월</p>
-					</div>
-					
+				<div class="days month" id="month-5">
+					<p>5월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>6월</p>
-					</div>
-					
+				<div class="days month" id="month-6">
+					<p>6월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>7월</p>
-					</div>
-					
+				<div class="days month" id="month-7">
+					<p>7월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>8월</p>
-					</div>
-					
+				<div class="days month" id="month-8">
+					<p>8월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>9월</p>
-					</div>
-				
+				<div class="days month" id="month-9">
+					<p>9월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>10월</p>
-					</div>
-				
+				<div class="days month" id="month-10">
+					<p>10월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>11월</p>
-					</div>
-					
+				<div class="days month" id="month-11">
+					<p>11월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>12월</p>
-					</div>
-				
+				<div class="days month" id="month-12">
+					<p>12월</p>
 				</div>
 				<button id="day_main_btn"> <i class="fa-solid fa-angle-right"></i></button>
 			</div>
@@ -121,27 +74,24 @@
 		<div class="play_infor">
 			<div class="play_infor_title">
 				<p>경기 예정</p>
-				<!--g_will_board-->
 			</div>
 			<div class="play_infor_main">
 				<div th:each="game : ${upcomingGames}" class="hi">
 					<div>
-						<div th:text="${game.gwtime}" id="zz">13:00</div> <!-- 경기 시간 -->
+						<div th:text="${game.gwtime}" id="zz">13:00</div>
 					</div>
 					<div>
-						<div th:text="${game.team1name} " id="zz">윤경수 팀</div> <!-- 팀1 이름 -->
+						<div th:text="${game.team1name} " id="zz">윤경수 팀</div>
 						<div style="margin-left: 50px;">예정</div>
-						<div th:text="${game.team2name}" id="zz" style="margin-left: 200px;">윤혜정 팀</div> <!-- 팀2 이름 -->
+						<div th:text="${game.team2name}" id="zz" style="margin-left: 200px;">윤혜정 팀</div>
 					</div>
 					<div>
 						<button class="play_infor_main_btn">
 							<a href="/fighting/fighting">응원</a>
 						</button>
-
 					</div>
 				</div>
 			</div>
-			</br>
 
 			<!-- 경기 종료 -->
 			<div class="play_infor_title">
@@ -150,27 +100,26 @@
 			<div class="play_infor_main">
 				<div th:each="game : ${endedGames}" class="hi">
 					<div>
-						<div th:text="${game.gEdate}" id="zz">13:00</div> <!-- 경기 종료 시간 -->
+						<div th:text="${game.gEdate}" id="zz">13:00</div>
 					</div>
 					<div>
-						<div th:text="${game.team1name}" id="zz">윤경수 팀</div> <!-- 팀1 이름 -->
-						<div th:text="${game.team1score}" id="zz">12</div> <!-- 팀1 점수 -->
+						<div th:text="${game.team1name}" id="zz">윤경수 팀</div>
+						<div th:text="${game.team1score}" id="zz">12</div>
 						<div style="margin-left: -50px;">종료</div>
-						<div th:text="${game.team2score}" id="zz" style="margin-left: 100px;">2</div> <!-- 팀2 점수 -->
-						<div th:text="${game.team2name}" id="zz">윤혜정 팀</div> <!-- 팀2 이름 -->
+						<div th:text="${game.team2score}" id="zz" style="margin-left: 100px;">2</div>
+						<div th:text="${game.team2name}" id="zz">윤혜정 팀</div>
 					</div>
 					<div>
 						<button class="play_infor_main_btn">기록</button>
 					</div>
 				</div>
 			</div>
-
 		</div>
 
-		<th:block th:replace="~{layout/footer::footer}"></th:block>
-
-		<script src="/js/play_infor/경기정보.js"></script>
 	</div>
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+
+	<script src="/js/play_infor/경기정보.js"></script>
 </body>
 
 </html>
