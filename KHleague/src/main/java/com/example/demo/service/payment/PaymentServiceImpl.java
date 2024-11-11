@@ -1,5 +1,7 @@
 package com.example.demo.service.payment;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,28 @@ public class PaymentServiceImpl implements PaymentService{
 	public void change_state() {
 		List<OrderDTO> orderlists = omapper.getorders();
 		System.out.println("모든오더리스트!!"+orderlists);
+		LocalDate now = LocalDate.now();
+		for(OrderDTO order : orderlists) {
+			System.out.println(order.getOrderdatetime());
+			LocalDate orderdate = order.getOrderdatetime();
+			
+			long daysBetween = ChronoUnit.DAYS.between(orderdate, now);
+			
+			if(daysBetween==1) {
+				order.setState("상품준비중");
+			}
+			else if(daysBetween==3) {
+				order.setState("배송준비중");
+			}
+			else if(daysBetween==5) {
+				order.setState("배송중");
+			}
+			else if(daysBetween==7) {
+				order.setState("배송완료");
+			}
+			
+			omapper.updatestate(order);
+		}
 	}
 
 }

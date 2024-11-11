@@ -29,5 +29,11 @@
 	<select id="getorders">
 		select * from orders
 	</select>
+	
+	<update id="updatestate">
+	    UPDATE orders
+   	 	SET state = #{state}
+    	WHERE ordernum = #{ordernum}
+	</update>
 
 </mapper>

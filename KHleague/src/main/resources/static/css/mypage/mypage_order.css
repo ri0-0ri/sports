@@ -133,17 +133,31 @@ footer {
     border: 1px solid black;
     border-radius: 10px;
     margin-top: 65px;
-    height: 190px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .up-side {
     display: flex;
-    line-height: 50px;
+    align-items: center;
+	padding: 20px;
 }
 
 .up-side div {
-    margin-left: 20px;
-    margin-top: 24px;
+/*    margin-left: 20px;
+    margin-top: 24px;*/
+}
+
+#btn button:hover{
+	background-color: #01203F;
+	color: #fff;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#btn button.act{
+	background-color: #01203F;
+	color: #fff;
 }
 
 #btn {
@@ -264,4 +278,5 @@ footer {
 .refundbox button:hover{
 	background-color: #D9D9D9;
 	color: #fff;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }

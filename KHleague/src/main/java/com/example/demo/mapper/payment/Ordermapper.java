@@ -25,4 +25,6 @@ public interface Ordermapper {
 
 	List<OrderDTO> getorders();
 
+	void updatestate(OrderDTO order);
+
 }
