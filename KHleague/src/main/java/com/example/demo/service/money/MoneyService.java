@@ -10,4 +10,6 @@ public interface MoneyService {
 
 	List<MoneyDTO> getmoney(String userid);
 
+	void change_money();
+
 }

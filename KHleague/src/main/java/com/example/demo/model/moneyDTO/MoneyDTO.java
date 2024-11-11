@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class MoneyDTO {
-	private int moneyID;
+	private int moneyId;
 	private LocalDateTime moneydate;
 	private String moneytype;
 	private String moneyname;
