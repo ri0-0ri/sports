@@ -24,7 +24,7 @@
 					</div>
 				</div>
 			</div>
-
+<!--으악!-->
 			<div class="fighting_pic">
 				<div>
 					<p>
@@ -56,60 +56,101 @@
 					<p>VS</p>
 				</div>
 				<div class="team">
-				<div id="team2_name" th:text="${top3Fights[0].team2name}">윤혜정 팀</div>
-				
+					<div id="team2_name" th:text="${top3Fights[0].team2name}">윤혜정 팀</div>
+
 					<button onclick="vote('team2')">투표</button>
 				</div>
 			</div>
 		</div>
 
 		<div class="hello_logo">
-			<div class="fight_left">
+			<!-- 왼쪽 채팅 영역 -->
+			<div class="fight_left chat-section" id="left_chat">
 				<div class="fight_title">
 					<h3 th:text="${top3Fights[0].team1name}">윤경수</h3>
 				</div>
-				<div class="left_infor">
-					<div>사용자아이디</div>
-					<div>우리팀 홧팅!</div>
+				<div class="chat-messages">
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">우리팀 홧팅!</div>
+					</div>
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">집가고 싶네..</div>
+					</div>
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">뿌엥~</div>
+					</div>
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">뿌엥~</div>
+					</div>
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">뿌엥~</div>
+					</div>
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">뿌엥~</div>
+					</div>
 				</div>
-				<div class="left_infor">
-					<div>사용자아이디</div>
-					<div>집가고 싶네..</div>
+				
+				<div class="chat-input-section">
+					<textarea class="chat-input" placeholder="메시지를 입력하세요..."></textarea>
+					<button class="send-btn">전송</button>
 				</div>
-				<div class="left_infor">
-					<div>사용자아이디</div>
-					<div>뿌엥~</div>
-				</div>
-				<div id="hello_btn"><button>더보기</button></div>
 			</div>
 
-			<div class="fight_logo"><img src="../images/VS.jpg" alt=""></div>
+			<!-- 중앙 로고 영역 -->
+			<div class="fight_logo">
+				<img src="../images/VS.jpg" alt="">
+			</div>
 
-			<div class="fight_right">
+			<!-- 오른쪽 채팅 영역 -->
+			<div class="fight_right chat-section" id="right_chat">
 				<div class="fight_title">
 					<h3 th:text="${top3Fights[0].team2name}">윤혜정</h3>
 				</div>
-				<div class="right_infor">
-					<div>사용자아이디</div>
-					<div>우리팀 홧팅!</div>
+				<div class="chat-messages">
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">우리팀 홧팅!</div>
+					</div>
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">집가고 싶네..</div>
+					</div>
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">뿌엥~</div>
+					</div>
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">뿌엥~</div>
+					</div>
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">뿌엥~</div>
+					</div>
+					<div class="chat_message">
+						<div class="username">사용자아이디</div>
+						<div class="message-content">뿌엥~</div>
+					</div>
 				</div>
-				<div class="right_infor">
-					<div>사용자아이디</div>
-					<div>집가고 싶네..</div>
+				
+				<div class="chat-input-section">
+					<textarea class="chat-input" placeholder="메시지를 입력하세요..."></textarea>
+					<button class="send-btn">전송</button>
 				</div>
-				<div class="right_infor">
-					<div>사용자아이디</div>
-					<div>뿌엥~</div>
-				</div>
-				<div id="hello_btn"><button>더보기</button></div>
 			</div>
 		</div>
-	</div>
 
-	<th:block th:replace="~{layout/footer::footer}"></th:block>
 
-	<!-- External JS File -->
-	<script src="/js/fighting/응원게시판.js"></script>
+		<th:block th:replace="~{layout/footer::footer}"></th:block>
+
+		<!-- External JS File -->
+		<script src="/js/fighting/응원게시판.js"></script>
 </body>
 
 </html>
