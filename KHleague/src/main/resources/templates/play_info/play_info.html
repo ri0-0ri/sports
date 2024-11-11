@@ -76,6 +76,11 @@
 				<p>경기 예정</p>
 			</div>
 			<div class="play_infor_main">
+				<!-- 경기 일정이 없을 경우 메시지 표시 -->
+				<div th:if="${#lists.isEmpty(upcomingGames)}">
+					<p>해당 월에는 경기 일정이 없습니다.</p>
+				</div>
+
 				<div th:each="game : ${upcomingGames}" class="hi">
 					<div>
 						<div th:text="${game.gwtime}" id="zz">13:00</div>
@@ -98,6 +103,11 @@
 				<p>경기 종료</p>
 			</div>
 			<div class="play_infor_main">
+				<!-- 경기 종료가 없을 경우 메시지 표시 -->
+				<div th:if="${#lists.isEmpty(endedGames)}">
+					<p>해당 월에는 경기 종료 정보가 없습니다.</p>
+				</div>
+
 				<div th:each="game : ${endedGames}" class="hi">
 					<div>
 						<div th:text="${game.gEdate}" id="zz">13:00</div>
