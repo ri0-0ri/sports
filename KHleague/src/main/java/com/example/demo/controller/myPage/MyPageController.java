@@ -75,8 +75,6 @@ public class MyPageController {
 		model.addAttribute("money", money);
 		System.out.println(money);
 		
-	    change_money();
-		
 		return "mypage/mypage_money";
 	}
 
@@ -216,6 +214,7 @@ public class MyPageController {
 		pservice.change_state();
 	}
 	
+	@Scheduled(cron = "0 0 0 * * ?") 
 	public void change_money() {
 		mservice.change_money();
 	}
