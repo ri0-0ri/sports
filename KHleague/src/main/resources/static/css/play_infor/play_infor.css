@@ -86,8 +86,11 @@ header {
 	transition: transform 0.3s ease;
 	/* 부드러운 이동 */
 }
-#day_title_btn, #day_main_btn {
-    transition: transform 0.3s ease; /* 부드러운 이동 */
+
+#day_title_btn,
+#day_main_btn {
+	transition: transform 0.3s ease;
+	/* 부드러운 이동 */
 }
 
 .today {
@@ -263,6 +266,55 @@ play_infor_main>div {
 #games .game {
 	display: none;
 	/* 필터링을 위해 기본적으로 숨김 처리 */
+}
+
+/* 월 버튼 강조 효과 */
+.month {
+	position: relative;
+	padding: 10px 20px;
+	cursor: pointer;
+	text-align: center;
+	transition: transform 0.3s ease;
+}
+
+.month.active {
+	animation: glowing 1.5s ease-out infinite;
+	font-size: 25px;
+	color: #fff;
+	/* 강조된 텍스트 색상 */
+	background-color: #01203F;
+	/* 배경 색상 */
+}
+
+@keyframes glowing {
+	0% {
+		box-shadow: 0 0 5px #01203F, 0 0 10px #01203F, 0 0 15px #01203F, 0 0 20px #01203F;
+	}
+
+	50% {
+		box-shadow: 0 0 10px #01203F, 0 0 20px #01203F, 0 0 30px #01203F, 0 0 40px #01203F;
+	}
+
+	100% {
+		box-shadow: 0 0 5px #01203F, 0 0 10px #01203F, 0 0 15px #01203F, 0 0 20px #01203F;
+	}
+}
+
+.month p {
+	font-size: 20px;
+	line-height: 50px;
+}
+
+.month:hover {
+	transform: scale(1.2);
+}
+
+.days {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	font-size: 18px;
 }
 
 /* 반응형 디자인 */
