@@ -26,8 +26,8 @@ public class PlayInfoServiceImpl implements PlayInfoService {
 	}
 
 	@Override
-	public List<GWillBoardDTO> getGamesByMonth(int month) {
-		return playInfoMapper.getGamesByMonth(month); // Mapper 호출
+	public List<GWillBoardDTO> getUpcomingGamesByMonth(int month) {
+		return playInfoMapper.getUpcomingGamesByMonth(month); // 월별 경기 데이터 조회
 	}
 
 }

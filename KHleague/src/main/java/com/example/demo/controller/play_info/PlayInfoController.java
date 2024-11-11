@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.modal.gWillBoardDTO.GWillBoardDTO;
 import com.example.demo.model.dto.GEndBoard.GEndBoardDTO;
@@ -36,11 +37,18 @@ public class PlayInfoController {
 		return "play_info/play_info"; // 반환할 템플릿 경로
 	}
 
+	// 월별 경기 데이터를 가져오는 메서드
+	@GetMapping("play_info/month")
+	public String showPlayInfoByMonth(@RequestParam("month") int month, Model model) {
+		List<GWillBoardDTO> upcomingGamesByMonth = playInfoService.getUpcomingGamesByMonth(month);
+		model.addAttribute("upcomingGames", upcomingGamesByMonth);
+		return "play_info/play_info";
+	}
+
 	// 응원 페이지 처리
 	@GetMapping("fighting") // /play_info/fighting 경로로 처리
 	public String showFightingPage() {
 		return "fighting/fighting"; // 'fighting/fighting.html' 템플릿 반환
 	}
-
 
 }
