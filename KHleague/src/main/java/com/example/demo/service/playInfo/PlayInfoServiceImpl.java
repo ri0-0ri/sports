@@ -30,4 +30,8 @@ public class PlayInfoServiceImpl implements PlayInfoService {
 		return playInfoMapper.getUpcomingGamesByMonth(month); // 월별 경기 데이터 조회
 	}
 
+	@Override
+	public List<GEndBoardDTO> getEndedGamesByMonth(int month) {
+		return playInfoMapper.getEndedGamesByMonth(month); // 월별 종료된 경기 데이터 조회
+	}
 }
