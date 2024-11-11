@@ -134,5 +134,10 @@ $(document).ready(function() {
 	            }
 	        });
 	    }
-		
+	
 });
+
+function go_refund(ordernum){
+	console.log(ordernum);
+	window.location.href = "/refund/refund?ordernum=" + ordernum;
+}	

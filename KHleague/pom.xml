@@ -88,6 +88,7 @@
 			<artifactId>selenium-edge-driver</artifactId>
 			<version>4.21.0</version> <!-- 최신 버전으로 업데이트하세요 -->
 		</dependency>
+		
 	</dependencies>
 
 	<build>

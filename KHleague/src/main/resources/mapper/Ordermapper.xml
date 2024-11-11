@@ -35,5 +35,13 @@
    	 	SET state = #{state}
     	WHERE ordernum = #{ordernum}
 	</update>
+	
+	<select id="getorderByordernum">
+		select * from orders where ordernum=#{ordernum}
+	</select>
+	
+	<select id="getorderlistByordernum">
+		select * from orderList where ordernum=#{ordernum} and userid = #{userid}
+	</select>
 
 </mapper>

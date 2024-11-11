@@ -22,4 +22,8 @@ public interface PaymentService {
 
 	void change_state();
 
+	OrderDTO getorderByordernum(int ordernum);
+
+	List<OrderListDTO> getorderlistByordernum(int ordernum, String userid);
+
 }

@@ -22,12 +22,12 @@
                 <p>배송지</p>
                 <div class="addr_box">
                     <div class="addr_info">
-                        <div>김사과</div>
-                        <div>010-1234-1234</div>
-                        <div>서울특별시 역삼구 역삼동 KH아파트 1501호</div>
+                        <div th:text="${user.username}"></div>
+                        <div th:text="${user.userphone}"></div>
+                        <div class="deliveryplace" th:text="${order.deliveryPlace}"></div>
                     </div>
                     <div class="addr_self_txt">
-                        <div class="delivery_txt">문앞에 놔주시고 벨튀하지마세요 제발 ㅋㅋ</div>
+                        <div class="delivery_txt" th:text="${order.deliveryMemo}"></div>
                     </div>
                 </div>
             </div>

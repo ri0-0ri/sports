@@ -23,3 +23,13 @@ $(document).ready(function () {
         confirm("정말 환불하시겠습니까?");
     });
 });
+
+$(document).ready(function () {
+	// 배송지
+	let deliveryplace = $('.deliveryplace').text().trim();
+		if(deliveryplace.includes("//")){
+			deliveryplace = deliveryplace.replace("//"," ");
+		$('.deliveryplace').text(deliveryplace);		
+	}
+	
+});

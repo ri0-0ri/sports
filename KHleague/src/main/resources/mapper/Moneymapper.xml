@@ -1,7 +1,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.money.MoneyMapper">
 	<insert id="putmoney">
-		insert into money(moneytype, moneyname, changeMoney, userid) values(#{moneytype}, #{moneyname}, #{changeMoney}, #{userid})
+		insert into money(moneytype, moneyname, changeMoney, userid, ordernum) values(#{moneytype}, #{moneyname}, #{changeMoney}, #{userid}, #{ordernum})
 	</insert>
 
 	<select id="getmoney">
