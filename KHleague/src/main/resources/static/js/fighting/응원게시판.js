@@ -1,6 +1,5 @@
-// 로그인한 사용자 ID 가져오기 (세션에서 가져오기)
-const loggedInUserId = document.getElementById('user_info').getAttribute('data-user-id');
-console.log(loggedInUserId);  // 여기서 로그로 확인
+// 로그인한 사용자 ID를 콘솔에 출력
+console.log(loginUser);  // 세션에서 받은 로그인 사용자 ID 출력
 
 // 타이머 설정
 let timer = document.getElementById('timer');
@@ -48,14 +47,14 @@ function sendMessageToServer(content, chatType) {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({ content, chatType }), // userId는 서버에서 세션으로 처리
+		body: JSON.stringify({ content, chatType, userId: loginUser }), // userId를 세션에서 받아온 값으로 전송
 	})
 		.then(response => response.json())
 		.then(data => {
 			if (data.success) {
 				console.log('메시지가 전송되었습니다.');
 				// 전송 후 UI 갱신 처리 (예: 새 메시지를 채팅창에 추가)
-				addMessageToChat(loggedInUserId, content, chatType);  // 서버에서 사용자 ID 자동 처리
+				addMessageToChat(loginUser, content, chatType);  // 로그인된 사용자 ID와 메시지 내용 추가
 			} else {
 				console.error('메시지 전송에 실패했습니다.');
 			}
@@ -81,4 +80,17 @@ function addMessageToChat(userId, content, chatType) {
 	messageElement.appendChild(messageContent);
 
 	chatContainer.appendChild(messageElement);
+	// 스크롤을 최하단으로 이동
+	chatContainer.scrollTop = chatContainer.scrollHeight;
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+	fetch('/chat/getMessages')
+		.then(response => response.json())
+		.then(messages => {
+			messages.forEach(message => {
+				addMessageToChat(message.userId, message.content, message.chatType);
+			});
+		})
+		.catch(error => console.error('Error fetching messages:', error));
+});
