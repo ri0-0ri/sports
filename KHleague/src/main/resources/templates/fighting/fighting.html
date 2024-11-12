@@ -24,7 +24,6 @@
 					</div>
 				</div>
 			</div>
-			<!--으악!-->
 			<div class="fighting_pic">
 				<div>
 					<p>
@@ -57,7 +56,6 @@
 				</div>
 				<div class="team">
 					<div id="team2_name" th:text="${top3Fights[0].team2name}">윤혜정 팀</div>
-
 					<button onclick="vote('team2')">투표</button>
 				</div>
 			</div>
@@ -69,31 +67,11 @@
 				<div class="fight_title">
 					<h3 th:text="${top3Fights[0].team1name}">윤경수</h3>
 				</div>
-				<div class="chat-messages">
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">우리팀 홧팅!</div>
-					</div>
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">집가고 싶네..</div>
-					</div>
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">뿌엥~</div>
-					</div>
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">뿌엥~</div>
-					</div>
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">뿌엥~</div>
-					</div>
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">뿌엥~</div>
-					</div>
+				<!-- 로그인한 사용자 ID를 포함하는 요소 -->
+				<div id="user_info" data-user-id="apple"></div>
+
+				<div class="chat-messages" id="left_chat_messages">
+					<!-- 메시지 내용은 여기에 동적으로 추가됩니다. -->
 				</div>
 
 				<div class="chat-input-section">
@@ -112,31 +90,11 @@
 				<div class="fight_title">
 					<h3 th:text="${top3Fights[0].team2name}">윤혜정</h3>
 				</div>
-				<div class="chat-messages">
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">우리팀 홧팅!</div>
-					</div>
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">집가고 싶네..</div>
-					</div>
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">뿌엥~</div>
-					</div>
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">뿌엥~</div>
-					</div>
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">뿌엥~</div>
-					</div>
-					<div class="chat_message">
-						<div class="username">사용자아이디</div>
-						<div class="message-content">뿌엥~</div>
-					</div>
+				<!-- 로그인한 사용자 ID를 포함하는 요소 -->
+				<div id="user_info" data-user-id="apple"></div>
+
+				<div class="chat-messages" id="right_chat_messages">
+					<!-- 메시지 내용은 여기에 동적으로 추가됩니다. -->
 				</div>
 
 				<div class="chat-input-section">
@@ -146,11 +104,12 @@
 			</div>
 		</div>
 
+	</div>
 
-		<th:block th:replace="~{layout/footer::footer}"></th:block>
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
 
-		<!-- External JS File -->
-		<script src="/js/fighting/응원게시판.js"></script>
+	<!-- External JS File -->
+	<script src="/js/fighting/응원게시판.js"></script>
 </body>
 
 </html>
