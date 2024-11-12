@@ -93,6 +93,11 @@ a{
     display: flex;
     justify-content: space-around;
     align-items: center;
+	margin-top: 15px;
+}
+
+.product_info:first-child{
+	margin-top: 0px;
 }
 
 .product_img img{
@@ -113,6 +118,7 @@ a{
 .product_name{
     font-size: 20px;
     margin-bottom: 10px;
+	width: 230px;
 }
 
 .product_options{
@@ -127,6 +133,7 @@ a{
     margin-top: 20px;
     border-top: 1px solid #D9D9D9;
     text-align: left;
+	margin-bottom: 70px;
 }
 
 .total_num{
@@ -139,10 +146,6 @@ a{
     display: flex;
     justify-content: space-between;
     color: #B9B9C3;
-}
-
-.delivery{
-    margin-bottom: 70px;
 }
 
 .total_price{
@@ -289,7 +292,7 @@ a{
     position: relative;
 }
 
-.price_to_refund, .reward_to_refund {
+.price_to_refund, .reward_to_refund, .gan_refund {
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;

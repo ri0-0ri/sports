@@ -12,4 +12,6 @@ public interface MoneyService {
 
 	void change_money();
 
+	List<MoneyDTO> getmoneyByordernum(String userid, int ordernum);
+
 }

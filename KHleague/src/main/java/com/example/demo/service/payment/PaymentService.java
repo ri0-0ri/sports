@@ -26,4 +26,8 @@ public interface PaymentService {
 
 	List<OrderListDTO> getorderlistByordernum(int ordernum, String userid);
 
+	void updateorder(OrderDTO order);
+
+	void deleteorderList(int ordernum);
+
 }

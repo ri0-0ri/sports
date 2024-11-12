@@ -43,5 +43,9 @@
 	<select id="getorderlistByordernum">
 		select * from orderList where ordernum=#{ordernum} and userid = #{userid}
 	</select>
+	
+	<delete id="deleteorderList">
+		delete from orderList where ordernum=#{ordernum}
+	</delete>
 
 </mapper>

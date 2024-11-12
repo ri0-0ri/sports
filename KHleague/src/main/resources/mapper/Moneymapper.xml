@@ -17,5 +17,9 @@
     	SET moneyname = #{moneyname}
     	WHERE moneyId = #{moneyId}
 	</update>
+	
+	<select id="getmoneyByordernum">
+		select * from money where userid=#{userid} and ordernum=#{ordernum}
+	</select>
 
 </mapper>
