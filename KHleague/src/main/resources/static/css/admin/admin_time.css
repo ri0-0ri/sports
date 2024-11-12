@@ -126,6 +126,11 @@ footer {
 	width: 120px;
 }
 
+#game,
+#item, #event {
+	width: 120px;
+}
+
 table {
 	width: 100%;
 	border-collapse: collapse;
@@ -186,4 +191,8 @@ table button {
 #admin_event,
 #admin_time {
 	margin-top: 25px;
+}
+
+#admin_user, #admin_event, #admin_time {
+	cursor: pointer;
 }

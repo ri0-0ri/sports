@@ -91,6 +91,9 @@ footer {
     margin-left: 27px;
 }
 
+#admin_user, #admin_event, #admin_time {
+	cursor: pointer;
+}
 
 .list {
     width: 1200px;

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/event/notice.css">
+    <title>KH REAGUE</title>
+</head>
+
+<body>
+	<th:block th:replace="~{layout/header::header}"></th:block>
+	<div class="top_container">
+	 </div>
+
+	 <div class="container_wrap">
+		<div class="container">
+			<div class="notice_txt_box">
+				<div class="notice_txt">
+					공지사항
+				</div>
+			</div>
+			
+			<div class="notice_wrap">
+				<div class="view_option">
+					<select>
+						<option value="">조회순</option>
+						<option value="">최신순</option>
+					</select>
+				</div>
+				
+				<div class="notice_list">
+					<div id="list" class="row">
+						<div>보드넘버</div>
+						<div>조회수</div>
+						<div>보드제목</div>
+						<div class="adminId">관리자아이디</div>	
+						<div>작성일</div>
+						<div class="plus_info">+</div>
+					</div>
+				
+					<!-- 클릭 시 여기로 세부 페이지 띄워주기 -->
+					<div class="list_info" style="display: none;" >
+						<div class="close_info">닫기</div>
+				
+						<div class="list_title">
+							보드제목
+						</div>
+				
+						<!-- 경기날짜, 팀1, 팀2 -->
+						<div class="game_info">
+							<div class="profile">								
+								경기날짜
+							</div>
+				
+							<div class="list_date">
+								팀1
+							</div>
+				
+							<div class="list_date">
+								팀2
+							</div>
+						</div>
+				
+						<!-- 본문내용 -->
+						<div class="list_contents">
+							본문내용
+						</div>
+				
+						<!-- 참여하기 누르면 인원 여기에 추가 -->
+						<div class="winner">
+							<div class="winnername">당첨자</div>
+						</div>
+										
+						<!-- 작성자만 보여주게하는 수정 박스 -->
+						<div class="edit_box">
+							<a>수정</a>
+							<a>삭제</a>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				
+			</div>
+			
+			
+		</div>
+	 </div>
+
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/event/notice.js"></script>
+</html>
