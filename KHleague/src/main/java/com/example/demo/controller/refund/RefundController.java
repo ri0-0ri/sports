@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,14 +71,16 @@ public class RefundController {
     }
 	
 	@PostMapping("okrefund")
-	public void okrefund(@RequestParam int ordernum, @RequestParam String userid, @RequestParam String reason) {
+	public ResponseEntity<String> okrefund(@RequestParam int ordernum, @RequestParam String userid, @RequestParam String reason) {
 		System.out.println("오케이리펀드"+ordernum+userid+" 이유 : "+reason);
 		// orders에서 해당 컬럼 찾아서 state > 주문취소로 바꾸기
 		OrderDTO order = pservice.getorderByordernum(ordernum);
 		order.setState("주문취소 "+reason);
 		pservice.updateorder(order);
-		// orderList에서 해당 컬럼 삭제해주기
-		pservice.deleteorderList(ordernum);
+		
+//		// orderList에서 해당 컬럼 삭제해주기
+//		pservice.deleteorderList(ordernum);
+		
 		// money에서 ordernum들 다 찾아와서 +>-로, ->+로 바꿔주기
 		List<MoneyDTO> moneys = mservice.getmoneyByordernum(userid, ordernum);
 		System.out.println(moneys);
@@ -89,15 +92,35 @@ public class RefundController {
 				newMoney.setChangeMoney(money.getChangeMoney().replace("-", "+"));
 				newMoney.setUserid(userid);
 				newMoney.setOrdernum(ordernum);
-				mservice.putmoney(newMoney);
-				
+				mservice.putmoney(newMoney);				
 				// 유저 테이블 money 업데이트
+				UserDTO user = uservice.findUserById(userid);
+				if(money.getMoneytype().equals("포인트")) {				
+					int pluspoint = Integer.parseInt(money.getChangeMoney().replace("-", "").trim());
+					user.setUserpoint(user.getUserpoint()+pluspoint);;
+				}
+				else {					
+					int plusreward = Integer.parseInt(money.getChangeMoney().replace("-", "").trim());
+					user.setUserReward(user.getUserReward()+plusreward);
+				}
+				uservice.updateUser(user);				
 			}
+			
 			if(money.getMoneyname().equals("결제 적립금")) {
-				
+				newMoney.setMoneytype(money.getMoneytype());
+				newMoney.setMoneyname("결제 적립금 취소");
+				newMoney.setChangeMoney(money.getChangeMoney().replace("+", "-"));
+				newMoney.setUserid(userid);
+				newMoney.setOrdernum(ordernum);
+				mservice.putmoney(newMoney);
 				// 유저 테이블 money 업데이트
+				UserDTO user = uservice.findUserById(userid);
+				int plusreward = Integer.parseInt(money.getChangeMoney().replace("-", "").trim());
+				user.setUserReward(user.getUserReward()-plusreward);
+				uservice.updateUser(user);				
 			}
 		}
+		return ResponseEntity.ok("환불이 완료되었습니다.");
 	}
 	
 }

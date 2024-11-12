@@ -144,7 +144,7 @@ $(document).ready(function () {
 						reason: reason
 					},
 					success: function(response) {
-					    alert("환불이 완료되었습니다.");
+					    alert(response);
 					    window.location.href = "/mypage/mypage_order";
 					},
 					error: function(xhr, status, error) {
