@@ -2,6 +2,9 @@ package com.example.demo.controller.chat;
 
 import com.example.demo.model.chat.ChatDTO;
 import com.example.demo.service.chat.ChatService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,4 +45,17 @@ public class ChatController {
 					.body("{\"success\": false, \"message\": \"메시지 전송에 실패했습니다.\"}");
 		}
 	}
+	@GetMapping("/getMessages")
+	public ResponseEntity<?> getMessages() {
+	    try {
+	        // 전체 채팅 메시지를 가져옴
+	        List<ChatDTO> messages = chatService.getAllChatMessages();
+	        return ResponseEntity.ok(messages);
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body("{\"success\": false, \"message\": \"메시지를 불러오는 데 실패했습니다.\"}");
+	    }
+	}
+	
+
 }
