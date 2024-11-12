@@ -1,6 +1,7 @@
 package com.example.demo.controller.admin;
 
 import com.example.demo.modal.gWillBoardDTO.GWillBoardDTO;
+import com.example.demo.model.event.EventDTO;
 import com.example.demo.model.teamDTO.TeamDTO;
 import com.example.demo.service.team.TeamService;
 import com.example.demo.service.gWillBoard.GWillBoardService;
@@ -37,6 +38,14 @@ public class AdminController {
 	public String showAdmin_user() {
 		return "admin/admin_user";
 	}
+	
+	@GetMapping("admin_event")
+	public void admin_event(Model model) {
+		List<TeamDTO> teams = teamService.getTeams();
+		model.addAttribute("teams", teams);
+		List<GWillBoardDTO> games = gWillBoardService.getgWillList();
+		model.addAttribute("games", games);
+	}
 
 	@PostMapping("add_schedule")
 	public String scheduleTeams(@RequestParam String team1, @RequestParam String team2, @RequestParam String date,
@@ -53,6 +62,18 @@ public class AdminController {
 		gWillBoardService.addGWillBoard(gWillBoardDTO);
 
 		return "redirect:/admin/admin_time"; // 알림 메시지 추가 필요
+	}
+	
+	@PostMapping("add_event")
+	public String add_event(@RequestParam int game, String event, String item) {
+		System.out.println("게임 : "+game+" / 이벤트 : "+event+" / 아이템 : "+item);
+		
+		EventDTO events = new EventDTO();
+		events.setGwnum(game);
+		events.setEventtype(event);
+		events.setEventitem(item);
+		
+		return "redirect:/admin/admin_event";
 	}
 
 	@GetMapping("getList")

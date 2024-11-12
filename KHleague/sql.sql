@@ -1,39 +1,36 @@
 create database sports;
 use sports;
-drop database sports;
+-- drop database sports;
 
-drop table user;
-drop table sports;
-drop table team;
-drop table player;
-drop table goods;
-drop table orders;
-drop table g_will_board;
-drop table g_end_board;
-drop table fboard;
-drop table eboard;
-drop table wishList;
-drop table buyList;
-drop table money;
-drop table orderList;
+-- drop table user;
+-- drop table sports;
+-- drop table team;
+-- drop table player;
+-- drop table goods;
+-- drop table orders;
+-- drop table g_will_board;
+-- drop table g_end_board;
+-- drop table fboard;
+-- drop table eboard;
+-- drop table wishList;
+-- drop table buyList;
+-- drop table money;
+-- drop table orderList;
 
-select * from user;
-select * from sports;
-select * from team;
-select * from player;
-select * from goods;
-select * from orders;
-select * from g_will_board;
-select * from g_end_board;
-select * from fboard;
-select * from eboard;
-select * from wishList;
-select * from buyList;
-select * from money;
-
-select * from user;
-update user set userpoint=11000 where userid="nanana";
-
+-- select * from user;
+-- select * from sports;
+-- select * from team;
+-- select * from player;
+-- select * from goods;
+-- select * from orders;
+-- select * from g_will_board;
+-- select * from g_end_board;
+-- select * from fboard;
+-- select * from eboard;
+-- select * from wishList;
+-- select * from buyList;
+-- select * from money;
+-- select * from orderList;
 
 CREATE TABLE user (
     userid VARCHAR(300) PRIMARY KEY,
@@ -52,9 +49,6 @@ CREATE TABLE user (
 #관리자 계정 추가 
 INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin, role)
 VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04', 'admin');
-#삭제테스트
-INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin)
-VALUES ('banana', '12345678', '바나나', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04');
 
 # 주의! 이 테이블은 무조건 moneyname에 적립금/포인트/충전/사용/취소/소멸 과 같은 단어가 들어가야함
 # 혹시나 moneyname을 set해줄때 주의해서 넣어주세요
@@ -68,7 +62,6 @@ create table money(
     ordernum int,
    constraint useridR foreign key(userid) references user(userid) ON DELETE CASCADE
 );
-drop table money;
 select * from money;
 
 create table sports(
@@ -301,16 +294,12 @@ create table goods(
 );
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Outerwear", "24 이동복 상의(레드)", 109000, "/images/굿즈/24 이동복 상의(레드).jpg");
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Outerwear", "JBFC 다이노스 PK 맨투맨", 69000, "/images/굿즈/JBFC 다이노스 PK 맨투맨.jpg");
-
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Top", "24 연습복 긴팔 상의(블랙)", 59000, "/images/굿즈/24 연습복 긴팔 상의(블랙).jpg");
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Top", "JBFC 아메리칸 풋볼져지 (화이트)", 99000, "/images/굿즈/JBFC 아메리칸 풋볼져지 (화이트).jpg");
-
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Bottom", "TIRO 24 트레이닝 팬츠 (네이비)", 87000, "/images/굿즈/TIRO 24 트레이닝 팬츠 (네이비).jpg");
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Bottom", "2024 스틸러스 트레이닝 팀컵 팬츠 (블랙)", 69000, "/images/굿즈/2024 스틸러스 트레이닝 팀컵 팬츠 (블랙).png");
-
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Accessories", "수원FC 슈니 더블 축구공 키링", 5000, "/images/굿즈/수원FC 슈니 더블 축구공 키링.png");
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Accessories", "JBFC 슬로건 볼캡(베이지)", 25000, "/images/굿즈/JBFC 슬로건 볼캡(베이지).jpg");
-
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "수원FC 24 사인볼(남자)", 20000, "/images/굿즈/수원FC 24 사인볼(남자).jpg");
 insert into goods(goodstype, goodsname, goodsprice, goodsimg) values("Other items", "2024 스틸러스 브랜딩 니트머플러", 28000, "/images/굿즈/2024 스틸러스 브랜딩 니트머플러.png");
 
@@ -327,16 +316,7 @@ create table orders(
     constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
     state varchar(300) default'결제완료'
 );
-drop table orders;
 select * from orders;
-insert into orders(orderdatetime, deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum)
-values("2024-11-10 11:08:48", "장소1", "메모1", "1500", "1", "apple", "오더네임1", "바이넘버1");
-insert into orders(orderdatetime, deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum)
-values("2024-11-08 11:08:48", "장소1", "메모1", "1500", "1", "apple", "오더네임1", "바이넘버1");
-insert into orders(orderdatetime, deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum)
-values("2024-11-06 11:08:48", "장소1", "메모1", "1500", "1", "apple", "오더네임1", "바이넘버1");
-insert into orders(orderdatetime, deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum)
-values("2024-11-04 11:08:48", "장소1", "메모1", "1500", "1", "apple", "오더네임1", "바이넘버1");
 
 create table wishList(
    wishnum int primary key auto_increment,
@@ -369,7 +349,6 @@ create table orderList(
    constraint orderlist_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
    constraint goodsnumOrderlist foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
-drop table orderList;
 select * from orderList;
 
 CREATE TABLE g_will_board (
@@ -412,11 +391,20 @@ CREATE TABLE fboard (
     FOREIGN KEY (user_id) REFERENCES user(userid)
 );
 
+create table events(
+	eventnum int primary key auto_increment,
+    gwnum int,
+	CONSTRAINT gWnum FOREIGN KEY (gWnum) REFERENCES g_will_board(gWnum),
+    eventtype varchar(300),
+    eventitem varchar(300)
+);
+
 create table eboard(
-   eboardnum int primary key auto_increment,
-    eproduct varchar(300),
-    edate varchar(300),
+	eboardnum int primary key auto_increment,
+    edate datetime default now(),
+    eboardtitle varchar(300),
     eboardcontent varchar(3000),
-    fboardnum int,
-    constraint fboardnum foreign key(fboardnum) references fboard(fboardnum)
+    eventnum int,
+    CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum),
+    winner varchar(300)
 );

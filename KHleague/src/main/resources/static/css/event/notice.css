@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, li {
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.container_wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.top_container {
+    width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background: url(/images/탑사진/이벤트게시판사진.jpg) no-repeat center calc(50% + 90px) /cover;
+	
+}
+
+.container {
+    width: 1440px;
+    margin-top: 50px;
+}
+
+.notice_txt_box{
+    margin-top: 50px;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+    text-align: center;
+    padding: 20px;
+}
+
+.notice_txt{
+    font-size: 30px;
+    color: #B9B9C3;
+}
+
+.notice_wrap{
+	margin-top: 50px;
+	padding: 20px;
+}
+
+.view_option{
+    text-align: right;
+}
+
+.view_option select{
+    text-align: center;
+    width: 100px;
+    border: 1px solid #d9d9d9;
+    padding: 3px;
+}
+
+/* 보드 리스트 */
+.notice_list{
+	margin-top: 20px;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.row > div {
+    min-width: 0;
+}
+
+.row div:nth-child(1){
+    width: 100px;
+}
+
+.row div:nth-child(2){
+    width: 100px;
+	margin-left: 10px;
+}
+
+.row div:nth-child(3){
+    width: 700px;
+	margin-left: 10px;
+}
+
+.plus_info{
+    width: 20px !important;
+    height: 20px !important;
+    background-color: #01203F;
+    color: #FFFFFF !important;
+    border-radius: 50%;
+    padding: 3px;
+    text-align: center;
+	line-height: 12.5px;
+    cursor: pointer;
+}
+
+.row div:nth-child(4){
+    width: 200px;
+   	margin-left: 10px;
+}
+
+.row div:nth-child(5){
+    width: 200px;
+   	margin-left: 10px;
+}
+
+.row div:nth-child(6){
+    width: 100px;
+   	margin-left: 20px;
+}
+
+.plus_info:hover{
+    box-shadow: 2px 4px 0 rgba(51, 51, 51, 0.2);
+    transform: scale(1.20);
+}
+
+.close_info{
+    margin-left: 50px;
+      background-color: #01203F;
+      color: #FFFFFF;
+      border-radius: 5px;
+      padding: 5px;
+      text-align: center;
+}
+.close_info:hover{
+   box-shadow: 2px 4px 0 rgba(51, 51, 51, 0.2);
+   transform: scale(1.10);
+}
+
+#list{
+    border-bottom: 1px solid #d9d9d9;
+}
+#list:hover{
+    background-color: rgba(54,54,54,0.03);
+    transform: scale(1.02);
+    border-bottom: none;
+}
+#list.active{
+    background-color: rgba(54,54,54,0.03);
+    box-shadow: 2px 4px 0 rgba(51, 51, 51, 0.2);
+    transform: scale(1.02);
+    border-bottom: none;
+}
+
+.list_info{
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.list_info{
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #e5e7eb;
+    position: relative;
+}
+.list_info > .close_info{
+    position: absolute;
+    cursor: pointer;
+    top: 15px;
+    right: 15px;
+}
+
+.list_title{
+    padding: 10px;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.game_info{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid rgba(33, 33, 33, 0.15);
+}
+
+.list_contents{
+    margin-top: 20px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.winner {
+    margin-top: 20px;
+    background-color: rgba(54,54,54,0.03);
+    /* border-radius: 5px; */
+    display: flex;
+   justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap; /* 요소가 부모의 너비를 초과할 때 줄 바꿈 */
+    padding: 15px;
+}
+
+.winnername {
+    margin: 10px; /* 요소 간 간격 설정 */
+    display: flex;
+   justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    flex: 0 0 calc(20% - 20px); /* 각 요소가 20%의 너비를 차지하고 여백을 포함 */
+}
+
+.edit_box{
+    display: flex;
+    justify-content: right;
+	margin-top: 10px;
+}
+
+.edit_box a{
+    margin-right: 10px;
+    padding: 3px;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 400;
+	color: #000;
+}

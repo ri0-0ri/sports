@@ -89,6 +89,14 @@
 			<version>4.21.0</version> <!-- 최신 버전으로 업데이트하세요 -->
 		</dependency>
 		
+		<!-- json 관련 추가 -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- json 관련 추가 -->
+		
 	</dependencies>
 
 	<build>
