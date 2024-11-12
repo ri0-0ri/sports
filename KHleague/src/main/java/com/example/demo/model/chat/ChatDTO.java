@@ -4,9 +4,7 @@ import lombok.Data;
 
 @Data
 public class ChatDTO {
-	private int id;
-	private String userId; // 채팅 작성자 아이디
+	private String userId; // 사용자 ID
 	private String content; // 채팅 내용
-	private String createdAt; // 메시지 작성 시간
-	private int teamId; // 팀 구분 (팀1 or 팀2)
+	private int chatType; // 1 = 왼쪽 채팅, 2 = 오른쪽 채팅
 }

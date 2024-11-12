@@ -1,8 +1,5 @@
-// 투표 카운트 설정
-let votes = {
-	team1: 0,
-	team2: 0
-};
+// 로그인한 사용자 ID 가져오기
+const loggedInUserId = document.getElementById('user_info').getAttribute('data-user-id');
 
 // 타이머 설정
 let timer = document.getElementById('timer');
@@ -26,29 +23,61 @@ let countdown = setInterval(function() {
 	timer.innerText = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }, 1000);
 
-// 투표 함수
-function vote(team) {
-	// 최대 5번까지 투표 가능
-	if (votes[team] < 5) {
-		votes[team]++;
-		document.getElementById(`${team}_votes`).innerText = `${votes[team]} 표`;
-		updateVoteBar();
+// 전송 버튼 클릭 시 메시지 전송
+document.querySelectorAll('.send-btn').forEach(button => {
+	button.addEventListener('click', function() {
+		const chatType = this.closest('.chat-section').id === 'left_chat' ? 1 : 2;  // 왼쪽 채팅 = 1, 오른쪽 채팅 = 2
+		const messageContent = this.previousElementSibling.value.trim();  // 채팅 내용
 
-		if (votes[team] === 5) {
-			alert(`사용자당 최대 5표씩 투표 가능합니다!`);
+		if (messageContent) {
+			// 서버로 메시지 전송
+			sendMessageToServer(loggedInUserId, messageContent, chatType);
+		} else {
+			alert("메시지를 입력해주세요.");
 		}
-	} else {
-		alert(`사용자당 최대 5표씩 투표 가능합니다!`);
-	}
+
+		this.previousElementSibling.value = "";  // 메시지 입력칸 초기화
+	});
+});
+
+// 메시지를 백엔드로 전송하는 함수
+function sendMessageToServer(userId, content, chatType) {
+	fetch('/chat/sendMessage', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ userId, content, chatType }),
+	})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				console.log('메시지가 전송되었습니다.');
+				// 전송 후 UI 갱신 처리 (예: 새 메시지를 채팅창에 추가)
+				addMessageToChat(userId, content, chatType);
+			} else {
+				console.error('메시지 전송에 실패했습니다.');
+			}
+		})
+		.catch(error => console.error('Error:', error));
 }
 
-// 투표 바 업데이트
-function updateVoteBar() {
-	let totalVotes = votes.team1 + votes.team2;
-	let team1Percentage = (votes.team1 / totalVotes) * 100 || 0;
-	let team2Percentage = (votes.team2 / totalVotes) * 100 || 0;
+// 채팅 메시지를 화면에 추가하는 함수
+function addMessageToChat(userId, content, chatType) {
+	const chatContainer = chatType === 1 ? document.getElementById('left_chat_messages') : document.getElementById('right_chat_messages');
+	const messageElement = document.createElement('div');
+	messageElement.classList.add('chat_message');
 
-	document.querySelector('.left p').style.width = `${team1Percentage}%`;
-	document.querySelector('.right p').style.width = `${team2Percentage}%`;
+	const username = document.createElement('div');
+	username.classList.add('username');
+	username.textContent = userId;
+
+	const messageContent = document.createElement('div');
+	messageContent.classList.add('message-content');
+	messageContent.textContent = content;
+
+	messageElement.appendChild(username);
+	messageElement.appendChild(messageContent);
+
+	chatContainer.appendChild(messageElement);
 }
-
