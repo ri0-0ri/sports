@@ -1,5 +1,6 @@
-// 로그인한 사용자 ID 가져오기
+// 로그인한 사용자 ID 가져오기 (세션에서 가져오기)
 const loggedInUserId = document.getElementById('user_info').getAttribute('data-user-id');
+console.log(loggedInUserId);  // 여기서 로그로 확인
 
 // 타이머 설정
 let timer = document.getElementById('timer');
@@ -31,7 +32,7 @@ document.querySelectorAll('.send-btn').forEach(button => {
 
 		if (messageContent) {
 			// 서버로 메시지 전송
-			sendMessageToServer(loggedInUserId, messageContent, chatType);
+			sendMessageToServer(messageContent, chatType);
 		} else {
 			alert("메시지를 입력해주세요.");
 		}
@@ -41,20 +42,20 @@ document.querySelectorAll('.send-btn').forEach(button => {
 });
 
 // 메시지를 백엔드로 전송하는 함수
-function sendMessageToServer(userId, content, chatType) {
+function sendMessageToServer(content, chatType) {
 	fetch('/chat/sendMessage', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({ userId, content, chatType }),
+		body: JSON.stringify({ content, chatType }), // userId는 서버에서 세션으로 처리
 	})
 		.then(response => response.json())
 		.then(data => {
 			if (data.success) {
 				console.log('메시지가 전송되었습니다.');
 				// 전송 후 UI 갱신 처리 (예: 새 메시지를 채팅창에 추가)
-				addMessageToChat(userId, content, chatType);
+				addMessageToChat(loggedInUserId, content, chatType);  // 서버에서 사용자 ID 자동 처리
 			} else {
 				console.error('메시지 전송에 실패했습니다.');
 			}

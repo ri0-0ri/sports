@@ -68,7 +68,7 @@
 					<h3 th:text="${top3Fights[0].team1name}">윤경수</h3>
 				</div>
 				<!-- 로그인한 사용자 ID를 포함하는 요소 -->
-				<div id="user_info" data-user-id="apple"></div>
+				<div id="user_info" data-user-id="${session.loginUser}"></div>
 
 				<div class="chat-messages" id="left_chat_messages">
 					<!-- 메시지 내용은 여기에 동적으로 추가됩니다. -->
@@ -91,7 +91,7 @@
 					<h3 th:text="${top3Fights[0].team2name}">윤혜정</h3>
 				</div>
 				<!-- 로그인한 사용자 ID를 포함하는 요소 -->
-				<div id="user_info" data-user-id="apple"></div>
+				<div id="user_info" data-user-id="${session.loginUser}"></div>
 
 				<div class="chat-messages" id="right_chat_messages">
 					<!-- 메시지 내용은 여기에 동적으로 추가됩니다. -->
