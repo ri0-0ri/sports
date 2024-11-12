@@ -16,5 +16,7 @@ public interface MoneyMapper {
 	List<MoneyDTO> getallmoney();
 
 	void updatemoney(MoneyDTO money);
+
+	List<MoneyDTO> getmoneyByordernum(String userid, int ordernum);
 	
 }

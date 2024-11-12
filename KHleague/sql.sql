@@ -32,7 +32,7 @@ select * from buyList;
 select * from money;
 
 select * from user;
-update user set userpoint=11000 where userid="apple";
+update user set userpoint=11000 where userid="nanana";
 
 
 CREATE TABLE user (
@@ -411,7 +411,6 @@ CREATE TABLE fboard (
     chat_type INT,         -- 1 = 왼쪽 채팅, 2 = 오른쪽 채팅
     FOREIGN KEY (user_id) REFERENCES user(userid)
 );
-
 
 create table eboard(
    eboardnum int primary key auto_increment,

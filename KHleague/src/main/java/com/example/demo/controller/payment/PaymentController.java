@@ -166,13 +166,15 @@ public class PaymentController {
 			money.setOrdernum(ordernum);
 			mservice.putmoney(money);
 		}
-		// 적립금을 추가만 한 경우
-		money.setMoneyname("결제 적립금");
-		money.setChangeMoney("+"+plusReward);
-		// 오더넘버 넘겨주기
-		int ordernum = pservice.getorderlastnum();
-		money.setOrdernum(ordernum);
-		mservice.putmoney(money);
+		else {
+			// 적립금을 추가만 한 경우
+			money.setMoneyname("결제 적립금");
+			money.setChangeMoney("+"+plusReward);
+			// 오더넘버 넘겨주기
+			int ordernum = pservice.getorderlastnum();
+			money.setOrdernum(ordernum);
+			mservice.putmoney(money);
+		}
 		
 		// buynums가 있다? 장바구니에서 결제한것
 		// 장바구니(buylist) 객체를 결제했으면 주문내역(orderlist)로 옮겨주기

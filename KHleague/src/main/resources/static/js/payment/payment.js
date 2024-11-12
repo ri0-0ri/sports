@@ -65,13 +65,13 @@ $(document).ready(function () {
 		let sudannum;
 		switch (paymentMethod) {
 			case "포인트결제":
-				sudannum = "1"; // 예시로 1을 설정
+				sudannum = "1";
 				break;
 			case "간편결제":
-				sudannum = "2"; // 예시로 4를 설정
+				sudannum = "2";
 				break;
 			default:
-				sudannum = "3"; // 포인트결제
+				sudannum = "3"; // 적립금결제
 				break;
 		}
 		$('input[name="sudannum"]').val(sudannum);

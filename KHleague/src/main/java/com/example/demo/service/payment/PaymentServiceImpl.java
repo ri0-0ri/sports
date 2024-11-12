@@ -51,23 +51,26 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	public void change_state() {
 		List<OrderDTO> orderlists = omapper.getorders();
-		LocalDate now = LocalDate.now();
+		LocalDate yesterday = LocalDate.now();
 		for(OrderDTO order : orderlists) {
 			LocalDate orderdate = order.getOrderdatetime();		
-			long daysBetween = ChronoUnit.DAYS.between(orderdate, now);
+			long daysBetween = ChronoUnit.DAYS.between(orderdate, yesterday);
 			
-			if(daysBetween==1) {
-				order.setState("상품준비중");
-			}
-			else if(daysBetween==3) {
-				order.setState("배송준비중");
-			}
-			else if(daysBetween==5) {
-				order.setState("배송중");
-			}
-			else if(daysBetween==7) {
-				order.setState("배송완료");
-			}
+			System.out.println("Current date: " + yesterday);
+			System.out.println("Order date: " + order.getOrderdatetime());
+			System.out.println("Days between: " + daysBetween);
+			
+	        if (daysBetween >= 1 && daysBetween < 3) {
+	            order.setState("상품준비중");
+	        } else if (daysBetween >= 3 && daysBetween < 5) {
+	            order.setState("배송준비중");
+	        } else if (daysBetween >= 5 && daysBetween < 7) {
+	            order.setState("배송중");
+	        } else if (daysBetween >= 7) {
+	            order.setState("배송완료");
+	        }
+			
+			System.out.println("바뀐상황"+order.getState());
 			
 			omapper.updatestate(order);
 		}
@@ -81,6 +84,16 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	public List<OrderListDTO> getorderlistByordernum(int ordernum, String userid) {
 		return omapper.getorderlistByordernum(ordernum, userid);
+	}
+
+	@Override
+	public void updateorder(OrderDTO order) {
+		omapper.updatestate(order);
+	}
+
+	@Override
+	public void deleteorderList(int ordernum) {
+		omapper.deleteorderList(ordernum);
 	}
 
 }

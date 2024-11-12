@@ -66,4 +66,9 @@ public class MoneyServiceImpl implements MoneyService{
 		}
 	}
 
+	@Override
+	public List<MoneyDTO> getmoneyByordernum(String userid, int ordernum) {
+		return mmapper.getmoneyByordernum(userid, ordernum);
+	}
+
 }

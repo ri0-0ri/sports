@@ -209,7 +209,7 @@ public class MyPageController {
 		return buynum;
 	}
 	
-	@Scheduled(cron = "0 0 0 * * ?") 
+	@Scheduled(cron = "0 0 */8 * * ?")
 	public void change_state() {
 		pservice.change_state();
 	}

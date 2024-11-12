@@ -31,5 +31,7 @@ public interface UserMapper {
 	void putpoint(int point, String userid);
 
 	void updateUserReward(int newReward, String userid);
+
+	void updateUser(UserDTO user);
     
 }

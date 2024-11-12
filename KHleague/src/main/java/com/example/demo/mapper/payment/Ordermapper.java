@@ -31,4 +31,6 @@ public interface Ordermapper {
 
 	List<OrderListDTO> getorderlistByordernum(int ordernum, String userid);
 
+	void deleteorderList(int ordernum);
+
 }

@@ -64,4 +64,8 @@ public class UserService {
 	 userMapper.updateUserReward(newReward, userid);
 	 }
 
+	public void updateUser(UserDTO user) {
+		userMapper.updateUser(user);
+	}
+
 }
