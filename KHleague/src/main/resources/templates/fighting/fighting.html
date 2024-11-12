@@ -6,14 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/fighting/fighting.css">
 	<title>응원 게시판</title>
+	<script th:inline="javascript"></script>
 </head>
 
 <body>
 	<th:block th:replace="~{layout/header::header}"></th:block>
 	<div id="wrap">
-		<div class="page_title">
-			<h1>응원 게시판</h1>
-		</div>
+		<!-- 응원 게시판 내용 -->
 		<div class="fighting_title">
 			<div>
 				<div th:each="fight : ${top3Fights}">
@@ -24,16 +23,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="fighting_pic">
-				<div>
-					<p>
-					<h3 id="timer">03:23:12</h3>
-					</p>
-					<p>라이브가 곧 시작됩니다.</p>
-				</div>
-			</div>
 		</div>
 
+		<!-- 팀 투표 -->
 		<div class="paper">
 			<p class="tit">당신의 팀에 투표해보세요!</p>
 			<div>
@@ -42,16 +34,6 @@
 					<button onclick="vote('team1')">투표</button>
 				</div>
 				<div class="point">
-					<div>
-						<div class="left">
-							<p></p>
-							<span id="team1_votes"></span>
-						</div>
-						<div class="right">
-							<p></p>
-							<span id="team2_votes"></span>
-						</div>
-					</div>
 					<p>VS</p>
 				</div>
 				<div class="team">
@@ -61,18 +43,15 @@
 			</div>
 		</div>
 
+		<!-- 채팅 영역 -->
 		<div class="hello_logo">
-			<!-- 왼쪽 채팅 영역 -->
 			<div class="fight_left chat-section" id="left_chat">
 				<div class="fight_title">
 					<h3 th:text="${top3Fights[0].team1name}">윤경수</h3>
 				</div>
-				<!-- 로그인한 사용자 ID를 포함하는 요소 -->
 				<div id="user_info" data-user-id="${session.loginUser}"></div>
 
-				<div class="chat-messages" id="left_chat_messages">
-					<!-- 메시지 내용은 여기에 동적으로 추가됩니다. -->
-				</div>
+				<div class="chat-messages" id="left_chat_messages"></div>
 
 				<div class="chat-input-section">
 					<textarea class="chat-input" placeholder="메시지를 입력하세요..."></textarea>
@@ -80,22 +59,17 @@
 				</div>
 			</div>
 
-			<!-- 중앙 로고 영역 -->
 			<div class="fight_logo">
 				<img src="../images/VS.jpg" alt="">
 			</div>
 
-			<!-- 오른쪽 채팅 영역 -->
 			<div class="fight_right chat-section" id="right_chat">
 				<div class="fight_title">
 					<h3 th:text="${top3Fights[0].team2name}">윤혜정</h3>
 				</div>
-				<!-- 로그인한 사용자 ID를 포함하는 요소 -->
 				<div id="user_info" data-user-id="${session.loginUser}"></div>
 
-				<div class="chat-messages" id="right_chat_messages">
-					<!-- 메시지 내용은 여기에 동적으로 추가됩니다. -->
-				</div>
+				<div class="chat-messages" id="right_chat_messages"></div>
 
 				<div class="chat-input-section">
 					<textarea class="chat-input" placeholder="메시지를 입력하세요..."></textarea>
@@ -109,6 +83,9 @@
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 
 	<!-- External JS File -->
+	<script th:inline="javascript">
+		const loginUser = /*[[${session.loginUser}]]*/ '';  // 세션에서 사용자 ID를 받아옴, 예시로 'guest' 설정
+	</script>
 	<script src="/js/fighting/응원게시판.js"></script>
 </body>
 
