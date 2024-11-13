@@ -87,7 +87,7 @@
 										
 						<!-- 작성자만 보여주게하는 수정 박스 -->
 						<div class="edit_box" th:if="${session.loginUser == 'admin'}">
-							<a>수정</a>
+							<a onclick="modify_board(this)">수정</a>
 							<a onclick="delete_board(this)">삭제</a>
 						</div>
 					</div>

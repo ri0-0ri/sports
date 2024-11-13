@@ -65,9 +65,30 @@ public class EventContorller {
 		System.out.println(game);
 	}
 	
+	@GetMapping("modify")
+	public void modify(@RequestParam int eboardnum, Model model) {
+		EboardDTO eboard = eservice.geteboardByeboardnum(eboardnum);
+		model.addAttribute("eboard", eboard);
+		
+		int eventnum = eboard.getEventnum();
+		
+		EventDTO event = eservice.geteventByeventnum(eventnum);
+		model.addAttribute("event", event);
+		
+		GWillBoardDTO game = gwservice.getgame(event.getGwnum());
+		model.addAttribute("game", game);
+	}
+	
 	@PostMapping("addboard")
 	public String addboard(EboardDTO eboard) {
 		eservice.puteboard(eboard);			
+		return "redirect:/event/notice";			
+	}
+	
+	@PostMapping("updateboard")
+	public String updateboard(EboardDTO eboard) {
+		System.out.println(eboard);
+		eservice.updateeboard(eboard);
 		return "redirect:/event/notice";			
 	}
 	

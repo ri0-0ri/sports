@@ -8,4 +8,5 @@ public class EventDTO {
 	private int gwnum;
 	private String eventtype;
 	private String eventitem;
+	private String winner;
 }

@@ -389,18 +389,22 @@ create table events(
     gwnum int,
 	CONSTRAINT gwnum FOREIGN KEY (gwnum) REFERENCES g_will_board(gwnum) ON DELETE CASCADE,
     eventtype varchar(300),
-    eventitem varchar(300)
+    eventitem varchar(300),
+    winner varchar(300)
 );
+select * from events;
+drop table events;
 
 create table eboard(
 	eboardnum int primary key auto_increment,
     edate datetime default now(),
-    eboardcount int,
+    eboardcount int default 0,
     eboardtitle varchar(300),
     eboardcontent varchar(3000),
     eventcon varchar(300),
     eventnum int,
-	CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum),
-    winner varchar(300)
+    winner varchar(300),
+	CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum) ON DELETE CASCADE
 );
 select * from eboard;
+drop table eboard;
