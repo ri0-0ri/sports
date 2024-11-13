@@ -1,0 +1,51 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.payment.Ordermapper">
+	
+	<insert id="putorder">
+		insert into orders(deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum)
+		values(#{deliveryPlace}, #{deliveryMemo}, #{totalPrice}, #{sudannum}, #{userid}, #{ordername}, #{buynum})
+	</insert>
+	
+	<select id="getorderByuser">
+		select * from orders where userid=#{userid}
+	</select>
+	
+	<insert id="putorderList">
+		insert into orderList(ordernum, buynum, userid, goodsnum, size, quantity) values(#{ordernum}, #{buynum}, #{userid}, #{goodsnum}, #{size}, #{quantity});
+	</insert>
+	
+	<delete id="deletebuyList">
+		delete from buyList where buynum=#{buynum}
+	</delete>
+	
+	<select id="getorderlastnum">
+		SELECT ordernum FROM orders ORDER BY ordernum DESC LIMIT 1
+	</select>
+	
+	<select id="getorderlist">
+		select * from orderList where userid=#{userid}
+	</select>
+	
+	<select id="getorders">
+		select * from orders
+	</select>
+	
+	<update id="updatestate">
+	    UPDATE orders
+   	 	SET state = #{state}
+    	WHERE ordernum = #{ordernum}
+	</update>
+	
+	<select id="getorderByordernum">
+		select * from orders where ordernum=#{ordernum}
+	</select>
+	
+	<select id="getorderlistByordernum">
+		select * from orderList where ordernum=#{ordernum} and userid = #{userid}
+	</select>
+	
+	<delete id="deleteorderList">
+		delete from orderList where ordernum=#{ordernum}
+	</delete>
+
+</mapper>

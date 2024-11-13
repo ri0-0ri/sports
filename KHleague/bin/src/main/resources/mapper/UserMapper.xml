@@ -2,10 +2,50 @@
 <mapper namespace="com.example.demo.mapper.user.UserMapper">
 
    <insert id="insertUser">
-    INSERT INTO user (userid, username, userbirth, usergender, userphone, userpw, useraddr, userhomenum, userjoin)
-    VALUES (#{userid}, #{username}, #{userbirth}, #{usergender}, #{userphone}, #{userpw}, #{useraddr}, #{userhomenum}, #{userjoin});
+    INSERT INTO user (userid, username, userbirth, usergender, userphone, userpw, useraddr, userhomenum, userjoin, userReward)
+    VALUES (#{userid}, #{username}, #{userbirth}, #{usergender}, #{userphone}, #{userpw}, #{useraddr}, #{userhomenum}, #{userjoin}, 5000);
 </insert>
  <select id="findUserById" resultType="com.example.demo.model.UserDTO.UserDTO">
         SELECT * FROM user WHERE userid = #{userid}
     </select>
+    <update id="updateUsername">
+    UPDATE user 
+    SET username = #{value} 
+    WHERE userid = #{userid}
+</update>
+<update id="updateUserphone">
+    UPDATE user 
+    SET userphone = #{value} 
+    WHERE userid = #{userid}
+</update>
+
+<update id="updateUseraddr">
+    UPDATE user 
+    SET useraddr = #{value} 
+    WHERE userid = #{userid}
+</update>
+<update id="updateUserid">
+    UPDATE user 
+    SET userid = #{value} 
+    WHERE userid = #{userid}
+</update>
+
+<update id="putpoint">
+	UPDATE user 
+    SET userpoint = #{point} 
+    WHERE userid = #{userid}
+</update>
+
+<update id="updateUserReward">
+	UPDATE user 
+    SET userReward = #{newReward} 
+    WHERE userid = #{userid}
+</update>
+
+<update id="updateUser">
+	UPDATE user 
+    SET userReward = #{userReward}, userpoint = #{userpoint} 
+    WHERE userid = #{userid}
+</update>
+
 </mapper>

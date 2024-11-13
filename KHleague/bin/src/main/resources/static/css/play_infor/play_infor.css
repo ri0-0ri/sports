@@ -3,18 +3,22 @@
 	margin: 0;
 	padding: 0;
 }
-header{
+
+header {
 	width: 100%;
 	height: 100px;
 }
-#wrap{
+
+#wrap {
 	margin-top: 100px;
 }
+
 .page_title {
 	border-top: 1px solid #01203F;
 	width: 1440px;
 	margin: 0 auto;
 }
+
 .page_title h1 {
 	display: inline-block;
 	background-color: white;
@@ -22,19 +26,22 @@ header{
 	top: -20px;
 	padding-right: 20px;
 }
-#day_title_btn{
+
+#day_title_btn {
 	border: none;
 	background-color: white;
 }
-.infor_btn{
+
+.infor_btn {
 	width: 1440px;
 	margin: 0 auto;
-	display: flex; 
-    justify-content: space-evenly;
+	display: flex;
+	justify-content: space-evenly;
 	margin-top: 20px;
 	border: none;
 	outline: none;
 }
+
 .infor_btn button {
 	width: 133px;
 	height: 43px;
@@ -42,95 +49,297 @@ header{
 	color: white;
 	border-radius: 10px;
 }
-.day_title{
+
+.day_title {
 	display: flex;
 	width: 1440px;
 	margin: 0 auto;
-	display: flex; 
 	text-align: center;
 	justify-content: center;
 	margin-top: 50px;
 }
+
 .day_date {
 	margin-left: 40px;
 	margin-right: 40px;
 }
-.day_main{
+
+.day_main {
 	display: flex;
 	width: 1440px;
 	margin: 0 auto;
-	display: flex; 
-    justify-content: space-evenly;
+	justify-content: space-evenly;
 	margin-top: 25px;
 }
+
 #day_main_btn {
 	border: none;
 	background-color: white;
 }
-.days{
+
+.days {
 	text-align: center;
 	font-size: 20px;
 	line-height: 50px;
+	display: flex;
+	flex-direction: column;
+	transition: transform 0.3s ease;
+	/* 부드러운 이동 */
 }
-.today{
+
+#day_title_btn,
+#day_main_btn {
+	transition: transform 0.3s ease;
+	/* 부드러운 이동 */
+}
+
+.today {
 	font-weight: bold;
 	font-size: 35px;
 }
+
 .line {
-	/* position: absolute;  */
-	width: 40px; 
+	width: 40px;
 	border-top: 3px solid #01203F;
 	width: 1440px;
 	margin: 0 auto;
 	margin-top: 30px;
-  }
-  .play_infor{
+}
+
+.play_infor {
 	width: 1440px;
 	margin: 0 auto;
 	border-radius: 10px;
 	margin-top: 50px;
 	background-color: #f7f7f7;
-	
-  }
-  .play_infor_title{
+}
+
+.play_infor_title {
 	background-color: #01203F;
 	color: white;
 	height: 50px;
 	line-height: 50px;
-  }
-  .play_infor_title p {
+}
+
+.play_infor_title p {
 	padding-left: 30px;
-  }
- 
-  .play_infor_main{
+	font-weight: bold;
+	/* "예정" 텍스트를 두껍게 */
+}
+
+.play_infor_main {
 	display: flex;
-	line-height: 50px;
-  }
-  .play_infor_main div {
-	width: 480px;
-	display: flex;
-	text-align: center;
+	flex-direction: column;
+	/* 각 경기를 세로로 나열 */
+	gap: 20px;
+	/* 경기들 간의 간격 */
+	padding: 20px;
+	margin-top: 20px;
 	justify-content: center;
+	/* 중앙 정렬 */
+}
+
+.play_infor_main .hi {
+	display: flex;
+	/* 내부 요소들(경기 시간, 팀1, 팀2, 버튼)을 가로로 정렬 */
+	justify-content: space-between;
+	/* 각 항목들을 양쪽으로 정렬 */
+	align-items: center;
+	/* 수평 정렬 */
+	border-radius: 8px;
+	padding: 20px;
+	font-size: 14px;
+	width: 100%;
+	/* 너비를 100%로 설정 */
+	text-align: left;
+	/* 모든 텍스트를 왼쪽 정렬 */
+}
+
+.play_infor_main .hi div {
+	margin-bottom: 10px;
+}
+
+.play_infor_main div {
+	display: flex;
+	text-align: left;
+	/* 왼쪽 정렬 */
+	justify-content: flex-start;
+	/* 왼쪽 정렬 */
 	height: 50px;
 	line-height: 50px;
-	border-bottom: 1px solid #01203F;
-  }
-  .play_infor_main_btn{
+	margin: 0 auto;
+}
+
+.play_infor_main .hi div {
+	margin-right: 15px;
+	/* 각 요소 간 간격을 주기 위한 margin */
+}
+
+.play_infor_main .hi .game-time {
+	font-weight: bold;
+	width: 120px;
+	/* 경기 시간의 고정 크기 */
+	text-align: left;
+	/* 경기 시간 왼쪽 정렬 */
+}
+
+.play_infor_main .hi .team-info p {
+	margin: 5px 0;
+	/* 팀 이름과 상태 간 간격 */
+}
+
+.play_infor_main .hi .action-btn {
+	display: flex;
+	justify-content: center;
+	/* 버튼을 중앙 정렬 */
+	width: 120px;
+	/* 버튼의 고정 너비 */
+}
+
+.play_infor_main .hi .team-info {
+	display: flex;
+	flex-direction: column;
+	/* 팀 정보를 세로로 나열 */
+	justify-content: center;
+	text-align: left;
+	/* 왼쪽 정렬 */
+	width: 300px;
+	/* 팀 정보의 너비를 고정 */
+}
+
+.play_infor_main .hi .action-btn button {
+	width: 100%;
+	/* 버튼을 요소의 너비에 맞춰서 확장 */
+	background-color: #01203F;
+	color: white;
+	border: none;
+	padding: 8px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.play_infor_main_btn {
 	width: 50px;
 	height: 30px;
 	margin-top: 9px;
-  }
-  .infor_btn button, .play_infor_main_btn,#day_main_btn {
-    cursor: pointer;
+	background-color: #01203F;
+	color: white;
+	border-radius: 5px;
 }
+
+.infor_btn button,
+.play_infor_main_btn,
+#day_main_btn {
+	cursor: pointer;
+}
+
 /* js 구현 */
 .days p {
 	font-size: 20px;
 	text-align: center;
-  }
-  
-  .days.today p {
+}
+
+.days.today p {
 	font-weight: bold;
 	font-size: 35px;
-  }
-  
+}
+
+play_infor_main>div {
+	width: 150px;
+}
+
+.items {
+	width: 200px;
+}
+
+#zz {
+	width: 200px;
+}
+
+/* 날짜 컨트롤을 중앙에 배치 */
+.date-controls {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#games .game {
+	display: none;
+	/* 필터링을 위해 기본적으로 숨김 처리 */
+}
+
+/* 월 버튼 강조 효과 */
+.month {
+	position: relative;
+	padding: 10px 20px;
+	cursor: pointer;
+	text-align: center;
+	transition: transform 0.3s ease;
+}
+
+.month.active {
+	animation: glowing 1.5s ease-out infinite;
+	font-size: 25px;
+	color: #fff;
+	/* 강조된 텍스트 색상 */
+	background-color: #01203F;
+	/* 배경 색상 */
+}
+
+@keyframes glowing {
+	0% {
+		box-shadow: 0 0 5px #01203F, 0 0 10px #01203F, 0 0 15px #01203F, 0 0 20px #01203F;
+	}
+
+	50% {
+		box-shadow: 0 0 10px #01203F, 0 0 20px #01203F, 0 0 30px #01203F, 0 0 40px #01203F;
+	}
+
+	100% {
+		box-shadow: 0 0 5px #01203F, 0 0 10px #01203F, 0 0 15px #01203F, 0 0 20px #01203F;
+	}
+}
+
+.month p {
+	font-size: 20px;
+	line-height: 50px;
+}
+
+.month:hover {
+	transform: scale(1.2);
+}
+
+.days {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	font-size: 18px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+	.play_infor_main {
+		padding: 10px;
+	}
+
+	.play_infor_main .hi {
+		flex-direction: column;
+		/* 모바일에서는 세로로 나열 */
+		align-items: flex-start;
+		/* 왼쪽 정렬 */
+	}
+
+	.play_infor_main .hi .game-time,
+	.play_infor_main .hi .team-info,
+	.play_infor_main .hi .action-btn {
+		width: 100%;
+		margin-bottom: 10px;
+		/* 세로로 나열되므로 간격 추가 */
+	}
+
+	.play_infor_main .hi .action-btn button {
+		width: 100%;
+		/* 버튼을 화면 너비에 맞게 조정 */
+	}
+}

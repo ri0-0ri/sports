@@ -56,6 +56,10 @@
                             </select>
                         </div>
                     </div>
+					
+					<div class="goods_size_box" style="display: none;" th:if="${goods.goodstype == 'Accessories' or goods.goodstype == 'Other items'}">
+						    <input type="hidden" name="size" value="free" />
+						</div>
 
                     <div class="goods_num_box">
                         <p>수량</p>
@@ -65,11 +69,14 @@
 
 
                 <div class="payment_box">
-					<button type="button" class="go_payment" onclick="submitForm('/payment/payment')">
+					<button type="button" class="go_payment" onclick="submitForm('/payment/single_payment', event)">
 						BUY NOW
 					</button>
-					<button type="button" class="go_cart" onclick="submitForm('/mypage/mypage_buy')">
+					<button type="button" class="go_cart" onclick="submitForm('/mypage/mypage_buy', event)">
 						ADD TO CART
+					</button>
+					<button type="button" class="delete_wish" onclick="submitForm('/mypage/delete_wish', event)">
+						DELETE ITEM
 					</button>
                 </div>
 
@@ -90,7 +97,7 @@
 							<div id="order"> <a href="mypage_order">주문/배송 조회</a></div>
 							<div id="wish-list"><a href="mypage_wish">위시리스트</a></div>
 							<div id="bag"><a href="mypage_buy">장바구니</a></div>
-							<div id="money"><a href="mypage_money">적립금</a></div>
+							<div id="money"><a href="mypage_money">적립금/포인트</a></div>
                 <div class="line"></div>
                 <div id="logo_name">KH LEAGUE</div>
                 <div class="choices">
@@ -102,7 +109,10 @@
                 <div>
                     <h1>WISH LIST</h1>
                 </div>
-				<div class="no_goods" th:if="${goodsList == null or goodsList.size() == 0}">추가하신 상품이 없네요!</div>
+				<div class="no_goods" th:if="${goodsList == null or goodsList.size() == 0}">
+					<p>추가하신 상품이 없네요!</p>
+					<a href="/goods/goods">GO SHOP</a>
+				</div>
 				<div class="goods_wrap">
 					<div class="goods" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}"
 						th:id="${goods.goodstype}">

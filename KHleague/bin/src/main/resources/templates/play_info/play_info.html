@@ -2,11 +2,9 @@
 <html lang="en">
 
 <head>
-
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
 		integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/play_infor/play_infor.css">
@@ -16,232 +14,144 @@
 <body>
 	<th:block th:replace="~{layout/header::header}"></th:block>
 	<div id="wrap">
-
-		<!-- 제목과 카테고리 -->
 		<div class="page_title">
 			<h1>Sports NEWS</h1>
 		</div>
-		<div class="infor_btn">
-			<button>축구</button>
-			<button>야구</button>
-			<button>농구</button>
-			<button>배구</button>
-			<button>탁구</button>
-			<button>배드민턴</button>
-			<button>핸드볼</button>
-		</div>
-		<!-- 달력  -->
-		<div class="date">
-			<div class="day_title">
-				<button id="day_title_btn"><i class="fa-solid fa-angle-left"></i></button>
-				<div class="day_date" id="currentDate" data-current-date="2024-10-25">
-					<p>2024.10.25</p>
-				</div>
-				<button id="day_title_btn"><i class="fa-solid fa-angle-right"></i></button>
-			</div>
-			<div class="day_main">
 
+		<!-- 달력 -->
+		<div class="date">
+			<div class="day_main">
 				<button id="day_main_btn"><i class="fa-solid fa-angle-left"></i></button>
 				<div class="days">
-					<div>
-						<p>수</p>
-					</div>
-					<div>
-						<p>2</p>
+					<div class="day">
+						<p class="weekday-text"></p>
+						<p class="day-text"></p>
 					</div>
 				</div>
-				<div class="days">
-					<div>
-						<p>목</p>
-					</div>
-					<div>
-						<p>3</p>
-					</div>
+				<!-- 월들 -->
+				<div class="days month" id="month-1" onclick="filterGamesByMonth(1)">
+					<p>1월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>금</p>
-					</div>
-					<div>
-						<p>4</p>
-					</div>
+				<div class="days month" id="month-2" onclick="filterGamesByMonth(2)">
+					<p>2월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>토</p>
-					</div>
-					<div>
-						<p>5</p>
-					</div>
+				<div class="days month" id="month-3" onclick="filterGamesByMonth(3)">
+					<p>3월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>일</p>
-					</div>
-					<div>
-						<p>6</p>
-					</div>
+				<div class="days month" id="month-4" onclick="filterGamesByMonth(4)">
+					<p>4월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>월</p>
-					</div>
-					<div>
-						<p>7</p>
-					</div>
+				<div class="days month" id="month-5" onclick="filterGamesByMonth(5)">
+					<p>5월</p>
 				</div>
-				<div class="days today">
-					<div>
-						<p>오늘</p>
-					</div>
-					<div>
-						<p class="toda">8</p>
-					</div>
+				<div class="days month" id="month-6" onclick="filterGamesByMonth(6)">
+					<p>6월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>수</p>
-					</div>
-					<div>
-						<p>9</p>
-					</div>
+				<div class="days month" id="month-7" onclick="filterGamesByMonth(7)">
+					<p>7월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>목</p>
-					</div>
-					<div>
-						<p>10</p>
-					</div>
+				<div class="days month" id="month-8" onclick="filterGamesByMonth(8)">
+					<p>8월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>금</p>
-					</div>
-					<div>
-						<p>11</p>
-					</div>
+				<div class="days month" id="month-9" onclick="filterGamesByMonth(9)">
+					<p>9월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>토</p>
-					</div>
-					<div>
-						<p>12</p>
-					</div>
+				<div class="days month" id="month-10" onclick="filterGamesByMonth(10)">
+					<p>10월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>일</p>
-					</div>
-					<div>
-						<p>13</p>
-					</div>
+				<div class="days month" id="month-11" onclick="filterGamesByMonth(11)">
+					<p>11월</p>
 				</div>
-				<div class="days">
-					<div>
-						<p>월</p>
-					</div>
-					<div>
-						<p>14</p>
-					</div>
+				<div class="days month" id="month-12" onclick="filterGamesByMonth(12)">
+					<p>12월</p>
 				</div>
 				<button id="day_main_btn"> <i class="fa-solid fa-angle-right"></i></button>
 			</div>
 		</div>
 		<div class="line"></div>
+
+		<!-- 경기 예정 -->
 		<div class="play_infor">
 			<div class="play_infor_title">
-				<p>축구 프리스타일 리그</p>
+				<p>경기 예정</p>
 			</div>
 			<div class="play_infor_main">
-				<div>
-					<div>13:00</div>
-					<div>KH 스타디움</div>
+				<!-- 경기 일정이 없을 경우 메시지 표시 -->
+				<div th:if="${#lists.isEmpty(upcomingGames)}">
+					<p>해당 월에는 경기 일정이 없습니다.</p>
 				</div>
-				<div>
-					<div>윤경수 팀</div>
-					<div>12</div>
-					<div>종료</div>
-					<div>2</div>
-					<div>윤혜정 팀</div>
-				</div>
-				<div>
-					<button class="play_infor_main_btn">기록</button>
-				</div>
-			</div>
-			<div class="play_infor_main">
-				<div>
-					<div>13:00</div>
-					<div>KH 스타디움</div>
-				</div>
-				<div>
-					<div>윤경수 팀</div>
-					<div>12</div>
-					<div>종료</div>
-					<div>2</div>
-					<div>윤혜정 팀</div>
-				</div>
-				<div>
-					<button class="play_infor_main_btn">기록</button>
+
+				<div th:each="game : ${upcomingGames}" th:if="${game.team1score == null || game.team1score == '' || game.team2score == null || game.team2score == ''}" class="hi">
+					<div>
+						<div th:text="${game.gwtime}" id="zz" class="gwtime">13:00</div>
+					</div>
+					<div>
+						<div th:text="${game.team1name}" id="zz">윤경수 팀</div>
+						<div style="margin-left: 50px;">예정</div>
+						<div th:text="${game.team2name}" id="zz" style="margin-left: 200px;">윤혜정 팀</div>
+					</div>
+					<div>
+						<button class="play_infor_main_btn">
+							<a href="/fighting/fighting">응원</a>
+						</button>
+					</div>
 				</div>
 			</div>
-			<div class="play_infor_main">
-				<div>
-					<div>13:00</div>
-					<div>KH 스타디움</div>
-				</div>
-				<div>
-					<div>윤경수 팀</div>
-					<div>12</div>
-					<div>예정</div>
-					<div>2</div>
-					<div>윤혜정 팀</div>
-				</div>
-				<div>
-					<button class="play_infor_main_btn">응원</button>
-				</div>
-			</div>
+			<!--야미야미 얌얌이-->
+			<!-- 경기 종료 -->
 			<div class="play_infor_title">
-				<p>축구 프리스타일 리그</p>
+				<p>경기 종료</p>
 			</div>
 			<div class="play_infor_main">
-				<div>
-					<div>13:00</div>
-					<div>KH 스타디움</div>
+				<!-- 경기 종료가 없을 경우 메시지 표시 -->
+				<div th:if="${#lists.isEmpty(upcomingGames)}">
+					<p>해당 월에는 경기 종료 정보가 없습니다.</p>
 				</div>
-				<div>
-					<div>윤경수 팀</div>
-					<div>12</div>
-					<div>예정</div>
-					<div>2</div>
-					<div>윤혜정 팀</div>
-				</div>
-				<div>
-					<button class="play_infor_main_btn">응원</button>
-				</div>
-			</div>
-			<div class="play_infor_main">
-				<div>
-					<div>13:00</div>
-					<div>KH 스타디움</div>
-				</div>
-				<div>
-					<div>윤경수 팀</div>
-					<div>12</div>
-					<div>예정</div>
-					<div>2</div>
-					<div>윤혜정 팀</div>
-				</div>
-				<div>
-					<button class="play_infor_main_btn">응원</button>
+
+				<div th:each="game : ${upcomingGames}" th:if="${game.team1score != null && game.team1score != '' && game.team2score != null && game.team2score != ''}" class="hi">
+					<div>
+						<div th:text="${game.gEdate}" id="zz" class="gedate">13:00</div>
+					</div>
+					<div>
+						<div th:text="${game.team1name}" id="zz">윤경수 팀</div>
+						<div th:text="${game.team1score}" id="zz">12</div>
+						<div style="margin-left: -50px;">종료</div>
+						<div th:text="${game.team2score}" id="zz" style="margin-left: 100px;">2</div>
+						<div th:text="${game.team2name}" id="zz">윤혜정 팀</div>
+					</div>
+					<div>
+						<button class="play_infor_main_btn">기록</button>
+					</div>
 				</div>
 			</div>
 		</div>
-		<th:block th:replace="~{layout/footer::footer}"></th:block>
-		<script src="/js/play_infor/경기정보.js"></script>
-=======
-  
+
+	</div>
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+
+	<script src="/js/play_infor/경기정보.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="/js/index.js"></script>
+	<script>
+		// 월별 경기 필터링 함수
+		function filterGamesByMonth(month) {
+			// 월을 기준으로 서버에서 데이터를 가져오기 위해 URL을 수정
+			window.location.href = '/play_info/play_info/month?month=' + month;
+		}
+		
+		$(document).ready(function(){
+			$('.gwtime').each(function(){	
+				const gwtime = $(this).text().trim().replace("T", " ");
+				$(this).text(gwtime);
+			})
+			
+			$('.gedate').each(function(){	
+				const gedate = $(this).text().trim().replace("T", " ");
+				$(this).text(gedate);
+			})
+		})
+	</script>
+
 </body>
 
 </html>

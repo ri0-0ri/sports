@@ -21,7 +21,7 @@
 							<div id="order"> <a href="mypage_order">주문/배송 조회</a></div>
 							<div id="wish-list"><a href="mypage_wish">위시리스트</a></div>
 							<div id="bag"><a href="mypage_buy">장바구니</a></div>
-							<div id="money"><a href="mypage_money">적립금</a></div>
+							<div id="money"><a href="mypage_money">적립금/포인트</a></div>
                 <div class="line"></div>
                 <div id="logo_name">KH LEAGUE</div>
                 <div class="choices">
@@ -31,96 +31,45 @@
             </div>
             <div class="list">
                 <div>
-                    <h1>적립금</h1>
+                    <h1>적립금 / 포인트</h1>
                 </div>
                 <div class="price">
-                    <div class="money">
-                        <h3>보유 적립금</h3>
-                    </div>
-                    <div class="money1">99,999원</div>
-                    <div class="line1"></div>
-                    <div class="date">소멸 예정일</div>
-                    <div class="date1">2027-98-12 67,000원</div>
+					<div class="reward">							
+	                    <div class="money">
+	                        <h3>보유 적립금</h3>
+	                    </div>
+	                    <div class="money1" th:text="${user.userReward+' 원'}"></div>
+	                    <div class="line1"></div>
+					</div>
+					<div class="point">							
+					    <div class="money" id="point">
+					        <h3>보유 포인트</h3>
+					    </div>
+					    <div class="money1" th:text="${user.userpoint+' P'}"></div>
+
+					</div>
                 </div>
                 <div class="price-btn">
-                    <button>전체</button>
-                    <button>적립</button>
-                    <button>사용</button>
-                    <button>취소</button>
-                    <button>소멸</button>
+                    <button id="all">전체</button>
+                    <button id="reward">적립금</button>
+                    <button id="points">포인트</button>
+                    <button id="plus">충전</button>
+                    <button id="minus">사용</button>
+                    <button id="cancel">취소</button>
+                    <button id="end">소멸</button>
                 </div>
-
-                <div class="price_list">
+				
+                <div class="price_list" th:each="money:${money}" th:id="${money.moneyname}">
                     <div>
                         <div style="margin-bottom: 26px; color:#D9D9D9;">
-                            <p>2024.09.12</p>
+                            <p class="datetime">[[${money.moneydate}]]</p>
                         </div>
                         <div class="price-cash">
                             <div style="display: flex;">
-                                <div>적립</div>
-                                <div style="padding-left: 30px;">상품 구매</div>
+                                <div class="moneytype">[[${money.moneytype}]]</div>
+                                <div style="padding-left: 30px;">[[${money.moneyname}]]</div>
                             </div>
-                            <div>+ 9,800원</div>
-                        </div>
-                    </div>
-                    <div class="line2"></div>
-                </div>
-                <div class="price_list">
-                    <div>
-                        <div style="margin-bottom: 26px; color:#D9D9D9;">
-                            <p>2024.09.12</p>
-                        </div>
-                        <div class="price-cash">
-                            <div style="display: flex;">
-                                <div>적립</div>
-                                <div style="padding-left: 30px;">상품 구매</div>
-                            </div>
-                            <div>+ 9,800원</div>
-                        </div>
-                    </div>
-                    <div class="line2"></div>
-                </div>
-                <div class="price_list">
-                    <div>
-                        <div style="margin-bottom: 26px; color:#D9D9D9;">
-                            <p>2024.09.12</p>
-                        </div>
-                        <div class="price-cash">
-                            <div style="display: flex;">
-                                <div>적립</div>
-                                <div style="padding-left: 30px;">상품 구매</div>
-                            </div>
-                            <div>+ 9,800원</div>
-                        </div>
-                    </div>
-                    <div class="line2"></div>
-                </div> 
-                <div class="price_list">
-                    <div>
-                        <div style="margin-bottom: 26px; color:#D9D9D9;">
-                            <p>2024.09.12</p>
-                        </div>
-                        <div class="price-cash">
-                            <div style="display: flex;">
-                                <div>적립</div>
-                                <div style="padding-left: 30px;">상품 구매</div>
-                            </div>
-                            <div>+ 9,800원</div>
-                        </div>
-                    </div>
-                    <div class="line2"></div>
-                </div>
-                <div class="price_list">
-                    <div>
-                        <div style="margin-bottom: 26px; color:#D9D9D9;">
-                            <p>2024.09.12</p>
-                        </div>
-                        <div class="price-cash">
-                            <div style="display: flex;">
-                                <div>적립</div>
-                                <div style="padding-left: 30px;">상품 구매</div>
-                            </div>
-                            <div>+ 9,800원</div>
+                            <div>[[${money.changeMoney}]] 원</div>
                         </div>
                     </div>
                     <div class="line2"></div>
@@ -136,4 +85,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="/js/mypage/money.js"></script>
 </html>

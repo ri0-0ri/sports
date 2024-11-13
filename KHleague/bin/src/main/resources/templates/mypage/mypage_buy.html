@@ -2,144 +2,170 @@
 <html lang="en">
 
 <head>
-   <link rel="stylesheet" href="/css/mypage/mypage_buy.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<link rel="stylesheet" href="/css/mypage/mypage_buy.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 </head>
 
 <body>
-<th:block th:replace="~{layout/header::header}"></th:block>
+	<th:block th:replace="~{layout/header::header}"></th:block>
 
-<div class="modal" th:if="${goodsInfo != null and goodsInfo.size() > 0}" th:each="goods:${goodsInfo}" th:id="${goods.goodsnum}">
-    <div class="modal_goods_popup">
-        <div class="modal_goods_close_btn">
-            <div onclick="close_modal()">닫기</div>
-        </div>
+	<div class="modal" th:if="${goodsInfo != null and goodsInfo.size() > 0}" th:each="goods:${goodsInfo}"
+		th:id="${goods.goodsnum}">
+		<div class="modal_goods_popup">
+			<div class="modal_goods_close_btn">
+				<div onclick="close_modal()">닫기</div>
+			</div>
 
-        <div class="modal_goods_img">
-            <img th:src="${goods.goodsimg}" alt="">
-        </div>
+			<div class="modal_goods_img">
+				<img th:src="${goods.goodsimg}" alt="">
+			</div>
 
-        <div class="modal_goods_info">
-            <div class="goods_status">
-                <p class="new">NEW!</p>
-                <p class="hot">HOT!</p>
-            </div>
-
-            <div class="goods_name">
-                [[${goods.goodsname}]]
-            </div>
-
-            <div class="goods_price">
-                [[${goods.goodsprice}]]
-            </div>
-
-            <div class="goods_options" th:each="buyList:${MgoodsbuyInfo[goods.goodsnum]}">
-                <form th:id="${buyList.buynum}" method="post">
-                    <input type="hidden" name="userid" th:value="${session.loginUser}">
-                    <input type="hidden" name="goodsnum" th:value="${goods.goodsnum}">
-                    <input type="hidden" name="buynum" th:value="${buyList.buynum}">
-
-                    <div class="goods_size_box" th:if="${goods.goodstype != 'Accessories' and goods.goodstype != 'Other items'}">
-                        <p>사이즈</p>
-                        <div class="goods_size_option">
-                            <select name="size" id="">
-                                <option value="XL" th:selected="${buyList.size == 'XL'}">XL</option>
-                                <option value="L" th:selected="${buyList.size == 'L'}">L</option>
-                                <option value="M" th:selected="${buyList.size == 'M'}">M</option>
-                                <option value="S" th:selected="${buyList.size == 'S'}">S</option>
-                                <option value="XS" th:selected="${buyList.size == 'XS'}">XS</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="goods_num_box">
-                        <p>수량</p>
-                        <input type="number" class="quantity" name="quantity" min="1" th:value="${buyList.quantity}">
-                    </div>
-
-                    <div class="payment_box">
-                        <button type="submit" class="go_cart" onclick="submitForm('/mypage/mypage_buy_modify', event)">CHANGE OPTIONS</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-    <div id="wrap">
-        <div class="page_title">
-            <h1>MyPage</h1>
-        </div>
-        <div class="mypage">
-            <div class="mypage_cata">
-				<div id="profile"><img src="../images/Group 100.png" alt=""></div>
-							<div id="my_profile"><a href="mypage_profile">내 프로필</a></div>
-							<div id="order"> <a href="mypage_order">주문/배송 조회</a></div>
-							<div id="wish-list"><a href="mypage_wish">위시리스트</a></div>
-							<div id="bag"><a href="mypage_buy">장바구니</a></div>
-							<div id="money"><a href="mypage_money">적립금</a></div>
-                <div class="line"></div>
-                <div id="logo_name">KH LEAGUE</div>
-                <div class="choices">
-                    <div>로그아웃</div>
-                    <div>회원 탈퇴</div>
-                </div>
-            </div>
-            <div class="list">
-                <div>
-                    <h1>장바구니</h1>
-                </div>
-                <div class="buy_top">
-					<div>
-                    	<input type="checkbox" id="check1">
-                    	<label for="check1">전체 선택</label>
-					</div>
-					<a href="/payment/payment" class="go_buy">결제하기</a>
-                </div>
-                <div class="line1"></div>
-				
-				<div class="no_item_txt" th:if="${goodsBuyinfo == null or goodsBuyinfo.size() == 0}">
-					<p>장바구니가 비어있습니다!</p>
-					<a href="/goods/goods">GO SHOP</a>
+			<div class="modal_goods_info">
+				<div class="goods_status">
+					<p class="new">NEW!</p>
+					<p class="hot">HOT!</p>
 				</div>
 
-                <div class="item-list" th:if="${goodsBuyinfo != null and goodsBuyinfo.size() > 0}" th:each="goods:${goodsInfo}">
-                    <div>
-                        <input type="checkbox" id="check1">
-                        <label for="check1">10월 28일 발송 예정</label>
-                    </div>
-                    <div class="item">
-                        <div class="item-img"><img th:src="${goods.goodsimg}" alt=""></div>
-                        <div class="explain">
-                            <div>
-                                <h3>[[${goods.goodsname}]]</h3>
-                            </div>
-                            <div class="size" th:each="buyList:${MgoodsbuyInfo[goods.goodsnum]}">
-								<p th:text="${buyList.size != null and buyList.size != '' ? buyList.size : 'Free'}"></p>
-								<p>&nbsp; / &nbsp;</p>
-                                <p>[[${buyList.quantity}]] 개</p>
-                            </div>
-                            <div class="price"> [[${goods.goodsprice}]]원</div>
-                            <div class="item_btn">
-                                <button onclick="open_modal(this)" th:id="${goods.goodsnum}">옵션 변경</button>
-                                <button>쿠폰 사용</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+				<div class="goods_name">
+					[[${goods.goodsname}]]
+				</div>
 
-				<!-- 아이템 리스트 추가 -->
+				<div class="goods_price">
+					[[${goods.goodsprice}]]
+				</div>
 
-            </div>
-        </div>
-    </div>
+				<div class="goods_options" th:each="buyList:${MgoodsbuyInfo[goods.goodsnum]}" th:data-buynum="${buyList.buynum}">
+					 
+					<form th:id="${buyList.buynum}" method="post">
+						<input type="hidden" name="userid" th:value="${session.loginUser}">
+						<input type="hidden" name="goodsnum" th:value="${goods.goodsnum}">
+						<input type="hidden" name="buynum" th:value="${buyList.buynum}">
+
+						<div class="goods_size_box"
+							th:if="${goods.goodstype != 'Accessories' and goods.goodstype != 'Other items'}">
+							<p>사이즈</p>
+							<div class="goods_size_option">
+								<select name="size">
+									<option value="XL" th:selected="${buyList.size == 'XL'}">XL</option>
+									<option value="L" th:selected="${buyList.size == 'L'}">L</option>
+									<option value="M" th:selected="${buyList.size == 'M'}">M</option>
+									<option value="S" th:selected="${buyList.size == 'S'}">S</option>
+									<option value="XS" th:selected="${buyList.size == 'XS'}">XS</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="goods_num_box">
+							<p>수량</p>
+							<input type="number" class="quantity" name="quantity" min="1"
+								th:value="${buyList.quantity}">
+						</div>
+
+						<div class="payment_box">
+							<button type="button" class="go_cart"
+								onclick="submitForm('/mypage/mypage_buy_modify', event)">CHANGE OPTIONS</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="wrap">
+		<div class="page_title">
+			<h1>MyPage</h1>
+		</div>
+		<div class="mypage">
+			<div class="mypage_cata">
+				<div id="profile"><img src="../images/Group 100.png" alt=""></div>
+				<div id="my_profile"><a href="mypage_profile">내 프로필</a></div>
+				<div id="order"> <a href="mypage_order">주문/배송 조회</a></div>
+				<div id="wish-list"><a href="mypage_wish">위시리스트</a></div>
+				<div id="bag"><a href="mypage_buy">장바구니</a></div>
+				<div id="money"><a href="mypage_money">적립금/포인트</a></div>
+				<div class="line"></div>
+				<div id="logo_name">KH LEAGUE</div>
+				<div class="choices">
+					<div>로그아웃</div>
+					<div>회원 탈퇴</div>
+				</div>
+			</div>
+			<div class="list">
+				<div>
+					<h1>장바구니</h1>
+				</div>
+
+				<!-- 폼 보내기 -->
+				<form id="gogo_buy" method="post" action="/payment/payment">
+					<div class="buy_top">
+						<div>
+							<input type="checkbox" id="checkall">
+							<label for="checkall">전체 선택</label>
+						</div>
+						<button type="button" class="go_buy" onclick="go_buy(event)">결제하기</button>
+					</div>
+					<div class="line1"></div>
+
+					<div class="no_item_txt" th:if="${goodsBuyinfo == null or goodsBuyinfo.size() == 0}">
+						<p>장바구니가 비어있습니다!</p>
+						<a href="/goods/goods">GO SHOP</a>
+					</div>
+
+					<div class="item-list" th:if="${goodsBuyinfo != null and goodsBuyinfo.size() > 0}">
+						<div th:each="goods : ${goodsInfo}">
+							<div th:if="${MgoodsbuyInfo[goods.goodsnum]}">
+								<div th:each="buyList : ${MgoodsbuyInfo[goods.goodsnum]}">
+									
+									<input type="hidden" name="userid" th:value="${session.loginUser}">
+									<input type="hidden" name="goodsnum" th:value="${goods.goodsnum}">
+									
+									<div>
+										<input type="checkbox" id="checkbox"
+											th:value="${buyList.buynum}">
+										<label>10월 28일 발송 예정</label>
+									</div>
+									
+									<div class="item">
+									<input type="hidden" name="buynum" th:value="${buyList.buynum}">
+										<div class="item-img"><img th:src="${goods.goodsimg}" alt=""></div>
+										<div class="explain">
+											<div>
+												<h3>[[${goods.goodsname}]]</h3>
+											</div>
+
+											<div class="size">
+												<p
+													th:text="${buyList.size != null and buyList.size != '' ? buyList.size : 'Free'}">
+												</p>
+												<p>&nbsp; / &nbsp;</p>
+												<p>[[${buyList.quantity}]] 개</p>
+											</div>
+											<div class="price">[[${goods.goodsprice}]]원</div>
+											<div class="item_btn">
+												<button class="changebtn" type="button" th:attr="onclick='open_modal(this, '+ ${buyList.buynum} +')'" th:id="${goods.goodsnum}">옵션 변경</button>
+												<div class="deletebtn">삭제</div>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+				</form>
+			</div>
+		</div>
+	</div>
 
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/js/index.js"></script>
 <script src="/js/mypage/buy.js"></script>
+
 </html>

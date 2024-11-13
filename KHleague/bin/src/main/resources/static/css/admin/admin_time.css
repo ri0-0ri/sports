@@ -1,0 +1,202 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+header,
+footer {
+	width: 100%;
+	height: 100px;
+}
+
+.page_title {
+	border-top: 1px solid #01203F;
+	width: 1440px;
+	margin: 0 auto;
+
+}
+
+#wrap {
+	margin-top: 20px;
+}
+
+.page_title h1 {
+	display: inline-block;
+	background-color: white;
+	position: relative;
+	top: -20px;
+	padding-right: 20px;
+}
+
+.mypage {
+	width: 1440px;
+	margin: 0 auto;
+	display: flex;
+	margin-top: 50px;
+}
+
+.mypage_cata {
+	border: none;
+	width: 373px;
+	height: 838px;
+	justify-content: center;
+	text-align: center;
+	margin-right: 162px;
+	box-shadow: 0px 4px 8px rgba(0, 2, 40, 0.4);
+	/* 수평, 수직, 흐림, 그림자 색상 */
+}
+
+#profile {
+	width: 166px;
+	height: 166px;
+	border: 1px solid black;
+	margin: 0 auto;
+	border-radius: 50%;
+	margin-top: 88px;
+}
+
+#my_profile {
+	margin-top: 48px;
+}
+
+#order,
+#wish-list,
+#bag,
+#money {
+	margin-top: 25px;
+}
+
+.line {
+	margin: 0 auto;
+	width: 304px;
+	border-top: 3px solid #D9D9D9;
+	margin-top: 134px;
+}
+
+#logo_name {
+	margin-top: 15px;
+	color: #D9D9D9;
+}
+
+.choices {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	margin-top: 43px;
+	color: #D9D9D9;
+}
+
+.choices div:nth-child(1) {
+	margin-right: 27px;
+}
+
+.choices div:nth-child(2) {
+	margin-left: 27px;
+}
+
+
+.list {
+	width: 1200px;
+	/* border: 1px solid red; */
+}
+
+.cata_title {
+	margin-bottom: 20px;
+}
+
+.date_plus {
+	display: flex;
+	width: 974px;
+	border: 1px solid #01203F;
+	border-radius: 5px;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+	margin-bottom: 40px;
+}
+
+.date_plus div {
+	width: 250px;
+
+}
+
+#team1,
+#team2 {
+	width: 120px;
+}
+
+#game,
+#item, #event {
+	width: 120px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table tr:nth-child(1) {
+	border: 1px solid #01203F;
+	height: 30px;
+	line-height: 30px;
+}
+
+table tr:not(:first-child) td {
+	border: none;
+}
+
+table tr:not(:first-child) td {
+	height: 50px;
+	padding: 10px;
+	margin: 0;
+}
+
+table tr:nth-child(1) td {
+	border: 1px solid #01203F;
+	height: 30px;
+	line-height: 30px;
+}
+
+.date_plus button {
+	width: 80px;
+	height: 30px;
+}
+
+table button {
+	width: 80px;
+	height: 30px;
+}
+
+.date_plus button,
+table button {
+	background-color: #01203F;
+	color: white;
+	border: none;
+	border-radius: 5px;
+}
+
+#admin_user {
+	margin-top: 48px;
+}
+
+#admin_user a,
+#admin_event a,
+#admin_time a {
+	color: black;
+}
+
+#order,
+#admin_event,
+#admin_time {
+	margin-top: 25px;
+}
+
+#admin_user, #admin_event, #admin_time {
+	cursor: pointer;
+}
+
+.eventinfo{
+	border: 1px solid #D9D9D9;
+}
