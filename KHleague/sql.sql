@@ -16,22 +16,22 @@ use sports;
 -- drop table buyList;
 -- drop table money;
 -- drop table orderList;
-
--- select * from user;
--- select * from sports;
--- select * from team;
--- select * from player;
--- select * from goods;
--- select * from orders;
--- select * from g_will_board;
--- select * from g_end_board;
--- select * from fboard;
--- select * from eboard;
--- select * from wishList;
--- select * from buyList;
--- select * from money;
--- select * from orderList;
-
+drop table votes;
+select * from user;
+select * from sports;
+select * from team;
+select * from player;
+select * from goods;
+select * from orders;
+select * from g_will_board;
+select * from g_end_board;
+select * from fboard;
+select * from eboard;
+select * from wishList;
+select * from buyList;
+select * from money;
+select * from orderList;
+select * from votes;
 CREATE TABLE user (
     userid VARCHAR(300) PRIMARY KEY,
     userpw VARCHAR(300),
@@ -390,6 +390,15 @@ CREATE TABLE fboard (
     chat_type INT,         -- 1 = 왼쪽 채팅, 2 = 오른쪽 채팅
     FOREIGN KEY (user_id) REFERENCES user(userid)
 );
+CREATE TABLE fight_votes (
+    vote_id INT PRIMARY KEY auto_increment,    -- 경기 ID (어떤 경기인지 구별)
+    team1_vote INT DEFAULT 0,    -- team1의 누적 투표 수
+    team2_vote INT DEFAULT 0     -- team2의 누적 투표 수
+);
+
+INSERT INTO team_votes (team_id, votes) VALUES (1, 0);
+INSERT INTO team_votes (team_id, votes) VALUES (2, 0);
+-- 필요에 따라 추가
 
 create table events(
 	eventnum int primary key auto_increment,

@@ -23,6 +23,91 @@ let countdown = setInterval(function() {
 	timer.innerText = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }, 1000);
 
+// 투표 카운트 설정
+let votes = {
+	team1: 0,
+	team2: 0
+};
+
+// 총 투표 수
+let totalVotes = 0;
+
+// 최대 투표 수 설정
+const MAX_VOTES = 3;
+
+// 투표 함수 (팀에 대한 투표를 처리)
+function vote(team) {
+	// 총 투표 수가 3표 미만일 경우에만 투표 가능
+	if (totalVotes < MAX_VOTES) {
+		// 팀에 대한 투표 카운트를 증가
+		if (votes[team] < MAX_VOTES) {
+			votes[team]++;
+			totalVotes++;  // 전체 투표 수 증가
+
+			// 서버에 투표 요청
+			fetch(`/vote/voteForTeam?team=${team}`, {
+				method: 'POST',
+			})
+				.then(response => response.text())
+				.then(data => {
+					getVoteCounts();  // 투표 후 상태 갱신
+				})
+				.catch(error => {
+					console.error('투표 중 오류 발생:', error);
+				});
+		} else {
+			alert(`${team === 'team1' ? '윤경수' : '윤혜정'} 팀에 이미 최대 투표수(${MAX_VOTES}회)를 초과했습니다.`);
+		}
+	} else {
+		alert("사용자당 최대 3표씩 투표가 가능합니다!");
+	}
+}
+
+
+
+// 투표 수를 가져오는 함수 (실시간 갱신)
+function getVoteCounts() {
+	$.ajax({
+		url: '/vote/getVotes',
+		method: 'GET',
+		success: function(data) {
+			// 받은 데이터에서 투표 수를 업데이트
+			const team1Votes = data.team1Vote;
+			const team2Votes = data.team2Vote;
+
+			$('#team1_votes').text(team1Votes + '표');  // 팀1 투표 수를 'XX표'로 표시
+			$('#team2_votes').text(team2Votes + '표');  // 팀2 투표 수를 'XX표'로 표시
+
+			// 투표 수에 비례하여 배경 색상 너비 조정
+			updateVoteBackground(team1Votes, team2Votes);
+		},
+		error: function(error) {
+			console.error('투표 데이터 가져오기 실패:', error);
+		}
+	});
+}
+
+// 투표 수에 비례하여 배경 색상 너비를 조정하는 함수
+function updateVoteBackground(team1Votes, team2Votes) {
+	// 총 투표 수 계산
+	const totalVotes = team1Votes + team2Votes;
+
+	// 비율 계산 (0에서 100까지의 백분율로 변환)
+	const team1Percentage = totalVotes > 0 ? (team1Votes / totalVotes) * 100 : 0;
+	const team2Percentage = totalVotes > 0 ? (team2Votes / totalVotes) * 100 : 0;
+
+	// 팀1 배경 너비 조정 (빨간색)
+	$('.paper .point > div > div.left p').css('width', `${team1Percentage}%`);
+
+	// 팀2 배경 너비 조정 (파란색)
+	$('.paper .point > div > div.right p').css('width', `${team2Percentage}%`);
+}
+
+$(document).ready(function() {
+	// 페이지 로딩 시 투표 수를 가져옵니다
+	getVoteCounts();
+});
+
 // 전송 버튼 클릭 시 메시지 전송
 document.querySelectorAll('.send-btn').forEach(button => {
 	button.addEventListener('click', function() {

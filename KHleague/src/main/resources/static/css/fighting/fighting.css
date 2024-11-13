@@ -148,16 +148,63 @@ footer {
 	height: 100%;
 }
 
+/* 팀1(빨간색) 배경 */
 .paper .point>div>div.left p {
-	width: 10%;
+	width: 0%;
+	/* 초기값은 0%로 설정 */
 	margin-left: auto;
 	background: #FF3838;
+	/* 빨간색 */
+	padding-top: 18px;
+	text-align: center;
 }
 
+/* 팀2(파란색) 배경 */
 .paper .point>div>div.right p {
-	width: 10%;
+	width: 0%;
+	/* 초기값은 0%로 설정 */
 	margin-right: auto;
 	background: #0344DC;
+	/* 파란색 */
+	padding-top: 18px;
+	text-align: center;
+}
+
+/*ddd*/
+.point {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.point>div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	/* 각각의 'left'와 'right' 영역을 동일하게 나누기 */
+}
+
+.left,
+.right {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.left p,
+.right p {
+	margin: 0;
+	font-size: 20px;
+	/* 폰트 크기 예시 */
+	font-weight: bold;
+}
+
+.point>p {
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0 20px;
+	/* 'VS' 텍스트에 간격을 추가 */
 }
 
 .paper .point>div>div span {
@@ -184,6 +231,7 @@ footer {
 	text-align: center;
 	font-weight: 700;
 }
+
 
 .hello_logo {
 	width: 1440px;
