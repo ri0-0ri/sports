@@ -16,12 +16,13 @@
 	<div id="wrap">
 		<!-- 응원 게시판 내용 -->
 		<div class="fighting_title">
-			<div>
+			<div id="by">
 				<div th:each="fight : ${top3Fights}">
 					<div class="fighting_infor">
 						<h4 th:text="${fight.gwtime}">21:00</h4>
 						<div th:text="${fight.team1name}">윤경수 팀</div>
 						<div th:text="${fight.team2name}">윤혜정 팀</div>
+						<h4 th:text="${fight.gWnum}+'번 경기'">게임 번호</h4>
 					</div>
 				</div>
 			</div>
@@ -37,11 +38,11 @@
 
 		<!-- 팀 투표 -->
 		<div class="paper">
-			<p class="tit">당신의 팀에 투표해보세요!</p>
+			<p class="tit">당신의 팀에 투표해보세요!</br>경기가 곧 시작됩니다! </p>
 			<div>
 				<div class="team">
 					<div id="team1_name" th:text="${top3Fights[0].team1name}">윤경수 팀</div>
-				
+
 					<button onclick="vote('team1')">투표</button>
 				</div>
 				<div class="point">
