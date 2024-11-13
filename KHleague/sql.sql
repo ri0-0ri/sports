@@ -373,6 +373,16 @@ CREATE TABLE fboard (
     chat_type INT,         -- 1 = 왼쪽 채팅, 2 = 오른쪽 채팅
     FOREIGN KEY (user_id) REFERENCES user(userid)
 );
+-- CREATE TABLE fboard (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     user_id VARCHAR(255),  -- 사용자 ID
+--     content TEXT,          -- 채팅 내용
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 작성 시간
+--     chat_type INT,         -- 1 = 왼쪽 채팅, 2 = 오른쪽 채팅
+--     gWnum INT,             -- g_will_board의 gWnum을 참조
+--     FOREIGN KEY (user_id) REFERENCES user(userid),
+--     FOREIGN KEY (gWnum) REFERENCES g_will_board(gWnum) ON DELETE CASCADE
+-- );
 select * from fboard;
 CREATE TABLE votes (
     vote_id INT PRIMARY KEY auto_increment,    -- 경기 ID (어떤 경기인지 구별)
