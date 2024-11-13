@@ -38,11 +38,11 @@ footer {
 
 .fighting_infor {
 	border: 1px solid #ddd;
-	width: 170px;
+	width: 270px;
 	margin-right: 20px;
-	margin-bottom: 62px;
+	margin-bottom: 23px;
 	border-radius: 10px;
-	height: 123px;
+	height: 149px;
 	text-align: center;
 }
 
@@ -157,6 +157,7 @@ footer {
 	/* 빨간색 */
 	padding-top: 18px;
 	text-align: center;
+	color: white;
 }
 
 /* 팀2(파란색) 배경 */
@@ -168,6 +169,7 @@ footer {
 	/* 파란색 */
 	padding-top: 18px;
 	text-align: center;
+	color: white;
 }
 
 /*ddd*/
@@ -403,7 +405,23 @@ footer {
 	overflow-y: auto;
 	max-height: 300px;
 	max-height: 380px;
+	padding-top: 25px;
 	/* 채팅 메시지 영역을 늘리기 위해 높이 조정 */
+}
+/*스크롤바 ㅋㅋ*/
+.chat-messages::-webkit-scrollbar {
+	width: 10px;
+	border-radius: 5px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+	background-color: #ddd;
+	border-radius: 5px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+	background: #aaa;
+	border-radius: 5px;
 }
 
 .chat_message {

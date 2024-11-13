@@ -51,7 +51,7 @@ a{
 
 .go_btns{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 50px;
 }
 
@@ -60,7 +60,7 @@ a{
     color: #fff;
     padding: 30px;
     border-radius: 15px;
-    width: 40%;
+    width: 47%;
     position: relative;
 }
 

@@ -40,7 +40,8 @@
 			<p class="tit">당신의 팀에 투표해보세요!</p>
 			<div>
 				<div class="team">
-					<div id="team1_name">윤경수 팀</div>
+					<div id="team1_name" th:text="${top3Fights[0].team1name}">윤경수 팀</div>
+				
 					<button onclick="vote('team1')">투표</button>
 				</div>
 				<div class="point">
@@ -56,7 +57,7 @@
 				</div>
 
 				<div class="team">
-					<div id="team2_name">윤혜정 팀</div>
+					<div id="team2_name" th:text="${top3Fights[0].team2name}">윤경수 팀</div>
 					<button onclick="vote('team2')">투표</button>
 				</div>
 			</div>
