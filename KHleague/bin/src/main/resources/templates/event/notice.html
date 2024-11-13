@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/event/notice.css">
+    <title>KH REAGUE</title>
+</head>
+
+<body>
+	<th:block th:replace="~{layout/header::header}"></th:block>
+	<div class="top_container">
+	 </div>
+
+	 <div class="container_wrap">
+		<div class="container">
+			<div class="notice_txt_box">
+				<div class="notice_txt">
+					공지사항
+				</div>
+			</div>
+			
+			<div class="notice_wrap">
+				<div class="view_option">
+					<select>
+						<option value="">조회순</option>
+						<option value="">최신순</option>
+					</select>
+				</div>
+				
+				<div class="no_txt" th:if="${eboardlist == null || eboardlist.size()==0}">
+					작성된 글이 없습니다.
+				</div>
+				
+				<div class="notice_list" th:if="${eboardlist != null && eboardlist.size()>0}" th:each="eboard:${eboardlist}">
+					<div id="list" class="row">
+						<div class="eboardnum">[[${eboard.eboardnum}]]</div>
+						<div>[[${eboard.eboardcount}]]</div>
+						<div>[[${eboard.eboardtitle}]]</div>
+						<div class="adminId">admin</div>	
+						<div class="boardtime">[[${eboard.edate}]]</div>
+						<div class="plus_info">+</div>
+					</div>
+				
+					<!-- 클릭 시 여기로 세부 페이지 띄워주기 -->
+					<div class="list_info" style="display: none;" >
+						<div class="close_info">닫기</div>
+				
+						<div class="list_title">
+							[[${eboard.eboardtitle}]]
+						</div>
+				
+						<!-- 경기날짜, 팀1, 팀2 -->
+						<div class="game_info">
+							<div class="info_top">
+								<div>								
+									경기날짜
+								</div>
+					
+								<div class="list_date">
+									팀1
+								</div>
+					
+								<div class="list_date">
+									팀2
+								</div>
+							</div>
+							
+							<div class="info_bottom">								
+								<div class="infoboardtime">[[${eboard.game.gwtime}]]</div>
+								<div>[[${eboard.game.team1name}]]</div>
+								<div>[[${eboard.game.team2name}]]</div>
+							</div>
+						</div>
+				
+						<!-- 본문내용 -->
+						<div class="list_contents">
+							[[${eboard.eboardcontent}]]
+						</div>
+				
+						<!-- 참여하기 누르면 인원 여기에 추가 -->
+						<div class="winner">
+							<div class="winnername" th:if="${eboard.winner != null && eboard.winner != ''}">[[${eboard.winner}]]</div>
+							<div class="winnername" th:if="${eboard.winner == null || eboard.winner == ''}">미정</div>
+						</div>
+										
+						<!-- 작성자만 보여주게하는 수정 박스 -->
+						<div class="edit_box" th:if="${session.loginUser == 'admin'}">
+							<a>수정</a>
+							<a onclick="delete_board(this)">삭제</a>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				
+			</div>
+			
+			
+		</div>
+	 </div>
+
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/event/notice.js"></script>
+</html>

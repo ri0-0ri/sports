@@ -2,12 +2,13 @@
 function close_modal() {
     $('.modal').css('display', 'none');
 }
-function open_modal(element) {
+function open_modal(element, buynum) {
 	const goodsid = $(element).attr('id');
-	
-	const thismodal = $(`.modal#${goodsid}`);	
-    thismodal.css('display', 'block');
-	
+	console.log(buynum);
+	const thismodal = $(`.modal#${goodsid}`);
+	thismodal.find('.goods_options').hide();
+	thismodal.find(`.goods_options[data-buynum="${buynum}"]`).show();
+    thismodal.css('display', 'block');	
 }
 
 // 폼 제출 각각 action 설정해주기
@@ -43,3 +44,59 @@ function submitForm(actionUrl, event) {
 	        }
 	    });
 }
+
+// 전체선택 누르면 다 선택
+$(document).ready(function() {
+	function checkall(){
+		const checkall = $('#checkall');
+		const checkboxes = $('input[type="checkbox"]').not('#checkall');
+		checkall.click(function(){
+			checkboxes.prop('checked', checkall.is(':checked'));
+		});
+	}
+	checkall();
+});
+
+// 결제창 가기
+function go_buy(event) {
+    event.preventDefault();
+    const buynums = [];
+    
+    // 체크박스들 찾고
+    const checkboxes = $('input[type="checkbox"]:not(#checkall):checked');
+    checkboxes.each(function() {
+        const buynum = $(this).val();
+        buynums.push(buynum);
+    });
+
+    if (buynums.length > 0) {
+		const buynumsQS = buynums.map(buynum => `buynum=${buynum}`).join('&');
+		window.location.href = '/payment/payment?' + buynumsQS;
+    } else {
+        alert("상품을 선택해 주세요.");
+    }
+}
+
+// 장바구니 삭제
+function delete_buy() {
+    const buynum = parseInt($(this).closest('.item').find('input[name="buynum"]').val());
+    console.log("buynum:", buynum);
+	$.ajax({
+		type: 'POST',
+		url: '/mypage/deletebuy',
+		data: {buynum:buynum},
+		success: function(response) {
+			alert("상품이 삭제되었습니다!");
+			location.reload();
+		},
+		error: function(xhr, status, error) {
+			console.error("Submission failed:", xhr.responseText);
+		}
+	});
+}
+
+// jQuery로 click 이벤트 바인딩
+$(document).ready(function() {
+    // .deletebtn 클릭 시 delete_buy 함수 호출
+    $('.deletebtn').on('click', delete_buy);
+});

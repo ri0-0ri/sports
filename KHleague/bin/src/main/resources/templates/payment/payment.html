@@ -2,32 +2,28 @@
 <html lang="en">
 
 <head>
+	<link rel="icon" href="https://static.toss.im/icons/png/4x/icon-toss-logo.png" />
+	<link rel="stylesheet" type="text/css" href="/css/payment/style.css" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/payment/payment.css">
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://js.tosspayments.com/v2/standard"></script>
     <title>상품 결제 페이지</title>
 </head>
 
-<body>
+<body>	
     <div class="modal">
         <div class="modal_delivery_popup">
             <div class="delivery_memo">
                 <div class="memo_txt">배송메모 선택</div>
-                <div class="check_memo">
-                    선택 안함
-                </div>
-                <div class="check_memo">
-                    문앞에 놓아주세요.
-                </div>
-                <div class="check_memo">
-                    배송전 문자 남겨주세요.
-                </div>
-                <div class="check_memo">
-                    부재 시 연락 부탁드립니다.
-                </div>
-                <div class="check_memo" id="self_input">
-                    직접 입력
-                </div>
+                <div class="check_memo">배송 요청사항 없음.</div>
+                <div class="check_memo">문앞에 놓아주세요.</div>
+                <div class="check_memo">배송전 문자 남겨주세요.</div>
+                <div class="check_memo">부재 시 연락 부탁드립니다.</div>
+                <div class="check_memo" id="self_input">직접 입력</div>
                 <input type="text" class="delevery_txt_self" style="display: none;">
 
                 <div class="close_btn" onclick="close_modal()">
@@ -39,6 +35,9 @@
     </div>
 
     <th:block th:replace="~{layout/header::header}"></th:block>
+	
+	<!-- 결제 정보 제출 폼 -->
+	<form action="/payment/okpayment" method="post" id="paymentForm">		
 
     <div class="top_container">
         <div class="page_txt">상품 결제</div>
@@ -50,16 +49,23 @@
             <div class="addr">
                 <p>배송지</p>
                 <div class="addr_box">
-                    <div class="modify_addr_btn">
-                        변경
+                    <div class="modify_addr_btn" onclick="openPostCode()">
+                        주소선택
                     </div>
-                    <div class="addr_info">
-                        <div>김사과</div>
-                        <div>010-1234-1234</div>
-                        <div>서울특별시 역삼구 역삼동 KH아파트 1501호</div>
+                    <div class="user_info">
+                        <div th:text="${user.username}"></div>
+                        <div th:text="${user.userphone}"></div>
+                        <div th:if="${user.useraddr == '' or user.useraddr == null}" style="color: #FF1700;">
+							주소 정보가 없습니다! (필수입력)
+						</div>
+						<div class="addr_self_box">						
+						<input id="useraddr" type="text" th:value="${user.useraddr}" readonly /> 
+						<input type="text" id="userdetailaddr" placeholder="상세주소 입력"></input>
+						</div>
                     </div>
                     <div class="addr_self_txt">
-                        <div onclick="open_modal()" id="selected_delivery_txt">배송 메모를 선택해 주세요</div>
+                        <input type="text" hidden id="deliveryMemoInput" value="">
+						<div onclick="open_modal()" id="selected_delivery_txt">배송 메모를 선택해 주세요</div>
                     </div>
                 </div>
             </div>
@@ -67,50 +73,48 @@
             <div class="product">
                 <p>주문 상품</p>
                 <div class="product_box">
-                    <div class="product_info">
+                    <div class="product_info" th:each="buyList:${goodsBuyinfo}">
+						<input type="hidden" name="buynums" th:value="${buyList.buynum}">
+						<input type="hidden" th:value="${goodsMap[buyList.goodsnum].goodsnum}" class="goodsnums">
                         <div class="product_img">
-                            <img src="/images/굿즈/굿즈사진2.jpg" alt="">
+                            <img th:src="${goodsMap[buyList.goodsnum].goodsimg}" alt="">
                         </div>
 
                         <div class="product_view">
-                            <div class="team">
-                                FC 서울
-                            </div>
-                            <div class="product_name">
-                                혹한기 바람막이(black)
+                            <div class="product_name" th:text="${goodsMap[buyList.goodsnum].goodsname}">
+								
                             </div>
 
                             <div class="product_options">
-                                <div class="product_size">
-                                    M
-                                </div>
-                                <div class="product_num">
-                                    1개
-                                </div>
+                                <div class="product_size" th:text="${buyList.size != null and buyList.size != '' ? buyList.size : 'Free'}"></div>
+								<div style="display: flex;">										
+								    <div class="product_num" th:text="${buyList.quantity}">
+								    </div>
+								         <div>개</div>
+								</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="product_price">
-                        <div class="total_num">
-                            총 1건
+                        <div class="total_box">
+                            총&nbsp;<div class="total_num">[[${#lists.size(goodsBuyinfo)}]]</div>건
                         </div>
-                        <div class="price">
-                            <div>상품금액</div>
-                            <div>
-                                570,360 원
+                        <div class="price" th:each="buyList:${goodsBuyinfo}">
+                            <div>[[${goodsMap[buyList.goodsnum].goodsname}]]</div>
+                            <div th:with="productPrice=${goodsMap[buyList.goodsnum].goodsprice}" th:text="${productPrice * buyList.quantity + ' 원'}">
                             </div>
                         </div>
                         <div class="delivery">
                             <div>배송비</div>
                             <div>
-                                1,000,360 원
+                                5000 원
                             </div>
                         </div>
-                        <div class="total_price">
+                        <div class="total_price" th:each="buyList:${goodsBuyinfo}">
                             <div>총 결제금액</div>
                             <div>
-                                1,570,720 원
+								[[${total}]] 원
                             </div>
                         </div>
                     </div>
@@ -124,7 +128,7 @@
                     <div class="now_reward">
                         <div>현재 보유 적립금</div>
                         <div class="rewards">
-                            <div class="reward_num">5000</div>
+                            <div class="reward_num" th:text="${user.userReward}"></div>
                             <div>원</div>
                         </div>
                     </div>
@@ -136,7 +140,7 @@
                             <div class="inbox">
                                 <div class="use_txt">사용</div>
                                 <div class="input_area">
-                                    <input type="text" placeholder="0" id="use_reward">
+                                    <input type="text" value="0" id="use_reward" name="userReward">
                                     <div class="won">원</div>
                                 </div>
                             </div>
@@ -148,11 +152,15 @@
                     <div class="after_box">
                         <div class="privious">
                             <div>사용 전</div>
-                            <div>1,570,720 원</div>
+							<div style="display: flex;">		
+                            <div class="privious_reward">[[${total}]]</div><div>&nbsp;원</div>
+							</div>
                         </div>
                         <div class="after">
                             <div>사용 후</div>
-                            <div>1,560,720 원</div>
+							<div style="display: flex;">
+                            <div class="after_reward">[[${total}]]</div><div>&nbsp;원</div>
+							</div>
                         </div>
                     </div>
                 </div>
@@ -166,32 +174,40 @@
                             <div class="choose_btn">
                                 <div class="in_btn"></div>
                             </div>
-                            <div class="sudan">계좌결제</div>
+                            <div class="sudan">포인트결제</div>
                         </div>
-                        <div class="choose">
-                            <div class="choose_btn">
-                                <div class="in_btn"></div>
-                            </div>
-                            <div class="sudan">카드결제</div>
-                        </div>
-                        <div class="choose">
-                            <div class="choose_btn">
-                                <div class="in_btn"></div>
-                            </div>
-                            <div class="sudan">일반결제</div>
-                        </div>
+						
+						<div class="point" style="display: none;">
+							<div class="point_wrap">								
+								<div>보유 포인트</div>
+								<div class="point_box">								
+									<div th:text="${user.userpoint == null ? 0 : user.userpoint}" class="have_point"></div>
+									<p>p</p>
+								</div>							
+							</div>
+							<div class="point_wrap" id="for_point">								
+								<div>충전포인트</div>
+								<div class="point_box">								
+									<input type="text" name="userpoint" class="userpoint" value="0">
+									<p>p</p>
+									<div class="putpoint">충전</div>
+									<div class="cancelpoint" onclick="cancelpoint()">취소</div>
+								</div>							
+							</div>
+						</div>
+						
                         <div class="choose">
                             <div class="choose_btn">
                                 <div class="in_btn"></div>
                             </div>
                             <div class="sudan">간편결제</div>
-                        </div>
-
-                        <div class="pays">
-                            <img src="/images/결제/카카오페이.png" alt="">
-                            <img src="/images/결제/네이버페이.png" alt="">
-                            <img src="/images/결제/토스페이.png" alt="">
-                        </div>
+                        </div>                   
+                        <div class="choose">
+                            <div class="choose_btn" id="rewardpay">
+                                <div class="in_btn"></div>
+                            </div>
+                            <div class="sudan">적립금결제</div>
+                        </div>                   
                     </div>
 
                     <div class="payment_txt">
@@ -224,11 +240,125 @@
     </div>
 
     <div class="go_payment_area">
-        <div class="go_payment">
+        <div class="go_payment" style="cursor: pointer;" onclick="go_payment()">
             <div>총 결제금액</div>
-            <div>1,565,680 원</div>
+			<div style="display: flex;">				
+            <div class="after_reward">[[${total}]]</div><div>&nbsp;원</div>
+			</div>
         </div>
     </div>
+	
+	<input type="hidden" name="deliveryPlace">
+	<input type="hidden" name="deliveryMemo">
+	<input type="number" name="totalPrice" style="display: none;">
+	<input type="hidden" name="sudannum">
+	<input type="hidden" name="userid" th:value="${user.userid}" class="userid">
+	<input type="hidden" name="goodsnums">
+	<input type="hidden" name="ordername">
+	<input type="hidden" name="buynum">
+	
+	<div class="username" style="display: none;">[[${user.username}]]</div>
+	<div class="userphone" style="display: none;">[[${user.userphone}]]</div>
+	
+	</form>
+	
+	<!-- -----------------------------토스------------------------------- -->
+	<!-- 주문서 영역 -->
+	<div class="wrapper">
+	  <div class="box_section" style="padding: 40px 30px 50px 30px; margin-top: 30px; margin-bottom: 50px">
+	    <!-- 결제 UI -->
+	    <div id="payment-method"></div>
+	    <!-- 이용약관 UI -->
+	    <div id="agreement"></div>
+	    <!-- 쿠폰 체크박스 -->
+	    <div style="padding-left: 30px">
+	    </div>
+	    <!-- 결제하기 버튼 -->
+	    <button class="button" id="payment-button" style="margin-top: 30px">결제하기</button>
+	    <button class="button" id="payment-button" style="margin-top: 30px" onclick="close_payment()">결제취소</button>
+	  </div>
+	</div>
+	
+	<script>
+	  main();
+	  async function main() {
+		const total = parseInt(document.querySelector('.after_reward').textContent.trim());
+		const userid = document.querySelector('.userid').value;
+	  
+	    const button = document.getElementById("payment-button");
+	    const amount = {
+	      currency: "KRW",
+	      value: 100,
+	    };
+	    // ------  결제위젯 초기화 ------
+	    // TODO: clientKey는 개발자센터의 결제위젯 연동 키 > 클라이언트 키로 바꾸세요.
+	    // TODO: 구매자의 고유 아이디를 불러와서 customerKey로 설정하세요. 이메일・전화번호와 같이 유추가 가능한 값은 안전하지 않습니다.
+	    // @docs https://docs.tosspayments.com/sdk/v2/js#토스페이먼츠-초기화
+	    const clientKey = "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm";
+	    const customerKey = userid;
+	    const tossPayments = TossPayments(clientKey);
+	    // 회원 결제
+	    // @docs https://docs.tosspayments.com/sdk/v2/js#tosspaymentswidgets
+	    const widgets = tossPayments.widgets({
+	      customerKey,
+	    });
+	    // 비회원 결제
+	    // const widgets = tossPayments.widgets({customerKey: TossPayments.ANONYMOUS});
+
+	    // ------  주문서의 결제 금액 설정 ------
+	    // TODO: 위젯의 결제금액을 결제하려는 금액으로 초기화하세요.
+	    // TODO: renderPaymentMethods, renderAgreement, requestPayment 보다 반드시 선행되어야 합니다.
+	    // @docs https://docs.tosspayments.com/sdk/v2/js#widgetssetamount
+	    await widgets.setAmount(amount);
+
+	    await Promise.all([
+	      // ------  결제 UI 렌더링 ------
+	      // @docs https://docs.tosspayments.com/sdk/v2/js#widgetsrenderpaymentmethods
+	      widgets.renderPaymentMethods({
+	        selector: "#payment-method",
+	        // 렌더링하고 싶은 결제 UI의 variantKey
+	        // 결제 수단 및 스타일이 다른 멀티 UI를 직접 만들고 싶다면 계약이 필요해요.
+	        // @docs https://docs.tosspayments.com/guides/v2/payment-widget/admin#새로운-결제-ui-추가하기
+	        variantKey: "DEFAULT",
+	      }),
+	      // ------  이용약관 UI 렌더링 ------
+	      // @docs https://docs.tosspayments.com/sdk/v2/js#widgetsrenderagreement
+	      widgets.renderAgreement({
+	        selector: "#agreement",
+	        variantKey: "AGREEMENT",
+	      }),
+	    ]);
+
+		// ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
+	    // @docs https://docs.tosspayments.com/sdk/v2/js#widgetsrequestpayment
+	    button.addEventListener("click", async function () {
+		let pnames = "";
+			if(parseInt(document.querySelector('.total_num').textContent.trim()) > 1){		
+				pnames = document.querySelector('.product_name').textContent + "외 " + (parseInt(document.querySelector('.total_num').textContent.trim()) - 1) + "건";
+			}
+			else{
+				pnames = document.querySelector('.product_name').textContent
+			}				
+		const username = document.querySelector('.username').textContent;
+		const userphone = document.querySelector('.userphone').textContent.replace(/-/g, '');
+		
+		widgets.requestPayment({
+  			orderId: generateRandomString(),
+  			orderName: pnames,
+  			customerEmail: "",
+  			customerName: username,
+		}).then(function () {
+			document.getElementById("paymentForm").submit();
+		});
+
+	    });
+	  }
+	  
+
+	  function generateRandomString() {
+	    return window.btoa(Math.random()).slice(0, 20);
+	  }
+	</script>
 
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>

@@ -286,7 +286,7 @@ a{
     transition: transform 0.3s ease;
 }
 
-.go_cart, .go_wishlist{
+.go_cart, .go_wishlist, .delete_wish{
     margin-top: 5px;
     border: 1px solid #d9d9d9;
     color: #B9B9C3;
@@ -296,7 +296,7 @@ a{
 	background-color: #fff;
 }
 
-.go_cart:hover, .go_wishlist:hover{
+.go_cart:hover, .delete_wish:hover, .go_wishlist:hover{
     box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.2);
     transform: scale(1.02);
     transition: transform 0.3s ease;

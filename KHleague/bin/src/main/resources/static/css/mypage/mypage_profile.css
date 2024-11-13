@@ -111,16 +111,21 @@
     display: flex;
     justify-content: space-between;
 }
+.simple > p{
+
+display: flex;
+justify-content: space-between;
+}
 .simple{
     padding-left: 26px;
     padding-right: 26px;
     border: 1px solid black;
     padding-top: 10px;
- height: 280px;
+ height: 330px;
  border-radius: 10px;
  margin-bottom: 30px;
 }
-#change{
+.change{
     background-color: #01203F;
     color: white;
     border: none;
@@ -214,4 +219,65 @@ input:checked + .slider:before {
 /* 원형 스위치 */
 .round {
     border-radius: 34px;
+}
+/*모달*/
+/* 모달 */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.6); /* 배경 투명도 조정 */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto; /* 모달 위치 조정 */
+    padding: 30px; /* 패딩 증가 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* 그림자 효과 추가 */
+    width: 90%; 
+    max-width: 500px; /* 최대 너비 설정 */
+	height: 200px;
+}
+.modal-content input {
+	margin-top: 30px;
+}
+.close {
+    color: #888; /* X 버튼 색상 */
+    float: right;
+    font-size: 30px; /* 글씨 크기 조정 */
+    font-weight: bold;
+    margin-left: 10px; /* X 버튼과 모달 경계 사이 여백 추가 */
+cursor: pointer;
+}
+.closeModal{
+/*	background-color: green;*/
+	margin-left: 440px;
+	cursor: pointer;
+}
+.btn-search{
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	background-color: #01203F;
+	color: white;
+}
+#confirmUsername, #confirmUserphone, #confirmUseraddr{
+	width: 50px;
+	height: 30px;
+	background-color: #01203F;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.close:hover,
+.close:focus {
+    color: #ff0000; /* 호버 시 색상 변경 */
+    text-decoration: none;
+    cursor: pointer;
 }

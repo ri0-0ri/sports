@@ -1,0 +1,29 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.vote.VoteMapper">
+
+	<!-- 현재 투표 상태 조회 -->
+	<select id="getVotes" resultType="com.example.demo.model.vote.VoteDTO">
+		SELECT * FROM votes LIMIT 1
+	</select>
+
+	<!-- 팀1 투표 수 업데이트 -->
+	<update id="updateTeam1Vote">
+		UPDATE votes
+		SET team1_vote = #{votes}
+		WHERE vote_id = 1
+	</update>
+
+	<!-- 팀2 투표 수 업데이트 -->
+	<update id="updateTeam2Vote">
+		UPDATE votes
+		SET team2_vote = #{votes}
+		WHERE vote_id = 1
+	</update>
+
+	<!-- 새로운 투표 정보 삽입 -->
+	<insert id="insertVote">
+		INSERT INTO votes (team1_vote, team2_vote)
+		VALUES (#{team1Vote}, #{team2Vote})
+	</insert>
+
+</mapper>
