@@ -22,4 +22,12 @@ public interface EventMapper {
 
 	List<EboardDTO> geteboard();
 
+	void deleteeboard(int eboardnum);
+
+	EboardDTO geteboardByeboardnum(int eboardnum);
+
+	void updateeboard(EboardDTO eboard);
+
+	void updatecount(int eboardnum);
+
 }

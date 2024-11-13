@@ -108,4 +108,24 @@ public class AdminController {
 		eservice.deleteevent(eventnum);
 		return ResponseEntity.ok("이벤트 삭제 완료!");
 	}
+	
+	@PostMapping("deleteebaord")
+	public ResponseEntity deleteeboard(@RequestParam int eboardnum) {
+		System.out.println("이벤트보드넘버받아온것 "+eboardnum);
+		eservice.deleteeboard(eboardnum);
+		return ResponseEntity.ok("게시글 삭제 완료!");
+	}
+	
+	@GetMapping("admin_makeevent")
+	public void makeevent(Model model) {
+		List<EventDTO> eventlist = eservice.geteventlist();
+		model.addAttribute("eventlist", eventlist);
+	}
+	
+	@PostMapping("pluscount")
+	public ResponseEntity pluscount(@RequestParam int eboardnum) {
+		eservice.updatecount(eboardnum);
+		System.out.println("조회수증가함");
+		return ResponseEntity.ok("조회수 증가 완료!");
+	}
 }

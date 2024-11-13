@@ -79,10 +79,29 @@ function submitform(){
 	form.submit();
 }
 
-function delete_board(e){
-	console.log(e); 
-	const eboardnum = $(e).closest('.row').find('.eboardnum').text(); 
-	console.log('eboardnum:', eboardnum); 
+function submitform_update(){
+	const form = $('#updateform');
+
+	// 각 input, textarea의 값을 직접 가져와서 출력
+	const eventnum = $('input[name="eventnum"]').val();
+	const eboardtitle = $('input[name="eboardtitle"]').val();
+	const eboardcontent = $('textarea[name="eboardcontent"]').val();
+	const eventcon = $('input[name="eventcon"]').val();
+
+	// 콘솔에 출력
+	console.log('eventnum:', eventnum);
+	console.log('eboardtitle:', eboardtitle);
+	console.log('eboardcontent:', eboardcontent);
+	console.log('eventcon:', eventcon);
+	
+	form.submit();
+}
+
+function delete_board(e){	
+	const notice_list = $(e).closest('.notice_list'); 
+
+	const eboardnum = notice_list.find('.eboardnum').text();
+	console.log('eboardnum:', eboardnum);  // eboardnum 값 확인
 
     $.ajax({
         url: '/admin/deleteebaord',
@@ -97,3 +116,36 @@ function delete_board(e){
         }
     });
 }
+
+function modify_board(e){
+	const notice_list = $(e).closest('.notice_list'); 
+
+	const eboardnum = notice_list.find('.eboardnum').text();
+	console.log('eboardnum:', eboardnum);  // eboardnum 값 확인
+	
+	location.href = "/event/modify?eboardnum=" + eboardnum;
+}
+
+// 조회수
+$(document).ready(function() {
+    // .plus_info 클릭 시
+    $(".plus_info").on("click", function() {
+        const eboardnum = $(this).closest('.row').find('.eboardnum').text();
+		console.log("쿠키보드넘"+eboardnum);
+
+		$.ajax({
+		    url: '/admin/pluscount', 
+		    type: 'POST',
+		    data: { eboardnum: eboardnum }, 
+		    success: function(response) {
+		        if (response) {
+					console.log("쿠키증가완료");
+		            
+		        }
+		    },
+		    error: function() {
+		        alert("서버와의 통신에 실패했습니다.");
+		    }
+		});
+    });
+});

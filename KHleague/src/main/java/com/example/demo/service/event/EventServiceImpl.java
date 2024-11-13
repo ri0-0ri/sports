@@ -45,4 +45,24 @@ public class EventServiceImpl implements EventService{
 		return emapper.geteboard();
 	}
 
+	@Override
+	public void deleteeboard(int eboardnum) {
+		emapper.deleteeboard(eboardnum);
+	}
+
+	@Override
+	public EboardDTO geteboardByeboardnum(int eboardnum) {
+		return emapper.geteboardByeboardnum(eboardnum);
+	}
+
+	@Override
+	public void updateeboard(EboardDTO eboard) {
+		emapper.updateeboard(eboard);
+	}
+
+	@Override
+	public void updatecount(int eboardnum) {
+		emapper.updatecount(eboardnum);
+	}
+
 }
