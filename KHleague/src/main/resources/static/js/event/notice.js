@@ -41,3 +41,59 @@ document.querySelectorAll(".close_info").forEach(button => {
 		}, 500); // 애니메이션 시간과 맞추기
 	});
 });
+
+$(document).ready(function(){
+	$('.boardtime').each(function(){	
+		const boardtime = $(this).text().trim().replace("T", " ");
+		$(this).text(boardtime);
+	})
+	
+	$('.infoboardtime').each(function(){	
+		const infoboardtime = $(this).text().trim().replace("T", " ");
+		$(this).text(infoboardtime);
+	})
+})
+
+function back(){
+	const confirmAction = confirm("정말 작성을 취소하시겠습니까?");
+	if(confirmAction){
+		 window.history.back();
+	}
+}
+
+function submitform(){
+	const form = $('#writeform');
+
+	// 각 input, textarea의 값을 직접 가져와서 출력
+	const eventnum = $('input[name="eventnum"]').val();
+	const eboardtitle = $('input[name="eboardtitle"]').val();
+	const eboardcontent = $('textarea[name="eboardcontent"]').val();
+	const eventcon = $('input[name="eventcon"]').val();
+
+	// 콘솔에 출력
+	console.log('eventnum:', eventnum);
+	console.log('eboardtitle:', eboardtitle);
+	console.log('eboardcontent:', eboardcontent);
+	console.log('eventcon:', eventcon);
+	
+	form.submit();
+}
+
+function delete_board(e){
+	console.log(e); 
+	const eboardnum = $(e).closest('.row').find('.eboardnum').text(); 
+	console.log('eboardnum:', eboardnum); 
+
+    $.ajax({
+        url: '/admin/deleteebaord',
+        type: 'POST',
+        data: { eboardnum: eboardnum },
+        success: function (response) {
+            alert(response);
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error("이벤트보드 삭제 실패 : ", error);
+        }
+    });
+}

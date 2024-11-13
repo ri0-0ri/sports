@@ -81,9 +81,9 @@
 					<p>해당 월에는 경기 일정이 없습니다.</p>
 				</div>
 
-				<div th:each="game : ${upcomingGames}" class="hi">
+				<div th:each="game : ${upcomingGames}" th:if="${game.team1score == null || game.team1score == '' || game.team2score == null || game.team2score == ''}" class="hi">
 					<div>
-						<div th:text="${game.gwtime}" id="zz">13:00</div>
+						<div th:text="${game.gwtime}" id="zz" class="gwtime">13:00</div>
 					</div>
 					<div>
 						<div th:text="${game.team1name}" id="zz">윤경수 팀</div>
@@ -104,13 +104,13 @@
 			</div>
 			<div class="play_infor_main">
 				<!-- 경기 종료가 없을 경우 메시지 표시 -->
-				<div th:if="${#lists.isEmpty(endedGames)}">
+				<div th:if="${#lists.isEmpty(upcomingGames)}">
 					<p>해당 월에는 경기 종료 정보가 없습니다.</p>
 				</div>
 
-				<div th:each="game : ${endedGames}" class="hi">
+				<div th:each="game : ${upcomingGames}" th:if="${game.team1score != null && game.team1score != '' && game.team2score != null && game.team2score != ''}" class="hi">
 					<div>
-						<div th:text="${game.gEdate}" id="zz">13:00</div>
+						<div th:text="${game.gEdate}" id="zz" class="gedate">13:00</div>
 					</div>
 					<div>
 						<div th:text="${game.team1name}" id="zz">윤경수 팀</div>
@@ -138,6 +138,18 @@
 			// 월을 기준으로 서버에서 데이터를 가져오기 위해 URL을 수정
 			window.location.href = '/play_info/play_info/month?month=' + month;
 		}
+		
+		$(document).ready(function(){
+			$('.gwtime').each(function(){	
+				const gwtime = $(this).text().trim().replace("T", " ");
+				$(this).text(gwtime);
+			})
+			
+			$('.gedate').each(function(){	
+				const gedate = $(this).text().trim().replace("T", " ");
+				$(this).text(gedate);
+			})
+		})
 	</script>
 
 </body>

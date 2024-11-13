@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/event/notice.css">
+    <title>KH REAGUE</title>
+</head>
+
+<body>
+	<th:block th:replace="~{layout/header::header}"></th:block>
+	<div class="top_container">
+	 </div>
+
+	 <div class="container_wrap">
+		<div class="container">
+			<div class="notice_txt_box">
+				<div class="notice_txt">
+					게시판 작성
+				</div>
+			</div>
+			
+			<div class="write_container">
+				<form action="/event/addboard" method="post" id="writeform">
+					<input type="hidden" name="eventnum" th:value="${event.eventnum}">
+					<div class="gameinfo">
+							<div class="date">
+								<div>DATE</div>
+								<div class="time" th:text="${game.gwtime}"></div>
+							</div>
+							<div th:text="${game.team1name}"></div>
+							<div>VS</div>
+							<div th:text="${game.team2name}"></div>
+					</div>
+					<table>
+						<tr>
+							<th>제목</th>
+							<td><input type="text" name="eboardtitle" class="eboard_title" value=""></td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td><textarea name="eboardcontent" class="eboard_content"></textarea></td>
+						</tr>
+						<tr>
+							<th>이벤트 종류</th>
+							<td><div th:text="${event.eventtype}"></div></td>
+						</tr>
+						<tr th:if="${event.eventtype!='룰렛'}">
+							<th>조건</th>
+							<td><input type="text" name="eventcon" class="eboard_eventcon" value=""></td>
+						</tr>
+						<tr>
+							<th>보상</th>
+							<td><div th:text="${event.eventitem}"></div></td>
+						</tr>
+					</table>
+					
+					<div class="writebtn">						
+						<div class="addboard" onclick="submitform()">작성완료</div>
+						<div class="back" onclick="back()">작성취소</div>
+					</div>
+				</form>
+			</div>			
+			
+		</div>
+	 </div>
+
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/event/notice.js"></script>
+</html>

@@ -196,3 +196,7 @@ table button {
 #admin_user, #admin_event, #admin_time {
 	cursor: pointer;
 }
+
+.eventinfo{
+	border: 1px solid #D9D9D9;
+}

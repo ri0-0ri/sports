@@ -1,0 +1,28 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.event.EventMapper">
+	<insert id="putevent">
+		insert into events(gwnum, eventtype, eventitem) values(#{gwnum}, #{eventtype}, #{eventitem})
+	</insert>
+
+	<select id="geteventlist">
+		select * from events
+	</select>
+	
+	<delete id="deleteevent">
+		delete from events where eventnum=#{eventnum}
+	</delete>
+	
+	<select id="geteventByeventnum">
+		select * from events where eventnum=#{eventnum}
+	</select>
+	
+	<insert id="puteboard">
+		insert into eboard(eboardtitle, eboardcontent, eventcon, eventnum)
+		values(#{eboardtitle}, #{eboardcontent}, #{eventcon}, #{eventnum})
+	</insert>
+	
+	<select id="geteboard">
+		select * from eboard;
+	</select>
+
+</mapper>

@@ -5,4 +5,8 @@
 	select * from g_will_board order by gWnum desc
 </select>
 
+<select id="getgame">
+	select * from g_will_board where gWnum=#{gwnum}
+</select>
+
 </mapper>

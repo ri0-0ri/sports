@@ -4,6 +4,7 @@ import com.example.demo.modal.gWillBoardDTO.GWillBoardDTO;
 import com.example.demo.model.event.EventDTO;
 import com.example.demo.model.teamDTO.TeamDTO;
 import com.example.demo.service.team.TeamService;
+import com.example.demo.service.event.EventService;
 import com.example.demo.service.gWillBoard.GWillBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,9 @@ public class AdminController {
 
 	@Autowired
 	private GWillBoardService gWillBoardService;
+	
+	@Autowired
+	private EventService eservice;
 
 	@GetMapping("admin_time")
 	public String showAdmin_time(Model model) {
@@ -72,6 +76,7 @@ public class AdminController {
 		events.setGwnum(game);
 		events.setEventtype(event);
 		events.setEventitem(item);
+		eservice.putevent(events);
 		
 		return "redirect:/admin/admin_event";
 	}
@@ -82,11 +87,25 @@ public class AdminController {
 		// 데이터 확인용 로그 출력
 		return ResponseEntity.ok(boardList);
 	}
+	
+	@GetMapping("getevent")
+	public ResponseEntity<List<EventDTO>> getevent(){
+		List<EventDTO> eventlist = eservice.geteventlist();
+		System.out.println(eventlist);
+		return ResponseEntity.ok(eventlist);
+	}
 
 	// 경기 일정 취소
 	@PostMapping("cancel_schedule")
 	public String cancelSchedule(@RequestParam int gWnum) {
 		gWillBoardService.deleteGWillBoard(gWnum); // 해당 일정 삭제
 		return "redirect:/admin/admin_time"; // 취소 후 일정 목록 페이지로 리다이렉트
+	}
+	
+	@PostMapping("deleteevent")
+	public ResponseEntity deleteevent(@RequestParam int eventnum) {
+		System.out.println("이벤트넘버받아온것 "+eventnum);
+		eservice.deleteevent(eventnum);
+		return ResponseEntity.ok("이벤트 삭제 완료!");
 	}
 }

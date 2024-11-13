@@ -354,33 +354,16 @@ select * from orderList;
 CREATE TABLE g_will_board (
     gWnum INT PRIMARY KEY AUTO_INCREMENT,
     gWdate DATETIME,
+    gEdate DATETIME,
     team1name VARCHAR(300),
     team2name VARCHAR(300),
+	team1score INT,
+    team2score INT,
     gwtime DATETIME,
     CONSTRAINT gW_team1num FOREIGN KEY (team1name) REFERENCES team(teamname) ON DELETE CASCADE,
     CONSTRAINT gW_team2num FOREIGN KEY (team2name) REFERENCES team(teamname) ON DELETE CASCADE
 );
 select * from g_will_board;
-
-CREATE TABLE g_end_board (
-    gEnum INT PRIMARY KEY AUTO_INCREMENT,
-    gEdate DATETIME,
-    team1score INT,
-    team2score INT,
-     team1name VARCHAR(300),  
-    team2name VARCHAR(300), 
-    CONSTRAINT team1name FOREIGN KEY (team1name) REFERENCES team(teamname),
-    CONSTRAINT team2name FOREIGN KEY (team2name) REFERENCES team(teamname)
-);
-
-INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name) 
-VALUES ('2024-11-07 13:21:00', 1, 4, '전북 현대 모터스', '삼성 라이온즈');
-INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name) 
-VALUES ('2024-11-05 13:21:00', 1, 4, 'FC서울', '고양 소노');
-INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name) 
-VALUES ('2024-11-04 13:21:00', 1, 4, '수원 한국전력', '안산 ok저축은행');
-INSERT INTO g_end_board (gEdate, team1score, team2score, team1name, team2name) 
-VALUES ('2024-11-03 13:21:00', 1, 4, '전북 현대 모터스', '안산 ok저축은행');
 
 CREATE TABLE fboard (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -390,7 +373,8 @@ CREATE TABLE fboard (
     chat_type INT,         -- 1 = 왼쪽 채팅, 2 = 오른쪽 채팅
     FOREIGN KEY (user_id) REFERENCES user(userid)
 );
-CREATE TABLE fight_votes (
+select * from fboard;
+CREATE TABLE votes (
     vote_id INT PRIMARY KEY auto_increment,    -- 경기 ID (어떤 경기인지 구별)
     team1_vote INT DEFAULT 0,    -- team1의 누적 투표 수
     team2_vote INT DEFAULT 0     -- team2의 누적 투표 수
@@ -403,7 +387,7 @@ INSERT INTO team_votes (team_id, votes) VALUES (2, 0);
 create table events(
 	eventnum int primary key auto_increment,
     gwnum int,
-	CONSTRAINT gWnum FOREIGN KEY (gWnum) REFERENCES g_will_board(gWnum),
+	CONSTRAINT gwnum FOREIGN KEY (gwnum) REFERENCES g_will_board(gwnum) ON DELETE CASCADE,
     eventtype varchar(300),
     eventitem varchar(300)
 );
@@ -411,9 +395,12 @@ create table events(
 create table eboard(
 	eboardnum int primary key auto_increment,
     edate datetime default now(),
+    eboardcount int,
     eboardtitle varchar(300),
     eboardcontent varchar(3000),
+    eventcon varchar(300),
     eventnum int,
-    CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum),
+	CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum),
     winner varchar(300)
 );
+select * from eboard;

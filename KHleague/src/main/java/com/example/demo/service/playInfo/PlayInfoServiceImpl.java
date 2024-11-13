@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.playinfo.PlayInfoMapper;
 import com.example.demo.modal.gWillBoardDTO.GWillBoardDTO;
-import com.example.demo.model.dto.GEndBoard.GEndBoardDTO;
 
 @Service
 public class PlayInfoServiceImpl implements PlayInfoService {
@@ -21,17 +20,8 @@ public class PlayInfoServiceImpl implements PlayInfoService {
 	}
 
 	@Override
-	public List<GEndBoardDTO> getEndedGames() {
-		return playInfoMapper.getEndedGames();
-	}
-
-	@Override
 	public List<GWillBoardDTO> getUpcomingGamesByMonth(int month) {
 		return playInfoMapper.getUpcomingGamesByMonth(month); // 월별 경기 데이터 조회
 	}
 
-	@Override
-	public List<GEndBoardDTO> getEndedGamesByMonth(int month) {
-		return playInfoMapper.getEndedGamesByMonth(month); // 월별 종료된 경기 데이터 조회
-	}
 }

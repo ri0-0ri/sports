@@ -1,11 +1,14 @@
-package com.example.demo.service.event;
+package com.example.demo.mapper.event;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.model.event.EboardDTO;
 import com.example.demo.model.event.EventDTO;
 
-public interface EventService {
+@Mapper
+public interface EventMapper {
 
 	void putevent(EventDTO events);
 
