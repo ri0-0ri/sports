@@ -27,4 +27,15 @@ public class GWillBoardServiceImpl implements GWillBoardService {
     public void deleteGWillBoard(int gWnum) {
         gWillBoardMapper.deleteGWillBoard(gWnum); // 일정 삭제
     }
+
+	@Override
+	public GWillBoardDTO getgame(int gwnum) {
+		return gWillBoardMapper.getgame(gwnum);
+	}
+
+	@Override
+	public void updateendgame(GWillBoardDTO game) {
+		gWillBoardMapper.updateendgame(game);
+	}
+
 }

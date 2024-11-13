@@ -176,9 +176,6 @@ a{
 
 .game_info{
     margin-top: 10px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     padding: 10px;
     border-top: 1px solid rgba(33, 33, 33, 0.15);
 }
@@ -225,4 +222,116 @@ a{
     font-size: 14px;
     font-weight: 400;
 	color: #000;
+	cursor: pointer;
+}
+
+/*게시판 작성*/
+.write_container{
+	margin-top: 100px;
+	border: 1px solid #d9d9d9;
+	display: flex;
+	justify-content: center;
+}
+
+.write_container table{
+	padding: 20px;
+}
+
+.write_container table tr th{
+	  padding: 10px 50px 10px 20px;
+	  text-align: left;
+}
+
+.write_container table tr td{
+	width: 1000px;
+}
+
+.eboard_title{
+	height: 30px;
+	width: 1000px;
+	border: 1px solid #d9d9d9;
+	outline: none;
+	padding: 10px;
+}
+
+.eboard_content{
+	height: 100px;
+	width: 1000px;
+	border: 1px solid #d9d9d9;
+	outline: none;
+	padding: 10px;
+}
+
+.eboard_eventcon{
+	height: 50px;
+	width: 1000px;
+	border: 1px solid #d9d9d9;
+	outline: none;
+	padding: 10px;
+}
+
+.gameinfo div{
+	margin: 20px;
+	padding: 10px;
+	background-color: #01203F;
+	color: #fff;
+	text-align: center;
+	margin: 10px 0px;
+}
+
+.date{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.date div:last-child{
+	margin-left: 30px;
+}
+
+.writebtn{
+	margin: 20px 0px;
+	display: flex;
+	justify-content: right;
+}
+
+.addboard, .back{
+	border: 1px solid #d9d9d9;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.addboard{
+	margin-right: 10px;
+}
+
+.addboard:hover, .back:hover{
+	background-color: rgba(0, 0, 0, 0.1);
+	transition: background-color 0.5s ease;
+	color: #fff;
+}
+
+.no_txt{
+	text-align: center;
+}
+
+.info_top{
+	background-color: rgba(54, 54, 54, 0.03);
+	display: flex;
+	padding: 10px;
+}
+
+.info_bottom{
+	display: flex;
+	padding: 10px;
+}
+
+.info_top div:nth-child(1), .info_bottom div:nth-child(1){
+	width: 300px;
+}
+.info_top div:nth-child(2), .info_bottom div:nth-child(2){
+	width: 500px;
+}
+.info_top div:nth-child(3), .info_bottom div:nth-child(3){
+	width: 500px;
 }

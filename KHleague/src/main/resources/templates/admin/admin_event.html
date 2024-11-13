@@ -80,7 +80,10 @@
 					</tr>
 					
 					<!-- 해당 경기 밑에 추가-->
-				</table>
+					
+					<!-- 이벤트 추가 -->					
+					</table>
+				
 			</div>
 		</div>
 	</div>
@@ -96,24 +99,22 @@
 					url: '/admin/getList',
 					type: 'GET',
 					success: function (boardList) {
-						$('#time_table').find("tr:gt(0)").remove(); // 기존 데이터 삭제
-						boardList.forEach(board => {
-							console.log(board);  // board 객체 확인
 
+						boardList.forEach(board => {
 							// 날짜와 시간 분리
 							const formattedDate = board.gwdate.split('T')[0]; // 날짜만 표시
 							const formattedTime = board.gwtime.split('T')[1].slice(0, 5); // 시간만 표시 (HH:mm)
 
 							// 경기 일정을 테이블에 추가
 							const boardHtml = `
-		                        <tr th:id=${board.gwnum}>									
+		                        <tr class="game" id=${board.gwnum}>									
 		                            <td>${board.gwnum}</td>
 		                            <td>${board.team1name}</td>
 		                            <td>${board.team2name}</td>
 		                            <td>${formattedDate}</td>
 		                            <td>${formattedTime}</td>
-		                            <td><button class="info-btn">이벤트 확인</button></td>
-		                            <td><button class="cancel-btn">이벤트 삭제</button></td>
+		                            <td><button class="info-btn" data-gwnum="${board.gwnum}">확인</button></td>
+		                            <td><button class="cancel-btn">삭제</button></td>
 		                        </tr>
 		                    `;
 							$('#time_table').append(boardHtml);
@@ -127,7 +128,90 @@
 			getList(); // 페이지 로드 시 경기 일정 목록 불러오기
 		});
 		
-		// 이벤트 추가 함수
+		// 클릭했을때 추가된 이벤트 띄워주기
+		$(document).ready(function(){				
+			function getevent() {
+				$.ajax({
+					url: '/admin/getevent',
+					type: 'GET',
+					success: function (eventlist) {
+						eventlist.forEach(events => {
+							const eventgwnum = events.gwnum;
+							console.log("이벤트"+eventgwnum);
+							
+							$('.game').each(function(){
+								const gamegwnum = $(this).attr('id');
+								console.log("게임"+gamegwnum);
+								if(eventgwnum==gamegwnum){
+									const event = `
+										<tr class="eventinfo" style="display:none" id="${events.eventnum}">
+											<td>
+												<h4>이벤트</h4>
+											</td>
+											<td class="eventtype" colspan="2">${events.eventtype}</td>
+											<td>
+												<h4>보상</h4>
+											</td>
+											<td class="eventitem" colspan="2">${events.eventitem}</td>
+											<td><button class="go-btn">게시판 작성</button></td>
+										</tr>
+									`;
+									$(this).after(event);
+								}
+							})
+							
+						});
+					},
+					error: function (xhr, status, error) {
+						console.error("이벤트 리스트 불러오기 실패 : ", error);
+					}
+				});
+			}
+			getevent();
+	
+		});
+		
+		// 클릭했을때 보여주기
+		$(document).on('click', '.info-btn', function() {
+			const gameRow = $(this).closest('tr.game');
+			const eventRow = gameRow.next('.eventinfo'); 
+			
+			if (eventRow.css('display') === 'none'){
+				eventRow.css('display', 'table-row');
+				$(this).text("감추기");
+			}
+			else {
+				eventRow.css('display', 'none');
+				$(this).text("확인");
+			}
+		});	
+		
+		// 클릭했을때 삭제
+		$(document).on('click', '.cancel-btn', function() {
+			const gameRow = $(this).closest('tr.game');
+			const eventRow = gameRow.next('.eventinfo');
+			const eventnum = eventRow.attr('id');
+			console.log(eventnum);
+			$.ajax({
+				url: '/admin/deleteevent',
+				type: 'POST',
+				data: {eventnum:eventnum},
+				success: function (response) {
+					alert(response);
+					location.reload();
+				},
+				error: function (xhr, status, error) {
+					console.error("이벤트 삭제 실패 : ", error);
+				}
+			});
+		});
+		
+		// 클릭했을때 게시판 작성으로 가기
+		$(document).on('click', '.go-btn', function() {
+			const eventRow = $(this).closest('tr.eventinfo');
+			const eventnum = eventRow.attr('id');
+			location.href = "/event/write?eventnum=" + eventnum;
+		});		
 		
 	</script>
 </body>

@@ -9,4 +9,8 @@ public interface GWillBoardService {
     
     List<GWillBoardDTO> getgWillList();
     void deleteGWillBoard(int gWnum); // 일정 삭제 메서드
+
+	GWillBoardDTO getgame(int gwnum);
+
+	void updateendgame(GWillBoardDTO game);
 }

@@ -8,22 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.mapper.GEndBoard.GEndBoardMapper;
 import com.example.demo.mapper.gWillBoard.GWillBoardMapper;
 import com.example.demo.modal.gWillBoardDTO.GWillBoardDTO;
-import com.example.demo.model.dto.GEndBoard.GEndBoardDTO;
-import com.example.demo.service.GEndBoard.GEndBoardService;
+import com.example.demo.service.gWillBoard.GWillBoardService;
 
 @Service
 public class GameScheduleService {
+	
+	@Autowired
+	private GWillBoardService gwservice;
+	
 	@Autowired
 	private GWillBoardMapper gWillBoardMapper;
-
-	@Autowired
-	private GEndBoardMapper gEndBoardMapper;
-
-	@Autowired
-	private GEndBoardService gEndBoardService;
 
 	// 일정이 끝난 경기를 g_end_board로 이동시키고, 랜덤 점수 추가
 	@Scheduled(fixedRate = 60000) // 1분마다 체크
@@ -44,19 +40,12 @@ public class GameScheduleService {
 				int team1score = random.nextInt(11); // 0 ~ 10 사이의 랜덤 점수
 				int team2score = random.nextInt(11); // 0 ~ 10 사이의 랜덤 점수
 
-				// GEndBoardDTO 생성
-				GEndBoardDTO endGame = new GEndBoardDTO();
-				endGame.setTeam1name(game.getTeam1name());
-				endGame.setTeam2name(game.getTeam2name());
-				endGame.setTeam1score(team1score);
-				endGame.setTeam2score(team2score);
-				endGame.setGEdate(currentTime); // 경기 종료 시간은 현재 시간으로 설정
+				game.setTeam1score(team1score);
+				game.setTeam2score(team2score);
+				game.setGEdate(currentTime); // 경기 종료 시간은 현재 시간으로 설정
 
-				// g_end_board에 경기 종료 기록 추가
-				gEndBoardService.addGEndBoard(endGame);
-
-				// g_will_board에서 해당 경기 삭제
-				gWillBoardMapper.deleteGWillBoard(game.getGWnum());
+				// 경기 종료 기록 추가
+				gwservice.updateendgame(game);
 			}
 		}
 	}

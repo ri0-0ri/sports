@@ -29,13 +29,17 @@
 					</select>
 				</div>
 				
-				<div class="notice_list">
+				<div class="no_txt" th:if="${eboardlist == null || eboardlist.size()==0}">
+					작성된 글이 없습니다.
+				</div>
+				
+				<div class="notice_list" th:if="${eboardlist != null && eboardlist.size()>0}" th:each="eboard:${eboardlist}">
 					<div id="list" class="row">
-						<div>보드넘버</div>
-						<div>조회수</div>
-						<div>보드제목</div>
-						<div class="adminId">관리자아이디</div>	
-						<div>작성일</div>
+						<div class="eboardnum">[[${eboard.eboardnum}]]</div>
+						<div>[[${eboard.eboardcount}]]</div>
+						<div>[[${eboard.eboardtitle}]]</div>
+						<div class="adminId">admin</div>	
+						<div class="boardtime">[[${eboard.edate}]]</div>
 						<div class="plus_info">+</div>
 					</div>
 				
@@ -44,38 +48,47 @@
 						<div class="close_info">닫기</div>
 				
 						<div class="list_title">
-							보드제목
+							[[${eboard.eboardtitle}]]
 						</div>
 				
 						<!-- 경기날짜, 팀1, 팀2 -->
 						<div class="game_info">
-							<div class="profile">								
-								경기날짜
+							<div class="info_top">
+								<div>								
+									경기날짜
+								</div>
+					
+								<div class="list_date">
+									팀1
+								</div>
+					
+								<div class="list_date">
+									팀2
+								</div>
 							</div>
-				
-							<div class="list_date">
-								팀1
-							</div>
-				
-							<div class="list_date">
-								팀2
+							
+							<div class="info_bottom">								
+								<div class="infoboardtime">[[${eboard.game.gwtime}]]</div>
+								<div>[[${eboard.game.team1name}]]</div>
+								<div>[[${eboard.game.team2name}]]</div>
 							</div>
 						</div>
 				
 						<!-- 본문내용 -->
 						<div class="list_contents">
-							본문내용
+							[[${eboard.eboardcontent}]]
 						</div>
 				
 						<!-- 참여하기 누르면 인원 여기에 추가 -->
 						<div class="winner">
-							<div class="winnername">당첨자</div>
+							<div class="winnername" th:if="${eboard.winner != null && eboard.winner != ''}">[[${eboard.winner}]]</div>
+							<div class="winnername" th:if="${eboard.winner == null || eboard.winner == ''}">미정</div>
 						</div>
 										
 						<!-- 작성자만 보여주게하는 수정 박스 -->
-						<div class="edit_box">
+						<div class="edit_box" th:if="${session.loginUser == 'admin'}">
 							<a>수정</a>
-							<a>삭제</a>
+							<a onclick="delete_board(this)">삭제</a>
 						</div>
 					</div>
 				</div>

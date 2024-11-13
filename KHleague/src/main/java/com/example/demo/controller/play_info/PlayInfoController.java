@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.modal.gWillBoardDTO.GWillBoardDTO;
-import com.example.demo.model.dto.GEndBoard.GEndBoardDTO;
 import com.example.demo.service.playInfo.PlayInfoService;
 
 import java.util.List;
@@ -27,13 +26,10 @@ public class PlayInfoController {
 	// 경기 정보 페이지
 	@GetMapping("play_info")
 	public String showPlayInfoPage(Model model) {
-		// 경기 예정 데이터 가져오기
+		// 경기데이터 가져오기
 		List<GWillBoardDTO> upcomingGames = playInfoService.getUpcomingGames();
-		// 경기 종료 데이터 가져오기
-		List<GEndBoardDTO> endedGames = playInfoService.getEndedGames();
-
-		model.addAttribute("upcomingGames", upcomingGames); // 예정된 경기 데이터
-		model.addAttribute("endedGames", endedGames); // 종료된 경기 데이터
+		model.addAttribute("upcomingGames", upcomingGames); // 경기 데이터
+		System.out.println(upcomingGames);
 		return "play_info/play_info"; // 반환할 템플릿 경로
 	}
 
@@ -42,11 +38,8 @@ public class PlayInfoController {
 	public String showPlayInfoByMonth(@RequestParam("month") int month, Model model) {
 		// 월별 경기 예정 데이터
 		List<GWillBoardDTO> upcomingGamesByMonth = playInfoService.getUpcomingGamesByMonth(month);
-		// 월별 경기 종료 데이터
-		List<GEndBoardDTO> endedGamesByMonth = playInfoService.getEndedGamesByMonth(month);
 
 		model.addAttribute("upcomingGames", upcomingGamesByMonth);
-		model.addAttribute("endedGames", endedGamesByMonth); // 월별 종료된 경기 데이터 추가
 		return "play_info/play_info";
 	}
 
