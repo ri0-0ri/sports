@@ -63,8 +63,6 @@ function vote(team) {
 	}
 }
 
-
-
 // 투표 수를 가져오는 함수 (실시간 갱신)
 function getVoteCounts() {
 	$.ajax({
@@ -113,6 +111,12 @@ document.querySelectorAll('.send-btn').forEach(button => {
 	button.addEventListener('click', function() {
 		const chatType = this.closest('.chat-section').id === 'left_chat' ? 1 : 2;  // 왼쪽 채팅 = 1, 오른쪽 채팅 = 2
 		const messageContent = this.previousElementSibling.value.trim();  // 채팅 내용
+
+		// 로그인 상태 확인 (세션에 로그인한 사용자 ID가 없다면)
+		if (!loginUser) {
+			alert("로그인 후 사용 가능합니다.");
+			return;  // 로그인되지 않은 경우 채팅을 전송하지 않음
+		}
 
 		if (messageContent) {
 			// 서버로 메시지 전송
