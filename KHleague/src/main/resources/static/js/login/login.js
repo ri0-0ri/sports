@@ -18,7 +18,8 @@ document.getElementById("loginButton").addEventListener("click", function() {
 		.then(response => response.json())
 		.then(data => {
 			if (data.success) {
-				// 로그인 성공 시 index 페이지로 이동
+				// 로그인 성공 시 알림 메시지 띄우고 index 페이지로 이동
+				alert("로그인 되었습니다.");
 				window.location.href = data.redirect; // 로그인 후 리다이렉션 URL
 			} else {
 				// 로그인 실패 시 오류 메시지 표시

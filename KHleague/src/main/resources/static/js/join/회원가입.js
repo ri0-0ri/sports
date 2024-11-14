@@ -67,3 +67,29 @@ function openPostCode() {
 		}
 	}).open();
 }
+function validateForm() {
+	// 필수 항목들 가져오기
+	const username = document.getElementsByName("username")[0].value;
+	const userbirth = document.getElementsByName("userbirth")[0].value;
+	const usergender = document.getElementsByName("usergender")[0].value;
+	const userphone = document.getElementsByName("userphone")[0].value;
+	const userid = document.getElementsByName("userid")[0].value;
+	const userpw = document.getElementsByName("userpw")[0].value;
+	const confirmPassword = document.getElementById("confirmPassword").value;
+
+	// 필수 항목 체크
+	if (!username || !userbirth || !usergender || !userphone || !userid || !userpw || !confirmPassword) {
+		alert("필수 항목을 작성해주세요.");
+		return false;  // 폼 제출을 막음
+	}
+
+	// 비밀번호 일치 여부 체크
+	if (userpw !== confirmPassword) {
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;  // 폼 제출을 막음
+	}
+
+	// 회원가입 성공 후 알림
+	alert("회원가입이 완료되었습니다.");
+	return true;  // 폼 제출을 허용
+}
