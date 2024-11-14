@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.http.ResponseEntity;
 
 import com.example.demo.model.goods.BuyListDTO;
+import com.example.demo.model.goods.Criteria;
 import com.example.demo.model.goods.GoodsDTO;
 
 @Mapper
@@ -36,5 +37,7 @@ public interface GoodsMapper {
 	Integer getbuynumBygoodsnum(int goodsnum, String userid, String size);
 
 	List<GoodsDTO> getgoodsBygoodsnum(int goodsnum);
+
+	List<GoodsDTO> getgoods(Criteria cri);
 	
 }

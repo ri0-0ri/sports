@@ -339,9 +339,9 @@ create table buyList(
 select * from buyList;
 
 create table orderList(
-	orderListid int primary key auto_increment,
+   orderListid int primary key auto_increment,
     ordernum int,
-	buynum int ,
+   buynum int ,
     userid varchar(300),
     goodsnum int,
     size varchar(300),
@@ -357,7 +357,7 @@ CREATE TABLE g_will_board (
     gEdate DATETIME,
     team1name VARCHAR(300),
     team2name VARCHAR(300),
-	team1score INT,
+   team1score INT,
     team2score INT,
     gwtime DATETIME,
     CONSTRAINT gW_team1num FOREIGN KEY (team1name) REFERENCES team(teamname) ON DELETE CASCADE,
@@ -388,26 +388,21 @@ INSERT INTO team_votes (team_id, votes) VALUES (2, 0);
 -- 필요에 따라 추가
 
 create table events(
-	eventnum int primary key auto_increment,
+   eventnum int primary key auto_increment,
     gwnum int,
-	CONSTRAINT gwnum FOREIGN KEY (gwnum) REFERENCES g_will_board(gwnum) ON DELETE CASCADE,
+   CONSTRAINT gwnum FOREIGN KEY (gwnum) REFERENCES g_will_board(gwnum) ON DELETE CASCADE,
     eventtype varchar(300),
-    eventitem varchar(300),
-    winner varchar(300)
+    eventitem varchar(300)
 );
-select * from events;
-drop table events;
 
 create table eboard(
-	eboardnum int primary key auto_increment,
+   eboardnum int primary key auto_increment,
     edate datetime default now(),
-    eboardcount int default 0,
+    eboardcount int,
     eboardtitle varchar(300),
     eboardcontent varchar(3000),
     eventcon varchar(300),
     eventnum int,
-    winner varchar(300),
-	CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum) ON DELETE CASCADE
+   CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum),
+    winner varchar(300)
 );
-select * from eboard;
-drop table eboard;

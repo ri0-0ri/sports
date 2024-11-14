@@ -187,3 +187,12 @@ function submitForm(actionUrl, event) {
 	});		
 		
 }
+
+/* 보기 구현 */
+function change_view() {
+    const view_type = $("#view_type").val();
+    
+	const currentUrl = new URL(window.location.href);	   
+	currentUrl.searchParams.set('view_type', view_type);	   
+	window.location.href = currentUrl.toString();	
+}

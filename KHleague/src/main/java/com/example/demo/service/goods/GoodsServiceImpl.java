@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.goods.GoodsMapper;
 import com.example.demo.model.goods.BuyListDTO;
+import com.example.demo.model.goods.Criteria;
 import com.example.demo.model.goods.GoodsDTO;
 
 @Service
@@ -87,6 +88,11 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public List<GoodsDTO> getgoodsBygoodsnum(int goodsnum) {
 		return gmapper.getgoodsBygoodsnum(goodsnum);
+	}
+
+	@Override
+	public List<GoodsDTO> getgoods(Criteria cri) {
+		return gmapper.getgoods(cri);
 	}
 
 }
