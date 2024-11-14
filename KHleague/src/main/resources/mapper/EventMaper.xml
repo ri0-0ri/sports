@@ -17,8 +17,8 @@
 	</select>
 	
 	<insert id="puteboard">
-		insert into eboard(eboardtitle, eboardcontent, eventcon, eventnum)
-		values(#{eboardtitle}, #{eboardcontent}, #{eventcon}, #{eventnum})
+		insert into eboard(eboardtitle, eboardcontent, eventcon, eventnum, winner)
+		values(#{eboardtitle}, #{eboardcontent}, #{eventcon}, #{eventnum}, #{winner})
 	</insert>
 	
 	<select id="geteboard">
@@ -33,6 +33,10 @@
 		select * from eboard where eboardnum=#{eboardnum}
 	</select>
 	
+	<select id="geteboardbyeventnum">
+		select * from eboard where eventnum=#{eventnum}
+	</select>
+	
 	<update id="updateeboard">
     UPDATE eboard
     SET eboardtitle = #{eboardtitle}, eboardcontent = #{eboardcontent}, eventcon = #{eventcon}
@@ -44,5 +48,12 @@
     SET eboardcount = eboardcount + 1
     WHERE eboardnum = #{eboardnum}
 	</update>
+	
+	<update id="updatewinner">
+		update events
+		set winner = #{winner}
+		where eventnum=#{eventnum};
+	</update>
+	
 
 </mapper>

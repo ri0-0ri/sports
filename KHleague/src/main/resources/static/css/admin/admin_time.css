@@ -228,6 +228,12 @@ table button {
 	color: #fff;
 	margin-right: 15px;
 }
+.gwnum div:first-child{
+	background-color: #01203F;
+	padding: 10px;
+	color: #fff;
+	margin-right: 15px;
+}
 .eventtype div:first-child{
 	background-color: #01203F;
 	padding: 10px;
@@ -270,14 +276,62 @@ table button {
 .rullet_box{
 	display: flex;
 	align-items: center;
+	overflow: hidden;
 }
 
 .rullet{
 	border: 1px solid #D9D9D9;
-	padding: 20px;
+	padding: 10px;
 	border-radius: 5px;
 	width: 300px;
 	text-align: center;
+	height: 50px;
+	transition: top 0.3s ease-in-out;
+	position: relative;
+}
+
+.rulletgotxt {
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    display: block;
+}
+
+.ids {
+    font-size: 18px;
+    font-weight: bold;
+	position: absolute;
+	left: 40%;
+	display: none;
+}
+
+.startbtn{
+	background-color: #0344DC;
+		border-radius: 5px;
+		color: #fff;
+		padding: 10px;
+		margin-left: 100px;
+		cursor: pointer;
+		transition: transform 0.3s ease;
+}
+
+.winnerbox {
+	border: 1px solid #D9D9D9;
+	padding: 10px;
+	margin-left: 100px;
+	cursor: pointer;
+}
+
+.go_write {
+	background-color: #D9D9D9;
+	border: 1px solid #D9D9D9;
+	color: #fff;
+	padding: 10px;
+	cursor: pointer;
 }
 
 .stopbtn{
@@ -285,11 +339,15 @@ table button {
 	border-radius: 5px;
 	color: #fff;
 	padding: 10px;
-	margin-left: 100px;
+	margin-left: 10px;
 	cursor: pointer;
 	transition: transform 0.3s ease;
 }
 
-.stopbtn:hover{
+.stopbtn:hover, .startbtn:hover{
 	transform: scale(1.20);
+}
+
+.no_event_txt{
+	padding: 20px;
 }

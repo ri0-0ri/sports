@@ -1,11 +1,17 @@
 package com.example.demo.controller.admin;
 
 import com.example.demo.modal.gWillBoardDTO.GWillBoardDTO;
+import com.example.demo.model.chat.ChatDTO;
+import com.example.demo.model.event.EboardDTO;
 import com.example.demo.model.event.EventDTO;
 import com.example.demo.model.teamDTO.TeamDTO;
 import com.example.demo.service.team.TeamService;
+import com.example.demo.service.GameScheduleService.GameScheduleService;
+import com.example.demo.service.chat.ChatService;
 import com.example.demo.service.event.EventService;
 import com.example.demo.service.gWillBoard.GWillBoardService;
+import com.example.demo.service.playInfo.PlayInfoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,7 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin/")
@@ -30,6 +41,12 @@ public class AdminController {
 	
 	@Autowired
 	private EventService eservice;
+	
+	@Autowired
+	private ChatService cservice;
+	
+	@Autowired
+	private GameScheduleService gservice;
 
 	@GetMapping("admin_time")
 	public String showAdmin_time(Model model) {
@@ -118,8 +135,73 @@ public class AdminController {
 	
 	@GetMapping("admin_makeevent")
 	public void makeevent(Model model) {
-		List<EventDTO> eventlist = eservice.geteventlist();
+		List<EventDTO> eventlists = eservice.geteventlist();
+		List<EventDTO> eventlist = new ArrayList<>();
+		// 경기가 끝난 이벤트만 추가해주기
+		for(EventDTO event : eventlists) {
+			int gwnum = event.getGwnum();
+			// 끝난 팀 조회
+			List<GWillBoardDTO> endgames = gservice.getEndgame();
+			for(GWillBoardDTO endgame : endgames) {
+				if(gwnum==endgame.getGWnum()) {
+					eventlist.add(event);
+					break;
+				}
+			}
+		}
 		model.addAttribute("eventlist", eventlist);
+		
+		Map<Integer, List<ChatDTO>> chatMap = new HashMap<>();
+		for(EventDTO event : eventlist) {
+			int gwnum = event.getGwnum();
+			// 끝난 팀 조회
+			List<GWillBoardDTO> endgames = gservice.getEndgame();
+			
+			// 이벤트 타입이 룰렛이면(이긴 팀만 추첨), 댓글 중복가능(댓글 많이쓸수록 좋음)
+			if(event.getEventtype().equals("룰렛")) {
+				// 이긴 팀 조회 + 채팅 가져오기
+				int chat_type = 0;
+				for(GWillBoardDTO endgame : endgames) {
+					int score1 = endgame.getTeam1score();
+					int score2 = endgame.getTeam2score();
+					if(score1>score2) {
+						// 1팀이 이기면 1번 채팅만 가져오게
+						chat_type = 1;
+					}
+					else if(score1<score2) {
+						chat_type = 2;
+						// 2팀이 이기면 2번 채팅만 가져오게
+					}
+				}			
+				List<ChatDTO> chatlist = cservice.getchatBygwnum(gwnum, chat_type);
+				chatMap.put(gwnum, chatlist);				
+			}
+			// 이벤트 타입이 단어 맞추기면(모든 사람들 중 맞춘 사람들만 추첨), 중복 불가능(id당 한번만)
+			else if(event.getEventtype().equals("단어 맞추기")) {
+				int eventnum = event.getEventnum();
+				EboardDTO eboard = eservice.geteboardbyeventnum(eventnum);	
+				String str = eboard.getEventcon();				
+				List<ChatDTO> chatlist = cservice.getchatBystr(gwnum, str);
+				
+		        // 중복 확인을 위한 Set을 사용 > hashset은 중복값 자동으로 걸러줌(얘는 확인용)
+	            Set<String> checkuser = new HashSet<>();
+	            List<ChatDTO> filteredChatList = new ArrayList<>(); // 중복되지 않은 chatlist(얘는 실제 넣을 dto)	            
+
+	            for (ChatDTO chat : chatlist) {
+	                String id = chat.getUserId();	                
+	                // 이미 해당 아이디가 checkuser에 존재하면 중복된 것
+	                if (!checkuser.contains(id)) {
+	                    checkuser.add(id); // 중복되지 않으면 확인용 checkuser에 추가
+	                    filteredChatList.add(chat); // 중복되지 않은 ChatDTO만 추가
+	                }
+	            }
+	            
+	            // 중복을 제외한 filteredChatList를 chatMap에 저장
+	            chatMap.put(gwnum, filteredChatList);
+	            System.out.println("단어 맞추기: " + filteredChatList);						
+			}		
+		}
+		model.addAttribute("chatMap", chatMap);
 	}
 	
 	@PostMapping("pluscount")
@@ -128,4 +210,5 @@ public class AdminController {
 		System.out.println("조회수증가함");
 		return ResponseEntity.ok("조회수 증가 완료!");
 	}
+
 }

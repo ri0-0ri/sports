@@ -43,13 +43,14 @@ public class EventContorller {
 			// 2-1. 각 게시글의 eventnum을 통해 EventDTO를 가져옴
 			int eventnum = eboard.getEventnum();
 			EventDTO event = eservice.geteventByeventnum(eventnum);
+			System.out.println("위너 : "+event.getWinner());
 			if (event != null) {
 				// 2-2. EventDTO에서 gWnum을 얻고, 그 값을 통해 GWillBoardDTO 리스트를 가져옴
 				int gwnum = event.getGwnum();
 				GWillBoardDTO game = gwservice.getgame(gwnum); // gwnum으로 관련 게임 목록 찾기
 
 				// 2-3. 모델에 gamelist를 추가
-				eboard.setGame(game); // EboardDTO에 gamelist 세팅
+				eboard.setGame(game);
 			}
 		}
 	}
@@ -81,6 +82,7 @@ public class EventContorller {
 	
 	@PostMapping("addboard")
 	public String addboard(EboardDTO eboard) {
+		System.out.println(eboard);
 		eservice.puteboard(eboard);			
 		return "redirect:/event/notice";			
 	}
@@ -90,11 +92,12 @@ public class EventContorller {
 		System.out.println(eboard);
 		eservice.updateeboard(eboard);
 		return "redirect:/event/notice";			
-	}
+	}	
 	
-	public void makewinner() {
-		// 
-		// 경기종료 게시판, 경기종료된 fboard
+	@PostMapping("updatewinner")
+	public ResponseEntity updatewinner(@RequestParam int eventnum, String winner) {
+		eservice.updatewinner(eventnum, winner);
+		return ResponseEntity.ok("당첨자 추가 완료");
 	}
 	
 }

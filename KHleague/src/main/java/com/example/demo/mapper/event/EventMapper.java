@@ -30,4 +30,10 @@ public interface EventMapper {
 
 	void updatecount(int eboardnum);
 
+	EboardDTO geteboardbyeventnum(int eventnum);
+
+	void updatewinner(int eventnum, String winner);
+
+	void updatewinnertoboard(int eventnum, String winner);
+
 }

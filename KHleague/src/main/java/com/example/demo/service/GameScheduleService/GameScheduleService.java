@@ -28,7 +28,7 @@ public class GameScheduleService {
 		LocalDateTime currentTime = LocalDateTime.now();
 
 		// g_will_board에서 모든 경기를 가져오기
-		List<GWillBoardDTO> allGames = gWillBoardMapper.getgWillList();
+		List<GWillBoardDTO> allGames = gWillBoardMapper.getgElist();
 
 		// 종료된 경기들 처리
 		for (GWillBoardDTO game : allGames) {
@@ -48,5 +48,9 @@ public class GameScheduleService {
 				gwservice.updateendgame(game);
 			}
 		}
+	}
+
+	public List<GWillBoardDTO> getEndgame() {
+		return gWillBoardMapper.getgElistnotnull();
 	}
 }

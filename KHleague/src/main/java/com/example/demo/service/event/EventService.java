@@ -27,4 +27,8 @@ public interface EventService {
 
 	void updatecount(int eboardnum);
 
+	EboardDTO geteboardbyeventnum(int eventnum);
+
+	void updatewinner(int eventnum, String winner);
+
 }

@@ -65,4 +65,14 @@ public class EventServiceImpl implements EventService{
 		emapper.updatecount(eboardnum);
 	}
 
+	@Override
+	public EboardDTO geteboardbyeventnum(int eventnum) {
+		return emapper.geteboardbyeventnum(eventnum);
+	}
+
+	@Override
+	public void updatewinner(int eventnum, String winner) {
+		emapper.updatewinner(eventnum, winner);
+	}
+
 }
