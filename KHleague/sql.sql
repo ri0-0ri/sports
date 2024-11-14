@@ -365,6 +365,7 @@ CREATE TABLE g_will_board (
 );
 select * from g_will_board;
 
+
 CREATE TABLE fboard (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id VARCHAR(255),  -- 사용자 ID
