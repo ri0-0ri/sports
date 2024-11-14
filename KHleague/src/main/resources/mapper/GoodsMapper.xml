@@ -1,9 +1,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.goods.GoodsMapper">
 
-   <select id="getgoods">
-	select * from goods
-   </select>
+ <select id="getgoods">
+    SELECT g.*
+    FROM goods g
+
+    <choose>
+        <!-- 'view_type'이 null이 아닌지 먼저 체크하고, 'H'인 경우 -->
+        <when test="view_type != null and view_type == 'H'.toString()">
+            <!-- 가장 많이 주문된 goodsnum 순으로 정렬 -->
+            ORDER BY 
+                (SELECT COUNT(*) 
+                 FROM orderList ol 
+                 WHERE ol.goodsnum = g.goodsnum) DESC
+        </when>
+        <!-- 'view_type'이 null이 아닌지 먼저 체크하고, 'N'인 경우 -->
+        <when test="view_type != null and view_type == 'N'.toString()">
+            <!-- 최신 goodsnum 순으로 정렬 -->
+            ORDER BY g.goodsnum DESC
+        </when>
+        <otherwise>
+            <!-- 기본적으로 goodsnum 순으로 정렬 -->
+            ORDER BY g.goodsnum
+        </otherwise>
+    </choose>
+</select>
    
    <insert id="putWish">
    	insert into wishList(userid, goodsnum) values(#{userid}, #{goodsnum});

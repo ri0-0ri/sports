@@ -36,7 +36,7 @@
 				<div class="notice_list" th:if="${eboardlist != null && eboardlist.size()>0}" th:each="eboard:${eboardlist}">
 					<div id="list" class="row">
 						<div class="eboardnum">[[${eboard.eboardnum}]]</div>
-						<div>[[${eboard.eboardcount}]]</div>
+						<div class="eboardcount">[[${eboard.eboardcount}]]</div>
 						<div>[[${eboard.eboardtitle}]]</div>
 						<div class="adminId">admin</div>	
 						<div class="boardtime">[[${eboard.edate}]]</div>

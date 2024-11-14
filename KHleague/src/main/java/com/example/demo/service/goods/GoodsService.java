@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.example.demo.model.goods.BuyListDTO;
+import com.example.demo.model.goods.Criteria;
 import com.example.demo.model.goods.GoodsDTO;
 
 public interface GoodsService {
@@ -33,5 +34,7 @@ public interface GoodsService {
 	Integer getbuynumBygoodsnum(int goodsnum, String userid, String size);
 
 	List<GoodsDTO> getgoodsBygoodsnum(int goodsnum);
+
+	List<GoodsDTO> getgoods(Criteria cri);
 
 }

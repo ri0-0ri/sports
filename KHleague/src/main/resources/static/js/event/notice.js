@@ -33,7 +33,7 @@ document.querySelectorAll(".close_info").forEach(button => {
 		const list = list_info.closest(".notice_list").querySelector(".row");
 
 		list.classList.remove("active");
-
+		
 		list_info.style.opacity = "0";
 		list_info.style.transform = "translateY(20px)";
 		setTimeout(() => {
@@ -132,7 +132,10 @@ $(document).ready(function() {
     $(".plus_info").on("click", function() {
         const eboardnum = $(this).closest('.row').find('.eboardnum').text();
 		console.log("쿠키보드넘"+eboardnum);
-
+		let eboardcount = $(this).closest('.row').find('.eboardcount');
+		let intcount = parseInt(eboardcount.text());
+		console.log("보드카운트"+intcount);
+		
 		$.ajax({
 		    url: '/admin/pluscount', 
 		    type: 'POST',
@@ -140,12 +143,14 @@ $(document).ready(function() {
 		    success: function(response) {
 		        if (response) {
 					console.log("쿠키증가완료");
-		            
+					intcount += 1;
+		            eboardcount.text(intcount);
 		        }
 		    },
 		    error: function() {
 		        alert("서버와의 통신에 실패했습니다.");
 		    }
-		});
+		});	
+				
     });
 });
