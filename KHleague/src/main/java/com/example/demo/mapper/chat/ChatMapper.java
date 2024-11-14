@@ -16,4 +16,10 @@ public interface ChatMapper {
 	// 모든 채팅 메시지 가져오기
 	@Select("SELECT * FROM fboard ORDER BY id")
 	List<ChatDTO> getAllChatMessages();
+
+	// gwnum, chat_type 따라 가져오기
+	List<ChatDTO> getchatBygwnum(int gwnum, int chat_type);
+
+	// gwnum, str 따라 가져오기
+	List<ChatDTO> getchatBystr(int gwnum, String str);
 }

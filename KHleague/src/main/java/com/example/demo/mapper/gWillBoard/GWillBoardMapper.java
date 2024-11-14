@@ -15,6 +15,7 @@ public interface GWillBoardMapper {
 	void insertGWillBoard(GWillBoardDTO gWillBoardDTO);
 	
 	List<GWillBoardDTO> getgWillList();
+	
 	@Delete("DELETE FROM g_will_board WHERE gWnum = #{gWnum}")
     void deleteGWillBoard(int gWnum); // 삭제 쿼리 추가
 
@@ -22,4 +23,8 @@ public interface GWillBoardMapper {
 
 	@Update("update g_will_board set team1score=#{team1score}, team2score=#{team2score}, gEdate=#{gEdate} where gWnum=#{gWnum}")
 	void updateendgame(GWillBoardDTO game);
+
+	List<GWillBoardDTO> getgElistnotnull();
+
+	List<GWillBoardDTO> getgElist();
 }

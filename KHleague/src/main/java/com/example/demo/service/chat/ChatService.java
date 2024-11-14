@@ -25,4 +25,12 @@ public class ChatService {
 	    return chatMapper.getAllChatMessages();
 	}
 
+	public List<ChatDTO> getchatBygwnum(int gwnum, int chat_type) {
+		return chatMapper.getchatBygwnum(gwnum, chat_type);
+	}
+
+	public List<ChatDTO> getchatBystr(int gwnum, String str) {
+		return chatMapper.getchatBystr(gwnum, str);
+	}
+
 }

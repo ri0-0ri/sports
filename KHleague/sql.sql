@@ -10,28 +10,30 @@ use sports;
 -- drop table orders;
 -- drop table g_will_board;
 -- drop table g_end_board;
-drop table fboard;
+-- drop table fboard;
 -- drop table eboard;
 -- drop table wishList;
 -- drop table buyList;
 -- drop table money;
 -- drop table orderList;
-drop table votes;
-select * from user;
-select * from sports;
-select * from team;
-select * from player;
-select * from goods;
-select * from orders;
-select * from g_will_board;
-select * from g_end_board;
-select * from fboard;
-select * from eboard;
-select * from wishList;
-select * from buyList;
-select * from money;
-select * from orderList;
-select * from votes;
+-- drop table votes;
+
+-- select * from user;
+-- select * from sports;
+-- select * from team;
+-- select * from player;
+-- select * from goods;
+-- select * from orders;
+-- select * from g_will_board;
+-- select * from g_end_board;
+-- select * from fboard;
+-- select * from eboard;
+-- select * from wishList;
+-- select * from buyList;
+-- select * from money;
+-- select * from orderList;
+-- select * from votes;
+
 CREATE TABLE user (
     userid VARCHAR(300) PRIMARY KEY,
     userpw VARCHAR(300),
@@ -62,7 +64,6 @@ create table money(
     ordernum int,
    constraint useridR foreign key(userid) references user(userid) ON DELETE CASCADE
 );
-select * from money;
 
 create table sports(
    sportsnum int primary key auto_increment,
@@ -316,7 +317,6 @@ create table orders(
     constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
     state varchar(300) default'결제완료'
 );
-select * from orders;
 
 create table wishList(
    wishnum int primary key auto_increment,
@@ -325,7 +325,6 @@ create table wishList(
    constraint wish_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
    constraint goodsnumWish foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
-select * from wishList;
 
 create table buyList(
    buynum int primary key auto_increment,
@@ -336,7 +335,6 @@ create table buyList(
    constraint buy_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
    constraint goodsnumBuy foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
-select * from buyList;
 
 create table orderList(
    orderListid int primary key auto_increment,
@@ -349,7 +347,6 @@ create table orderList(
    constraint orderlist_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
    constraint goodsnumOrderlist foreign key(goodsnum) references goods(goodsnum) ON DELETE CASCADE
 );
-select * from orderList;
 
 CREATE TABLE g_will_board (
     gWnum INT PRIMARY KEY AUTO_INCREMENT,
@@ -365,7 +362,6 @@ CREATE TABLE g_will_board (
 );
 select * from g_will_board;
 
-
 CREATE TABLE fboard (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id VARCHAR(255),  -- 사용자 ID
@@ -377,23 +373,25 @@ CREATE TABLE fboard (
     FOREIGN KEY (gWnum) REFERENCES g_will_board(gWnum) ON DELETE CASCADE
 );
 select * from fboard;
+insert into fboard(user_id, content, chat_type, gWnum) values("apple", "집에 가고싶다", "2", "6");
+insert into fboard(user_id, content, chat_type, gWnum) values("ki", "집에 가고싶다", "1", "6");
+
 CREATE TABLE votes (
     vote_id INT PRIMARY KEY auto_increment,    -- 경기 ID (어떤 경기인지 구별)
     team1_vote INT DEFAULT 0,    -- team1의 누적 투표 수
     team2_vote INT DEFAULT 0     -- team2의 누적 투표 수
 );
-
-INSERT INTO team_votes (team_id, votes) VALUES (1, 0);
-INSERT INTO team_votes (team_id, votes) VALUES (2, 0);
--- 필요에 따라 추가
+select * from votes;
 
 create table events(
    eventnum int primary key auto_increment,
     gwnum int,
    CONSTRAINT gwnum FOREIGN KEY (gwnum) REFERENCES g_will_board(gwnum) ON DELETE CASCADE,
     eventtype varchar(300),
-    eventitem varchar(300)
+    eventitem varchar(300),
+    winner varchar(300)
 );
+select * from events;
 
 create table eboard(
    eboardnum int primary key auto_increment,
@@ -406,3 +404,4 @@ create table eboard(
    CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum),
     winner varchar(300)
 );
+select * from eboard;

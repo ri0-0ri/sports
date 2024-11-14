@@ -79,10 +79,8 @@
 							[[${eboard.eboardcontent}]]
 						</div>
 				
-						<!-- 참여하기 누르면 인원 여기에 추가 -->
-						<div class="winner">
-							<div class="winnername" th:if="${eboard.winner != null && eboard.winner != ''}">[[${eboard.winner}]]</div>
-							<div class="winnername" th:if="${eboard.winner == null || eboard.winner == ''}">미정</div>
+						<div class="winner" th:if="${eboard.winner != null && eboard.winner != ''}">
+							<div class="winnername">[[${eboard.winner}]]</div>
 						</div>
 										
 						<!-- 작성자만 보여주게하는 수정 박스 -->

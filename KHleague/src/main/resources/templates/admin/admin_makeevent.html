@@ -34,63 +34,94 @@
 				<div class="cata_title">
 					<h2>당첨자 뽑기</h2>
 				</div>
-				
+
 				<div class="pick_wrap">
-					<div class="no_event_txt" th:if="${eventlist == null || eventlist.size()==0}">이벤트가 없습니다!</div>
-					
+					<div class="no_event_txt" th:if="${eventlist == null || eventlist.size()==0}">모든 이벤트 당첨자 추첨 완료!</div>
+
 					<div th:if="${eventlist != null && eventlist.size()>0}" th:each="events:${eventlist}">
-						<div class="every_winner" th:if="${events.winner != null && events.winner != ''}">
-							모든 이벤트 당첨자 추첨 완료!
-						</div>
-						
-						<div class="no_winner" th:if="${events.winner == null || events.winner == ''}">															
+
+						<div class="no_winner" th:if="${events.winner == null || events.winner == ''}">
 							<div class="eventlist">
 								<div class="eventnum">
 									<div>이벤트번호</div>
 									[[${events.eventnum}]]
 								</div>
-							
+
+								<div class="gwnum">
+									<div>경기번호</div>
+									[[${events.gwnum}]]
+								</div>
+
 								<div class="eventtype">
 									<div>종류</div>
 									[[${events.eventtype}]]
 								</div>
-							
+
 								<div class="eventitem">
 									<div>상품</div>
 									[[${events.eventitem}]]
-								</div>						
-								
+								</div>
 								<div class="makebtn">추첨하기</div>
 							</div>
-														
-							<!-- 랜덤 -->
-							<div class="make_wrap" th:if="${events.eventtype=='룰렛'}">
-								<div class="rullet_box">
-									<div class="rullet">
-										룰렛돌아가요
-									</div>
-									<div class="stopbtn">
-										STOP
+							<div class="eachbox"
+								th:if="${chatMap[events.gwnum] != null and chatMap[events.gwnum].size() > 0}">
+
+								<!-- 랜덤 -->
+								<div class="make_wrap" th:if="${events.eventtype == '룰렛'}">
+									<div class="rullet_box">
+										<div id="eventnum" style="display: none;">[[${events.eventnum}]]</div>
+										<div class="rullet">
+											<div class="rulletgotxt">룰렛을 돌려주세요!</div>
+											<div class="ids" th:each="fboard : ${chatMap[events.gwnum]}">
+												[[${fboard.userId}]]</div>
+										</div>
+
+										<div class="startbtn">
+											START
+										</div>
+										<div class="stopbtn">
+											STOP
+										</div>
+										<div class="winnerbox" id="winner">
+											두근두근~
+										</div>
+										<div class="go_write">
+											발표하러가기
+										</div>
 									</div>
 								</div>
-							</div>
-							
-							<!-- 단어맞추기 -->
-							<div class="make_wrap" th:if="${events.eventtype=='단어 맞추기'}">
-								<div class="rullet_box">
-									<div class="rullet">
-										랜덤돌아가요
+								<!-- 단어 맞추기 -->
+								<div class="make_wrap" th:if="${events.eventtype == '단어 맞추기'}">
+									<div class="rullet_box">
+										<div id="eventnum" style="display: none;">[[${events.eventnum}]]</div>
+										<div class="rullet">
+											<div class="rulletgotxt">룰렛을 돌려주세요!</div>
+											<div class="ids" th:each="fboard : ${chatMap[events.gwnum]}">
+												[[${fboard.userId}]]</div>
+										</div>
+
+										<div class="startbtn">
+											START
+										</div>
+										<div class="stopbtn">
+											STOP
+										</div>
+										<div class="winnerbox" id="winner">
+											두근두근~
+										</div>
+										<div class="go_write">
+											발표하러가기
+										</div>
 									</div>
-									<div class="stopbtn">
-										STOP
-									</div>
-								</div>					
+								</div>
+
 							</div>
+
 						</div>
-																	
+
 					</div>
 				</div>
-							
+
 			</div>
 		</div>
 	</div>
@@ -98,8 +129,9 @@
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="/js/admin/admin_time.js"></script>
-	<script src="/js/admin/admin_makeevent.js"></script>	
+	<script src="/js/admin/admin_makeevent.js"></script>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/js/index.js"></script>
+
 </html>

@@ -54,6 +54,11 @@
 							<th>보상</th>
 							<td><div th:text="${event.eventitem}"></div></td>
 						</tr>
+						<tr th:if="${event.winner != null && event.winner !=''}">
+							<th>당첨자</th>
+							<td th:text="${event.winner}"></td>
+							<input type="hidden" name="winner" th:value="${event.winner}"></input>
+						</tr>
 					</table>
 					
 					<div class="writebtn">						

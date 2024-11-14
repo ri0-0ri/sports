@@ -9,4 +9,12 @@
 	select * from g_will_board where gWnum=#{gwnum}
 </select>
 
+<select id="getgElist">
+	select * from g_will_board where gEdate IS NULL;
+</select>
+
+<select id="getgElistnotnull">
+	select * from g_will_board where gEdate IS NOT NULL;
+</select>
+
 </mapper>
