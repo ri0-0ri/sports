@@ -1,27 +1,6 @@
 // 로그인한 사용자 ID를 콘솔에 출력
 console.log(loginUser);  // 세션에서 받은 로그인 사용자 ID 출력
 
-// 타이머 설정
-let timer = document.getElementById('timer');
-let countdown = setInterval(function() {
-	let time = timer.innerText.split(':');
-	let hours = parseInt(time[0]);
-	let minutes = parseInt(time[1]);
-	let seconds = parseInt(time[2]);
-
-	if (seconds > 0) {
-		seconds--;
-	} else if (minutes > 0) {
-		minutes--;
-		seconds = 59;
-	} else if (hours > 0) {
-		hours--;
-		minutes = 59;
-		seconds = 59;
-	}
-
-	timer.innerText = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-}, 1000);
 
 // 투표 카운트 설정
 let votes = {

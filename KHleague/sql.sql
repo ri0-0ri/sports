@@ -1,6 +1,6 @@
 create database sports;
 use sports;
--- drop database sports;
+--  drop database sports;
 
 -- drop table user;
 -- drop table sports;
@@ -46,8 +46,10 @@ CREATE TABLE user (
     userhomenum VARCHAR(300),
     userjoin VARCHAR(300),
     userpoint int default 0,
+    winnerevent varchar(300),
     role VARCHAR(50) DEFAULT 'user'
 );
+select * from user;
 #관리자 계정 추가 
 INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin, role)
 VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04', 'admin');
@@ -360,7 +362,6 @@ CREATE TABLE g_will_board (
     CONSTRAINT gW_team1num FOREIGN KEY (team1name) REFERENCES team(teamname) ON DELETE CASCADE,
     CONSTRAINT gW_team2num FOREIGN KEY (team2name) REFERENCES team(teamname) ON DELETE CASCADE
 );
-select * from g_will_board;
 
 CREATE TABLE fboard (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -369,19 +370,15 @@ CREATE TABLE fboard (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 작성 시간
     chat_type INT,         -- 1 = 왼쪽 채팅, 2 = 오른쪽 채팅
     gWnum INT,             -- g_will_board의 gWnum을 참조
-    FOREIGN KEY (user_id) REFERENCES user(userid),
+    FOREIGN KEY (user_id) REFERENCES user(userid) ON DELETE CASCADE,
     FOREIGN KEY (gWnum) REFERENCES g_will_board(gWnum) ON DELETE CASCADE
 );
-select * from fboard;
-insert into fboard(user_id, content, chat_type, gWnum) values("apple", "집에 가고싶다", "2", "6");
-insert into fboard(user_id, content, chat_type, gWnum) values("ki", "집에 가고싶다", "1", "6");
 
 CREATE TABLE votes (
     vote_id INT PRIMARY KEY auto_increment,    -- 경기 ID (어떤 경기인지 구별)
     team1_vote INT DEFAULT 0,    -- team1의 누적 투표 수
     team2_vote INT DEFAULT 0     -- team2의 누적 투표 수
 );
-select * from votes;
 
 create table events(
    eventnum int primary key auto_increment,
@@ -391,7 +388,6 @@ create table events(
     eventitem varchar(300),
     winner varchar(300)
 );
-select * from events;
 
 create table eboard(
    eboardnum int primary key auto_increment,
@@ -403,5 +399,4 @@ create table eboard(
     eventnum int,
    CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum),
     winner varchar(300)
-);
-select * from eboard;
+);
