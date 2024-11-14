@@ -15,6 +15,6 @@ public class FightingServiceImpl implements FightingService {
 
 	@Override
 	public List<GWillBoardDTO> getTop3FightingSchedules() {
-		return fightingMapper.getTop3FightingSchedules();
+		return fightingMapper.getTop3FightingSchedules(); // Mapper 호출
 	}
 }

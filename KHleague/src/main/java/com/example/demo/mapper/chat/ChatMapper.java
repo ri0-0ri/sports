@@ -9,8 +9,8 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface ChatMapper {
 
-	// 채팅 메시지 삽입
-	@Insert("INSERT INTO fboard (user_id, content, chat_type) VALUES (#{userId}, #{content}, #{chatType})")
+	// 채팅 메시지 삽입 (gWnum을 함께 삽입)
+	@Insert("INSERT INTO fboard (user_id, content, chat_type, gWnum) VALUES (#{userId}, #{content}, #{chatType}, #{gWnum})")
 	void insertChatMessage(ChatDTO chatDTO);
 
 	// 모든 채팅 메시지 가져오기
