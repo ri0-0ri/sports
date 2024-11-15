@@ -109,260 +109,140 @@
 			<div class="page-title">
 				<h1>Sports NEWS</h1>
 			</div>
-
-			<div class="news_container">
-				<div class="news_box">
-					<div class="type">
-						<div class="select_type">종목선택</div>
-						<div>축구</div>
-						<div>야구</div>
-						<div>농구</div>
-						<div>배구</div>
-					</div>
-
-					<div class="news_info">
-						<div class="vs_box">
-							<div class="team1">
-
-							</div>
-							<div class="vs">VS</div>
-							<div class="team2">
-
-							</div>
+			<div class="main_news">
+				<div class="main_event">
+					<div class="event_top">
+						<div class="event_tap">
+							<div>이벤트</div>
+							<div>공지사항</div>
 						</div>
+						<div>
 
-						<div class="score_box">
-							<div class="score">
-								3 : 0
-							</div>
+							<button class="cross-btn">
+								<span class="cross-line"></span>
+								<span class="cross-line"></span>
+							</button>
 						</div>
 					</div>
-
-					<div class="news_info">
-						<div class="vs_box">
-							<div class="team1">
-
-							</div>
-							<div class="vs">VS</div>
-							<div class="team2">
-
-							</div>
+					<div class="event_down">
+						<div class="event_item">
+							<div>공지사항입니다.</div>
+							<div>2024.11.15</div>
+						</div>
+						<div class="event_item">
+							<div>공지사항입니다.</div>
+							<div>2024.11.15</div>
+						</div>
+						<div class="event_item">
+							<div>공지사항입니다.</div>
+							<div>2024.11.15</div>
+						</div>
+						<div class="event_item">
+							<div>공지사항입니다.</div>
+							<div>2024.11.15</div>
+						</div>
+						<div class="event_item">
+							<div>공지사항입니다.</div>
+							<div>2024.11.15</div>
 						</div>
 
-						<div class="score_box">
-							<div class="score">
-								3 : 0
-							</div>
-						</div>
 					</div>
 
-					<div class="news_info">
-						<div class="vs_box">
-							<div class="team1">
 
+				</div>
+				<div class="main_play">
+					<div class="cal">
+						<div class="calendar_area">
+							<!-- 달력 헤더 -->
+							<div class="calendar_header">
+								<div class="year-month" style="font-size: 22px;"></div>
+								<div class="nav">
+									<button class="nav_btn go-prev" onclick="prevMonth()">&lt;</button>
+									<button class="nav_btn go-today" onclick="goToday()">Today</button>
+									<button class="nav_btn go-next" onclick="nextMonth()">&gt;</button>
+								</div>
 							</div>
-							<div class="vs">VS</div>
-							<div class="team2">
 
-							</div>
-						</div>
+							<!-- 달력 메인 -->
+							<div class="calendar_main" style="font-size: 15px;">
+								<!-- 달력 요일 -->
+								<div class="days">
+									<div class="day">일</div>
+									<div class="day">월</div>
+									<div class="day">화</div>
+									<div class="day">수</div>
+									<div class="day">목</div>
+									<div class="day">금</div>
+									<div class="day">토</div>
+								</div>
 
-						<div class="score_box">
-							<div class="score">
-								3 : 0
+								<!-- 달력 날짜 -->
+								<div class="dates" style="font-size: 15px;"></div>
 							</div>
+
 						</div>
 					</div>
-
-					<div class="news_info">
-						<div class="vs_box">
-							<div class="team1">
-
+					<div class="main_play_infor">
+						<div class="play_infor">
+							<div>
+								<p style="font-size: 20px;">행사 일정</p>
 							</div>
-							<div class="vs">VS</div>
-							<div class="team2">
-
+							<div>
+								<button class="cross-btn">
+									<span class="cross-line"></span>
+									<span class="cross-line"></span>
+								</button>
 							</div>
 						</div>
-
-						<div class="score_box">
-							<div class="score">
-								3 : 0
-							</div>
+						<div>
+							<table class="main_table">
+								<tr>
+									<th>
+										<p>22일</p>
+										<p>목요일</p>
+									</th>
+									<td>윤경수</td>
+									<td>VS</td>
+									<td>윤혜정</td>
+								</tr>
+								<tr>
+									<th>
+										<p>22일</p>
+										<p>목요일</p>
+									</th>
+									<td>윤경수</td>
+									<td>VS</td>
+									<td>윤혜정</td>
+								</tr>
+								<tr>
+									<th>
+										<p>22일</p>
+										<p>목요일</p>
+									</th>
+									<td>윤경수</td>
+									<td>VS</td>
+									<td>윤혜정</td>
+								</tr>
+							</table>
 						</div>
 					</div>
 				</div>
 
-				<div class="calendar_area">
-					<!-- 달력 헤더 -->
-					<div class="calendar_header">
-						<div class="year-month"></div>
-						<div class="nav">
-							<button class="nav_btn go-prev" onclick="prevMonth()">&lt;</button>
-							<button class="nav_btn go-today" onclick="goToday()">Today</button>
-							<button class="nav_btn go-next" onclick="nextMonth()">&gt;</button>
-						</div>
-					</div>
 
-					<!-- 달력 메인 -->
-					<div class="calendar_main">
-						<!-- 달력 요일 -->
-						<div class="days">
-							<div class="day">일</div>
-							<div class="day">월</div>
-							<div class="day">화</div>
-							<div class="day">수</div>
-							<div class="day">목</div>
-							<div class="day">금</div>
-							<div class="day">토</div>
-						</div>
-
-						<!-- 달력 날짜 -->
-						<div class="dates"></div>
-					</div>
-
-				</div>
 			</div>
-		</div>
-
-		<div class="background_container">
-			<div class="cheering_board_wrap">
-				<div class="cheering_back">
-					<div class="cheering_txt">
-						당신의 팀을 응원해보세요!
-					</div>
-
-					<div class="c_flex">
-						<div class="cheering_board_list">
-							<div class="c_list">이게 팀이냐</div>
-							<div class="c_list">개못한다</div>
-							<div class="c_list">윤혜정팀은 좀 잘하네</div>
-						</div>
-						<div class="go_c_board">
-							바로가기
-						</div>
-					</div>
-				</div>
+			<div class="page-title">
+				<h1>Goods</h1>
 			</div>
 
-			<div class="event_board_wrap">
-				<div class="event_back">
-					<div class="top_event_wrap">
-						<div class="gongzi">
-							공지사항
-						</div>
-					</div>
-
-					<div class="bottom_event_wrap">
-						<a href="#" class="more_info">
-							more_info +
-						</a>
-						<div class="event_list">
-							<div>[이벤트] 2024-05-16 일자 경기 추첨 결과...</div>
-							<div>[이벤트] 2024-05-16 일자 경기 추첨 결과...</div>
-							<div>[이벤트] 2024-05-16 일자 경기 추첨 결과...</div>
-							<div>[이벤트] 2024-05-16 일자 경기 추첨 결과...</div>
-							<div>[이벤트] 2024-05-16 일자 경기 추첨 결과...</div>
-						</div>
-
-						<div class="event_img">
-							<img src="/images/메인 사진/운동.png" alt="">
-						</div>
-					</div>
-				</div>
+			<div class="goods_cata">
+				<div></div>
 			</div>
 
-			<div class="goods_wrap">
-				<div class="goods_back">
-					<div class="page-title_goods">
-						<h1>GOODS SHOP</h1>
-					</div>
 
-					<div class="goods_type_box">
-						<div class="goods_type">
-							Outerwear
-						</div>
-						<div class="goods_type">
-							Top
-						</div>
-						<div class="goods_type">
-							Bottom
-						</div>
-						<div class="goods_type">
-							Accessories
-						</div>
-						<div class="goods_type">
-							Other items
-						</div>
-					</div>
 
-					<div class="goods_view_wrap">
-						<div class="left_btn">
-							<p>〈</p>
-						</div>
 
-						<div class="goods">
-							<img src="/images/굿즈/굿즈사진.jpg" alt="">
-							<img src="/images/굿즈/굿즈사진2.jpg" alt="">
-							<img src="/images/굿즈/굿즈사진3.jpg" alt="">
-							<img src="/images/굿즈/굿즈사진.jpg" alt="">
-							<img src="/images/굿즈/굿즈사진2.jpg" alt="">
-							<img src="/images/굿즈/굿즈사진3.jpg" alt="">
-						</div>
 
-						<div class="right_btn">
-							<p>〉</p>
-						</div>
-					</div>
 
-					<div class="view_more_btn">
-						<a href="/goods/goods">view_more</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="support_wrap">
-				<div class="support">
-					<div class="support_img">
-						<img src="/images/아이콘/아디다스.png" alt="">
-					</div>
-				</div>
-				<div class="support">
-					<div class="support_img">
-						<img src="/images/아이콘/하나은행.png" alt="">
-					</div>
-				</div>
-				<div class="support">
-					<div class="support_img">
-						<img src="/images/아이콘/ea스포츠.png" alt="">
-					</div>
-				</div>
-				<div class="support">
-					<div class="support_img">
-						<img src="/images/아이콘/쿠팡플레이.png" alt="">
-					</div>
-				</div>
-				<div class="support">
-					<div class="support_img">
-						<img src="/images/아이콘/동원.png" alt="">
-					</div>
-				</div>
-				<div class="support">
-					<div class="support_img">
-						<img src="/images/아이콘/링티.png" alt="">
-					</div>
-				</div>
-				<div class="support">
-					<div class="support_img">
-						<img src="/images/아이콘/세븐.png" alt="">
-					</div>
-				</div>
-				<div class="support">
-					<div class="support_img">
-						<img src="/images/아이콘/sorare.png" alt="">
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 
