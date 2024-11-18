@@ -68,4 +68,8 @@ public class UserService {
 		userMapper.updateUser(user);
 	}
 
+	public void putwinevent(String neweventstr, String winner) {
+		userMapper.putwinevent(neweventstr, winner);
+	}
+
 }

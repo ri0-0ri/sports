@@ -95,4 +95,9 @@ public class GoodsServiceImpl implements GoodsService {
 		return gmapper.getgoods(cri);
 	}
 
+	@Override
+	public GoodsDTO getgoodsbygoodsname(String eventitem) {
+		return gmapper.getgoodsbygoodsname(eventitem);
+	}
+
 }

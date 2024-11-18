@@ -33,5 +33,7 @@ public interface UserMapper {
 	void updateUserReward(int newReward, String userid);
 
 	void updateUser(UserDTO user);
+
+	void putwinevent(String neweventstr, String winner);
     
 }

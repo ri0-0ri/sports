@@ -13,7 +13,7 @@ public class EboardDTO {
 	private int eboardcount;
 	private String eboardtitle;
 	private String eboardcontent;
-	private String eventcon;
+	private String str;
 	private int eventnum;
 	private String winner;
 	private GWillBoardDTO game;

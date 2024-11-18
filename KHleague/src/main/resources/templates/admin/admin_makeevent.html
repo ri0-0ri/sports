@@ -36,7 +36,8 @@
 				</div>
 
 				<div class="pick_wrap">
-					<div class="no_event_txt" th:if="${eventlist == null || eventlist.size()==0}">모든 이벤트 당첨자 추첨 완료!</div>
+					<div class="no_event_txt" th:if="${eventlist == null || eventlist.size()==0}">모든 이벤트 당첨자 추첨 완료!
+					</div>
 
 					<div th:if="${eventlist != null && eventlist.size()>0}" th:each="events:${eventlist}">
 
@@ -63,6 +64,21 @@
 								</div>
 								<div class="makebtn">추첨하기</div>
 							</div>
+
+							<!-- chatMap이 null이거나 비어있는 경우 -->
+							<div th:if="${chatMap[events.gwnum] == null or #lists.isEmpty(chatMap[events.gwnum])}">
+								<div class="make_wrap">
+									<div id="eventnum" style="display: none;">[[${events.eventnum}]]</div>
+									<div class="no_chat">
+										참여자가 아무도 없거나 아무도 조건을 달성하지 못했어요..
+									</div>
+									
+									<div class="go_write_no_winner">
+										발표하러가기
+									</div>
+								</div>
+							</div>
+
 							<div class="eachbox"
 								th:if="${chatMap[events.gwnum] != null and chatMap[events.gwnum].size() > 0}">
 
@@ -94,6 +110,11 @@
 								<div class="make_wrap" th:if="${events.eventtype == '단어 맞추기'}">
 									<div class="rullet_box">
 										<div id="eventnum" style="display: none;">[[${events.eventnum}]]</div>
+
+										<div class="strbox">
+											<div id="eventstr">[[${events.str}]]</div>
+										</div>
+
 										<div class="rullet">
 											<div class="rulletgotxt">룰렛을 돌려주세요!</div>
 											<div class="ids" th:each="fboard : ${chatMap[events.gwnum]}">

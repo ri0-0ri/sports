@@ -39,5 +39,7 @@ public interface GoodsMapper {
 	List<GoodsDTO> getgoodsBygoodsnum(int goodsnum);
 
 	List<GoodsDTO> getgoods(Criteria cri);
+
+	GoodsDTO getgoodsbygoodsname(String eventitem);
 	
 }

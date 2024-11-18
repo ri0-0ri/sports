@@ -17,12 +17,24 @@
 	</select>
 	
 	<insert id="puteboard">
-		insert into eboard(eboardtitle, eboardcontent, eventcon, eventnum, winner)
-		values(#{eboardtitle}, #{eboardcontent}, #{eventcon}, #{eventnum}, #{winner})
+		insert into eboard(eboardtitle, eboardcontent, eventnum, winner, str)
+		values(#{eboardtitle}, #{eboardcontent}, #{eventnum}, #{winner}, #{str})
 	</insert>
 	
 	<select id="geteboard">
-		select * from eboard;
+		select * from eboard
+		order by
+		 <choose>
+        <when test="view_type != null and view_type == 'S'.toString()">
+          eboardcount desc
+        </when>
+        <when test="view_type != null and view_type == 'O'.toString()">
+            eboardnum asc
+        </when>
+        <otherwise>
+            eboardnum desc
+        </otherwise>
+    </choose>
 	</select>
 	
 	<delete id="deleteeboard">
@@ -39,13 +51,13 @@
 	
 	<update id="updateeboard">
     UPDATE eboard
-    SET eboardtitle = #{eboardtitle}, eboardcontent = #{eboardcontent}, eventcon = #{eventcon}
+    SET eboardtitle = #{eboardtitle}, eboardcontent = #{eboardcontent}, str = #{str}
     WHERE eboardnum = #{eboardnum}
 	</update>
 
 	<update id="updatecount">
 	UPDATE eboard
-    SET eboardcount = eboardcount + 1
+    SET eboardcount = #{newnum}
     WHERE eboardnum = #{eboardnum}
 	</update>
 	
@@ -55,5 +67,14 @@
 		where eventnum=#{eventnum};
 	</update>
 	
+	<select id="geteboardlistbyeventnum">
+	select * from eboard where eventnum=#{eventnum}
+	</select>
+	
+	<update id="updateevent">
+		update events
+		set str = #{str}
+		where eventnum=#{eventnum};
+	</update>
 
 </mapper>

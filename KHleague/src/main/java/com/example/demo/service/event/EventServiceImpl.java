@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.mapper.event.EventMapper;
 import com.example.demo.model.event.EboardDTO;
 import com.example.demo.model.event.EventDTO;
+import com.example.demo.model.goods.Criteria;
 
 @Service
 public class EventServiceImpl implements EventService{
@@ -61,11 +62,6 @@ public class EventServiceImpl implements EventService{
 	}
 
 	@Override
-	public void updatecount(int eboardnum) {
-		emapper.updatecount(eboardnum);
-	}
-
-	@Override
 	public EboardDTO geteboardbyeventnum(int eventnum) {
 		return emapper.geteboardbyeventnum(eventnum);
 	}
@@ -75,4 +71,23 @@ public class EventServiceImpl implements EventService{
 		emapper.updatewinner(eventnum, winner);
 	}
 
+	@Override
+	public List<EboardDTO> geteboardlistbyeventnum(int eventnum) {
+		return emapper.geteboardlistbyeventnum(eventnum);
+	}
+
+	@Override
+	public void updateevent(int eventnum, String str) {
+		emapper.updateevent(eventnum, str);
+	}
+
+	@Override
+	public List<EboardDTO> geteboard(Criteria cri) {
+		return emapper.geteboard(cri);
+	}
+
+	@Override
+	public void updatecount(int newnum, int eboardnum) {
+		emapper.updatecount(newnum, eboardnum);
+	}
 }

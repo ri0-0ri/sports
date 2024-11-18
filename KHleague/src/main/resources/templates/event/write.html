@@ -48,7 +48,11 @@
 						</tr>
 						<tr th:if="${event.eventtype!='룰렛'}">
 							<th>조건</th>
-							<td><input type="text" name="eventcon" class="eboard_eventcon" value=""></td>
+							<td th:if="${event.str == null || event.str ==''}"><input type="text" name="str" class="eboard_eventcon" value=""></td>
+							<td th:if="${event.str != null && event.str !=''}">
+								[[${event.str}]]
+								<input type="hidden" name="str" class="eboard_eventcon" th:value="${event.str}">
+							</td>
 						</tr>
 						<tr>
 							<th>보상</th>
@@ -61,7 +65,7 @@
 						</tr>
 					</table>
 					
-					<div class="writebtn">						
+					<div class="writebtn">		
 						<div class="addboard" onclick="submitform()">작성완료</div>
 						<div class="back" onclick="back()">작성취소</div>
 					</div>

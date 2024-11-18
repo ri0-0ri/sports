@@ -68,13 +68,17 @@ function submitform(){
 	const eventnum = $('input[name="eventnum"]').val();
 	const eboardtitle = $('input[name="eboardtitle"]').val();
 	const eboardcontent = $('textarea[name="eboardcontent"]').val();
-	const eventcon = $('input[name="eventcon"]').val();
+	const str = $('input[name="str"]').val();
+	
+	if($('.str')!=null){
+		$('input[name="eventcon"]').val(str);
+	}
 
 	// 콘솔에 출력
 	console.log('eventnum:', eventnum);
 	console.log('eboardtitle:', eboardtitle);
 	console.log('eboardcontent:', eboardcontent);
-	console.log('eventcon:', eventcon);
+	console.log('str:', str);
 	
 	form.submit();
 }
@@ -86,13 +90,13 @@ function submitform_update(){
 	const eventnum = $('input[name="eventnum"]').val();
 	const eboardtitle = $('input[name="eboardtitle"]').val();
 	const eboardcontent = $('textarea[name="eboardcontent"]').val();
-	const eventcon = $('input[name="eventcon"]').val();
+	const str = $('input[name="str"]').val();
 
 	// 콘솔에 출력
 	console.log('eventnum:', eventnum);
 	console.log('eboardtitle:', eboardtitle);
 	console.log('eboardcontent:', eboardcontent);
-	console.log('eventcon:', eventcon);
+	console.log('str:', str);
 	
 	form.submit();
 }
@@ -154,3 +158,12 @@ $(document).ready(function() {
 				
     });
 });
+
+/* 보기 구현 */
+function change_view() {
+    const view_type = $("#view_type").val();
+    
+	const currentUrl = new URL(window.location.href);	   
+	currentUrl.searchParams.set('view_type', view_type);	   
+	window.location.href = currentUrl.toString();	
+}
