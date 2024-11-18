@@ -1,6 +1,6 @@
 create database sports;
 use sports;
---  drop database sports;
+-- drop database sports;
 
 -- drop table user;
 -- drop table sports;
@@ -362,6 +362,7 @@ CREATE TABLE g_will_board (
     CONSTRAINT gW_team1num FOREIGN KEY (team1name) REFERENCES team(teamname) ON DELETE CASCADE,
     CONSTRAINT gW_team2num FOREIGN KEY (team2name) REFERENCES team(teamname) ON DELETE CASCADE
 );
+select * from g_will_board;
 
 CREATE TABLE fboard (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -386,7 +387,8 @@ create table events(
    CONSTRAINT gwnum FOREIGN KEY (gwnum) REFERENCES g_will_board(gwnum) ON DELETE CASCADE,
     eventtype varchar(300),
     eventitem varchar(300),
-    winner varchar(300)
+    winner varchar(300),
+    str varchar(300)
 );
 
 create table eboard(
@@ -395,7 +397,7 @@ create table eboard(
     eboardcount int,
     eboardtitle varchar(300),
     eboardcontent varchar(3000),
-    eventcon varchar(300),
+    str varchar(300),
     eventnum int,
    CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum),
     winner varchar(300)

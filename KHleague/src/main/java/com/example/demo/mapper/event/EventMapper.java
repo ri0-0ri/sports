@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.model.event.EboardDTO;
 import com.example.demo.model.event.EventDTO;
+import com.example.demo.model.goods.Criteria;
 
 @Mapper
 public interface EventMapper {
@@ -28,12 +29,18 @@ public interface EventMapper {
 
 	void updateeboard(EboardDTO eboard);
 
-	void updatecount(int eboardnum);
-
 	EboardDTO geteboardbyeventnum(int eventnum);
 
 	void updatewinner(int eventnum, String winner);
 
 	void updatewinnertoboard(int eventnum, String winner);
+
+	List<EboardDTO> geteboardlistbyeventnum(int eventnum);
+
+	void updateevent(int eventnum, String str);
+
+	List<EboardDTO> geteboard(Criteria cri);
+
+	void updatecount(int newnum, int eboardnum);
 
 }

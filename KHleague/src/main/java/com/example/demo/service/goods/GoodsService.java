@@ -37,4 +37,6 @@ public interface GoodsService {
 
 	List<GoodsDTO> getgoods(Criteria cri);
 
+	GoodsDTO getgoodsbygoodsname(String eventitem);
+
 }

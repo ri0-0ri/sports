@@ -133,6 +133,21 @@ public class AdminController {
 		return ResponseEntity.ok("게시글 삭제 완료!");
 	}
 	
+	public List<EboardDTO> getUniqueEboardByEventnum(int eventnum) {
+	    List<EboardDTO> eboardList = eservice.geteboardlistbyeventnum(eventnum);
+	    // 중복 제거를 위해 Set을 사용
+	    Set<Integer> seenEventNums = new HashSet<>();
+	    List<EboardDTO> uniqueEboards = new ArrayList<>();
+	    for (EboardDTO eboard : eboardList) {
+	        if (!seenEventNums.contains(eboard.getEventnum())) {
+	            seenEventNums.add(eboard.getEventnum());
+	            uniqueEboards.add(eboard);
+	        }
+	    }
+	    return uniqueEboards;
+	}
+
+	
 	@GetMapping("admin_makeevent")
 	public void makeevent(Model model) {
 		List<EventDTO> eventlists = eservice.geteventlist();
@@ -174,18 +189,19 @@ public class AdminController {
 					}
 				}			
 				List<ChatDTO> chatlist = cservice.getchatBygwnum(gwnum, chat_type);
-				chatMap.put(gwnum, chatlist);				
+				chatMap.put(gwnum, chatlist);
+				System.out.println("챗맵확인 > "+chatMap);
 			}
 			// 이벤트 타입이 단어 맞추기면(모든 사람들 중 맞춘 사람들만 추첨), 중복 불가능(id당 한번만)
 			else if(event.getEventtype().equals("단어 맞추기")) {
 				int eventnum = event.getEventnum();
-				EboardDTO eboard = eservice.geteboardbyeventnum(eventnum);	
-				String str = eboard.getEventcon();				
-				List<ChatDTO> chatlist = cservice.getchatBystr(gwnum, str);
+				String str = event.getStr();
 				
+				List<ChatDTO> chatlist = cservice.getchatBystr(gwnum, str);
+			
 		        // 중복 확인을 위한 Set을 사용 > hashset은 중복값 자동으로 걸러줌(얘는 확인용)
 	            Set<String> checkuser = new HashSet<>();
-	            List<ChatDTO> filteredChatList = new ArrayList<>(); // 중복되지 않은 chatlist(얘는 실제 넣을 dto)	            
+	            List<ChatDTO> filteredChatList = new ArrayList<>();            
 
 	            for (ChatDTO chat : chatlist) {
 	                String id = chat.getUserId();	                
@@ -198,15 +214,18 @@ public class AdminController {
 	            
 	            // 중복을 제외한 filteredChatList를 chatMap에 저장
 	            chatMap.put(gwnum, filteredChatList);
-	            System.out.println("단어 맞추기: " + filteredChatList);						
 			}		
 		}
 		model.addAttribute("chatMap", chatMap);
 	}
 	
+
 	@PostMapping("pluscount")
 	public ResponseEntity pluscount(@RequestParam int eboardnum) {
-		eservice.updatecount(eboardnum);
+		int oldnum = eservice.geteboardByeboardnum(eboardnum).getEboardcount();
+		int newnum = oldnum+1;
+		eservice.updatecount(newnum, eboardnum);
+		
 		System.out.println("조회수증가함");
 		return ResponseEntity.ok("조회수 증가 완료!");
 	}

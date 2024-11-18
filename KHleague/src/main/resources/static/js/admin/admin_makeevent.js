@@ -134,3 +134,28 @@ $('.go_write').on('click', function() {
 		}
 	});
 });
+
+// 참여자 없을때 발표하러가기
+$('.go_write_no_winner').on('click', function() {	
+	
+	const eventnum = $('#eventnum').text().trim();
+	console.log(eventnum);
+	const winner = "당첨자 없음";
+	console.log(winner);
+	
+	$.ajax({
+			url: '/event/updatenowinner',
+			type: 'POST',
+			data: {
+				eventnum:eventnum,
+				winner:winner
+			},
+			success: function (response) {
+				alert(response);
+				location.href = "/event/write?eventnum=" + eventnum;
+			},
+			error: function (xhr, status, error) {
+				console.error("당첨자 추가 실패 : ", error);
+			}
+		});
+});

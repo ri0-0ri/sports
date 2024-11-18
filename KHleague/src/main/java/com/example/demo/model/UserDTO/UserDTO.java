@@ -15,4 +15,5 @@ public class UserDTO {
 	private String userhomenum;
 	private String userjoin;
 	private int userpoint;
+	private String winnerevent;
 }

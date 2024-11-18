@@ -84,5 +84,9 @@
 	<select id="getgoodsBygoodsnum">
 		select * from goods where goodsnum=#{goodsnum}
 	</select>
+	
+	<select id="getgoodsbygoodsname">
+		select * from goods where goodsname=#{eventitem}
+	</select>
 
 </mapper>

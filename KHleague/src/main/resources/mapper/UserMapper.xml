@@ -48,4 +48,10 @@
     WHERE userid = #{userid}
 </update>
 
+<update id="putwinevent">
+	update user
+	set winnerevent = #{neweventstr}
+	where userid=#{winner}
+</update>
+
 </mapper>
