@@ -6,6 +6,11 @@
 		values(#{deliveryPlace}, #{deliveryMemo}, #{totalPrice}, #{sudannum}, #{userid}, #{ordername}, #{buynum})
 	</insert>
 	
+	<insert id="putdelivery">
+		insert into orders(deliveryPlace, deliveryMemo, totalPrice, sudannum, userid, ordername, buynum, state)
+		values(#{deliveryPlace}, #{deliveryMemo}, #{totalPrice}, #{sudannum}, #{userid}, #{ordername}, #{buynum}, #{state})
+	</insert>
+	
 	<select id="getorderByuser">
 		select * from orders where userid=#{userid}
 	</select>

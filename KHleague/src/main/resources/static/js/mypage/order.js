@@ -17,6 +17,8 @@ $(document).ready(function() {
 	          $(this).text("포인트 결제");
 	      } else if(sudan === "2") {
 	          $(this).text("간편 결제");
+	      } else if(sudan === "4") {
+	          $(this).text("이벤트 당첨");
 	      } else {
 	          $(this).text("적립금 결제");
 	      }
