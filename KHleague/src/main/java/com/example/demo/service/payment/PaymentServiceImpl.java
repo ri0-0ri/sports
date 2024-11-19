@@ -96,4 +96,9 @@ public class PaymentServiceImpl implements PaymentService{
 		omapper.deleteorderList(ordernum);
 	}
 
+	@Override
+	public void putdelivery(OrderDTO order) {
+		omapper.putdelivery(order);
+	}
+
 }

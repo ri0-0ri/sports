@@ -2,146 +2,179 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/goods/prize.css">
-				
-    <title>GOODS</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/goods/prize.css">
+
+	<title>GOODS</title>
 </head>
 
 <body>
 	<th:block th:replace="~{layout/header::header}"></th:block>
+	<div class="loginuser" style="display: none;">[[${session.loginUser}]]</div>
 
-    <div class="modal">
-        <div class="modal_goods_popup">
+	<div class="modal" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}" th:id="${goods.goodsnum}">
+		<form th:id="${goods.goodsnum}" method="post">
+		<input type="hidden" name="eventnum" value="">
+		<input type="hidden" name="userid" th:value="${session.loginUser}">
+		<input type="hidden" name="goodsnum" th:value="${goods.goodsnum}">
+			<!-- 이 폼에서는 DB 굿즈정보, 사용자가 선택한 굿즈사이즈, 사용자가 선택한 굿즈수량이 넘어갑니다 -->
+	        <div class="modal_goods_popup">
 
-            <div class="modal_goods_close_btn">
-                <div onclick="close_modal()">닫기</div>
-            </div>
+	            <div class="modal_goods_close_btn">
+	                <div onclick="close_modal()">닫기</div>
+	            </div>
 
-            <div class="modal_goods_img">
-                <img src="/images/굿즈/굿즈사진3.jpg" alt="">
-            </div>
+	            <div class="modal_goods_img">
+	                <img th:src="${goods.goodsimg}" alt="">
+	            </div>
 
-            <div class="modal_goods_info">
-                <div class="goods_status">
-                    <p class="new">NEW!</p>
-                    <p class="hot">HOT!</p>
-                </div>
+	            <div class="modal_goods_info">
+	                <div class="goods_status">
+	                    <p class="new">NEW!</p>
+	                    <p class="hot">HOT!</p>
+	                </div>
 
-                <div class="goods_name">
-                    FC 서울 바람막이(black)
-                </div>
+	                <div class="goods_name">
+	                    [[${goods.goodsname}]]
+	                </div>
 
-                <div class="goods_price">
-                    722,000 원
-                </div>
+	                <div class="goods_price">
+	                    [[${goods.goodsprice}]]
+	                </div>
 
-                <div class="goods_options">
-                    <div class="goods_size_box">
-                        <p>사이즈</p>
-                        <div class="goods_size_option">
-                            <select name="" id="">
-                                <option value="">XL</option>
-                                <option value="">L</option>
-                                <option value="">M</option>
-                                <option value="">S</option>
-                                <option value="">XS</option>
-                            </select>
-                        </div>
-                    </div>
+	                <div class="goods_options">
+	                    <div class="goods_size_box" th:if="${goods.goodstype != 'Accessories' and goods.goodstype != 'Other items'}">
+	                        <p>사이즈</p>
+	                        <div class="goods_size_option">
+	                            <select name="size" id="">
+	                                <option value="XL">XL</option>
+	                                <option value="L">L</option>
+	                                <option value="M">M</option>
+	                                <option value="S">S</option>
+	                                <option value="XS">XS</option>
+	                            </select>
+	                        </div>
+	                    </div>
+						
+						<div class="goods_size_box" style="display: none;" th:if="${goods.goodstype == 'Accessories' or goods.goodstype == 'Other items'}">
+						    <input type="hidden" name="size" value="free" />
+						</div>
 
-                    <div class="goods_num_box">
-                        <p>수량</p>
-                        <input type="number" class="quantity" name="quantity" min="1" value="1">
-                    </div>
-                </div>
+	                    <div class="goods_num_box" style="display: none;">
+	                        <input type="number" class="quantity" name="quantity" min="1" value="1">
+	                    </div>
+	                </div>
 
 
-                <div class="payment_box">
-                    <p class="go_payment">
-                        BUY NOW
-                    </p>
-                    <p class="go_cart">
-                        CART
-                    </p>
-                    <p class="go_wishlist">
-                        WISH LIST
-                    </p>
-                </div>
+	                <div class="payment_box">
+						<button type="button" class="go_delivery" onclick="submitForm('/payment/event_delivery', event)">
+							GO DELIVERY
+						</button>
+	                </div>
 
-            </div>
-        </div>
-    </div>
+	            </div>
+	        </div>
+		</form>
+	    </div>
 
-    <div class="top_container">
-    </div>
+	<div class="top_container">
+	</div>
 
-    <div class="container_wrap">
-        <div class="container">
-            <div class="teams_box">
-                <div class="left_btn">
-                    <p>〈</p>
-                </div>
-
-                <div class="teams">
-					<div>제 2회 경품 - FC서울 바람막이</div>
-					<div>제 3회 경품 - FC서울 바람막이</div>
-					<div>제 2회 경품 - FC서울 바람막이</div>
-					<div>제 2회 경품 - FC서울 바람막이</div>
-					<div>제 2회 경품 - FC서울 바람막이</div>
-                </div>
-
-                <div class="right_btn">
-                    <p>〉</p>
-                </div>
-            </div>
-
-            <div class="goods_team_txt_box">
-                <div class="goods_team_txt">
-					<p>[[${session.loginUser}]] 님</p>
-                    당첨을 축하드립니다
-                </div>
-				
-				<div class="prize_txt">
-					<p>당첨 상품 옵션을 선택하시고 장바구니에 담아주세요~</p>
+	<div class="container_wrap">
+		<div class="container">
+			<div class="teams_box">
+				<div class="left_btn">
+					<p>〈</p>
 				</div>
-            </div>			
 
-			<div class="reward_wrap">
-				<div>적립금 당첨내역</div>
-				
-				<div class="rewardbox" th:each="reward : ${rewards}">
-					<p th:text="'이벤트 : ' + ${reward.key.eboardtitle}"></p>
-					<p th:text="${reward.value}"></p>
+				<div th:if="${allevent == null or allevent.size() == 0}">열린 이벤트내역이 없습니다!</div>
+				<div class="teams">
+						<div th:each="events : ${allevent}" th:if="${allevent != null && allevent.size()>0}">제 [[${events.eventnum}]] 회 경품 - [[${events.eventitem}]]</div>
+				</div>
+
+				<div class="right_btn">
+					<p>〉</p>
 				</div>
 			</div>
-			
-            <div class="goods_wrap">
-				<div>굿즈 당첨내역</div>
-				
-                <div class="goodsbox" th:each="goods : ${goods}">
-					<p th:text="'이벤트 : ' + ${goods.key.eboardtitle}"></p>
-					<p th:text="${goods.value.goodsname}"></p>
-                </div>
-            </div>
 
-            <div class="paging">
-                <p>《</p>
-                <p>1</p>
-                <p>2</p>
-                <p>3</p>
-                <p>4</p>
-                <p>》</p>
-            </div>
-        </div>
-    </div>
+			<div class="goods_team_txt_box">
+				<div class="goods_team_txt">
+					<p>[[${session.loginUser}]] 님</p>
+					당첨을 축하드립니다
+				</div>
 
-    <th:block th:replace="~{layout/footer::footer}"></th:block>
+				<div class="prize_txt">
+					<p>당첨 상품 옵션을 선택하시고 장바구니에 담아주세요~</p>
+					<br>
+					<p>적립금 유효기간은 3일입니다! 원하시는 날짜에 적립금 받기를 눌러주세요~</p>
+				</div>
+			</div>
+
+			<div class="reward_wrap">
+				<p class="nae">적립금 당첨내역</p>
+
+				<div class="itembox" th:each="reward : ${rewards}">
+					<p class="eventinfo" th:text="${reward.key.eboardtitle}"></p>
+					<div class="iteminfo">
+						<div class="eventnum" th:text="${reward.key.eventnum}" style="display: none;"></div>
+						<p class="reward" th:text="${reward.value}"></p>
+						<div class="get_reward">수령</div>
+					</div>
+				</div>
+
+				<div class="itembox" th:each="reward : ${getrewards}" th:if="${getrewards != null && getrewards.size()>0}">
+					<p class="eventinfo" th:text="${reward.key.eboardtitle}"></p>
+					<div class="iteminfo">
+						<div class="eventnum" th:text="${reward.key.eventnum}" style="display: none;"></div>
+						<p class="reward" th:text="${reward.value}"></p>
+						<div class="ok_reward">수령완료</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="goods_wrap">
+				<p class="nae">굿즈 당첨내역</p>
+
+				<div class="itembox" th:each="goods : ${goods}">
+					<p class="eventinfo" th:text="${goods.key.eboardtitle}"></p>
+					<div class="iteminfo">
+						<div class="eventnum" th:text="${goods.key.eventnum}" style="display: none;"></div>
+						<div class="itemnum" th:text="${goods.value.goodsnum}" style="display: none;"></div>
+						<p th:text="${goods.value.goodsname}"></p>
+						<img class="itemimg" th:src="${goods.value.goodsimg}"></img>
+						<div class="select_goods">옵션</div>
+					</div>
+				</div>
+				<div class="itembox" th:each="goods : ${getgoods}" th:if="${getgoods != null && getgoods.size()>0}">
+					<p class="eventinfo" th:text="${goods.key.eboardtitle}"></p>
+					<div class="iteminfo">
+						<div class="eventnum" th:text="${goods.key.eventnum}" style="display: none;"></div>
+						<div class="itemnum" th:text="${goods.value.goodsnum}" style="display: none;"></div>
+						<p th:text="${goods.value.goodsname}"></p>
+						<img class="itemimg" th:src="${goods.value.goodsimg}"></img>
+						<div class="ok_reward">수령완료</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="paging">
+				<p>《</p>
+				<p>1</p>
+				<p>2</p>
+				<p>3</p>
+				<p>4</p>
+				<p>》</p>
+			</div>
+		</div>
+	</div>
+
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="/js/goods/goods.js"></script>
-	<script src="/js/index.js"></script>
-    <!-- 슬릭 js -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/goods/prize.js"></script>
+<script src="/js/index.js"></script>
+<!-- 슬릭 js -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 </html>

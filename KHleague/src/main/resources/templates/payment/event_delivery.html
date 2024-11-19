@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="icon" href="https://static.toss.im/icons/png/4x/icon-toss-logo.png" />
+	<link rel="stylesheet" type="text/css" href="/css/payment/style.css" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/payment/payment.css">
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://js.tosspayments.com/v2/standard"></script>
+    <title>당첨 상품 배송 페이지</title>
+</head>
+
+<body>	
+    <div class="modal">
+        <div class="modal_delivery_popup">
+            <div class="delivery_memo">
+                <div class="memo_txt">배송메모 선택</div>
+                <div class="check_memo">배송 요청사항 없음.</div>
+                <div class="check_memo">문앞에 놓아주세요.</div>
+                <div class="check_memo">배송전 문자 남겨주세요.</div>
+                <div class="check_memo">부재 시 연락 부탁드립니다.</div>
+                <div class="check_memo" id="self_input">직접 입력</div>
+                <input type="text" class="delevery_txt_self" style="display: none;">
+
+                <div class="close_btn" onclick="close_modal()">
+                    선택완료
+                </div>             
+            </div>
+
+        </div>
+    </div>
+
+    <th:block th:replace="~{layout/header::header}"></th:block>
+	
+	<!-- 결제 정보 제출 폼 -->
+	<form action="/payment/okdelivery" method="post" id="paymentForm">		
+
+    <div class="top_container">
+        <div class="page_txt">이벤트 상품 배송</div>
+        <div class="page_info_txt">당첨된 상품은 별도의 금액과 배송비가 들지 않습니다!</div>
+    </div>
+
+    <div class="container_wrap">
+        <div class="container">
+            <div class="addr">
+                <p>배송지</p>
+                <div class="addr_box">
+                    <div class="modify_addr_btn" onclick="openPostCode()">
+                        주소선택
+                    </div>
+                    <div class="user_info">
+                        <div th:text="${user.username}"></div>
+                        <div th:text="${user.userphone}"></div>
+                        <div th:if="${user.useraddr == '' or user.useraddr == null}" style="color: #FF1700;">
+							주소 정보가 없습니다! (필수입력)
+						</div>
+						<div class="addr_self_box">						
+						<input id="useraddr" type="text" th:value="${user.useraddr}" readonly /> 
+						<input type="text" id="userdetailaddr" placeholder="상세주소 입력"></input>
+						</div>
+                    </div>
+                    <div class="addr_self_txt">
+                        <input type="text" hidden id="deliveryMemoInput" value="">
+						<div onclick="open_modal()" id="selected_delivery_txt">배송 메모를 선택해 주세요</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product">
+                <p>배송 상품</p>
+                <div class="product_box" style="padding-bottom: 20px;">
+                    <div class="product_info">
+						<input type="hidden" th:value="${goods.goodsnum}" class="goodsnums">
+                        <div class="product_img">
+                            <img th:src="${goods.goodsimg}" alt="">
+                        </div>
+
+                        <div class="product_view">
+                            <div class="product_name" th:text="${goods.goodsname}"></div>
+
+                            <div class="product_options">
+								<input type="hidden" name="size" th:value="${size}">
+								<input type="hidden" name="quantity" th:value="${quantity}">
+                                <div class="product_size" th:text="${size}"></div>
+								<div style="display: flex;">										
+	                                <div class="product_num" th:text="${quantity}">
+	                                </div>
+	                                     <div>개</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="talk_txt">
+                <div class="talk_box">
+                    <div class="talking">
+                        <div>이벤트 상품은 교환 및 취소가 불가능합니다.</div>
+                        <div>자세히</div>
+                    </div>
+
+                    <div class="talking">
+                        <div>개인정보 제공 동의</div>
+                        <div>자세히</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="go_payment_area">
+        <div class="go_delivery" style="cursor: pointer;" onclick="go_delivery()">
+            <div>배송 요청</div>
+        </div>
+    </div>
+	
+	<input type="hidden" name="deliveryPlace">
+	<input type="hidden" name="deliveryMemo">
+	<input type="number" name="totalPrice" style="display: none;">
+	<input type="hidden" name="sudannum">
+	<input type="hidden" name="userid" th:value="${user.userid}" class="userid">	
+	<input type="hidden" name="goodsnums">
+	<input type="hidden" name="ordername">
+	<input type="hidden" name="buynum">
+	<input type="hidden" name="eventnum" th:value="${eventnum}">
+	
+	<div class="username" style="display: none;">[[${user.username}]]</div>
+	<div class="userphone" style="display: none;">[[${user.userphone}]]</div>	
+	</form>
+
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/payment/payment.js"></script>
+<script src="/js/index.js"></script>
+</html>

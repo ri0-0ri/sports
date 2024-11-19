@@ -49,10 +49,13 @@ CREATE TABLE user (
     winnerevent varchar(300),
     role VARCHAR(50) DEFAULT 'user'
 );
-select * from user;
+
 #관리자 계정 추가 
 INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin, role)
 VALUES ('admin', '12345678', '관리자', '000-0000-0000', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04', 'admin');
+#계정 하나 추가
+INSERT INTO user (userid, userpw, username, userphone, useraddr, userReward, userbirth, usergender, userhomenum, userjoin)
+VALUES ('apple', '12345678', '김사과', '010-1234-1234', '주소', '5000', '2000-01-01', '남', '홈넘버', '2023-11-04');
 
 # 주의! 이 테이블은 무조건 moneyname에 적립금/포인트/충전/사용/취소/소멸 과 같은 단어가 들어가야함
 # 혹시나 moneyname을 set해줄때 주의해서 넣어주세요
@@ -362,7 +365,6 @@ CREATE TABLE g_will_board (
     CONSTRAINT gW_team1num FOREIGN KEY (team1name) REFERENCES team(teamname) ON DELETE CASCADE,
     CONSTRAINT gW_team2num FOREIGN KEY (team2name) REFERENCES team(teamname) ON DELETE CASCADE
 );
-select * from g_will_board;
 
 CREATE TABLE fboard (
     id INT AUTO_INCREMENT PRIMARY KEY,

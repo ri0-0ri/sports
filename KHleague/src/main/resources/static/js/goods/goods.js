@@ -3,11 +3,9 @@ function close_modal() {
     $('.modal').css('display', 'none');
 }
 function open_modal(element) {
-	const goodsid = $(element).attr('id');
-	
+	const goodsid = $(element).attr('id');	
 	const thismodal = $(`.modal#${goodsid}`);	
-    thismodal.css('display', 'block');
-	
+    thismodal.css('display', 'block');	
 }
 
 // goods js

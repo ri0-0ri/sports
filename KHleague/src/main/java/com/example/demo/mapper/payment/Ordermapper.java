@@ -33,4 +33,6 @@ public interface Ordermapper {
 
 	void deleteorderList(int ordernum);
 
+	void putdelivery(OrderDTO order);
+
 }

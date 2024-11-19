@@ -30,4 +30,6 @@ public interface PaymentService {
 
 	void deleteorderList(int ordernum);
 
+	void putdelivery(OrderDTO order);
+
 }

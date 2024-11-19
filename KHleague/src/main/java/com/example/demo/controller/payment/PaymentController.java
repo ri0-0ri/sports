@@ -64,8 +64,6 @@ public class PaymentController {
 		    goodsBuyinfo.add(buyListDTO);
 		    goodsMap.put(buyListDTO.getGoodsnum(), goodsDTO);
 		    totalAmount += gservice.getgoodsBycart(buyListDTO.getGoodsnum()).getGoodsprice() * gservice.getBuygoodsBybuynum(singleBuynum).getQuantity();
-//		    System.out.println(gservice.getgoodsBycart(buyListDTO.getGoodsnum()).getGoodsprice());
-//		    System.out.println(gservice.getBuygoodsBybuynum(singleBuynum).getQuantity());
 		}	    
 	    model.addAttribute("goodsBuyinfo", goodsBuyinfo);
 	    model.addAttribute("goodsMap", goodsMap);
@@ -94,7 +92,41 @@ public class PaymentController {
 		
 		model.addAttribute("size", size);
 		model.addAttribute("quantity", quantity);
-//		return "payment/single_payment?userid=" + userid + "&goodsnum=" + goodsnum + "&size=" + size + "&quantity=" + quantity;
+	}
+	
+	@GetMapping("event_delivery")
+	public void event_delivery(@RequestParam String userid, @RequestParam String goodsnum, @RequestParam String size, @RequestParam String quantity, @RequestParam String eventnum, Model model){
+		System.out.println(userid);
+		System.out.println(goodsnum);
+		System.out.println(size);
+		System.out.println(quantity);
+		
+		int intgoodsnum = Integer.parseInt(goodsnum);		
+		UserDTO user = uservice.findUserById(userid);
+		model.addAttribute("user", user);
+		GoodsDTO goods = gservice.getgoodsBycart(intgoodsnum);
+		model.addAttribute("goods", goods);
+		
+		model.addAttribute("size", size);
+		model.addAttribute("quantity", quantity);
+		model.addAttribute("eventnum", eventnum);
+	}
+	
+	@PostMapping("okdelivery")
+	public String okdelivery(OrderDTO order, @RequestParam(required = false) String size, @RequestParam(required = false) String quantity, @RequestParam(required = false) String goodsnums, @RequestParam(required = false) String eventnum) {
+		System.out.println(order);
+		System.out.println(size+quantity+goodsnums);
+		order.setState("배송신청완료");
+		System.out.println(order);
+		pservice.putdelivery(order);
+		
+		// 유저DTO winner 스트링 변경
+		UserDTO user = uservice.findUserById(order.getUserid());
+		String userid = order.getUserid();
+		String newwinnerevent = user.getWinnerevent().replaceAll(eventnum,"-"+eventnum);
+		uservice.putwinevent(newwinnerevent, userid);
+		
+		return "redirect:/mypage/mypage_order";		
 	}
 	
 	@PostMapping("okpayment")

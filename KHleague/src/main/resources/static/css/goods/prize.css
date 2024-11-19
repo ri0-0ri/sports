@@ -36,8 +36,7 @@ a{
 }
 
 .teams{
-    margin: 0 50px;
-    overflow: hidden;
+	overflow: hidden;
     white-space: nowrap;
     transition: transform 0.5s ease;
 }
@@ -54,15 +53,14 @@ a{
     transition: background-color 0.5s ease;
 }
 
-.slick-slide img {
-    width: 150px !important;
-    height: 100px !important;
-}
-
 .slick-slide {
-    width: auto !important;
+	width: auto !important;
     display: inline-block !important;
     margin: 20px !important;
+}
+
+.slick-track{
+	width: 100% !important;
 }
 
 .goods_team_txt_box{
@@ -264,7 +262,7 @@ a{
     text-align: center;
 }
 
-.go_payment{
+.go_delivery{
     background-color: #0344DC;
     color: #fff;
     padding: 10px;
@@ -273,7 +271,7 @@ a{
 	width: 100%;
 }
 
-.go_payment:hover{
+.go_delivery:hover{
     box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
     transition: transform 0.3s ease;
@@ -306,8 +304,7 @@ a{
 
 /* 당첨 페이지 */
 .prize_txt{
-	display: flex;
-	justify-content: center;
+	text-align: center;
 	margin-top: 20px;
 }
 
@@ -337,4 +334,61 @@ a{
 	text-align: center;
 	border: 1px solid #d9d9d9;
 	padding: 20px;
+}
+
+.nae{
+	width: 150px;
+	margin: 0 auto;
+	text-align: center;
+	background-color: #01203F;
+	color: #fff;
+	padding: 10px;
+}
+
+.itembox{
+	margin: 0 auto;
+	width: 500px;
+	border-bottom: 1px solid #d9d9d9;
+	padding-bottom: 10px;
+	padding-top: 30px;
+}
+
+.eventinfo{
+	margin-bottom: 10px;
+}
+
+.iteminfo{
+	position: relative;
+}
+
+.iteminfo>.get_reward, .select_goods{
+	background-color: #0344DC;
+	color: #fff;
+	padding: 10px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	cursor: pointer;
+}
+
+.iteminfo>.ok_reward{
+	background-color: #FF1700;
+	opacity: 0.8;
+		color: #fff;
+		padding: 10px;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		cursor: pointer;
+}
+
+.itemimg{
+	margin-top: 10px;
+	width: 100px;
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+}
+
+.iteminfo>.get_reward:hover, .select_goods:hover{
+	opacity: 0.3;
 }
