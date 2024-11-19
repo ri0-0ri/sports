@@ -2,7 +2,7 @@ create database sports;
 use sports;
 -- drop database sports;
 
--- drop table user;
+ -- drop table user;
 -- drop table sports;
 -- drop table team;
 -- drop table player;
