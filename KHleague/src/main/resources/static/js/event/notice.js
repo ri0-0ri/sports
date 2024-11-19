@@ -71,7 +71,7 @@ function submitform(){
 	const str = $('input[name="str"]').val();
 	
 	if($('.str')!=null){
-		$('input[name="eventcon"]').val(str);
+		$('input[name="str"]').val(str);
 	}
 
 	// 콘솔에 출력
