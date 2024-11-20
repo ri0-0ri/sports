@@ -385,38 +385,64 @@ button:hover {
 }
 
 .date {
-	width: calc(100% / 7);
-	padding: 6px;
+	display: inline-block;
+	width: 30px;
+	/* 각 날짜의 넓이 고정 */
+	height: 30px;
+	/* 각 날짜의 높이 고정 */
+	margin: 5px;
+	/* 날짜들 사이의 간격 */
 	text-align: center;
-	color: #363636;
+	/* 날짜를 가운데 정렬 */
+	vertical-align: top;
+	/* 세로 정렬 */
+	line-height: 30px;
+	/* 날짜 텍스트의 세로 가운데 정렬 */
 }
 
-.day:nth-child(7n + 1),
+/*.day:nth-child(7n + 1),
 .date:nth-child(7n + 1) {
 	color: #D13E3E;
-}
+}*/
 
-.day:nth-child(7n),
+/*.day:nth-child(7n),
 .date:nth-child(7n) {
 	color: #396EE2;
 }
-
+*/
 .other {
 	opacity: .3;
 }
 
-.today {
+/*.today {
 	position: relative;
 	color: white;
 	background-color: #01203F;
 	border-radius: 50%;
 	width: 23px;
-	/* 오늘 날짜 크기 */
 	height: 23px;
-	/* 오늘 날짜 크기 */
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}*/
+
+.match-day {
+	background-color: #01203F;
+	color: white;
+	border-radius: 50%;
+
+	padding: 5px;
+
+	display: flex;
+
+	justify-content: center;
+
+	align-items: center;
+
+	font-weight: bold;
+
+	box-sizing: border-box;
+
 }
 
 .today::before {
@@ -665,7 +691,7 @@ button:hover {
 
 .main_table {
 	width: 400px;
-	height: 200px;
+	height: 225px;
 	border-radius: 15px;
 	background-color: white;
 	overflow: hidden;
@@ -740,6 +766,7 @@ button:hover {
 	position: absolute;
 	width: 20px;
 	height: 1px;
+	right: 5px;
 }
 
 /* 세로선 스타일 */
@@ -861,9 +888,13 @@ button:hover {
 	color: white;
 }
 
+#tem_info a p:hover {
+	color: #01203F;
+}
 
 #tem_info:hover {
-	background-color: #0344DC;
+	background-color: white;
+	color: #01203F;
 	transform: translateY(-3px);
 }
 
