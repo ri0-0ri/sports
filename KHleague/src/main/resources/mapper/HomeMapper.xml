@@ -6,8 +6,9 @@
 		resultType="com.example.demo.modal.gWillBoardDTO.GWillBoardDTO">
 		SELECT gWdate, team1name, team2name
 		FROM g_will_board
-		ORDER BY gWdate ASC
-		LIMIT 3
+		WHERE gWtime > NOW()
+		ORDER BY gWtime ASC
+		LIMIT 3;
 	</select>
 
 </mapper>
