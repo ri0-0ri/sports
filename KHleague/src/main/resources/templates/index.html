@@ -196,33 +196,22 @@
 						</div>
 						<div>
 							<table class="main_table">
-								<tr>
-									<th>
-										<p>22일</p>
-										<p>목요일</p>
-									</th>
-									<td>윤경수</td>
-									<td>VS</td>
-									<td>윤혜정</td>
-								</tr>
-								<tr>
-									<th>
-										<p>22일</p>
-										<p>목요일</p>
-									</th>
-									<td>윤경수</td>
-									<td>VS</td>
-									<td>윤혜정</td>
-								</tr>
-								<tr>
-									<th>
-										<p>22일</p>
-										<p>목요일</p>
-									</th>
-									<td>윤경수</td>
-									<td>VS</td>
-									<td>윤혜정</td>
-								</tr>
+								<!-- 3개의 경기 데이터를 반복 출력 -->
+								<th:block th:each="match : ${upcomingMatches}">
+									<tr>
+										<th>
+											<!-- JavaScript로 날짜 처리 -->
+											<p class="match-date" th:data-date="${match.gWdate}"></p>
+											<!-- gWdate 값을 data-date 속성에 전달 -->
+											<p class="match-day"></p> <!-- 요일을 JavaScript로 표시 -->
+										</th>
+										<!-- 팀 1 (team1name) -->
+										<td th:text="${match.team1name}"></td>
+										<td>VS</td>
+										<!-- 팀 2 (team2name) -->
+										<td th:text="${match.team2name}"></td>
+									</tr>
+								</th:block>
 							</table>
 						</div>
 					</div>

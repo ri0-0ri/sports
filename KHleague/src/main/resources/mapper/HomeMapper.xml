@@ -1,0 +1,13 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.main.HomeMapper">
+
+	<!-- 가장 이른 3개의 경기 데이터를 가져오는 쿼리 -->
+	<select id="getUpcomingMatches"
+		resultType="com.example.demo.modal.gWillBoardDTO.GWillBoardDTO">
+		SELECT gWdate, team1name, team2name
+		FROM g_will_board
+		ORDER BY gWdate ASC
+		LIMIT 3
+	</select>
+
+</mapper>
