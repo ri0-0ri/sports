@@ -21,7 +21,7 @@ public class HomeController {
 		// 경기 정보 가져오기
 		model.addAttribute("upcomingMatches", homeService.getUpcomingMatches());
 
-		return "index"; // index.html로 전달
+		return "index";
 	}
 
 	@GetMapping("/join/join.html")
