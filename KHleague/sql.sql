@@ -87,6 +87,7 @@ create table team(
     teamloggo varchar(300),
     constraint sportsnum foreign key(sportsnum) references sports(sportsnum)
 );
+
 insert into team(teamname, sportsnum, teamloggo) values("FC서울", 1, '');
 insert into team(teamname, sportsnum, teamloggo) values("전북 현대 모터스", 1,'');
 insert into team(teamname, sportsnum, teamloggo) values("삼성 라이온즈", 2,'');
@@ -112,7 +113,7 @@ create table player(
 
 #FC 서울 팀 20명 (이미지는 넣어야함 )
 INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
-('김용대', 'Kim Yong-dae', '대한민국', 37, '185cm', '80kg', '골키퍼', 1, 'image1.jpg'),
+('김용대', 'Kim Yong-dae', '대한민국', 37, '185cm', '80kg', '골키퍼', 1, '/images/선수/김용대.jfif'),
 ('이청용', 'Lee Chung-yong', '대한민국', 35, '175cm', '70kg', '미드필더', 1, 'image2.jpg'),
 ('박주영', 'Park Ju-young', '대한민국', 38, '182cm', '77kg', '포워드', 1, 'image3.jpg'),
 ('오스마르', 'Osmar', '스페인', 32, '180cm', '75kg', '미드필더', 1, 'image4.jpg'),
@@ -130,7 +131,7 @@ INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, 
 ('여름', 'Yeoreum', '대한민국', 24, '178cm', '72kg', '미드필더', 1, 'image16.jpg'),
 ('신진호', 'Shin Jin-ho', '대한민국', 33, '179cm', '75kg', '미드필더', 1, 'image17.jpg'),
 ('한승규', 'Han Seung-kyu', '대한민국', 26, '182cm', '77kg', '수비수', 1, 'image18.jpg'),
-('송진우', 'Song Jin-woo', '대한민국', 31, '186cm', '82kg', '골키퍼', 1, 'image19.jpg'),
+('송진우', 'Song Jin-woo', '대한민국', 31, '186cm', '82kg', '골키퍼', 1, '/images/선수/김용대.jfif'),
 ('이용', 'Lee Yong', '대한민국', 36, '180cm', '74kg', '수비수', 1, 'image20.jpg');
 #전북 현대 모터스
  INSERT INTO player (playername, playerEname, playerCountry, playerAge, playerH, playerW, playerP, teamnum, playerimage) VALUES
@@ -404,3 +405,5 @@ create table eboard(
    CONSTRAINT eventnum FOREIGN KEY (eventnum) REFERENCES events(eventnum),
     winner varchar(300)
 );
+select * from eboard;
+use sports;

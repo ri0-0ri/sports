@@ -174,31 +174,14 @@ input[type="search"] {
     color: #fff;
 }
 
-.players{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    margin: 50px 10px;
-}
-
 .player img{
     width: 200px;
     cursor: pointer;
-}
-
-.player div{
-    margin-top: 10px;
+	margin: 0 20px;
 }
 
 .player{
-    width: calc(20% - 10px);
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.player:nth-last-child(-n+5) {
-    margin-bottom: 0;
+	margin-top: 100px;
 }
 
 .plus_btn{
@@ -216,6 +199,34 @@ input[type="search"] {
     background-color: rgba(0, 0, 0, 0.1);
     transition: background-color 0.5s ease;
 }
+
+.position{
+	margin-bottom: 50px;
+	padding: 20px;
+	border-top: 1px solid #D9D9D9;
+	border-bottom: 1px solid #D9D9D9;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sun{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	align-items: center;
+	justify-content: center;
+}
+
+.positiontxt{
+	background-color: #01203F;
+	color: #fff;
+	padding: 10px;
+	width: 150px;
+	text-align: center;
+}
+
 
 /* 모달 */
 .modal{

@@ -5,5 +5,9 @@
         SELECT teamnum, teamname, sportsnum, teamloggo
         FROM team
     </select>
+    
+    <select id="getplayers">
+    	select * from player where teamnum=#{teamnum}
+    </select>
 
 </mapper>

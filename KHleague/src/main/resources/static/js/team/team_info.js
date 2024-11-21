@@ -2,8 +2,10 @@
 function close_modal() {
     $('.modal').css('display', 'none');
 }
-function open_modal() {
-    $('.modal').css('display', 'block');
+function open_modal(element) {
+	const playernum = $(element).attr('id');	
+	const thismodal = $(`.modal#${playernum}`);
+	thismodal.css('display', 'block');	
 }
 
 // 호버 시 팀 목록, 포지션 목록 보여줌

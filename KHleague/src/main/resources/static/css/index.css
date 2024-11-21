@@ -312,6 +312,27 @@ a {
 	font-size: 50px;
 }
 
+.main_event a{
+	color: #01203F;
+}
+
+.main_event{position: relative;}
+.tabmenu{display: flex;}
+.tabmenu table tr th{padding: 10px; width: 310px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.tabmenu>li>h2>a{display: block; padding: 10px;}
+.tabmenu>li.on>h2>a{color: #0344DC;}
+.tabcon{position: absolute; left: 0; width: 100%; height: 100%; border: 1px solid #d9d9d9; padding: 10px;}
+.event{display: none;}
+.morebtn{
+	background-color: #01203F;
+	padding: 5px;
+	position: absolute;
+	top: 10px;
+	right: 0;
+	cursor: pointer;
+}
+.morebtn a{	color: #fff;}
+
 /* 달력 시작 */
 .calendar_area {
 	width: 400px;
@@ -605,14 +626,6 @@ button:hover {
 	align-items: center;
 }
 
-.goods img {
-	width: 200px;
-	margin: 20px;
-	border-radius: 15px;
-	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-	cursor: pointer;
-}
-
 .left_btn,
 .right_btn {
 	border: 1px solid #fff;
@@ -668,8 +681,7 @@ button:hover {
 .main_event {
 	/* border: 1px solid black; */
 	width: 30%;
-	height: 280px;
-	padding-top: 50px;
+	height: 330px;
 }
 
 .main_play {
@@ -936,4 +948,70 @@ button:hover {
 	font-size: 20px;
 	color: #606060;
 	line-height: 1.6;
+}
+
+.goods_select_box{
+	border-top: 1px solid #d9d9d9;
+	border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 1440px;
+	margin: 0 auto;
+}
+
+.goods_select_btn{
+    padding: 20px;
+    color: #B9B9C3;
+	border-right: 1px solid #d9d9d9;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#ot{
+	border-right: none;
+}
+
+.goods_select_btn.act{
+    padding: 20px;
+	color: #0344DC;
+    width: 150px;
+    text-align: center;
+}
+
+.goods_wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+	align-items: 
+	center;
+}
+
+.goods img{
+    max-width: 250px;
+    cursor: pointer;
+}
+
+.himg {
+	height: 350px;
+	display: flex;
+	align-items: center;
+	border-radius: 15px;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+	margin: 25px;
+}
+
+.more_btn{
+	margin: 0 auto;
+	border: 1px solid #d9d9d9;
+	padding: 10px;
+	width: 100px;
+	text-align: center;
+	margin-top: 50px;
+	cursor: pointer;
+}
+.more_btn:hover{
+	background-color: #d9d9d9;
+	color: #fff;
 }
