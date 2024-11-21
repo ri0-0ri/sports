@@ -111,43 +111,35 @@
 			</div>
 			<div class="main_news">
 				<div class="main_event">
-					<div class="event_top">
-						<div class="event_tap">
-							<div>이벤트</div>
-							<div>공지사항</div>
-						</div>
-						<div>
+					<ul class="tabmenu">
+						<li class="on">
+							<h2><a href="#">공지사항</a></h2>
 
-							<button class="cross-btn">
-								<span class="cross-line"></span>
-								<span class="cross-line"></span>
-							</button>
-						</div>
-					</div>
-					<div class="event_down">
-						<div class="event_item">
-							<div>공지사항입니다.</div>
-							<div>2024.11.15</div>
-						</div>
-						<div class="event_item">
-							<div>공지사항입니다.</div>
-							<div>2024.11.15</div>
-						</div>
-						<div class="event_item">
-							<div>공지사항입니다.</div>
-							<div>2024.11.15</div>
-						</div>
-						<div class="event_item">
-							<div>공지사항입니다.</div>
-							<div>2024.11.15</div>
-						</div>
-						<div class="event_item">
-							<div>공지사항입니다.</div>
-							<div>2024.11.15</div>
-						</div>
-
-					</div>
-
+							<div class="notice tabcon">
+								<table>
+									<tr th:each="eboard:${eboardlist}">
+										<th th:if="${eboard.eboardtitle.contains('공지사항')}">[[${eboard.eboardtitle}]]
+										</th>
+										<td th:if="${eboard.eboardtitle.contains('공지사항')}" class="boardtime">
+											[[${eboard.edate}]]</td>
+									</tr>
+								</table>
+							</div>
+						</li>
+						<li>
+							<h2><a href="#">이벤트</a></h2>
+							<div class="event tabcon">
+								<table>
+									<tr th:each="eboard:${eboardlist}">
+										<th th:if="${eboard.eboardtitle.contains('이벤트')}">[[${eboard.eboardtitle}]]</th>
+										<td th:if="${eboard.eboardtitle.contains('이벤트')}" class="boardtime">
+											[[${eboard.edate}]]</td>
+									</tr>
+								</table>
+							</div>
+						</li>
+						<div class="morebtn"><a href="/event/notice">더보기</a></div>
+					</ul>
 
 				</div>
 				<div class="main_play">
@@ -190,28 +182,28 @@
 							<div>
 								<button class="cross-btn">
 									<a href="/play_info/play_info">
-										
-									<span class="cross-line"></span>
-									<span class="cross-line"></span>
+
+										<span class="cross-line"></span>
+										<span class="cross-line"></span>
 									</a>
 								</button>
 							</div>
 						</div>
 						<div>
 							<table class="main_table">
-								
+
 								<th:block th:each="match : ${upcomingMatches}">
 									<tr>
 										<th>
-									
+
 											<p class="match-date" th:data-date="${match.gWdate}"></p>
-											
-											<p class="match-day"></p> 
+
+											<p class="match-day"></p>
 										</th>
-								
+
 										<td th:text="${match.team1name}"></td>
 										<td>VS</td>
-										
+
 										<td th:text="${match.team2name}"></td>
 									</tr>
 								</th:block>
@@ -251,14 +243,41 @@
 				</div>
 
 			</div>
+			
 			<div class="page-title">
 				<h1>Goods</h1>
 			</div>
+			
+			<div class="goods_select_box">
+				<div class="goods_select_btn">
+					Outerwear
+				</div>
+				<div class="goods_select_btn">
+					Top
+				</div>
+				<div class="goods_select_btn">
+					Bottom
+				</div>
+				<div class="goods_select_btn">
+					Accessories
+				</div>
+				<div class="goods_select_btn" id="ot">
+					Other items
+				</div>
+			</div>
 
-
-
-
-
+			<div class="goods_wrap">
+				<div class="goods" th:if="${goodsList != null and goodsList.size() > 0}" th:each="goods:${goodsList}"
+					th:id="${goods.goodstype}">
+					<div class="himg">
+						<img th:src="${goods.goodsimg}" alt="">
+					</div>
+				</div>
+			</div>
+<!--dd-->
+			<div class="more_btn">
+				<a href="/goods/goods">더보기</a>
+			</div>
 
 		</div>
 	</div>

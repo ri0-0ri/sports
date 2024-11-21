@@ -170,3 +170,53 @@ document.addEventListener('DOMContentLoaded', function() {
 		matchDateElement.nextElementSibling.textContent = dayOfWeek;
 	});
 });
+
+// 메인 공지사항 이벤트 탭메뉴
+$(function(){
+	var t = 0;
+	$('.tabmenu>li').click(function(){
+		$('.tabmenu>li').removeClass('on');
+		$(this).addClass('on');
+		
+		t = $(this).index();
+		
+		$('.tabcon').hide();
+		$('.tabcon').eq(t).show();
+		
+		return false;
+	})
+})
+
+$(document).ready(function(){
+	$('.boardtime').each(function(){	
+		const boardtime = $(this).text().trim().replace("T", " ");
+		const dateOnly = boardtime.split(" ")[0];
+		$(this).text(dateOnly);
+	})
+})
+
+// 굿즈 타입 선택하면 바뀌기
+$(document).ready(function () {
+	// 처음 자동 outerwear
+	$('.goods').css('display', 'none');
+	$('.goods_select_btn:contains("Outerwear")').addClass('act');
+	$('.goods#Outerwear').css('display', 'block');
+	
+	
+	$('.goods_select_btn').click(function(){
+		$('.goods_select_btn').removeClass('act');
+		$(this).addClass('act');
+		
+		const goodsbtn = $(this).text().trim();
+		
+		$('.goods').each(function() {
+			const goodstype = $(this).attr('id');
+		    if(goodstype!=goodsbtn){
+				$(this).css('display', 'none');
+			}
+			else{
+				$(this).css('display', 'block');
+			}
+		});
+   })
+});
