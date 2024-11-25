@@ -956,7 +956,8 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-	width: 1440px;
+	width: 700px;
+	/*1440*/
 	margin: 0 auto;
 }
 
@@ -976,7 +977,6 @@ button:hover {
 .goods_select_btn.act{
     padding: 20px;
 	color: #0344DC;
-    width: 150px;
     text-align: center;
 }
 
@@ -1011,7 +1011,12 @@ button:hover {
 	margin-top: 50px;
 	cursor: pointer;
 }
-.more_btn:hover{
+
+.more_btn a{
+	color: #d9d9d9;
+}
+
+.more_btn:hover, .more_btn:hover>a{
 	background-color: #d9d9d9;
 	color: #fff;
 }
