@@ -12,6 +12,12 @@ a{
     text-decoration: none;
 }
 
+.logo a img{
+	width: 200px;
+	height: 100px;
+	padding: 3px 0 0 0;
+}
+
 header {
     height: 100px;
     background-color: rgba(0, 0, 0, 0.8);
