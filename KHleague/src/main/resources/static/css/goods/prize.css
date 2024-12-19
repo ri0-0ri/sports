@@ -355,6 +355,10 @@ a{
 
 .eventinfo{
 	margin-bottom: 10px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 400px;
 }
 
 .iteminfo{

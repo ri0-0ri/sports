@@ -323,6 +323,8 @@ create table orders(
     constraint order_userid foreign key(userid) references user(userid) ON DELETE CASCADE,
     state varchar(300) default'결제완료'
 );
+select * from orders;
+update orders set state='배송중' where ordernum = 2;
 
 create table wishList(
    wishnum int primary key auto_increment,
