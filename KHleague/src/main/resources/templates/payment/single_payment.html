@@ -289,7 +289,7 @@
 	    const button = document.getElementById("payment-button");
 	    const amount = {
 	      currency: "KRW",
-	      value: 100,
+	      value: total,
 	    };
 	    // ------  결제위젯 초기화 ------
 	    // TODO: clientKey는 개발자센터의 결제위젯 연동 키 > 클라이언트 키로 바꾸세요.
@@ -342,6 +342,16 @@
 				}	
 		const username = document.querySelector('.username').textContent;
 		const userphone = document.querySelector('.userphone').textContent.replace(/-/g, '');
+		
+		// 적립금 사용 후 최종 금액 계산
+		    const totalReward = parseInt(document.querySelector('.after_reward').textContent.trim());
+		    const amount = {
+		        currency: "KRW",
+		        value: totalReward,
+		    };
+		    
+		    // 결제 위젯 금액 재설정
+		    await widgets.setAmount(amount);
 		
 		widgets.requestPayment({
   			orderId: generateRandomString(),

@@ -16,6 +16,7 @@ $(document).ready(function() {
 
 let interval;
 let isSpinning = false;
+let isWinnerDrawn = false;
 let userIds = [];
 
 // START 버튼 클릭 시
@@ -102,7 +103,9 @@ $(document).on("click", ".stopbtn", function() {
 
     // 선택된 아이디의 텍스트 가져오기
     const selectedUser = selectedIdElement ? $(selectedIdElement).text().trim() : null;
-    rulletBox.find('.winnerbox').text(selectedUser);	
+    rulletBox.find('.winnerbox').text(selectedUser);
+	
+	isWinnerDrawn = true;	
 });
 
 // 발표하러가기
@@ -158,4 +161,12 @@ $('.go_write_no_winner').on('click', function() {
 				console.error("당첨자 추가 실패 : ", error);
 			}
 		});
+});
+
+// 페이지 이동 방지
+$(window).on('beforeunload', function(e) {
+    if (!isWinnerDrawn) {
+        e.preventDefault();
+        e.returnValue = '';
+    }
 });

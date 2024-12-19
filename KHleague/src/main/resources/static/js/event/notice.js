@@ -167,3 +167,16 @@ function change_view() {
 	currentUrl.searchParams.set('view_type', view_type);	   
 	window.location.href = currentUrl.toString();	
 }
+
+$(document).ready(function() {
+    // 이름 마스킹 처리
+    $(".winnername").each(function() {
+        const winnerid = $(this).text().trim();
+        if (winnerid.length > 2) {
+            const maskedText = winnerid[0] + '*'.repeat(winnerid.length - 2) + winnerid[winnerid.length - 1];
+            $(this).text(maskedText);
+        } else {
+            $(this).text(winnerid[0] + '*');
+        }
+    });
+});
