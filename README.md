@@ -8,9 +8,9 @@
 
 **개발인원** : 2명
 
-    윤경수 <https://github.com/YoonKyungSoo> 
+🙋🏻‍♂️ 윤경수 <https://github.com/YoonKyungSoo> 
 
-    윤혜정 <https://github.com/ri0-0ri>
+🙋🏻‍♀️ 윤혜정 <https://github.com/ri0-0ri>
 
 ---
 # 🛠️ 개발목표
