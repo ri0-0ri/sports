@@ -51,7 +51,32 @@
 - **API** : Tosspayments test API, 다음 주소 API
 ---
 # 🛠️ 기능
+## Folder Structure
 
+```bash
+📦SeSAC-green-way-Seoul
+ ┣ 📂src
+ ┃ ┣ 📂api  // 오픈 API 및 Mock-Data 저장 폴더
+ ┃ ┣ 📂assets  // 이미지, 아이콘, 로고로 구분하여 저장
+ ┃ ┃ ┣ 📂icon
+ ┃ ┃ ┣ 📂img
+ ┃ ┃ ┣ 📂logo
+      // 페이지별 폴더 관리 
+ ┃ ┣ 📂bookmark // 기능별로 폴더를 구분하여 html, css, js 저장
+ ┃ ┣ 📂join
+ ┃ ┣ 📂login
+ ┃ ┣ 📂main
+ ┃ ┣ 📂mypage
+ ┃ ┣ 📂search
+ ┃ ┣ 📂styles // 공통 style css를 저장   
+ ┃ ┗ 📂utils  // 공통 부분 js 및 css 저장
+ ┃ ┃ ┣ 📂header
+ ┃ ┃ ┣ 📂tabBar
+ ┃ ┃ ┗ 📜utils.js
+ ┣ 📜index.html  // 첫 화면에 로딩 될 html 
+ ┣ 📜netlify.toml  // netlify 배포를 위한 환경변수 파일
+ ┣ 📜README.md
+ ┗ 📜_redirects //  netlify 배포를 위한 환경변수 파일
 ## 💡 DB 설계
 > ![erd1](https://github.com/user-attachments/assets/3c7e9907-aac7-4bfe-aba4-70bfcec7d017)
 ![erd2](https://github.com/user-attachments/assets/ff81a176-caf3-47e0-bef7-8887fc073297)
