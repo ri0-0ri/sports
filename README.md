@@ -77,6 +77,7 @@
  ┣ 📜netlify.toml  // netlify 배포를 위한 환경변수 파일
  ┣ 📜README.md
  ┗ 📜_redirects //  netlify 배포를 위한 환경변수 파일
+---
 ## 💡 DB 설계
 > ![erd1](https://github.com/user-attachments/assets/3c7e9907-aac7-4bfe-aba4-70bfcec7d017)
 ![erd2](https://github.com/user-attachments/assets/ff81a176-caf3-47e0-bef7-8887fc073297)
