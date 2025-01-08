@@ -21,15 +21,31 @@
 # 🛠️ 사용기술 / 개발환경
 - **운영체제**
 
-  <img src="https://img.shields.io/badge/Windows-80B3FF?style=for-the-badge&logo=Windows&logoColor=white">  <img src="https://img.shields.io/badge/macOs-000000?style=for-the-badge&logo=macOs&logoColor=white">
+  <img src="https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=Windows&logoColor=white">  <img src="https://img.shields.io/badge/macOs-000000?style=for-the-badge&logo=macOs&logoColor=white">
 - **사용언어**
 
-  <img src="https://img.shields.io/badge/JAVA-DC8236?style=for-the-badge&logo=JAVA&logoColor=white">  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">  <img src="https://img.shields.io/badge/Ajax-00000?style=for-the-badge&logo=Ajax&logoColor=white">  <img src="https://img.shields.io/badge/JSP & Servlet-08C2FF?style=for-the-badge&logo=JSP/Servlet&logoColor=white">
-- **FrameWork / Library** : Spring, jQuery
-- **DB** : MySQL
-- **WAS** : Tomcat
-- **Tool** : Visual Studio Code, STS (Spring Tool Suite), GitHub
-- **Collaboration** : Notion, Figma, ERD Cloud
+  <img src="https://img.shields.io/badge/JAVA-DC8236?style=for-the-badge&logo=JAVA&logoColor=white">  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">  <img src="https://img.shields.io/badge/Ajax-000000?style=for-the-badge&logo=Ajax&logoColor=white">  <img src="https://img.shields.io/badge/JSP & Servlet-08C2FF?style=for-the-badge&logo=JSP/Servlet&logoColor=white">
+  
+- **FrameWork / Library**
+
+  <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">  <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"> 
+  
+- **DB**
+
+  <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> 
+  
+- **WAS**
+
+  <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=black"> 
+  
+- **Tool**
+
+  <img src="https://img.shields.io/badge/VS Code-3478C6?style=for-the-badge&logo=vscode&logoColor=white">  <img src="https://img.shields.io/badge/STS-6DB33F?style=for-the-badge&logo=spring&logoColor=white">  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white">
+  
+- **Collaboration**
+
+  <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">  <img src="https://img.shields.io/badge/ERD CLOUD-9188F4?style=for-the-badge&logo=erd&logoColor=white">
+  
 - **API** : Tosspayments test API, 다음 주소 API
 ---
 # 🛠️ 기능
