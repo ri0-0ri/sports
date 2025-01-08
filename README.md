@@ -19,8 +19,12 @@
 3) 통합 플랫폼을 통해 스포츠 문화를 더욱 풍부하게 만들어, 팬들이 경기를 더 재미있게 즐길 수 있는 환경 조성
 ---
 # 🛠️ 사용기술 / 개발환경
-- **운영체제** : Windows, MacOS
-- **사용언어** : Java, Javascript, HTML5, CSS3, Ajax, JSP&Servlet
+- **운영체제**
+
+  <img src="https://img.shields.io/badge/Windows-80B3FF?style=for-the-badge&logo=Windows&logoColor=white">  <img src="https://img.shields.io/badge/macOs-000000?style=for-the-badge&logo=macOs&logoColor=white">
+- **사용언어**
+
+  <img src="https://img.shields.io/badge/JAVA-DC8236?style=for-the-badge&logo=JAVA&logoColor=white">  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">  <img src="https://img.shields.io/badge/Ajax-00000?style=for-the-badge&logo=Ajax&logoColor=white">  <img src="https://img.shields.io/badge/JSP & Servlet-08C2FF?style=for-the-badge&logo=JSP/Servlet&logoColor=white">
 - **FrameWork / Library** : Spring, jQuery
 - **DB** : MySQL
 - **WAS** : Tomcat
