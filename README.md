@@ -31,7 +31,10 @@
 # 🛠️ 기능
 
 ## 💡 DB 설계
-> 이미지
+> ![erd1](https://github.com/user-attachments/assets/3c7e9907-aac7-4bfe-aba4-70bfcec7d017)
+![erd2](https://github.com/user-attachments/assets/ff81a176-caf3-47e0-bef7-8887fc073297)
+![erd3](https://github.com/user-attachments/assets/99deabe9-ceab-4ca8-a228-c297f756ed1a)
+![erd4](https://github.com/user-attachments/assets/fb506a97-7592-4d64-8fdc-4753ed2d18e6)
 
 ## 💡 주요 기능 설명
 **로그인 / 회원가입페이지**
