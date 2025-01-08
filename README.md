@@ -12,7 +12,11 @@
 
 🙋🏻‍♀️ 윤혜정 <https://github.com/ri0-0ri>
 
+🔗
+
 **PPT** : [PPT Link](https://www.canva.com/design/DAGXFJdj3OE/E2RdD2Gw7qWNvD6plQ80wQ/view?utm_content=DAGXFJdj3OE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h44cc8678c8)
+
+**Video** : [Youtube Link](https://youtu.be/wUU2iMOHkDs)
 
 ---
 # 🛠️ 개발목표
