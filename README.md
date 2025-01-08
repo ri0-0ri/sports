@@ -6,6 +6,8 @@
 
 **기간** : 2024. 10. 22 ~ 2024. 11. 26
 
+**PPT** https://www.canva.com/design/DAGXFJdj3OE/E2RdD2Gw7qWNvD6plQ80wQ/view?utm_content=DAGXFJdj3OE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h44cc8678c8
+
 **개발인원** : 2명
 
 🙋🏻‍♂️ 윤경수 <https://github.com/YoonKyungSoo> 
